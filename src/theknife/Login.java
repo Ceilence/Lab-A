@@ -55,7 +55,7 @@ public class Login extends javax.swing.JFrame {
         logPass = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        registratiButton = new javax.swing.JButton();
         guestButton = new javax.swing.JButton();
         eyePass = new javax.swing.JToggleButton();
         jLabel8 = new javax.swing.JLabel();
@@ -163,17 +163,17 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("Non hai un account?");
         Dati.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 325, 130, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Registrati!");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        registratiButton.setBackground(new java.awt.Color(0, 102, 102));
+        registratiButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        registratiButton.setForeground(new java.awt.Color(255, 255, 255));
+        registratiButton.setText("Registrati!");
+        registratiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                registratiButtonActionPerformed(evt);
             }
         });
-        Dati.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, 30));
+        Dati.add(registratiButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, 30));
 
         guestButton.setBackground(new java.awt.Color(0, 102, 102));
         guestButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
-            RisList RisListFrame = new RisList();
+            RisList RisListFrame = new RisList(gestore);
             RisListFrame.setVisible(true);
             RisListFrame.pack();
             RisListFrame.setLocationRelativeTo(null);
@@ -235,20 +235,20 @@ public class Login extends javax.swing.JFrame {
 
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
-        RisList RisListFrame = new RisList();
+        RisList RisListFrame = new RisList(gestore);
         RisListFrame.setVisible(true);
         RisListFrame.pack();
         RisListFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_guestButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
         Reg1 Reg1Frame = new Reg1(gestore);
         Reg1Frame.setVisible(true);
         Reg1Frame.pack();
         Reg1Frame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_registratiButtonActionPerformed
 
     //Toggle button per mostrare o nascondere la password.
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
@@ -273,7 +273,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel Logo;
     private javax.swing.JToggleButton eyePass;
     private javax.swing.JButton guestButton;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -284,5 +283,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPasswordField logPass;
     private javax.swing.JTextField logUser;
+    private javax.swing.JButton registratiButton;
     // End of variables declaration//GEN-END:variables
 }

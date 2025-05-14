@@ -16,8 +16,8 @@ public class ArchivioCitta {
     private final String FILE_PATH = "data\\Citta.csv";
     private String stringInserita = "";
             
-    private ArrayList<Citta> listaCitta = new ArrayList<>();
-    private ArrayList<Citta> filtrate = new ArrayList<>();
+    private final ArrayList<Citta> listaCitta = new ArrayList<>();
+    private final ArrayList<Citta> filtrate = new ArrayList<>();
     
     public ArchivioCitta() {}
     

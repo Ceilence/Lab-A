@@ -5,7 +5,6 @@
 package theknife;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.StringTokenizer;
 
 
@@ -19,7 +18,7 @@ public class ArchivioRis {
 
     private static final String FILE_PATH = "data\\Ristoranti.csv";
     private Ristorante risAttuale;
-    private ArrayList<Ristorante> listaRis = new ArrayList<>();
+    private final ArrayList<Ristorante> listaRis = new ArrayList<>();
    
     public ArchivioRis() {}
     

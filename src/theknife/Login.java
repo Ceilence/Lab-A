@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
-            MainPage RisListFrame = new MainPage();
+            RisList RisListFrame = new RisList();
             RisListFrame.setVisible(true);
             RisListFrame.pack();
             RisListFrame.setLocationRelativeTo(null);
@@ -235,7 +235,7 @@ public class Login extends javax.swing.JFrame {
 
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
-        MainPage RisListFrame = new MainPage();
+        RisList RisListFrame = new RisList();
         RisListFrame.setVisible(true);
         RisListFrame.pack();
         RisListFrame.setLocationRelativeTo(null);

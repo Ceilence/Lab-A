@@ -22,7 +22,6 @@ public class TheKnife {
         gestore.getArchivioPref().leggiArchivio();
         gestore.getArchivioRec().leggiArchivio();
         
-        
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             gestore.getArchivioUtenti().aggiornaUtenti();
             gestore.getArchivioRis().aggiornaRis();

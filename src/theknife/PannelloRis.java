@@ -108,7 +108,7 @@ public class PannelloRis extends JPanel{
                         Ristorante r = gestore.getArchivioRis().getRistorante(indiceRistorante);
                         dettaglioNome.setText(r.getNomeRis());
                         dettaglioCucina.setText(r.getCuisRis());
-                        labelDescrizione.setText("<html><p style='width:625px'>" + r.getDesRis() + "</p></html>");
+                        labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
                         dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
 
                         dettaglioPanel.revalidate();

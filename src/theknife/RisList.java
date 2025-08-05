@@ -76,7 +76,6 @@ public class RisList extends javax.swing.JFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(frecciagiu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 50, 40));
 
@@ -86,20 +85,25 @@ public class RisList extends javax.swing.JFrame {
 
         dettaglioPanel.setBackground(new java.awt.Color(255, 255, 255));
         dettaglioPanel.setPreferredSize(new java.awt.Dimension(864, 674));
+        dettaglioPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dettaglioNome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         dettaglioNome.setText("jLabel1");
+        dettaglioPanel.add(dettaglioNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         dettaglioCucina.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         dettaglioCucina.setText("jLabel1");
+        dettaglioPanel.add(dettaglioCucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 52, -1, -1));
 
         dettaglioImmagine.setBackground(new java.awt.Color(255, 255, 255));
         dettaglioImmagine.setForeground(new java.awt.Color(255, 255, 255));
         dettaglioImmagine.setText("jlabel");
+        dettaglioPanel.add(dettaglioImmagine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
         labelDescrizione.setBackground(new java.awt.Color(204, 204, 204));
+        labelDescrizione.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelDescrizione.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -119,36 +123,7 @@ public class RisList extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout dettaglioPanelLayout = new javax.swing.GroupLayout(dettaglioPanel);
-        dettaglioPanel.setLayout(dettaglioPanelLayout);
-        dettaglioPanelLayout.setHorizontalGroup(
-            dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dettaglioPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dettaglioPanelLayout.createSequentialGroup()
-                        .addComponent(dettaglioImmagine)
-                        .addGap(96, 96, 96)
-                        .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dettaglioCucina)
-                            .addComponent(dettaglioNome)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(622, Short.MAX_VALUE))
-        );
-        dettaglioPanelLayout.setVerticalGroup(
-            dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dettaglioPanelLayout.createSequentialGroup()
-                .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dettaglioPanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(dettaglioImmagine))
-                    .addComponent(dettaglioNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dettaglioCucina)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(532, Short.MAX_VALUE))
-        );
+        dettaglioPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, -1, -1));
 
         jPanel2.add(dettaglioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 90, -1, 670));
 

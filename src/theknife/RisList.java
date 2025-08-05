@@ -45,7 +45,7 @@ public class RisList extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(pannello);*/
         
-        PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore);
+        PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore, dettaglioPanel, dettaglioNome, dettaglioCucina, dettaglioImmagine, labelDescrizione);
         jScrollPane1.setViewportView(pannelloDinamico);
         
 
@@ -59,7 +59,12 @@ public class RisList extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         frecciagiu = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        dettaglioPanel = new javax.swing.JPanel();
+        dettaglioNome = new javax.swing.JLabel();
+        dettaglioCucina = new javax.swing.JLabel();
+        dettaglioImmagine = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        labelDescrizione = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
@@ -79,21 +84,73 @@ public class RisList extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(1482, 760));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(864, 674));
+        dettaglioPanel.setBackground(new java.awt.Color(255, 255, 255));
+        dettaglioPanel.setPreferredSize(new java.awt.Dimension(864, 674));
+
+        dettaglioNome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        dettaglioNome.setText("jLabel1");
+
+        dettaglioCucina.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        dettaglioCucina.setText("jLabel1");
+
+        dettaglioImmagine.setBackground(new java.awt.Color(255, 255, 255));
+        dettaglioImmagine.setForeground(new java.awt.Color(255, 255, 255));
+        dettaglioImmagine.setText("jlabel");
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+
+        labelDescrizione.setBackground(new java.awt.Color(204, 204, 204));
+        labelDescrizione.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelDescrizione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelDescrizione)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 90, -1, 670));
+        javax.swing.GroupLayout dettaglioPanelLayout = new javax.swing.GroupLayout(dettaglioPanel);
+        dettaglioPanel.setLayout(dettaglioPanelLayout);
+        dettaglioPanelLayout.setHorizontalGroup(
+            dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dettaglioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dettaglioPanelLayout.createSequentialGroup()
+                        .addComponent(dettaglioImmagine)
+                        .addGap(96, 96, 96)
+                        .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dettaglioCucina)
+                            .addComponent(dettaglioNome)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(622, Short.MAX_VALUE))
+        );
+        dettaglioPanelLayout.setVerticalGroup(
+            dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dettaglioPanelLayout.createSequentialGroup()
+                .addGroup(dettaglioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dettaglioPanelLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(dettaglioImmagine))
+                    .addComponent(dettaglioNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dettaglioCucina)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(532, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(dettaglioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 90, -1, 670));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -134,6 +191,10 @@ public class RisList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barraRicerca;
+    private javax.swing.JLabel dettaglioCucina;
+    private javax.swing.JLabel dettaglioImmagine;
+    private javax.swing.JLabel dettaglioNome;
+    private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JLabel frecciagiu;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -142,6 +203,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDescrizione;
     private javax.swing.JLabel logo;
     private javax.swing.JButton ricerca;
     // End of variables declaration//GEN-END:variables

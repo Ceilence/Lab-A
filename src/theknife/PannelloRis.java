@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package theknife;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashSet;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 /**
  *
  * @author SSSSUGOI
@@ -21,8 +24,9 @@ public class PannelloRis extends JPanel{
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
     
-    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore) {
+    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione) {
         this.gestore = gestore;
+        
         //Imposta layout in mdo che ogni panel viene creato uno sotto l'altro.
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         //Aggiunge spazio dai bordi del panel
@@ -51,7 +55,6 @@ public class PannelloRis extends JPanel{
                 pannello.setBorder(BorderFactory.createLineBorder(Color.GRAY));
                 pannello.setAlignmentX(Component.LEFT_ALIGNMENT);
                 pannello.setBackground(Color.WHITE);
-
 
                 //La larghezza viene modificata nelle righe finali per adattarsi allo scrollpane
                 //L'altezza è fissa
@@ -96,6 +99,22 @@ public class PannelloRis extends JPanel{
                 );
                 card.add(bottone, BorderLayout.EAST);
                 */
+                
+                final int indiceRistorante = i; // necessario per usarlo nel listener
+
+                pannello.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        Ristorante r = gestore.getArchivioRis().getRistorante(indiceRistorante);
+                        dettaglioNome.setText(r.getNomeRis());
+                        dettaglioCucina.setText(r.getCuisRis());
+                        labelDescrizione.setText("<html><p style='width:625px'>" + r.getDesRis() + "</p></html>");
+                        dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
+
+                        dettaglioPanel.revalidate();
+                        dettaglioPanel.repaint();
+                    }
+                });
 
                 //Il pannello del ristorante viene aggiunto a quello principale
                 add(pannello);

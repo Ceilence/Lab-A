@@ -47,6 +47,7 @@ public class RisList extends javax.swing.JFrame {
         
         PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore);
         jScrollPane1.setViewportView(pannelloDinamico);
+        
 
     }
     

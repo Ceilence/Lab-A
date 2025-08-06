@@ -30,7 +30,7 @@ public class RisList extends javax.swing.JFrame {
         
         ImageIcon fgIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\freccine.png"));
         Image fg1 = fgIcon.getImage();
-        Image fg2 = fg1.getScaledInstance(frecciagiu.getWidth(), frecciagiu.getHeight(), Image.SCALE_SMOOTH);
+        Image fg2 = fg1.getScaledInstance(theknife.getWidth(), theknife.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon fg3 = new ImageIcon(fg2);
         logo.setIcon(fg3);
         this.freccia = fg3;
@@ -57,7 +57,6 @@ public class RisList extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBox1 = new javax.swing.JCheckBox();
-        frecciagiu = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         dettaglioPanel = new javax.swing.JPanel();
         dettaglioNome = new javax.swing.JLabel();
@@ -65,6 +64,7 @@ public class RisList extends javax.swing.JFrame {
         dettaglioImmagine = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         labelDescrizione = new javax.swing.JLabel();
+        preferiti = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
@@ -72,12 +72,12 @@ public class RisList extends javax.swing.JFrame {
         barraRicerca = new javax.swing.JTextField();
         ricerca = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        theknife = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(frecciagiu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 50, 40));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(1482, 760));
@@ -125,6 +125,14 @@ public class RisList extends javax.swing.JFrame {
 
         dettaglioPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, -1, -1));
 
+        preferiti.setText("jButton1");
+        preferiti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preferitiActionPerformed(evt);
+            }
+        });
+        dettaglioPanel.add(preferiti, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
         jPanel2.add(dettaglioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 90, -1, 670));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -148,12 +156,27 @@ public class RisList extends javax.swing.JFrame {
             }
         });
         jPanel4.add(barraRicerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 6, 329, 45));
+
+        ricerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/51658.png"))); // NOI18N
+        ricerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ricercaActionPerformed(evt);
+            }
+        });
         jPanel4.add(ricerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 6, 50, 45));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 500, 57));
+
+        theknife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+        jPanel2.add(theknife, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 70));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, -1));
 
@@ -164,13 +187,24 @@ public class RisList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barraRicercaActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ricercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ricercaActionPerformed
+        
+    }//GEN-LAST:event_ricercaActionPerformed
+
+    private void preferitiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferitiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_preferitiActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField barraRicerca;
     private javax.swing.JLabel dettaglioCucina;
     private javax.swing.JLabel dettaglioImmagine;
     private javax.swing.JLabel dettaglioNome;
     private javax.swing.JPanel dettaglioPanel;
-    private javax.swing.JLabel frecciagiu;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
@@ -180,6 +214,8 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDescrizione;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton preferiti;
     private javax.swing.JButton ricerca;
+    private javax.swing.JLabel theknife;
     // End of variables declaration//GEN-END:variables
 }

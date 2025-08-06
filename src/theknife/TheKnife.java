@@ -13,8 +13,8 @@ package theknife;
 public class TheKnife {
 
     public static void main(String[] args) {
-        
         GestoreArchivi gestore = new GestoreArchivi();
+        
         
         gestore.getArchivioUtenti().leggiArchivio();
         gestore.getArchivioRis().leggiArchivio();
@@ -35,6 +35,11 @@ public class TheKnife {
                 LoginFrame.setVisible(true);
                 LoginFrame.pack();
                 LoginFrame.setLocationRelativeTo(null);
+                
+                GestoreArchivi.RisListFrame = new RisList(gestore);
+                GestoreArchivi.RisListFrame.setVisible(false);
+                GestoreArchivi.RisListFrame.pack();
+                GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
             }
         });
     }

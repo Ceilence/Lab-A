@@ -15,6 +15,8 @@ public class GestoreArchivi {
     private ArchivioPreferiti archivioPref;
     private ArchivioRecensioni archivioRec;
     
+    public static RisList RisListFrame;
+    
     public GestoreArchivi() {
         archivioUtenti = new ArchivioUtenti();
         archivioRis = new ArchivioRis();

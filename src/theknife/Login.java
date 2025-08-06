@@ -235,10 +235,7 @@ public class Login extends javax.swing.JFrame {
 
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
-        RisList RisListFrame = new RisList(gestore);
-        RisListFrame.setVisible(true);
-        RisListFrame.pack();
-        RisListFrame.setLocationRelativeTo(null);
+        GestoreArchivi.RisListFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_guestButtonActionPerformed
 

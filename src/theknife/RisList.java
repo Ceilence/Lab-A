@@ -19,6 +19,7 @@ public class RisList extends javax.swing.JFrame {
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        Caricamento caricamentoFrame = new Caricamento(gestore);
         
         //Immagine per mostrare il logo ridimensionato ed applicato.
         ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
@@ -45,7 +46,7 @@ public class RisList extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(pannello);*/
         
-        PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore, dettaglioPanel, dettaglioNome, dettaglioCucina, dettaglioImmagine, labelDescrizione);
+        PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore, dettaglioPanel, dettaglioNome, dettaglioCucina, dettaglioImmagine, labelDescrizione, caricamentoFrame);
         jScrollPane1.setViewportView(pannelloDinamico);
         
 

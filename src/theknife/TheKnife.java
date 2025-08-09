@@ -31,10 +31,10 @@ public class TheKnife {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login LoginFrame = new Login(gestore);
-                LoginFrame.setVisible(true);
-                LoginFrame.pack();
-                LoginFrame.setLocationRelativeTo(null);
+                Caricamento CaricamentoFrame = new Caricamento(gestore);
+                CaricamentoFrame.setVisible(true);
+                CaricamentoFrame.pack();
+                CaricamentoFrame.setLocationRelativeTo(null);
                 
                 GestoreArchivi.RisListFrame = new RisList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);

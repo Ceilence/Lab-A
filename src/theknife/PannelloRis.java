@@ -115,7 +115,7 @@ public final class PannelloRis extends JPanel{
                 add(pannello);
                 //Crea uno spazio tra un pannello e l'altro
                 add(Box.createRigidArea(new Dimension(0, 10)));
-            }
+            
 
             // Imposta la dimensione in base all'altezza calcolata
             int larghezza = scrollPane.getViewport().getWidth(); // iniziale (potrebbe essere 0)

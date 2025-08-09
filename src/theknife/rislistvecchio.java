@@ -10,15 +10,19 @@ import javax.swing.*;
  *
  * @author SSSSUGOI
  */
-public class RisList extends javax.swing.JFrame {
+/*public class rislistvecchio extends javax.swing.JFrame {
     private final ImageIcon logoIcona;
     private final ImageIcon freccia;
+    private final ImageIcon prefAdd;
+    private final ImageIcon prefRem;
     private GestoreArchivi gestore;
     
     
-    public RisList(GestoreArchivi gestore) {
+    public rislistvecchio(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        pack();
+        setLocationRelativeTo(null);
         
         //Immagine per mostrare il logo ridimensionato ed applicato.
         ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
@@ -35,15 +39,27 @@ public class RisList extends javax.swing.JFrame {
         logo.setIcon(fg3);
         this.freccia = fg3;
         
+        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
+        Image pa1 = paIcon.getImage();
+        Image pa2 = pa1.getScaledInstance(preferiti.getWidth(), preferiti.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pa3 = new ImageIcon(pa2);
+        this.prefAdd = pa3;
         
-        /*JPanel pannello = new JPanel();
+        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
+        Image pt1 = fgIcon.getImage();
+        Image pt2 = fg1.getScaledInstance(preferiti.getWidth(), preferiti.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pt3 = new ImageIcon(fg2);
+        this.prefRem = pt3;
+        
+        
+        JPanel pannello = new JPanel();
         pannello.setLayout(new BoxLayout(pannello, BoxLayout.Y_AXIS));
 
         for (int i = 0; i < 10; i++) {
             pannello.add(new JLabel("Elemento numero " + i));
         }
 
-        jScrollPane1.setViewportView(pannello);*/
+        jScrollPane1.setViewportView(pannello);
         
         PannelloRis pannelloDinamico = new PannelloRis(jScrollPane1, gestore, dettaglioPanel, dettaglioNome, dettaglioCucina, dettaglioImmagine, labelDescrizione);
         jScrollPane1.setViewportView(pannelloDinamico);
@@ -98,7 +114,7 @@ public class RisList extends javax.swing.JFrame {
         dettaglioImmagine.setBackground(new java.awt.Color(255, 255, 255));
         dettaglioImmagine.setForeground(new java.awt.Color(255, 255, 255));
         dettaglioImmagine.setText("jlabel");
-        dettaglioPanel.add(dettaglioImmagine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        dettaglioPanel.add(dettaglioImmagine, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -136,6 +152,7 @@ public class RisList extends javax.swing.JFrame {
         jPanel2.add(dettaglioPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 90, -1, 670));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setMaximumSize(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(738, 690));
@@ -219,3 +236,4 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JLabel theknife;
     // End of variables declaration//GEN-END:variables
 }
+*/

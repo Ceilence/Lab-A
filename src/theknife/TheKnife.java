@@ -4,6 +4,8 @@
 
 package theknife;
 
+import java.awt.*;
+
 
 
 /**
@@ -13,6 +15,12 @@ package theknife;
 public class TheKnife {
 
     public static void main(String[] args) {
+        GraphicsDevice gd =GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        DisplayMode dm = gd.getDisplayMode();
+        int dpi = Toolkit.getDefaultToolkit ().getScreenResolution ();
+        double scale = dpi / 96.0;
+        System.setProperty ("sun.java2d.uiScale", String.valueOf(scale));
+        
         GestoreArchivi gestore = new GestoreArchivi();
         
         
@@ -36,7 +44,7 @@ public class TheKnife {
                 LoginFrame.pack();
                 LoginFrame.setLocationRelativeTo(null);
                 
-                GestoreArchivi.RisListFrame = new RisList(gestore);
+                GestoreArchivi.RisListFrame = new risList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);
                 GestoreArchivi.RisListFrame.pack();
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);

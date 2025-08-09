@@ -6,14 +6,13 @@
 package theknife;
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashSet;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 /**
  *
  * @author SSSSUGOI
  */
-public class PannelloRis extends JPanel{
+public final class PannelloRis extends JPanel{
     private GestoreArchivi gestore;
     private ImageIcon flagItalia;
     private ImageIcon flagCina;
@@ -90,15 +89,6 @@ public class PannelloRis extends JPanel{
                 immagine.setBackground(Color.WHITE);
                 immagine.setHorizontalAlignment(SwingConstants.CENTER);
                 pannello.add(immagine, BorderLayout.WEST);
-
-                /*
-                JButton bottone = new JButton("Azione");
-                int finalI = i;
-                bottone.addActionListener(e ->
-                    JOptionPane.showMessageDialog(this, "Hai cliccato su Elemento " + finalI)
-                );
-                card.add(bottone, BorderLayout.EAST);
-                */
                 
                 final int indiceRistorante = i; // necessario per usarlo nel listener
 

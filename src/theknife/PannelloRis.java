@@ -25,8 +25,9 @@ public final class PannelloRis extends JPanel{
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
     
-    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref) {
+    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref, Caricamento caricamentoFrame) {
         this.gestore = gestore;
+        int i = 0;
         
         //Imposta layout in mdo che ogni panel viene creato uno sotto l'altro.
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -115,7 +116,8 @@ public final class PannelloRis extends JPanel{
                         //Crea uno spazio tra un pannello e l'altro
                         add(Box.createRigidArea(new Dimension(0, 10)));
                         
-                        caricamentoFrame.aggiornaProgress(i);
+                        caricamentoFrame.aggiornaProgress(i + 1);
+                        
                     }
                 return null;
         }

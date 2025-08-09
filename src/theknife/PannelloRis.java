@@ -50,7 +50,7 @@ public final class PannelloRis extends JPanel{
        
         SwingWorker<Void, JPanel> worker = new SwingWorker<>(){
             @Override
-            protected Void doInBackground() throws Exception{
+            protected Void doInBackground() throws Exception {
                 for (Ristorante r : gestore.getArchivioRis().getRis()) {
                     //Crea pannello con bordo grigio e allineato a sinistra
                     JPanel pannello = new JPanel(new BorderLayout());
@@ -110,27 +110,32 @@ public final class PannelloRis extends JPanel{
                             dettaglioPanel.repaint();
                         }
                     });
-
-                    //Il pannello del ristorante viene aggiunto a quello principale
-                    add(pannello);
-                    //Crea uno spazio tra un pannello e l'altro
-                    add(Box.createRigidArea(new Dimension(0, 10)));
-
-
-                // Imposta la dimensione in base all'altezza calcolata
-                int larghezza = scrollPane.getViewport().getWidth(); // iniziale (potrebbe essere 0)
-                setPreferredSize(new Dimension(larghezza, altezzaTotale));
-
-                // Aggiorna larghezza dinamicamente quando lo scrollPane viene ridimensionato
-                scrollPane.getViewport().addComponentListener(new java.awt.event.ComponentAdapter() {
-                    public void componentResized(java.awt.event.ComponentEvent evt) {
-                        int nuovaLarghezza = scrollPane.getViewport().getWidth();
-                        setPreferredSize(new Dimension(nuovaLarghezza, altezzaTotale));
-                        revalidate();
+//Il pannello del ristorante viene aggiunto a quello principale
+                        add(pannello);
+                        //Crea uno spazio tra un pannello e l'altro
+                        add(Box.createRigidArea(new Dimension(0, 10)));
+                        
+                        caricamentoFrame.aggiornaProgress(i);
                     }
-                });
-
+                return null;
+        }
+        };
+        
+        worker.execute();
+        
+        // Imposta la dimensione in base all'altezza calcolata
+        int larghezza = scrollPane.getViewport().getWidth(); // iniziale (potrebbe essere 0)
+        setPreferredSize(new Dimension(larghezza, altezzaTotale));
+        
+        // Aggiorna larghezza dinamicamente quando lo scrollPane viene ridimensionato
+        scrollPane.getViewport().addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                int nuovaLarghezza = scrollPane.getViewport().getWidth();
+                setPreferredSize(new Dimension(nuovaLarghezza, altezzaTotale));
+                revalidate();
             }
+        });
+        }
     
         public void creaImmagine(){
         ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));

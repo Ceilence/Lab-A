@@ -42,7 +42,7 @@ public class Caricamento extends javax.swing.JFrame {
     public void aggiornaProgress(int valore) {
         SwingUtilities.invokeLater(() -> {
         System.out.println("Progress: " + valore);
-        if (valore == 14417) {
+        if (valore == 14416) {
                 Caricamento caricamentoFrame = new Caricamento(gestore);
                 caricamentoFrame.setVisible(false);
                 Login loginFrame = new Login(gestore);

@@ -15,12 +15,6 @@ import java.awt.*;
 public class TheKnife {
 
     public static void main(String[] args) {
-        GraphicsDevice gd =GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        DisplayMode dm = gd.getDisplayMode();
-        int dpi = Toolkit.getDefaultToolkit ().getScreenResolution ();
-        double scale = dpi / 96.0;
-        System.setProperty ("sun.java2d.uiScale", String.valueOf(scale));
-        
         GestoreArchivi gestore = new GestoreArchivi();
         
         
@@ -39,10 +33,10 @@ public class TheKnife {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login LoginFrame = new Login(gestore);
-                LoginFrame.setVisible(true);
-                LoginFrame.pack();
-                LoginFrame.setLocationRelativeTo(null);
+                Caricamento CaricamentoFrame = new Caricamento(gestore);
+                CaricamentoFrame.setVisible(true);
+                CaricamentoFrame.pack();
+                CaricamentoFrame.setLocationRelativeTo(null);
                 
                 GestoreArchivi.RisListFrame = new RisList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);

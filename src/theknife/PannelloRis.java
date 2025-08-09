@@ -27,7 +27,6 @@ public final class PannelloRis extends JPanel{
     
     public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref, Caricamento caricamentoFrame) {
         this.gestore = gestore;
-        int i = 0;
         
         //Imposta layout in mdo che ogni panel viene creato uno sotto l'altro.
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -52,6 +51,7 @@ public final class PannelloRis extends JPanel{
         SwingWorker<Void, JPanel> worker = new SwingWorker<>(){
             @Override
             protected Void doInBackground() throws Exception {
+                int loading = 0;
                 for (Ristorante r : gestore.getArchivioRis().getRis()) {
                     //Crea pannello con bordo grigio e allineato a sinistra
                     JPanel pannello = new JPanel(new BorderLayout());
@@ -116,8 +116,7 @@ public final class PannelloRis extends JPanel{
                         //Crea uno spazio tra un pannello e l'altro
                         add(Box.createRigidArea(new Dimension(0, 10)));
                         
-                        caricamentoFrame.aggiornaProgress(i + 1);
-                        
+                        caricamentoFrame.aggiornaProgress(loading++);
                     }
                 return null;
         }

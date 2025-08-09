@@ -129,7 +129,7 @@ public final class PannelloRis extends JPanel{
                     revalidate();
                 }
             });
-            }
+            
         }
     public void creaImmagine(){
         ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));

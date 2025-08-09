@@ -98,8 +98,10 @@ public final class PannelloRis extends JPanel{
                     dettaglioCucina.setText(r.getCuisRis());
                     labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
                     dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
-                    if (esistePref(r)) {
-                        
+                    if (gestore.esistePref(r)) { 
+                        detPref.setIcon(prefRem);
+                    } else {
+                        detPref.setIcon(prefAdd);
                     }
                         
                     dettaglioPanel.revalidate();
@@ -205,13 +207,4 @@ public final class PannelloRis extends JPanel{
         
         return this.flagMondo;
     }
-    
-    public Boolean esistePref (Ristorante r) {
-        for (Preferito p : gestore.getArchivioPref().getPreferiti()) {
-            if (p.getIdUtente() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() && p.getIdRis() == r.getIdRis())
-                return true;
-        }
-        return false;
-    }
-    
 }

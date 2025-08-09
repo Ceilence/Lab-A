@@ -277,6 +277,7 @@ public class RisList extends javax.swing.JFrame {
 
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
         
+        
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed

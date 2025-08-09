@@ -48,87 +48,89 @@ public final class PannelloRis extends JPanel{
         
         //Passaggio dell'immagine come path
        
+        SwingWorker<Void, JPanel> worker = new SwingWorker<>(){
+            @Override
+            protected Void doInBackground() throws Exception{
+            for (Ristorante r : gestore.getArchivioRis().getRis()) {
+                //Crea pannello con bordo grigio e allineato a sinistra
+                JPanel pannello = new JPanel(new BorderLayout());
+                pannello.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+                pannello.setAlignmentX(Component.LEFT_ALIGNMENT);
+                pannello.setBackground(Color.WHITE);
 
-        for (Ristorante r : gestore.getArchivioRis().getRis()) {
-            //Crea pannello con bordo grigio e allineato a sinistra
-            JPanel pannello = new JPanel(new BorderLayout());
-            pannello.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-            pannello.setAlignmentX(Component.LEFT_ALIGNMENT);
-            pannello.setBackground(Color.WHITE);
+                //La larghezza viene modificata nelle righe finali per adattarsi allo scrollpane
+                //L'altezza è fissa
+                pannello.setMaximumSize(new Dimension(Integer.MAX_VALUE, altezzaPannello));
+                pannello.setPreferredSize(new Dimension(0, altezzaPannello));
+                pannello.setMinimumSize(new Dimension(0, altezzaPannello));
 
-            //La larghezza viene modificata nelle righe finali per adattarsi allo scrollpane
-            //L'altezza è fissa
-            pannello.setMaximumSize(new Dimension(Integer.MAX_VALUE, altezzaPannello));
-            pannello.setPreferredSize(new Dimension(0, altezzaPannello));
-            pannello.setMinimumSize(new Dimension(0, altezzaPannello));
+                //Crea titolo con font e grandezza. è posizionato in alto
+                JPanel panelScritte = new JPanel();
+                panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
+                //il panel è invisibile
+                panelScritte.setOpaque(false);
 
-            //Crea titolo con font e grandezza. è posizionato in alto
-            JPanel panelScritte = new JPanel();
-            panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
-            //il panel è invisibile
-            panelScritte.setOpaque(false);
+                JLabel titolo = new JLabel(r.getNomeRis());
+                titolo.setFont(new Font("Arial", Font.BOLD, 16));
 
-            JLabel titolo = new JLabel(r.getNomeRis());
-            titolo.setFont(new Font("Arial", Font.BOLD, 16));
+                JLabel cuis = new JLabel(r.getCuisRis());
+                titolo.setFont(new Font("Arial", Font.BOLD, 16));
 
-            JLabel cuis = new JLabel(r.getCuisRis());
-            titolo.setFont(new Font("Arial", Font.BOLD, 16));
+                //Aggiunta dei due label al panel
+                panelScritte.add(titolo);
+                panelScritte.add(cuis);
 
-            //Aggiunta dei due label al panel
-            panelScritte.add(titolo);
-            panelScritte.add(cuis);
+                //Inserimento pannello in alto
+                pannello.add(panelScritte, BorderLayout.NORTH);
 
-            //Inserimento pannello in alto
-            pannello.add(panelScritte, BorderLayout.NORTH);
-
-            //Inserimento immagine nel pannello
+                //Inserimento immagine nel pannello
 
 
-            JLabel immagine = new JLabel((selezionaImmagine(r.getLocRis())));
-            immagine.setPreferredSize(new Dimension(60, 40));
-            immagine.setOpaque(true);
-            immagine.setBackground(Color.WHITE);
-            immagine.setHorizontalAlignment(SwingConstants.CENTER);
-            pannello.add(immagine, BorderLayout.WEST);
-            
-            pannello.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    dettaglioNome.setText(r.getNomeRis());
-                    dettaglioCucina.setText(r.getCuisRis());
-                    labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
-                    dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
-                    if (gestore.esistePref(r) != null) { 
-                        detPref.setIcon(prefRem);
-                    } else {
-                        detPref.setIcon(prefAdd);
+                JLabel immagine = new JLabel((selezionaImmagine(r.getLocRis())));
+                immagine.setPreferredSize(new Dimension(60, 40));
+                immagine.setOpaque(true);
+                immagine.setBackground(Color.WHITE);
+                immagine.setHorizontalAlignment(SwingConstants.CENTER);
+                pannello.add(immagine, BorderLayout.WEST);
+
+                pannello.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        dettaglioNome.setText(r.getNomeRis());
+                        dettaglioCucina.setText(r.getCuisRis());
+                        labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
+                        dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
+                        if (gestore.esistePref(r) != null) { 
+                            detPref.setIcon(prefRem);
+                        } else {
+                            detPref.setIcon(prefAdd);
+                        }
+
+                        dettaglioPanel.revalidate();
+                        dettaglioPanel.repaint();
                     }
-                        
-                    dettaglioPanel.revalidate();
-                    dettaglioPanel.repaint();
+                });
+
+                //Il pannello del ristorante viene aggiunto a quello principale
+                add(pannello);
+                //Crea uno spazio tra un pannello e l'altro
+                add(Box.createRigidArea(new Dimension(0, 10)));
+            }
+
+            // Imposta la dimensione in base all'altezza calcolata
+            int larghezza = scrollPane.getViewport().getWidth(); // iniziale (potrebbe essere 0)
+            setPreferredSize(new Dimension(larghezza, altezzaTotale));
+
+            // Aggiorna larghezza dinamicamente quando lo scrollPane viene ridimensionato
+            scrollPane.getViewport().addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentResized(java.awt.event.ComponentEvent evt) {
+                    int nuovaLarghezza = scrollPane.getViewport().getWidth();
+                    setPreferredSize(new Dimension(nuovaLarghezza, altezzaTotale));
+                    revalidate();
                 }
             });
-
-            //Il pannello del ristorante viene aggiunto a quello principale
-            add(pannello);
-            //Crea uno spazio tra un pannello e l'altro
-            add(Box.createRigidArea(new Dimension(0, 10)));
-        }
-        
-        // Imposta la dimensione in base all'altezza calcolata
-        int larghezza = scrollPane.getViewport().getWidth(); // iniziale (potrebbe essere 0)
-        setPreferredSize(new Dimension(larghezza, altezzaTotale));
-        
-        // Aggiorna larghezza dinamicamente quando lo scrollPane viene ridimensionato
-        scrollPane.getViewport().addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                int nuovaLarghezza = scrollPane.getViewport().getWidth();
-                setPreferredSize(new Dimension(nuovaLarghezza, altezzaTotale));
-                revalidate();
             }
-        });
-    }
-    
+        }
     public void creaImmagine(){
         ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
         Image pa1 = paIcon.getImage();

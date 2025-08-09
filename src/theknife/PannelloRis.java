@@ -14,6 +14,8 @@ import java.awt.event.MouseEvent;
  */
 public final class PannelloRis extends JPanel{
     private GestoreArchivi gestore;
+    private ImageIcon prefAdd;
+    private ImageIcon prefRem;
     private ImageIcon flagItalia;
     private ImageIcon flagCina;
     private ImageIcon flagFrancia;
@@ -23,7 +25,7 @@ public final class PannelloRis extends JPanel{
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
     
-    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione) {
+    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref) {
         this.gestore = gestore;
         
         //Imposta layout in mdo che ogni panel viene creato uno sotto l'altro.
@@ -47,70 +49,68 @@ public final class PannelloRis extends JPanel{
         //Passaggio dell'immagine come path
        
 
-        for (int i = 1; i <= numeroPannello; i++) {
-            if(gestore.getArchivioRis().getRistorante(i) != null){
-                //Crea pannello con bordo grigio e allineato a sinistra
-                JPanel pannello = new JPanel(new BorderLayout());
-                pannello.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-                pannello.setAlignmentX(Component.LEFT_ALIGNMENT);
-                pannello.setBackground(Color.WHITE);
+        for (Ristorante r : gestore.getArchivioRis().getRis()) {
+            //Crea pannello con bordo grigio e allineato a sinistra
+            JPanel pannello = new JPanel(new BorderLayout());
+            pannello.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            pannello.setAlignmentX(Component.LEFT_ALIGNMENT);
+            pannello.setBackground(Color.WHITE);
 
-                //La larghezza viene modificata nelle righe finali per adattarsi allo scrollpane
-                //L'altezza è fissa
-                pannello.setMaximumSize(new Dimension(Integer.MAX_VALUE, altezzaPannello));
-                pannello.setPreferredSize(new Dimension(0, altezzaPannello));
-                pannello.setMinimumSize(new Dimension(0, altezzaPannello));
+            //La larghezza viene modificata nelle righe finali per adattarsi allo scrollpane
+            //L'altezza è fissa
+            pannello.setMaximumSize(new Dimension(Integer.MAX_VALUE, altezzaPannello));
+            pannello.setPreferredSize(new Dimension(0, altezzaPannello));
+            pannello.setMinimumSize(new Dimension(0, altezzaPannello));
 
-                //Crea titolo con font e grandezza. è posizionato in alto
-                JPanel panelScritte = new JPanel();
-                panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
-                //il panel è invisibile
-                panelScritte.setOpaque(false);
+            //Crea titolo con font e grandezza. è posizionato in alto
+            JPanel panelScritte = new JPanel();
+            panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
+            //il panel è invisibile
+            panelScritte.setOpaque(false);
 
-                JLabel titolo = new JLabel(gestore.getArchivioRis().getRistorante(i).getNomeRis());
-                titolo.setFont(new Font("Arial", Font.BOLD, 16));
+            JLabel titolo = new JLabel(r.getNomeRis());
+            titolo.setFont(new Font("Arial", Font.BOLD, 16));
 
-                JLabel cuis = new JLabel(gestore.getArchivioRis().getRistorante(i).getCuisRis());
-                titolo.setFont(new Font("Arial", Font.BOLD, 16));
+            JLabel cuis = new JLabel(r.getCuisRis());
+            titolo.setFont(new Font("Arial", Font.BOLD, 16));
 
-                //Aggiunta dei due label al panel
-                panelScritte.add(titolo);
-                panelScritte.add(cuis);
+            //Aggiunta dei due label al panel
+            panelScritte.add(titolo);
+            panelScritte.add(cuis);
 
-                //Inserimento pannello in alto
-                pannello.add(panelScritte, BorderLayout.NORTH);
+            //Inserimento pannello in alto
+            pannello.add(panelScritte, BorderLayout.NORTH);
 
-                //Inserimento immagine nel pannello
+            //Inserimento immagine nel pannello
 
 
-                JLabel immagine = new JLabel(selezionaImmagine(gestore.getArchivioRis().getRistorante(i).getLocRis()));
-                immagine.setPreferredSize(new Dimension(60, 40));
-                immagine.setOpaque(true);
-                immagine.setBackground(Color.WHITE);
-                immagine.setHorizontalAlignment(SwingConstants.CENTER);
-                pannello.add(immagine, BorderLayout.WEST);
-                
-                final int indiceRistorante = i; // necessario per usarlo nel listener
-
-                pannello.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        Ristorante r = gestore.getArchivioRis().getRistorante(indiceRistorante);
-                        dettaglioNome.setText(r.getNomeRis());
-                        dettaglioCucina.setText(r.getCuisRis());
-                        labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
-                        dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
-
-                        dettaglioPanel.revalidate();
-                        dettaglioPanel.repaint();
+            JLabel immagine = new JLabel((selezionaImmagine(r.getLocRis())));
+            immagine.setPreferredSize(new Dimension(60, 40));
+            immagine.setOpaque(true);
+            immagine.setBackground(Color.WHITE);
+            immagine.setHorizontalAlignment(SwingConstants.CENTER);
+            pannello.add(immagine, BorderLayout.WEST);
+            
+            pannello.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    dettaglioNome.setText(r.getNomeRis());
+                    dettaglioCucina.setText(r.getCuisRis());
+                    labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
+                    dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
+                    if (esistePref(r)) {
+                        
                     }
-                });
+                        
+                    dettaglioPanel.revalidate();
+                    dettaglioPanel.repaint();
+                }
+            });
 
-                //Il pannello del ristorante viene aggiunto a quello principale
-                add(pannello);
-                //Crea uno spazio tra un pannello e l'altro
-                add(Box.createRigidArea(new Dimension(0, 10)));
-            }
+            //Il pannello del ristorante viene aggiunto a quello principale
+            add(pannello);
+            //Crea uno spazio tra un pannello e l'altro
+            add(Box.createRigidArea(new Dimension(0, 10)));
         }
         
         // Imposta la dimensione in base all'altezza calcolata
@@ -128,6 +128,18 @@ public final class PannelloRis extends JPanel{
     }
     
     public void creaImmagine(){
+        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
+        Image pa1 = paIcon.getImage();
+        Image pa2 = pa1.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon pa3 = new ImageIcon(pa2);
+        this.prefAdd = pa3;
+        
+        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
+        Image pt1 = ptIcon.getImage();
+        Image pt2 = pt1.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon pt3 = new ImageIcon(pt2);
+        this.prefRem = pt3;
+        
         ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
         Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);
@@ -192,6 +204,14 @@ public final class PannelloRis extends JPanel{
             return this.flagUSA;
         
         return this.flagMondo;
+    }
+    
+    public Boolean esistePref (Ristorante r) {
+        for (Preferito p : gestore.getArchivioPref().getPreferiti()) {
+            if (p.getIdUtente() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() && p.getIdRis() == r.getIdRis())
+                return true;
+        }
+        return false;
     }
     
 }

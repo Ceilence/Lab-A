@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
  * @author davim
  */
 public class RisList extends javax.swing.JFrame {
-    private final ImageIcon logoIcona;
     private final ImageIcon prefAdd;
     private final ImageIcon prefRem;
     private GestoreArchivi gestore;
@@ -29,7 +28,6 @@ public class RisList extends javax.swing.JFrame {
         Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon tk3 = new ImageIcon(tk2);
         logo.setIcon(tk3);
-        this.logoIcona = tk3;
         
         ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
         Image pa1 = paIcon.getImage();
@@ -45,7 +43,7 @@ public class RisList extends javax.swing.JFrame {
         
         
        
-        PannelloRis pannelloDinamico = new PannelloRis(scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes);
+        PannelloRis pannelloDinamico = new PannelloRis(scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes, detPref);
         scrollPane.setViewportView(pannelloDinamico);
     }
    
@@ -227,7 +225,7 @@ public class RisList extends javax.swing.JFrame {
         detPref.setText("jButton2");
         detPref.setMaximumSize(null);
         detPref.setMinimumSize(null);
-        detPref.setPreferredSize(new java.awt.Dimension(45, 45));
+        detPref.setPreferredSize(new java.awt.Dimension(40, 40));
         detPref.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detPrefActionPerformed(evt);
@@ -238,6 +236,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         dettaglioPanel.add(detPref, gridBagConstraints);
 
         jScrollPane1.setViewportView(dettaglioPanel);
@@ -277,7 +276,7 @@ public class RisList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed

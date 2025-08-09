@@ -48,12 +48,7 @@ public class ArchivioPreferiti {
         listaPreferiti.remove(r);
         aggiornaPref();
     }
-    
-    //Metodo per ottenere la lista di ristoranti preferiti.
-    public ArrayList<Preferito> getPreferiti() {
-        return listaPreferiti;
-    }
-    
+   
     //Metodo per riscrivere il file di testo, aggiornando l'archivio.
     public void aggiornaPref() {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -70,8 +65,8 @@ public class ArchivioPreferiti {
     public int getNumeroPreferiti() {
         return listaPreferiti.size();
     }
-    
-    public ArrayList<Preferito> getListaIntera() {
+   
+     public ArrayList<Preferito> getPreferiti() {
         return listaPreferiti;
     }
 }

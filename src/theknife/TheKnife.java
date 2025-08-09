@@ -44,7 +44,7 @@ public class TheKnife {
                 LoginFrame.pack();
                 LoginFrame.setLocationRelativeTo(null);
                 
-                GestoreArchivi.RisListFrame = new risList(gestore);
+                GestoreArchivi.RisListFrame = new RisList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);
                 GestoreArchivi.RisListFrame.pack();
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);

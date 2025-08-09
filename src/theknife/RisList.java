@@ -276,7 +276,14 @@ public class RisList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
-        
+        Preferito p = gestore.esistePref(gestore.getArchivioRis().getRisAttuale());
+        if (p == null) {
+            gestore.getArchivioPref().aggiungiPreferito(p);
+            detPref.setIcon(prefRem);
+        } else {
+            gestore.getArchivioPref().rimuoviPreferito(p);
+            detPref.setIcon(prefAdd);
+        }
         
     }//GEN-LAST:event_detPrefActionPerformed
 

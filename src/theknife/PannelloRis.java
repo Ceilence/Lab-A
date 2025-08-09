@@ -98,7 +98,7 @@ public final class PannelloRis extends JPanel{
                     dettaglioCucina.setText(r.getCuisRis());
                     labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
                     dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
-                    if (gestore.esistePref(r)) { 
+                    if (gestore.esistePref(r) != null) { 
                         detPref.setIcon(prefRem);
                     } else {
                         detPref.setIcon(prefAdd);

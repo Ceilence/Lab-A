@@ -38,14 +38,14 @@ public class ArchivioPreferiti {
     }
     
     //Metodo per aggiungere un preferito.
-    public void aggiungiPreferito(Preferito r) {
-        listaPreferiti.add(r);
+    public void aggiungiPreferito(Preferito p) {
+        listaPreferiti.add(p);
         aggiornaPref();
     }
     
     //Metodo per rimuovere un preferito.
-    public void rimuoviPreferito(Preferito r) {
-        listaPreferiti.remove(r);
+    public void rimuoviPreferito(Preferito p) {
+        listaPreferiti.remove(p);
         aggiornaPref();
     }
    

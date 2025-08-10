@@ -15,7 +15,7 @@ import java.util.*;
 public class ArchivioPreferiti {
     private final String FILE_PATH = "data\\RisPreferiti.csv";
     private final ArrayList<Preferito> listaPreferiti = new ArrayList<>();
-    private Preferito prefAttuale = new Preferito(0, 0);
+    private Preferito prefAttuale = new Preferito(0,0);
     
     public ArchivioPreferiti() {}
     
@@ -39,8 +39,9 @@ public class ArchivioPreferiti {
     }
     
     //Metodo per impostare il preferito in uso.
-    public void setPrefAttuale(Preferito p) {
-        this.prefAttuale = p;
+    public void setPrefAttuale(int idRis, int idUtente) {
+        this.prefAttuale.setIdRis(idRis);
+        this.prefAttuale.setIdUtente(idUtente);
     }
     
     //Metodo per ottenere il preferito attualmente visualizzato.
@@ -49,14 +50,23 @@ public class ArchivioPreferiti {
     }
     
     //Metodo per aggiungere un preferito.
-    public void aggiungiPreferito(Preferito p) {
-        listaPreferiti.add(p);
+    public void aggiungiPreferito(Preferito r) {
+        for (Preferito p : listaPreferiti) {
+            if (uguali(r,p)){
+                listaPreferiti.add(p);
+            }
+        }
         aggiornaPref();
     }
+   
     
     //Metodo per rimuovere un preferito.
-    public void rimuoviPreferito(Preferito p) {
-        listaPreferiti.remove(p);
+    public void rimuoviPreferito(Preferito r) {
+        for (Preferito p : listaPreferiti) {
+            if (uguali(r,p)){
+                listaPreferiti.remove(p);
+            }
+        }
         aggiornaPref();
     }
    
@@ -78,12 +88,20 @@ public class ArchivioPreferiti {
      */
     public Boolean esistePref() {
         for (Preferito p : listaPreferiti) {
-            if (p.equals(prefAttuale)) {
+            if (uguali(prefAttuale, p)) {
                 return true;
             }
         }
         return false;
     }
+    
+    public Boolean uguali(Preferito a, Preferito b) {
+        if (a.getIdRis() == b.getIdRis() && a.getIdUtente() == b.getIdUtente()) {
+            return true;
+        }
+        return false;
+    }
+
     
     //Per debug o controllo.
     public int getNumeroPreferiti() {

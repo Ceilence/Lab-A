@@ -222,7 +222,10 @@ public class Login extends javax.swing.JFrame {
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
-            
+            GestoreArchivi.RisListFrame.versioneGuest();
+            GestoreArchivi.RisListFrame.setVisible(true);
+            GestoreArchivi.RisListFrame.pack();
+            GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Username o password errati");

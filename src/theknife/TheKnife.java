@@ -23,13 +23,6 @@ public class TheKnife {
         gestore.getArchivioCitta().leggiArchivio();
         gestore.getArchivioPref().leggiArchivio();
         gestore.getArchivioRec().leggiArchivio();
-        
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            gestore.getArchivioUtenti().aggiornaUtenti();
-            gestore.getArchivioRis().aggiornaRis();
-        }));
-        
-        
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

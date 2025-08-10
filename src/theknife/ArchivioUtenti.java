@@ -50,6 +50,7 @@ public class ArchivioUtenti {
     public boolean esisteUtente(String user, String pass) {
         for (Utente u: listaUtenti) {
             if (u.getUsernameUtente().equals(user) && u.getPassUtente().equals(pass)) {
+                utenteAttuale = u;
                 return true;
             }
         }
@@ -60,7 +61,6 @@ public class ArchivioUtenti {
     public boolean esisteMail(String email) {
         for (Utente u: listaUtenti) {
             if (u.getEmailUtente().equals(email)) {
-                utenteAttuale = u;
                 return true;
             }
         }

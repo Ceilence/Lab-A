@@ -15,6 +15,7 @@ import java.util.*;
 public class ArchivioPreferiti {
     private final String FILE_PATH = "data\\RisPreferiti.csv";
     private final ArrayList<Preferito> listaPreferiti = new ArrayList<>();
+    private Preferito prefAttuale = new Preferito(0, 0);
     
     public ArchivioPreferiti() {}
     
@@ -35,6 +36,16 @@ public class ArchivioPreferiti {
         } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());
         }
+    }
+    
+    //Metodo per impostare il preferito in uso.
+    public void setPrefAttuale(Preferito p) {
+        this.prefAttuale = p;
+    }
+    
+    //Metodo per ottenere il preferito attualmente visualizzato.
+    public Preferito getPrefAttuale() {
+        return prefAttuale;
     }
     
     //Metodo per aggiungere un preferito.
@@ -59,6 +70,19 @@ public class ArchivioPreferiti {
             } catch (IOException e) {
                  System.out.println("Errore nella lettura del file:" + e.getMessage());
         }
+    }
+    
+    /**
+     * Verifica se il preferito attuale è nella lista dati preferiti.
+     * @return vero o falso.
+     */
+    public Boolean esistePref() {
+        for (Preferito p : listaPreferiti) {
+            if (p.equals(prefAttuale)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     //Per debug o controllo.

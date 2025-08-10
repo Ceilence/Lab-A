@@ -44,12 +44,4 @@ public class GestoreArchivi {
     public ArchivioRecensioni getArchivioRec() {
         return archivioRec;
     }
-    public Preferito esistePref (Ristorante r) {
-        for (Preferito p : archivioPref.getPreferiti()) {
-            if (p.getIdUtente() == archivioUtenti.getUtenteAttuale().getIdUtente() && p.getIdRis() == r.getIdRis())
-                return p;
-        }
-        return null;
-    }
-    
 }

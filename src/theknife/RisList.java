@@ -221,10 +221,8 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 4.0;
         dettaglioPanel.add(detDes, gridBagConstraints);
 
-        detPref.setText("jButton2");
-        detPref.setMaximumSize(null);
-        detPref.setMinimumSize(null);
         detPref.setPreferredSize(new java.awt.Dimension(40, 40));
+        detPref.setRequestFocusEnabled(false);
         detPref.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detPrefActionPerformed(evt);
@@ -273,24 +271,34 @@ public class RisList extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Verifica, tramite metodo esistePref(), che il ristorante visualizzato sia tra i preferiti dell'utente.
+     * Imposta poi l'icona del JButton detPref con l'immagine appropriata,
+     * nel caso in cui si voglia aggiungere o togliere il ristorante dalla lista preferiti.
+     */
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
-        Preferito p = gestore.esistePref(gestore.getArchivioRis().getRisAttuale());
-        if (p == null) {
-            gestore.getArchivioPref().aggiungiPreferito(p);
-            detPref.setIcon(prefRem);
-        } else {
-            gestore.getArchivioPref().rimuoviPreferito(p);
+        if (gestore.getArchivioPref().esistePref()) {
+            gestore.getArchivioPref().rimuoviPreferito(gestore.getArchivioPref().getPrefAttuale());
             detPref.setIcon(prefAdd);
+        } else {
+            gestore.getArchivioPref().aggiungiPreferito(gestore.getArchivioPref().getPrefAttuale());
+            detPref.setIcon(prefRem);
         }
-        
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
- 
+    //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
+    public void versioneGuest() {
+        if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
+            detPref.setVisible(false);
+        } else {
+            detPref.setVisible(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel detBan;

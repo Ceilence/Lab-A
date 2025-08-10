@@ -43,8 +43,6 @@ public class Caricamento extends javax.swing.JFrame {
         SwingUtilities.invokeLater(() -> {
         System.out.println("Progress: " + valore);
         if (valore == 14416) {
-                Caricamento caricamentoFrame = new Caricamento(gestore);
-                caricamentoFrame.setVisible(false);
                 Login loginFrame = new Login(gestore);
                 loginFrame.setVisible(true);
                 loginFrame.pack();

@@ -97,11 +97,19 @@ public final class PannelloRis extends JPanel{
                     pannello.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
+                            gestore.getArchivioRis().setRisAttuale(r);
                             dettaglioNome.setText(r.getNomeRis());
                             dettaglioCucina.setText(r.getCuisRis());
                             labelDescrizione.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
                             dettaglioImmagine.setIcon(selezionaImmagine(r.getLocRis()));
-                            if (gestore.esistePref(r) != null) { 
+                            
+                            /**
+                             * Cambia i valori del prpeferito attuale a quelli del ristorante cliccato e dell'utente attuale.
+                             * Verifica se è già tra i preferiti e imposta l'icona del JButton detPref.
+                            */
+                            gestore.getArchivioPref().getPrefAttuale().setIdRis(r.getIdRis());
+                            gestore.getArchivioPref().getPrefAttuale().setIdUtente(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
+                            if (gestore.getArchivioPref().esistePref()) { 
                                 detPref.setIcon(prefRem);
                             } else {
                                 detPref.setIcon(prefAdd);
@@ -111,7 +119,8 @@ public final class PannelloRis extends JPanel{
                             dettaglioPanel.repaint();
                         }
                     });
-//Il pannello del ristorante viene aggiunto a quello principale
+                    
+                        //Il pannello del ristorante viene aggiunto a quello principale
                         add(pannello);
                         //Crea uno spazio tra un pannello e l'altro
                         add(Box.createRigidArea(new Dimension(0, 10)));

@@ -55,11 +55,13 @@ public class ArchivioRis {
     //Metodo per aggiungere un ristorante all'archivio.
     public void aggiungiRis(Ristorante ris) {
         listaRis.add(ris);
+        aggiornaRis();
     }
     
     //Metodo per rimuovere un ristorante dall'archivio.
     public void rimuoviRis(Ristorante ris) {
         listaRis .remove(ris);
+        aggiornaRis();
     }
 
     //Metodo per creare un ID unico.
@@ -84,16 +86,12 @@ public class ArchivioRis {
     }
     
     //Metodi per gestire il ristorante attualmente visualizzato.
-     public void setRisAttuale(int i) {
-        risAttuale = getRistorante(i);
+     public void setRisAttuale(Ristorante r) {
+        risAttuale = r;
     }
     
     public Ristorante getRisAttuale() {
         return risAttuale;
-    }
-   
-    public void resetAttuale() {
-        risAttuale = null;
     }
     
     //Per debug o controllo.

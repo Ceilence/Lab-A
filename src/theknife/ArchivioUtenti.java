@@ -122,7 +122,7 @@ public class ArchivioUtenti {
         return listaUtenti;
     }
     
-      public Utente getUtente(int i) {
+    public Utente getUtente(int i) {
         for (Utente u : listaUtenti) {
             if (u.getIdUtente() == i) {
                 return u;
@@ -130,4 +130,14 @@ public class ArchivioUtenti {
         }
         return null;
     } 
+      
+    //Metodo che restituisce l'id verificando l'username e la password
+    public int getId(String username, String password) {
+    for (Utente u : listaUtenti) {
+        if (u.getUsernameUtente().equals(username) && u.getPassUtente().equals(password)) {
+            return u.getIdUtente();
+        }
+    }
+        return -1;
+    }
 }

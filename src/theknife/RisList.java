@@ -22,6 +22,10 @@ public class RisList extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
         Caricamento caricamentoFrame = new Caricamento(gestore);
+        caricamentoFrame.setVisible(true);
+        caricamentoFrame.pack();
+        caricamentoFrame.setLocationRelativeTo(null);
+                
         
         //Immagine per mostrare il logo ridimensionato ed applicato.
         ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));

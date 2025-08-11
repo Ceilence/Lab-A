@@ -78,7 +78,6 @@ public class RisList extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 102, 102));
-        jPanel1.setMaximumSize(null);
         jPanel1.setMinimumSize(new java.awt.Dimension(670, 560));
         jPanel1.setPreferredSize(new java.awt.Dimension(1370, 760));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -128,7 +127,6 @@ public class RisList extends javax.swing.JFrame {
         jPanel1.add(logo, gridBagConstraints);
 
         panRicerca.setBackground(new java.awt.Color(255, 255, 255));
-        panRicerca.setMaximumSize(null);
         panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
@@ -281,7 +279,9 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-        // TODO add your handling code here:
+        PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
+        paginaUtente.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
  

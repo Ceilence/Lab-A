@@ -193,7 +193,7 @@ public class Reg1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RegRistoratore RegRistoratoreFrame = new RegRistoratore(gestore);
+        RegRisto RegRistoratoreFrame = new RegRisto(gestore);
         RegRistoratoreFrame.setVisible(true);
         RegRistoratoreFrame.pack();
         RegRistoratoreFrame.setLocationRelativeTo(null);

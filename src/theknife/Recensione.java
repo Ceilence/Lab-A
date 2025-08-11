@@ -10,13 +10,13 @@ package theknife;
  */
 public class Recensione {
     private String recensione;
-    private int mediaStelle;
+    private int valutazione;
     private int idUtente;
     private int idRis;
 
-    public Recensione(String recensione, int mediaStelle, int idUtente, int idRis) {
+    public Recensione(String recensione, int valutazione, int idUtente, int idRis) {
         this.recensione = recensione;
-        this.mediaStelle = mediaStelle;
+        this.valutazione = valutazione;
         this.idUtente = idUtente;
         this.idRis = idRis;
     }
@@ -29,12 +29,8 @@ public class Recensione {
         this.recensione = recensione;
     }
 
-    public float getMediaStelle() {
-        return mediaStelle;
-    }
-
-    public void setMediaStelle(int mediaStelle) {
-        this.mediaStelle = mediaStelle;
+    public void setValutazione(int valutazione) {
+        this.valutazione = valutazione;
     }
 
     public int getIdUtente() {
@@ -56,7 +52,7 @@ public class Recensione {
     @Override
     public String toString() {
         return recensione + "§" + 
-               mediaStelle + "§" + 
+               valutazione + "§" + 
                idUtente + "§" +
                idRis + "§";
     }

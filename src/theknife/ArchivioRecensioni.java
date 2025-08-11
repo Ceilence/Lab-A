@@ -28,11 +28,11 @@ public class ArchivioRecensioni {
                 StringTokenizer token = new StringTokenizer(line, "§");
                 if(token.countTokens() == 4) {
                     String recensione = token.nextToken();
-                    int mediaStelle = Integer.parseInt(token.nextToken());
+                    int valutazione = Integer.parseInt(token.nextToken());
                     int idUtente = Integer.parseInt(token.nextToken());
                     int idRis = Integer.parseInt(token.nextToken());
                    
-                    listaRecensioni.add(new Recensione(recensione, mediaStelle, idUtente, idRis));
+                    listaRecensioni.add(new Recensione(recensione, valutazione, idUtente, idRis));
                 }
             }   
         } catch (IOException e) {
@@ -78,9 +78,7 @@ public class ArchivioRecensioni {
         return recAttuale;
     }
     
-    public void reset() {
-        this.recAttuale = null; 
-    }
+  
        
     
     //Per debug o controllo.

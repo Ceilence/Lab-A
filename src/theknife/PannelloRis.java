@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
  */
 public final class PannelloRis extends JPanel{
     private GestoreArchivi gestore;
+    private RisList rislist;
     private ImageIcon prefAdd;
     private ImageIcon prefRem;
     private ImageIcon flagItalia;
@@ -25,7 +26,7 @@ public final class PannelloRis extends JPanel{
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
     
-    public PannelloRis(JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref, Caricamento caricamentoFrame) {
+    public PannelloRis(RisList risList, JScrollPane scrollPane, GestoreArchivi gestore, JPanel dettaglioPanel, JLabel dettaglioNome, JLabel dettaglioCucina, JLabel dettaglioImmagine, JLabel labelDescrizione, JButton detPref, Caricamento caricamentoFrame) {
         this.gestore = gestore;
         
         //Imposta layout in mdo che ogni panel viene creato uno sotto l'altro.
@@ -108,12 +109,8 @@ public final class PannelloRis extends JPanel{
                              * Verifica se è già tra i preferiti e imposta l'icona del JButton detPref.
                             */
                             gestore.getArchivioPref().setPrefAttuale(r.getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
-                            if (gestore.getArchivioPref().esistePref()) { 
-                                detPref.setIcon(prefRem);
-                            } else {
-                                detPref.setIcon(prefAdd);
-                            }
-
+                            risList.aggiornaDetPref();
+                            System.out.println(gestore.getArchivioPref().getPrefAttuale().toString() + "prefattualePANNELROIs");
                             dettaglioPanel.revalidate();
                             dettaglioPanel.repaint();
                         }

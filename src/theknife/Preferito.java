@@ -4,6 +4,8 @@
  */
 package theknife;
 
+import java.util.*;
+
 /**
  *
  * @author davim
@@ -37,4 +39,19 @@ public class Preferito {
     public String toString() {
         return idRis + "§" + idUtente + "§";
     }
+    
+    @Override
+    public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Preferito)) return false;
+    Preferito other = (Preferito) o;
+    return this.idRis == other.idRis &&
+           this.idUtente == other.idUtente;
+    }
+
+    @Override
+    public int hashCode() {
+    return Objects.hash(idRis, idUtente);
+    }
+
 }

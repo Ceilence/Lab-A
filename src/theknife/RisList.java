@@ -303,11 +303,7 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
-        for (Preferito p : gestore.getArchivioPref().getPreferiti()) {
-            System.out.println(p.toString());
-        }
-        System.out.println(gestore.getArchivioPref().getPrefAttuale().toString() + "prefattuale");
-        System.out.println("-----------------------------------");
+       
     }//GEN-LAST:event_cercaActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest

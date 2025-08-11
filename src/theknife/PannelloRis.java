@@ -110,7 +110,7 @@ public final class PannelloRis extends JPanel{
                             */
                             gestore.getArchivioPref().setPrefAttuale(r.getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
                             risList.aggiornaDetPref();
-                            System.out.println(gestore.getArchivioPref().getPrefAttuale().toString() + "prefattualePANNELROIs");
+                            
                             dettaglioPanel.revalidate();
                             dettaglioPanel.repaint();
                         }

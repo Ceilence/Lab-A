@@ -15,6 +15,7 @@ import java.util.*;
 public class ArchivioPreferiti {
     private final String FILE_PATH = "data\\RisPreferiti.csv";
     private final ArrayList<Preferito> listaPreferiti = new ArrayList<>();
+    private Preferito prefAttuale;
     
     public ArchivioPreferiti() {}
     
@@ -37,23 +38,29 @@ public class ArchivioPreferiti {
         }
     }
     
+    //Metodo per impostare il preferito in uso.
+    public void setPrefAttuale(int idRis, int idUtente) {
+        this.prefAttuale = new Preferito (idRis, idUtente);
+    }
+    
+    //Metodo per ottenere il preferito attualmente visualizzato.
+    public Preferito getPrefAttuale() {
+        return prefAttuale;
+    }
+    
     //Metodo per aggiungere un preferito.
-    public void aggiungiPreferito(Preferito r) {
-        listaPreferiti.add(r);
+    public void aggiungiPreferito() {
+        listaPreferiti.add(prefAttuale);
         aggiornaPref();
     }
+   
     
     //Metodo per rimuovere un preferito.
-    public void rimuoviPreferito(Preferito r) {
-        listaPreferiti.remove(r);
+    public void rimuoviPreferito() {
+        listaPreferiti.remove(prefAttuale);
         aggiornaPref();
     }
-    
-    //Metodo per ottenere la lista di ristoranti preferiti.
-    public ArrayList<Preferito> getPreferiti() {
-        return listaPreferiti;
-    }
-    
+   
     //Metodo per riscrivere il file di testo, aggiornando l'archivio.
     public void aggiornaPref() {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(FILE_PATH))) {
@@ -66,12 +73,25 @@ public class ArchivioPreferiti {
         }
     }
     
+    /**
+     * Verifica se il preferito attuale è nella lista dati preferiti.
+     * @return vero o falso.
+     */
+    public Boolean esistePref() {
+        for (Preferito p : listaPreferiti) {
+            if (prefAttuale.equals(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+  
     //Per debug o controllo.
     public int getNumeroPreferiti() {
         return listaPreferiti.size();
     }
-    
-    public ArrayList<Preferito> getListaIntera() {
+   
+     public ArrayList<Preferito> getPreferiti() {
         return listaPreferiti;
     }
 }

@@ -1,0 +1,110 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package theknife;
+
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+/**
+ *
+ * @author anpar
+ */
+public class Caricamento extends javax.swing.JFrame {
+    private static GestoreArchivi gestore;
+    private Timer timer;
+    private int dotsCount = 0;
+    
+    public Caricamento(GestoreArchivi gestore) {
+        initComponents();
+        this.gestore = gestore;
+        
+        // Inizializza il timer per aggiornare i puntini ogni 500 ms
+        timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dotsCount = (dotsCount + 1) % 4;  // 0,1,2,3 ciclicamente
+                String dots = "";
+                for (int i = 0; i < dotsCount; i++) {
+                    dots += ".";
+                }
+                jLabel1.setText("Caricamento" + dots);
+            }
+        });
+
+        timer.start();
+    }
+    
+    public void aggiornaProgress(int valore) {
+        SwingUtilities.invokeLater(() -> {
+        System.out.println("Progress: " + valore);
+        if (valore == 14416) {
+                Login loginFrame = new Login(gestore);
+                loginFrame.setVisible(true);
+                loginFrame.pack();
+                loginFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        });
+    }
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TheKnife.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(408, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(84, 84, 84)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33))
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+   
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
+}

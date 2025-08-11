@@ -7,13 +7,13 @@ package theknife;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author davim
  */
 public class RisList extends javax.swing.JFrame {
-    private final ImageIcon logoIcona;
     private final ImageIcon prefAdd;
     private final ImageIcon prefRem;
     private GestoreArchivi gestore;
@@ -22,6 +22,11 @@ public class RisList extends javax.swing.JFrame {
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        Caricamento caricamentoFrame = new Caricamento(gestore);
+        caricamentoFrame.setVisible(true);
+        caricamentoFrame.pack();
+        caricamentoFrame.setLocationRelativeTo(null);
+                
         
         //Immagine per mostrare il logo ridimensionato ed applicato.
         ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
@@ -29,7 +34,6 @@ public class RisList extends javax.swing.JFrame {
         Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon tk3 = new ImageIcon(tk2);
         logo.setIcon(tk3);
-        this.logoIcona = tk3;
         
         ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
         Image pa1 = paIcon.getImage();
@@ -45,7 +49,7 @@ public class RisList extends javax.swing.JFrame {
         
         
        
-        PannelloRis pannelloDinamico = new PannelloRis(scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes);
+        PannelloRis pannelloDinamico = new PannelloRis(this, scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes, detPref, caricamentoFrame);
         scrollPane.setViewportView(pannelloDinamico);
     }
    
@@ -59,7 +63,7 @@ public class RisList extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         panRicerca = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        cerca = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,7 +99,7 @@ public class RisList extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
+            .addGap(0, 517, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,16 +134,21 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("jButton1");
-        jButton1.setMaximumSize(null);
-        jButton1.setMinimumSize(new java.awt.Dimension(40, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
+        cerca.setText("jButton1");
+        cerca.setMaximumSize(null);
+        cerca.setMinimumSize(new java.awt.Dimension(40, 40));
+        cerca.setPreferredSize(new java.awt.Dimension(40, 40));
+        cerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cercaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 1.0;
-        panRicerca.add(jButton1, gridBagConstraints);
+        panRicerca.add(cerca, gridBagConstraints);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setMaximumSize(null);
@@ -222,10 +231,8 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 4.0;
         dettaglioPanel.add(detDes, gridBagConstraints);
 
-        detPref.setText("jButton2");
-        detPref.setMaximumSize(null);
-        detPref.setMinimumSize(null);
-        detPref.setPreferredSize(new java.awt.Dimension(45, 45));
+        detPref.setPreferredSize(new java.awt.Dimension(40, 40));
+        detPref.setRequestFocusEnabled(false);
         detPref.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detPrefActionPerformed(evt);
@@ -236,6 +243,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         dettaglioPanel.add(detPref, gridBagConstraints);
 
         jScrollPane1.setViewportView(dettaglioPanel);
@@ -273,27 +281,64 @@ public class RisList extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Verifica, tramite metodo esistePref(), che il ristorante visualizzato sia tra i preferiti dell'utente.
+     * Imposta poi l'icona del JButton detPref con l'immagine appropriata,
+     * nel caso in cui si voglia aggiungere o togliere il ristorante dalla lista preferiti.
+     */
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
-        // TODO add your handling code here:
+        if (gestore.getArchivioPref().esistePref()) {
+            gestore.getArchivioPref().rimuoviPreferito();
+            aggiornaDetPref();
+            gestore.getArchivioPref().aggiornaPref();
+        } else {
+            gestore.getArchivioPref().aggiungiPreferito();
+            aggiornaDetPref();
+            gestore.getArchivioPref().aggiornaPref();
+        }
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-        PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
-        paginaUtente.setVisible(true);
-        this.setVisible(false);
+        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
+            PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
+            paginaUtente.setVisible(true);
+            this.setVisible(false);
+        } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
+            
+        }         
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
- 
+    private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
+       
+    }//GEN-LAST:event_cercaActionPerformed
+
+    //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
+    public void versioneGuest() {
+        if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
+            detPref.setVisible(false);
+        } else {
+            detPref.setVisible(true);
+        }
+    }
+    
+    //ETODOSKIBIBIOADIAJSFK
+    public void aggiornaDetPref() {
+        if (gestore.getArchivioPref().esistePref()) {
+            detPref.setIcon(prefRem);
+        } else {
+            detPref.setIcon(prefAdd);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cerca;
     private javax.swing.JLabel detBan;
     private javax.swing.JLabel detCuis;
     private javax.swing.JLabel detDes;
     private javax.swing.JLabel detNome;
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

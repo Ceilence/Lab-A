@@ -288,7 +288,7 @@ public class RegUtente extends javax.swing.JFrame {
     //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
         
-        if (!ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText())) {
+        if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText()))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(emailCliente.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");
@@ -297,10 +297,10 @@ public class RegUtente extends javax.swing.JFrame {
         } else if (!gestore.getArchivioUtenti().esisteMail(emailCliente.getText().trim())) {
             gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), gestore.getArchivioUtenti().creaID(), "cliente"));
             
-            Reg1 Reg1Frame = new Reg1(gestore);
-            Reg1Frame.setVisible(true);
-            Reg1Frame.pack();
-            Reg1Frame.setLocationRelativeTo(null);
+            Login LoginFrame = new Login(gestore);
+            LoginFrame.setVisible(true);
+            LoginFrame.pack();
+            LoginFrame.setLocationRelativeTo(null);
             this.dispose();
             
             erroreEmail.setVisible(false);

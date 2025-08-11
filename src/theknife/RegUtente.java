@@ -152,6 +152,12 @@ public class RegUtente extends javax.swing.JFrame {
 
         jLabel10.setText("Nome:");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 49, -1));
+
+        nomeCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeClienteActionPerformed(evt);
+            }
+        });
         jPanel3.add(nomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 288, -1));
 
         jLabel9.setText("Email:");
@@ -349,6 +355,10 @@ public class RegUtente extends javax.swing.JFrame {
             passwordCliente.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePassActionPerformed
+
+    private void nomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeClienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accediErrore;

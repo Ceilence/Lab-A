@@ -26,11 +26,6 @@ public class TheKnife {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Caricamento CaricamentoFrame = new Caricamento(gestore);
-                CaricamentoFrame.setVisible(true);
-                CaricamentoFrame.pack();
-                CaricamentoFrame.setLocationRelativeTo(null);
-                
                 GestoreArchivi.RisListFrame = new RisList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);
                 GestoreArchivi.RisListFrame.pack();

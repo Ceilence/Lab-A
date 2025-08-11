@@ -19,11 +19,11 @@ public class ValidaReg {
     //Metodo per verificare che tutti i campi inseriti siano pieni.
     public static boolean campiPieni(String nome, String cognome, String username, String email, String password, String posizione) {
         return nome != null && !nome.isBlank() 
-                &&  cognome != null && cognome.isBlank() 
-                && username != null && username.isBlank() 
-                && email != null && email.isBlank() 
-                && password != null && password.isBlank() 
-                && posizione != null && posizione.isBlank();
+                &&  cognome != null && !cognome.isBlank() 
+                && username != null && !username.isBlank() 
+                && email != null && !email.isBlank() 
+                && password != null && !password.isBlank() 
+                && posizione != null && !posizione.isBlank();
     }
     
     //Metodo per verificare che il formato mail sia valido.

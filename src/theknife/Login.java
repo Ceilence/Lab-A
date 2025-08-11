@@ -18,6 +18,9 @@ public class Login extends javax.swing.JFrame {
     public Login(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        
+        //Setta il pulsante che si attiva con invio su LoginButton
+        getRootPane().setDefaultButton(LoginButton);
                 
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\show_pass.png"));
@@ -222,6 +225,8 @@ public class Login extends javax.swing.JFrame {
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
+            int idUtente = gestore.getArchivioUtenti().getId(logUser.getText(), logPass.getText());
+            gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
             GestoreArchivi.RisListFrame.versioneGuest();
             GestoreArchivi.RisListFrame.setVisible(true);
             GestoreArchivi.RisListFrame.pack();

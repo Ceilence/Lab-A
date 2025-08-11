@@ -7,6 +7,7 @@ package theknife;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -457,7 +458,13 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_detPrefActionPerformed
 
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-        // TODO add your handling code here:
+        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
+            PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
+            paginaUtente.setVisible(true);
+            this.setVisible(false);
+        } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
+            
+        }         
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed

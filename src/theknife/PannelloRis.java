@@ -221,4 +221,8 @@ public final class PannelloRis extends JPanel{
         
         return this.flagMondo;
     }
+    
+    public int getNumeroPannelli(){
+        return gestore.getArchivioRis().getNumeroRis();
+    }
 }

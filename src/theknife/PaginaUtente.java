@@ -679,6 +679,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         } else if (!ValidaReg.passValida(password1.getText().trim())) { 
             JOptionPane.showMessageDialog(null, "Formato password non valido");
         }else{
+            
+            //Aggiorna il file utenti con i dati aggiornati
             Utente u = gestore.getArchivioUtenti().getUtenteAttuale();
             u.setNomeUtente(nome1.getText());
             u.setCognomeUtente(cognome1.getText());
@@ -687,6 +689,14 @@ public class PaginaUtente extends javax.swing.JFrame {
             u.setUsernameUtente(username1.getText());
             u.setPosizioneUtente(posizione1.getText());
             gestore.getArchivioUtenti().aggiornaUtenti();
+            
+            nome.setText(nome1.getText());
+            cognome.setText(cognome1.getText());
+            email.setText(email1.getText());
+            password.setText(password1.getText());
+            username.setText(username1.getText());
+            posizione.setText(posizione1.getText());
+            
         
             JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
             
@@ -700,7 +710,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     }//GEN-LAST:event_aggiornaActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-        
+        gestore.getArchivioUtenti().setUtenteAttuale(0);
     }//GEN-LAST:event_logoutActionPerformed
 
     

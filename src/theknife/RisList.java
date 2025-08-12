@@ -299,11 +299,13 @@ public class RisList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_detPrefActionPerformed
 
+    //Apre la pagina utente
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
         if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
             PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
             paginaUtente.setVisible(true);
             this.setVisible(false);
+            paginaUtente.setLocationRelativeTo(null);
         } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
             
         }         

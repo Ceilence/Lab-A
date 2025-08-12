@@ -18,6 +18,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private RisList rislist;
     private final ImageIcon showPass;
     private final ImageIcon hidePass;
+    private String originale;
     
     public RegRistorante(GestoreArchivi gestore) { 
         //Inizializzazione vari componenti e Lable.
@@ -41,6 +42,20 @@ public class RegRistorante extends javax.swing.JFrame {
         posizione.setEditable(false);
         password.setText(u.getPassUtente());
         password.setEditable(false);
+        
+         //Dati dell'utente modificabili
+        nome1.setText(u.getNomeUtente());
+        nome1.setEditable(true);
+        cognome1.setText(u.getCognomeUtente());
+        cognome1.setEditable(true);
+        email1.setText(u.getEmailUtente());
+        email1.setEditable(true);
+        username1.setText(u.getUsernameUtente());
+        username1.setEditable(true);
+        posizione1.setText(u.getPosizioneUtente());
+        posizione1.setEditable(true);
+        password1.setText(u.getPassUtente());
+        password1.setEditable(true);
         
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\show_pass.png"));
@@ -246,7 +261,6 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel21.setText("Dettagli ristoratore");
 
-        nome.setBackground(new java.awt.Color(204, 204, 204));
         nome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome.setMaximumSize(new java.awt.Dimension(64, 22));
         nome.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +269,6 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        cognome.setBackground(new java.awt.Color(204, 204, 204));
         cognome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome.setMaximumSize(new java.awt.Dimension(64, 22));
         cognome.addActionListener(new java.awt.event.ActionListener() {
@@ -264,15 +277,12 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        email.setBackground(new java.awt.Color(204, 204, 204));
         email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         email.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        username.setBackground(new java.awt.Color(204, 204, 204));
         username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        posizione.setBackground(new java.awt.Color(204, 204, 204));
         posizione.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         posizione.setMaximumSize(new java.awt.Dimension(64, 22));
 
@@ -294,7 +304,6 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel27.setText("Username");
 
-        password.setBackground(new java.awt.Color(204, 204, 204));
         password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setMaximumSize(new java.awt.Dimension(64, 22));
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -669,6 +678,17 @@ public class RegRistorante extends javax.swing.JFrame {
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
         // TODO add your handling code here:
         gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID()));
+        JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
+        nomeField.setText("");
+        indirizzo.setText("");
+        città.setText("");
+        prezzoBox.setSelectedItem("$");
+        cucina.setText("");
+        longitudine.setText("");
+        latitudine.setText("");
+        delcheck.setSelected(false);
+        prencheck.setSelected(false);
+        descrizione.setText("");
     }//GEN-LAST:event_regRisActionPerformed
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
@@ -751,10 +771,13 @@ public class RegRistorante extends javax.swing.JFrame {
 
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
         // TODO add your handling code here:
+        originale = jLabel10.getText();
+        jLabel10.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_jLabel10MouseEntered
 
     private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
         // TODO add your handling code here:
+        jLabel10.setText(originale);
     }//GEN-LAST:event_jLabel10MouseExited
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
@@ -764,10 +787,13 @@ public class RegRistorante extends javax.swing.JFrame {
 
     private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
         // TODO add your handling code here:
+        originale = jLabel13.getText();
+        jLabel13.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_jLabel13MouseEntered
 
     private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
         // TODO add your handling code here:
+        jLabel13.setText(originale);
     }//GEN-LAST:event_jLabel13MouseExited
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
@@ -778,10 +804,13 @@ public class RegRistorante extends javax.swing.JFrame {
 
     private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
         // TODO add your handling code here:
+        originale = jLabel12.getText();
+        jLabel12.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_jLabel12MouseEntered
 
     private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
         // TODO add your handling code here:
+        jLabel12.setText(originale);
     }//GEN-LAST:event_jLabel12MouseExited
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

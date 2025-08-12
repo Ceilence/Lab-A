@@ -307,7 +307,9 @@ public class RisList extends javax.swing.JFrame {
             this.setVisible(false);
             paginaUtente.setLocationRelativeTo(null);
         } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
-            
+            RegRistorante regRistoranteFrame = new RegRistorante(gestore);
+            regRistoranteFrame.setVisible(true);
+            this.setVisible(false);
         }         
     }//GEN-LAST:event_profiloUtenteActionPerformed
 

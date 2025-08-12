@@ -327,6 +327,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         logout.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setText("Logout");
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);

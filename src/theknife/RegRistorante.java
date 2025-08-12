@@ -15,20 +15,47 @@ import javax.swing.*;
 public class RegRistorante extends javax.swing.JFrame {
     //Dichiarazione variabili
     private static GestoreArchivi gestore;
+    private RisList rislist;
+    private final ImageIcon showPass;
+    private final ImageIcon hidePass;
     
     public RegRistorante(GestoreArchivi gestore) { 
         //Inizializzazione vari componenti e Lable.
         initComponents();  
         
         this.gestore = gestore;
+        this.rislist = rislist;
         boolean delivery;
         
-        //Immagine per pulsante indietro ridimensionata ed applicata.
-        ImageIcon backArr = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\backArrow.png"));
-        Image ba1 = backArr.getImage();
-        Image ba2 = ba1.getScaledInstance(backArrow.getWidth(), backArrow.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon ba3 = new ImageIcon(ba2); 
-        backArrow.setIcon(ba3);
+        //Dati dell'utente non modificabili
+        Utente u=gestore.getArchivioUtenti().getUtenteAttuale();
+        nome.setText(u.getNomeUtente());
+        nome.setEditable(false);
+        cognome.setText(u.getCognomeUtente());
+        cognome.setEditable(false);
+        email.setText(u.getEmailUtente());
+        email.setEditable(false);
+        username.setText(u.getUsernameUtente());
+        username.setEditable(false);
+        posizione.setText(u.getPosizioneUtente());
+        posizione.setEditable(false);
+        password.setText(u.getPassUtente());
+        password.setEditable(false);
+        
+        //Immagine per mostrare la password ridimensionata ed applicata.
+        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\show_pass.png"));
+        Image sp1 = spIcon.getImage();
+        Image sp2 = sp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon sp3 = new ImageIcon(sp2);
+        eyePass.setIcon(sp3);
+        this.showPass = sp3;  
+        
+         //Immagine per nascondere la password ridimensionata.
+        ImageIcon hpIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\hide_pass.png"));
+        Image hp1 = hpIcon.getImage();
+        Image hp2 = hp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon hp3 = new ImageIcon(hp2); 
+        this.hidePass = hp3;
     }
     
     
@@ -45,44 +72,43 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        backArrow = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        dettagliUtente2 = new javax.swing.JPanel();
+        pannelloDestra = new javax.swing.JPanel();
+        dettagliRisto = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        nome3 = new javax.swing.JTextField();
-        cognome2 = new javax.swing.JTextField();
-        email2 = new javax.swing.JTextField();
-        username2 = new javax.swing.JTextField();
-        posizione2 = new javax.swing.JTextField();
+        nome = new javax.swing.JTextField();
+        cognome = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
+        posizione = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        password2 = new javax.swing.JPasswordField();
-        eyePass2 = new javax.swing.JToggleButton();
+        password = new javax.swing.JPasswordField();
+        eyePass = new javax.swing.JToggleButton();
         logout2 = new javax.swing.JButton();
         modificaDati = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        nome4 = new javax.swing.JTextField();
-        cognome3 = new javax.swing.JTextField();
+        nome1 = new javax.swing.JTextField();
+        cognome1 = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        email3 = new javax.swing.JTextField();
-        password3 = new javax.swing.JPasswordField();
+        email1 = new javax.swing.JTextField();
+        password1 = new javax.swing.JPasswordField();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        posizione3 = new javax.swing.JTextField();
-        username3 = new javax.swing.JTextField();
-        eyePass3 = new javax.swing.JToggleButton();
+        posizione1 = new javax.swing.JTextField();
+        username1 = new javax.swing.JTextField();
+        eyePass1 = new javax.swing.JToggleButton();
         aggiorna = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        registraRisto = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         città = new javax.swing.JTextField();
         regRis = new javax.swing.JButton();
@@ -91,7 +117,7 @@ public class RegRistorante extends javax.swing.JFrame {
         indirizzo = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         nomeRist = new javax.swing.JLabel();
-        nome = new javax.swing.JTextField();
+        nomeField = new javax.swing.JTextField();
         lonRist = new javax.swing.JLabel();
         longitudine = new javax.swing.JTextField();
         latitudine = new javax.swing.JTextField();
@@ -106,6 +132,7 @@ public class RegRistorante extends javax.swing.JFrame {
         cucina = new javax.swing.JTextField();
         prezzoBox = new javax.swing.JComboBox<>();
         priceRist = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +148,6 @@ public class RegRistorante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1110, 700));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -146,8 +172,23 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("Modifica dati");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Modifica dati");
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel13MouseExited(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel12.setText("Registra Ristorante");
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -158,21 +199,6 @@ public class RegRistorante extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel12MouseExited(evt);
-            }
-        });
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel35.setText("Dettagli ristoratore");
-        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel35MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel35MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel35MouseExited(evt);
             }
         });
 
@@ -188,8 +214,8 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel35))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -203,60 +229,52 @@ public class RegRistorante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel35)
+                .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        backArrow.setBorder(null);
-        backArrow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        backArrow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backArrowActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jPanel4.setLayout(new java.awt.CardLayout());
+        pannelloDestra.setLayout(new java.awt.CardLayout());
 
-        dettagliUtente2.setMaximumSize(new java.awt.Dimension(783, 620));
-        dettagliUtente2.setMinimumSize(new java.awt.Dimension(783, 620));
+        dettagliRisto.setMaximumSize(new java.awt.Dimension(783, 620));
+        dettagliRisto.setMinimumSize(new java.awt.Dimension(783, 620));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel21.setText("Dettagli ristoratore");
 
-        nome3.setBackground(new java.awt.Color(204, 204, 204));
-        nome3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        nome3.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome3.addActionListener(new java.awt.event.ActionListener() {
+        nome.setBackground(new java.awt.Color(204, 204, 204));
+        nome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        nome.setMaximumSize(new java.awt.Dimension(64, 22));
+        nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome3ActionPerformed(evt);
+                nomeActionPerformed(evt);
             }
         });
 
-        cognome2.setBackground(new java.awt.Color(204, 204, 204));
-        cognome2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cognome2.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome2.addActionListener(new java.awt.event.ActionListener() {
+        cognome.setBackground(new java.awt.Color(204, 204, 204));
+        cognome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cognome.setMaximumSize(new java.awt.Dimension(64, 22));
+        cognome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognome2ActionPerformed(evt);
+                cognomeActionPerformed(evt);
             }
         });
 
-        email2.setBackground(new java.awt.Color(204, 204, 204));
-        email2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        email2.setMaximumSize(new java.awt.Dimension(64, 22));
+        email.setBackground(new java.awt.Color(204, 204, 204));
+        email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        email.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        username2.setBackground(new java.awt.Color(204, 204, 204));
-        username2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        username2.setMaximumSize(new java.awt.Dimension(64, 22));
+        username.setBackground(new java.awt.Color(204, 204, 204));
+        username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        username.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        posizione2.setBackground(new java.awt.Color(204, 204, 204));
-        posizione2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione2.setMaximumSize(new java.awt.Dimension(64, 22));
+        posizione.setBackground(new java.awt.Color(204, 204, 204));
+        posizione.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        posizione.setMaximumSize(new java.awt.Dimension(64, 22));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel22.setText("Nome");
@@ -276,22 +294,22 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel27.setText("Username");
 
-        password2.setBackground(new java.awt.Color(204, 204, 204));
-        password2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        password2.setMaximumSize(new java.awt.Dimension(64, 22));
-        password2.addActionListener(new java.awt.event.ActionListener() {
+        password.setBackground(new java.awt.Color(204, 204, 204));
+        password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        password.setMaximumSize(new java.awt.Dimension(64, 22));
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password2ActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
 
-        eyePass2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eyePass2.setMaximumSize(new java.awt.Dimension(30, 30));
-        eyePass2.setMinimumSize(new java.awt.Dimension(30, 30));
-        eyePass2.setPreferredSize(new java.awt.Dimension(30, 30));
-        eyePass2.addActionListener(new java.awt.event.ActionListener() {
+        eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eyePass.setMaximumSize(new java.awt.Dimension(30, 30));
+        eyePass.setMinimumSize(new java.awt.Dimension(30, 30));
+        eyePass.setPreferredSize(new java.awt.Dimension(30, 30));
+        eyePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eyePass2ActionPerformed(evt);
+                eyePassActionPerformed(evt);
             }
         });
 
@@ -305,74 +323,74 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout dettagliUtente2Layout = new javax.swing.GroupLayout(dettagliUtente2);
-        dettagliUtente2.setLayout(dettagliUtente2Layout);
-        dettagliUtente2Layout.setHorizontalGroup(
-            dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dettagliUtente2Layout.createSequentialGroup()
+        javax.swing.GroupLayout dettagliRistoLayout = new javax.swing.GroupLayout(dettagliRisto);
+        dettagliRisto.setLayout(dettagliRistoLayout);
+        dettagliRistoLayout.setHorizontalGroup(
+            dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dettagliRistoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21)
-                    .addGroup(dettagliUtente2Layout.createSequentialGroup()
-                        .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(dettagliRistoLayout.createSequentialGroup()
+                        .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(posizione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
-                        .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(dettagliUtente2Layout.createSequentialGroup()
-                                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(dettagliRistoLayout.createSequentialGroup()
+                                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eyePass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cognome2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(logout2))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
-        dettagliUtente2Layout.setVerticalGroup(
-            dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dettagliUtente2Layout.createSequentialGroup()
+        dettagliRistoLayout.setVerticalGroup(
+            dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dettagliRistoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cognome2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(jLabel25))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(eyePass2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(email2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(eyePass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(jLabel27))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dettagliUtente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(logout2)
                 .addContainerGap(270, Short.MAX_VALUE))
         );
 
-        jPanel4.add(dettagliUtente2, "dettagli");
+        pannelloDestra.add(dettagliRisto, "dettagli");
 
         modificaDati.setMaximumSize(new java.awt.Dimension(783, 620));
         modificaDati.setMinimumSize(new java.awt.Dimension(783, 620));
@@ -386,19 +404,19 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel30.setText("Cognome");
 
-        nome4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        nome4.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome4.addActionListener(new java.awt.event.ActionListener() {
+        nome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        nome1.setMaximumSize(new java.awt.Dimension(64, 22));
+        nome1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome4ActionPerformed(evt);
+                nome1ActionPerformed(evt);
             }
         });
 
-        cognome3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cognome3.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome3.addActionListener(new java.awt.event.ActionListener() {
+        cognome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cognome1.setMaximumSize(new java.awt.Dimension(64, 22));
+        cognome1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognome3ActionPerformed(evt);
+                cognome1ActionPerformed(evt);
             }
         });
 
@@ -408,14 +426,14 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel32.setText("Password");
 
-        email3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        email3.setMaximumSize(new java.awt.Dimension(64, 22));
+        email1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        email1.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        password3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        password3.setMaximumSize(new java.awt.Dimension(64, 22));
-        password3.addActionListener(new java.awt.event.ActionListener() {
+        password1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        password1.setMaximumSize(new java.awt.Dimension(64, 22));
+        password1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password3ActionPerformed(evt);
+                password1ActionPerformed(evt);
             }
         });
 
@@ -425,19 +443,19 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel34.setText("Username");
 
-        posizione3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione3.setMaximumSize(new java.awt.Dimension(64, 22));
+        posizione1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        posizione1.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        username3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        username3.setMaximumSize(new java.awt.Dimension(64, 22));
+        username1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        username1.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        eyePass3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eyePass3.setMaximumSize(new java.awt.Dimension(30, 30));
-        eyePass3.setMinimumSize(new java.awt.Dimension(30, 30));
-        eyePass3.setPreferredSize(new java.awt.Dimension(30, 30));
-        eyePass3.addActionListener(new java.awt.event.ActionListener() {
+        eyePass1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eyePass1.setMaximumSize(new java.awt.Dimension(30, 30));
+        eyePass1.setMinimumSize(new java.awt.Dimension(30, 30));
+        eyePass1.setPreferredSize(new java.awt.Dimension(30, 30));
+        eyePass1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eyePass3ActionPerformed(evt);
+                eyePass1ActionPerformed(evt);
             }
         });
 
@@ -465,9 +483,9 @@ public class RegRistorante extends javax.swing.JFrame {
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome4, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(nome1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(email1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(posizione1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,11 +493,11 @@ public class RegRistorante extends javax.swing.JFrame {
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(modificaDatiLayout.createSequentialGroup()
                                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(username1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eyePass3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cognome3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(eyePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(aggiorna))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
@@ -494,41 +512,41 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cognome3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nome4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(eyePass3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eyePass1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(email3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(password3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jLabel34))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(aggiorna)
                 .addContainerGap(270, Short.MAX_VALUE))
         );
 
-        jPanel4.add(modificaDati, "modifica");
+        pannelloDestra.add(modificaDati, "modifica");
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(400, 500));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        registraRisto.setPreferredSize(new java.awt.Dimension(400, 500));
+        registraRisto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel11.setText("REGISTRAZIONE");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 300, 40));
-        jPanel2.add(città, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 290, -1));
+        registraRisto.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 300, 40));
+        registraRisto.add(città, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 290, -1));
 
         regRis.setBackground(new java.awt.Color(0, 102, 102));
         regRis.setForeground(new java.awt.Color(255, 255, 255));
@@ -538,87 +556,92 @@ public class RegRistorante extends javax.swing.JFrame {
                 regRisActionPerformed(evt);
             }
         });
-        jPanel2.add(regRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 90, 30));
+        registraRisto.add(regRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 90, 30));
 
         locRist.setText("Città:");
-        jPanel2.add(locRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 79, -1));
+        registraRisto.add(locRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 79, -1));
 
         indRist.setText("indirizzo:");
-        jPanel2.add(indRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 82, -1));
-        jPanel2.add(indirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 290, -1));
+        registraRisto.add(indRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 82, -1));
+        registraRisto.add(indirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel14.setText("ristorante ");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 160, 26));
+        registraRisto.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 160, 26));
 
         nomeRist.setText("Nome:");
-        jPanel2.add(nomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 49, -1));
-        jPanel2.add(nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 290, -1));
+        registraRisto.add(nomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 49, -1));
+        registraRisto.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 290, -1));
 
         lonRist.setText("Longitudine:");
-        jPanel2.add(lonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 68, -1));
-        jPanel2.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 135, -1));
-        jPanel2.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 135, -1));
+        registraRisto.add(lonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
+        registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
+        registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 135, -1));
 
         latRist.setText("Latitudine:");
-        jPanel2.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 68, -1));
-        jPanel2.add(descrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 290, -1));
+        registraRisto.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 68, -1));
+        registraRisto.add(descrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
 
         desRist.setText("Descrizione:");
-        jPanel2.add(desRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
-        jPanel2.add(delcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 460, -1, -1));
-        jPanel2.add(prencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, -1, -1));
+        registraRisto.add(desRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+        registraRisto.add(delcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        registraRisto.add(prencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
 
         deliveryRist.setText("Delivery:");
-        jPanel2.add(deliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
+        registraRisto.add(deliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
 
         prenOnl.setText("Prenotazione:");
-        jPanel2.add(prenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, -1));
+        registraRisto.add(prenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
 
         cuisRist.setText("Tipo Cucina:");
-        jPanel2.add(cuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 70, -1));
-        jPanel2.add(cucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 290, -1));
+        registraRisto.add(cuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 70, -1));
+        registraRisto.add(cucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
 
         prezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
-        jPanel2.add(prezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 460, 70, 20));
+        registraRisto.add(prezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
 
         priceRist.setText("Fascia prezzo:");
-        jPanel2.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, -1, -1));
+        registraRisto.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
 
-        jPanel4.add(jPanel2, "card4");
+        pannelloDestra.add(registraRisto, "registra");
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("X");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(pannelloDestra, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(backArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pannelloDestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -640,64 +663,27 @@ public class RegRistorante extends javax.swing.JFrame {
 
     
     
-    //Codice per il bottone "freccia" per tornare al Frame precedente.
-    private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
-        Reg1 Reg1Frame = new Reg1(gestore);
-        Reg1Frame.setVisible(true);
-        Reg1Frame.pack();
-        Reg1Frame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_backArrowActionPerformed
-
    
    
    
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
         // TODO add your handling code here:
-        gestore.getArchivioRis().aggiungiRis(new Ristorante(nome.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID()));
+        gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID()));
     }//GEN-LAST:event_regRisActionPerformed
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
-        cl.show(pannelloDestra, "dettagli");
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-        originale = jLabel10.getText();
-        jLabel10.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel10MouseEntered
-
-    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
-        jLabel10.setText(originale);
-    }//GEN-LAST:event_jLabel10MouseExited
-
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
-        cl.show(pannelloDestra, "modifica");
-    }//GEN-LAST:event_jLabel12MouseClicked
-
-    private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
-        originale = jLabel11.getText();
-        jLabel11.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel12MouseEntered
-
-    private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
-        jLabel11.setText(originale);
-    }//GEN-LAST:event_jLabel12MouseExited
-
-    private void nome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome3ActionPerformed
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome3ActionPerformed
+    }//GEN-LAST:event_nomeActionPerformed
 
-    private void cognome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognome2ActionPerformed
+    private void cognomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cognome2ActionPerformed
+    }//GEN-LAST:event_cognomeActionPerformed
 
-    private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_password2ActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
-    private void eyePass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass2ActionPerformed
+    private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
             password.setEchoChar((char)0);
@@ -705,25 +691,25 @@ public class RegRistorante extends javax.swing.JFrame {
             eyePass.setIcon(showPass);
             password.setEchoChar('\u2022');
         }
-    }//GEN-LAST:event_eyePass2ActionPerformed
+    }//GEN-LAST:event_eyePassActionPerformed
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
 
     }//GEN-LAST:event_logout2ActionPerformed
 
-    private void nome4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome4ActionPerformed
+    private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome4ActionPerformed
+    }//GEN-LAST:event_nome1ActionPerformed
 
-    private void cognome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognome3ActionPerformed
+    private void cognome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognome1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cognome3ActionPerformed
+    }//GEN-LAST:event_cognome1ActionPerformed
 
-    private void password3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password3ActionPerformed
+    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_password3ActionPerformed
+    }//GEN-LAST:event_password1ActionPerformed
 
-    private void eyePass3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass3ActionPerformed
+    private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
         if (eyePass1.isSelected()) {
             eyePass1.setIcon(hidePass);
             password1.setEchoChar((char)0);
@@ -731,7 +717,7 @@ public class RegRistorante extends javax.swing.JFrame {
             eyePass1.setIcon(showPass);
             password1.setEchoChar('\u2022');
         }
-    }//GEN-LAST:event_eyePass3ActionPerformed
+    }//GEN-LAST:event_eyePass1ActionPerformed
 
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
         if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText()))) {
@@ -758,18 +744,53 @@ public class RegRistorante extends javax.swing.JFrame {
 
     }//GEN-LAST:event_aggiornaActionPerformed
 
-    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel35MouseClicked
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "dettagli");
+    }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void jLabel35MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseEntered
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel35MouseEntered
+    }//GEN-LAST:event_jLabel10MouseEntered
 
-    private void jLabel35MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseExited
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel35MouseExited
-    
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "modifica");
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseEntered
+
+    private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel13MouseExited
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "registra");
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel12MouseEntered
+
+    private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel12MouseExited
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        rislist.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+   
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -781,27 +802,28 @@ public class RegRistorante extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiorna;
-    private javax.swing.JButton backArrow;
     private javax.swing.JTextField città;
-    private javax.swing.JTextField cognome2;
-    private javax.swing.JTextField cognome3;
+    private javax.swing.JTextField cognome;
+    private javax.swing.JTextField cognome1;
     private javax.swing.JTextField cucina;
     private javax.swing.JLabel cuisRist;
     private javax.swing.JCheckBox delcheck;
     private javax.swing.JLabel deliveryRist;
     private javax.swing.JLabel desRist;
     private javax.swing.JTextField descrizione;
-    private javax.swing.JPanel dettagliUtente2;
-    private javax.swing.JTextField email2;
-    private javax.swing.JTextField email3;
-    private javax.swing.JToggleButton eyePass2;
-    private javax.swing.JToggleButton eyePass3;
+    private javax.swing.JPanel dettagliRisto;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField email1;
+    private javax.swing.JToggleButton eyePass;
+    private javax.swing.JToggleButton eyePass1;
     private javax.swing.JLabel indRist;
     private javax.swing.JTextField indirizzo;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -817,12 +839,9 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
@@ -834,20 +853,22 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JTextField longitudine;
     private javax.swing.JPanel modificaDati;
     private javax.swing.JTextField nome;
-    private javax.swing.JTextField nome3;
-    private javax.swing.JTextField nome4;
+    private javax.swing.JTextField nome1;
+    private javax.swing.JTextField nomeField;
     private javax.swing.JLabel nomeRist;
-    private javax.swing.JPasswordField password2;
-    private javax.swing.JPasswordField password3;
-    private javax.swing.JTextField posizione2;
-    private javax.swing.JTextField posizione3;
+    private javax.swing.JPanel pannelloDestra;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField password1;
+    private javax.swing.JTextField posizione;
+    private javax.swing.JTextField posizione1;
     private javax.swing.JLabel prenOnl;
     private javax.swing.JCheckBox prencheck;
     private javax.swing.JComboBox<String> prezzoBox;
     private javax.swing.JLabel priceRist;
     private javax.swing.JButton regRis;
-    private javax.swing.JTextField username2;
-    private javax.swing.JTextField username3;
+    private javax.swing.JPanel registraRisto;
+    private javax.swing.JTextField username;
+    private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package theknife;
-import java.awt.*;
 import javax.swing.*;
-
-
+import java.awt.*;
 
 /**
  *
@@ -15,12 +13,12 @@ import javax.swing.*;
 public class RegRistorante extends javax.swing.JFrame {
     //Dichiarazione variabili
     private static GestoreArchivi gestore;
-    private RisList rislist;
+    private static RisList rislist;
     private final ImageIcon showPass;
     private final ImageIcon hidePass;
     private String originale;
     
-    public RegRistorante(GestoreArchivi gestore) { 
+    public RegRistorante(GestoreArchivi gestore, RisList rislist) { 
         //Inizializzazione vari componenti e Lable.
         initComponents();  
         
@@ -72,9 +70,6 @@ public class RegRistorante extends javax.swing.JFrame {
         ImageIcon hp3 = new ImageIcon(hp2); 
         this.hidePass = hp3;
     }
-    
-    
-    
     //Generated Code.
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -89,6 +84,7 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pannelloDestra = new javax.swing.JPanel();
         dettagliRisto = new javax.swing.JPanel();
@@ -107,6 +103,8 @@ public class RegRistorante extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         eyePass = new javax.swing.JToggleButton();
         logout2 = new javax.swing.JButton();
+        scrollPane = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
         modificaDati = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -147,7 +145,29 @@ public class RegRistorante extends javax.swing.JFrame {
         cucina = new javax.swing.JTextField();
         prezzoBox = new javax.swing.JComboBox<>();
         priceRist = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        modificaRisto = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        modCittà = new javax.swing.JTextField();
+        modRis = new javax.swing.JButton();
+        modLocRist = new javax.swing.JLabel();
+        modIndRist = new javax.swing.JLabel();
+        modIndirizzo = new javax.swing.JTextField();
+        modNomeRist = new javax.swing.JLabel();
+        modNomeField = new javax.swing.JTextField();
+        modLonRist = new javax.swing.JLabel();
+        modLongitudine = new javax.swing.JTextField();
+        modLatitudine = new javax.swing.JTextField();
+        modLatRist = new javax.swing.JLabel();
+        modDescrizione = new javax.swing.JTextField();
+        modDesRist = new javax.swing.JLabel();
+        modDelcheck = new javax.swing.JCheckBox();
+        modPrencheck = new javax.swing.JCheckBox();
+        modDeliveryRist = new javax.swing.JLabel();
+        modPrenOnl = new javax.swing.JLabel();
+        modCuisRist = new javax.swing.JLabel();
+        modCucina = new javax.swing.JTextField();
+        modPrezzoBox = new javax.swing.JComboBox<>();
+        modPriceRist = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,8 +222,8 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel12.setText("Registra Ristorante");
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setText("Registra ristorante");
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,6 +234,21 @@ public class RegRistorante extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel12MouseExited(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel15.setText("I tuoi ristoranti");
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel15MouseExited(evt);
             }
         });
 
@@ -230,7 +265,8 @@ public class RegRistorante extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel12))
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel15))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -245,6 +281,8 @@ public class RegRistorante extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -261,6 +299,7 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel21.setText("Dettagli ristoratore");
 
+        nome.setBackground(new java.awt.Color(204, 204, 204));
         nome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome.setMaximumSize(new java.awt.Dimension(64, 22));
         nome.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +308,7 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
+        cognome.setBackground(new java.awt.Color(204, 204, 204));
         cognome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome.setMaximumSize(new java.awt.Dimension(64, 22));
         cognome.addActionListener(new java.awt.event.ActionListener() {
@@ -277,12 +317,15 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
+        email.setBackground(new java.awt.Color(204, 204, 204));
         email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         email.setMaximumSize(new java.awt.Dimension(64, 22));
 
+        username.setBackground(new java.awt.Color(204, 204, 204));
         username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username.setMaximumSize(new java.awt.Dimension(64, 22));
 
+        posizione.setBackground(new java.awt.Color(204, 204, 204));
         posizione.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         posizione.setMaximumSize(new java.awt.Dimension(64, 22));
 
@@ -304,6 +347,7 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel27.setText("Username");
 
+        password.setBackground(new java.awt.Color(204, 204, 204));
         password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setMaximumSize(new java.awt.Dimension(64, 22));
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -396,10 +440,33 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(logout2)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(dettagliRisto, "dettagli");
+
+        scrollPane.setMaximumSize(null);
+        scrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
+        scrollPane.setPreferredSize(new java.awt.Dimension(450, 2));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setMaximumSize(null);
+        jPanel4.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        scrollPane.setViewportView(jPanel4);
+
+        pannelloDestra.add(scrollPane, "ristorantiMenu");
 
         modificaDati.setMaximumSize(new java.awt.Dimension(783, 620));
         modificaDati.setMinimumSize(new java.awt.Dimension(783, 620));
@@ -543,7 +610,7 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(aggiorna)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(modificaDati, "modifica");
@@ -614,13 +681,67 @@ public class RegRistorante extends javax.swing.JFrame {
 
         pannelloDestra.add(registraRisto, "registra");
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("X");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        modificaRisto.setPreferredSize(new java.awt.Dimension(400, 500));
+        modificaRisto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel16.setText("MODIFICA RISTORANTE");
+        modificaRisto.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 450, 40));
+        modificaRisto.add(modCittà, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 290, -1));
+
+        modRis.setBackground(new java.awt.Color(0, 102, 102));
+        modRis.setForeground(new java.awt.Color(255, 255, 255));
+        modRis.setText("Modifica");
+        modRis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                modRisActionPerformed(evt);
             }
         });
+        modificaRisto.add(modRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 90, 30));
+
+        modLocRist.setText("Città:");
+        modificaRisto.add(modLocRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 79, -1));
+
+        modIndRist.setText("indirizzo:");
+        modificaRisto.add(modIndRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 82, -1));
+        modificaRisto.add(modIndirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, -1));
+
+        modNomeRist.setText("Nome:");
+        modificaRisto.add(modNomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 49, -1));
+        modificaRisto.add(modNomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 290, -1));
+
+        modLonRist.setText("Longitudine:");
+        modificaRisto.add(modLonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
+        modificaRisto.add(modLongitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
+        modificaRisto.add(modLatitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 135, -1));
+
+        modLatRist.setText("Latitudine:");
+        modificaRisto.add(modLatRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 68, -1));
+        modificaRisto.add(modDescrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
+
+        modDesRist.setText("Descrizione:");
+        modificaRisto.add(modDesRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+        modificaRisto.add(modDelcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        modificaRisto.add(modPrencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
+
+        modDeliveryRist.setText("Delivery:");
+        modificaRisto.add(modDeliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
+
+        modPrenOnl.setText("Prenotazione:");
+        modificaRisto.add(modPrenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
+
+        modCuisRist.setText("Tipo Cucina:");
+        modificaRisto.add(modCuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 70, -1));
+        modificaRisto.add(modCucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
+
+        modPrezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
+        modificaRisto.add(modPrezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
+
+        modPriceRist.setText("Fascia prezzo:");
+        modificaRisto.add(modPriceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
+
+        pannelloDestra.add(modificaRisto, "modificaRisto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -636,17 +757,14 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -669,15 +787,93 @@ public class RegRistorante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void mostraRistoranti() {
+    // Pannello che conterrà tutti i ristoranti
+    JPanel contenitore = new JPanel();
+    contenitore.setLayout(new BoxLayout(contenitore, BoxLayout.Y_AXIS));
+    contenitore.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+    // Recupera l'utente attuale
+    Utente attuale = gestore.getArchivioUtenti().getUtenteAttuale();
+
+    // Cicla su tutti i ristoranti nell'archivio
+    for (Ristorante r : gestore.getArchivioRis().getRis()) {
+        // Mostra solo i ristoranti di questo utente
+        if (r.getIdRistoratore() == attuale.getIdUtente()) {
+
+            JPanel panelRisto = new JPanel(new BorderLayout());
+            panelRisto.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            panelRisto.setBackground(new Color(245, 245, 245)); 
+            
+            panelRisto.setPreferredSize(new Dimension(scrollPane.getViewport().getWidth() - 30, 80));
+            panelRisto.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70)); // altezza fissa
+            
+            //nome del ristorante
+            JLabel nomeLabel = new JLabel(r.getNomeRis());
+            nomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
+            nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+            panelRisto.add(nomeLabel, BorderLayout.CENTER);
+            
+            //pulsanti
+            JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+            pulsantiPanel.setOpaque(false);
+
+            JButton btnModifica = new JButton("Modifica");
+            btnModifica.addActionListener(e -> {
+                CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+                cl.show(pannelloDestra, "modificaRisto");
+                gestore.getArchivioRis().setRisAttuale(r);
+                modNomeField.setText(r.getNomeRis());
+                modNomeField.setEditable(true);
+                modCucina.setText(r.getCuisRis());
+                modCucina.setEditable(true);
+                modCittà.setText(r.getLocRis());
+                modCittà.setEditable(true);
+                modIndirizzo.setText(r.getIndRis());
+                modIndirizzo.setEditable(true);
+                modLongitudine.setText(String.valueOf(r.getLongRis()));
+                modLongitudine.setEditable(true);
+                modLatitudine.setText(String.valueOf(r.getLatRis()));
+                modLatitudine.setEditable(true);
+                modDescrizione.setText(r.getDesRis());
+                modDescrizione.setEditable(true);
+                modDelcheck.setSelected(r.isDelivery());
+                modPrencheck.setSelected(r.isPrenotaOnline());
+                modPrezzoBox.setSelectedItem(r.getPriceRis());
+            });
+
+            JButton btnElimina = new JButton("Elimina");
+            btnElimina.addActionListener(e -> {
+                int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare " + r.getNomeRis() + "?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
+                if (conferma == JOptionPane.YES_OPTION) {
+                    gestore.getArchivioRis().rimuoviRis(r);
+                    mostraRistoranti();
+                }
+            });
+
+            pulsantiPanel.add(btnModifica);
+            pulsantiPanel.add(btnElimina);
+            
+            panelRisto.add(pulsantiPanel, BorderLayout.EAST);
+
+            contenitore.add(panelRisto);
+            
+            contenitore.add(Box.createVerticalStrut(10));
+        }
+    }
+
+    // Metti il contenitore nello scrollPane
+    scrollPane.setViewportView(contenitore);
+    scrollPane.revalidate();
+    scrollPane.repaint();
+    }
     
     
-   
-   
-   
+    
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
         // TODO add your handling code here:
-        gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID()));
+        gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
         JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
         nomeField.setText("");
         indirizzo.setText("");
@@ -714,7 +910,7 @@ public class RegRistorante extends javax.swing.JFrame {
     }//GEN-LAST:event_eyePassActionPerformed
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
-
+        gestore.getArchivioUtenti().setUtenteAttuale(0);
     }//GEN-LAST:event_logout2ActionPerformed
 
     private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
@@ -820,18 +1016,51 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel12.setText(originale);
     }//GEN-LAST:event_jLabel12MouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        rislist.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        mostraRistoranti();
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "ristorantiMenu");
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
+        // TODO add your handling code here:
+        originale = jLabel15.getText();
+        jLabel15.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_jLabel15MouseEntered
+
+    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
+        // TODO add your handling code here:
+        jLabel15.setText(originale);
+    }//GEN-LAST:event_jLabel15MouseExited
+
+    private void modRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modRisActionPerformed
+        // TODO add your handling code here:
+        gestore.getArchivioRis().getRisAttuale().setNomeRis(modNomeField.getText());
+        gestore.getArchivioRis().getRisAttuale().setCuisRis(modCucina.getText());
+        gestore.getArchivioRis().getRisAttuale().setLocRis(modCittà.getText());
+        gestore.getArchivioRis().getRisAttuale().setIndRis(modIndirizzo.getText());
+        gestore.getArchivioRis().getRisAttuale().setLongRis(Double.parseDouble(modLongitudine.getText()));
+        gestore.getArchivioRis().getRisAttuale().setLatRis(Double.parseDouble(modLatitudine.getText())); 
+        gestore.getArchivioRis().getRisAttuale().setDesRis(modDescrizione.getText());
+        gestore.getArchivioRis().getRisAttuale().setDelivery(modDelcheck.isSelected());
+        gestore.getArchivioRis().getRisAttuale().setPrenotaOnline(modPrencheck.isSelected());
+        gestore.getArchivioRis().getRisAttuale().setPriceRis((String)modPrezzoBox.getSelectedItem());
+        gestore.getArchivioRis().aggiornaRis();
+        
+        JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "ristorantiMenu");
+        mostraRistoranti();
+        
+    }//GEN-LAST:event_modRisActionPerformed
 
    
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegRistorante(gestore).setVisible(true);
+                new RegRistorante(gestore, rislist).setVisible(true);
             }
         });
     }
@@ -854,13 +1083,14 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JToggleButton eyePass1;
     private javax.swing.JLabel indRist;
     private javax.swing.JTextField indirizzo;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -878,6 +1108,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
@@ -887,7 +1118,29 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JButton logout2;
     private javax.swing.JLabel lonRist;
     private javax.swing.JTextField longitudine;
+    private javax.swing.JTextField modCittà;
+    private javax.swing.JTextField modCucina;
+    private javax.swing.JLabel modCuisRist;
+    private javax.swing.JCheckBox modDelcheck;
+    private javax.swing.JLabel modDeliveryRist;
+    private javax.swing.JLabel modDesRist;
+    private javax.swing.JTextField modDescrizione;
+    private javax.swing.JLabel modIndRist;
+    private javax.swing.JTextField modIndirizzo;
+    private javax.swing.JLabel modLatRist;
+    private javax.swing.JTextField modLatitudine;
+    private javax.swing.JLabel modLocRist;
+    private javax.swing.JLabel modLonRist;
+    private javax.swing.JTextField modLongitudine;
+    private javax.swing.JTextField modNomeField;
+    private javax.swing.JLabel modNomeRist;
+    private javax.swing.JLabel modPrenOnl;
+    private javax.swing.JCheckBox modPrencheck;
+    private javax.swing.JComboBox<String> modPrezzoBox;
+    private javax.swing.JLabel modPriceRist;
+    private javax.swing.JButton modRis;
     private javax.swing.JPanel modificaDati;
+    private javax.swing.JPanel modificaRisto;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField nome1;
     private javax.swing.JTextField nomeField;
@@ -903,6 +1156,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel priceRist;
     private javax.swing.JButton regRis;
     private javax.swing.JPanel registraRisto;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables

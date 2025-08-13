@@ -29,7 +29,7 @@ public class ArchivioRis {
             String line;
             while ((line=rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");
-                if(token.countTokens() == 13){
+                if(token.countTokens() == 14){
                     String nomeRis = token.nextToken();
                     String indRis = token.nextToken();
                     String locRis = token.nextToken();
@@ -43,8 +43,9 @@ public class ArchivioRis {
                     boolean prenotaOnline = Boolean.parseBoolean(token.nextToken());
                     String desRis = token.nextToken();
                     int idRis = Integer.parseInt(token.nextToken());
-
-                    listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis));
+                    int idRistoratore = Integer.parseInt(token.nextToken());
+                    
+                    listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis, idRistoratore ));
                 }
             }
         }catch (IOException e) {

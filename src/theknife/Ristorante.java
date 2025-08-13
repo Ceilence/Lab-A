@@ -24,8 +24,9 @@ public class Ristorante {
     private boolean prenotaOnline;
     private String desRis;
     private int idRis;
+    private int idRistoratore;
 
-    public Ristorante(String nomeRis, String indRis, String locRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, int mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis) {
+    public Ristorante(String nomeRis, String indRis, String locRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, int mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
         this.nomeRis = nomeRis;
         this.indRis = indRis;
         this.locRis = locRis;
@@ -39,6 +40,7 @@ public class Ristorante {
         this.prenotaOnline = prenotaOnline;
         this.desRis = desRis;
         this.idRis = idRis;
+        this.idRistoratore = idRistoratore;
     }
 
     public String getNomeRis() {
@@ -144,6 +146,14 @@ public class Ristorante {
     public void setIdRis(int idRis) {
         this.idRis = idRis;
     }
+    
+    public int getIdRistoratore(){
+        return idRistoratore;
+    }
+    
+    public void setIdRistoratore(int idRistoratore){
+        this.idRistoratore = idRistoratore;
+    }
 
     
     
@@ -152,6 +162,6 @@ public class Ristorante {
         return nomeRis + "§" + indRis + "§" + locRis + "§" + 
                priceRis + "§" + cuisRis + "§" + longRis + "§" + 
                latRis + "§" + pnRis + "§" + mediaStelleRis + "§" +
-               delivery + "§" + prenotaOnline + "§" + desRis + "§" + idRis + "§";      
+               delivery + "§" + prenotaOnline + "§" + desRis + "§" + idRis + "§" + idRistoratore + "§";      
     }
 }

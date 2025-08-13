@@ -14,6 +14,7 @@ public class Login extends javax.swing.JFrame {
     private final ImageIcon showPass;
     private final ImageIcon hidePass;
     private GestoreArchivi gestore;
+    private static RisList risList;
     
     public Login(GestoreArchivi gestore) {
         this.gestore = gestore;
@@ -225,13 +226,21 @@ public class Login extends javax.swing.JFrame {
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
-            int idUtente = gestore.getArchivioUtenti().getId(logUser.getText(), logPass.getText());
-            gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
-            GestoreArchivi.RisListFrame.versioneGuest();
-            GestoreArchivi.RisListFrame.setVisible(true);
-            GestoreArchivi.RisListFrame.pack();
-            GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
-            this.dispose();
+                int idUtente = gestore.getArchivioUtenti().getId(logUser.getText(), logPass.getText());
+                gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
+                
+            if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
+                GestoreArchivi.RisListFrame.versioneGuest();
+                GestoreArchivi.RisListFrame.setVisible(true);
+                GestoreArchivi.RisListFrame.pack();
+                GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
+                this.dispose();
+            } else{
+                RegRistorante rg = new RegRistorante(gestore, risList);
+                rg.setVisible(true);
+                this.dispose();
+            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Username o password errati");
             logPass.setText("");

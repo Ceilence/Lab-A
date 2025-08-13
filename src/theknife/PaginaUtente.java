@@ -27,7 +27,9 @@ public class PaginaUtente extends javax.swing.JFrame {
     public PaginaUtente(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
+        
         initComponents();
+        
         
         //Setta il pulsante che si attiva con invio su aggiorna
         getRootPane().setDefaultButton(aggiorna);
@@ -96,6 +98,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
         pannelloDestra = new javax.swing.JPanel();
         dettagliUtente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -129,9 +134,15 @@ public class PaginaUtente extends javax.swing.JFrame {
         username1 = new javax.swing.JTextField();
         eyePass1 = new javax.swing.JToggleButton();
         aggiorna = new javax.swing.JButton();
+        preferiti = new javax.swing.JScrollPane();
+        modificaPreferiti = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
+        setMaximumSize(new java.awt.Dimension(1110, 700));
+        setMinimumSize(new java.awt.Dimension(1110, 700));
+        setUndecorated(true);
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
 
         contenitore.setBackground(new java.awt.Color(0, 102, 102));
@@ -214,11 +225,39 @@ public class PaginaUtente extends javax.swing.JFrame {
             }
         });
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel19.setText("Preferiti");
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel19MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel19MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel19MouseExited(evt);
+            }
+        });
+
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel20.setText("Gestisci preferiti");
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel20MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel20MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator2)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +265,9 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addGroup(menuLayout.createSequentialGroup()
                         .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel19))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -241,6 +282,12 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -343,27 +390,33 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(dettagliUtenteLayout.createSequentialGroup()
-                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(26, 26, 26)
+                        .addGap(6, 6, 6)
                         .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logout))
+                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dettagliUtenteLayout.createSequentialGroup()
-                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(logout))
-                .addContainerGap(139, Short.MAX_VALUE))
+                                .addGap(35, 35, 35)
+                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(dettagliUtenteLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(dettagliUtenteLayout.createSequentialGroup()
+                                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         dettagliUtenteLayout.setVerticalGroup(
             dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,9 +442,9 @@ public class PaginaUtente extends javax.swing.JFrame {
                         .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -551,6 +604,21 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         pannelloDestra.add(modificaDati, "modifica");
 
+        preferiti.setMaximumSize(new java.awt.Dimension(783, 620));
+        preferiti.setMinimumSize(new java.awt.Dimension(783, 620));
+        preferiti.setPreferredSize(new java.awt.Dimension(783, 620));
+        pannelloDestra.add(preferiti, "preferiti");
+
+        modificaPreferiti.setMaximumSize(new java.awt.Dimension(783, 620));
+        modificaPreferiti.setMinimumSize(new java.awt.Dimension(783, 620));
+        modificaPreferiti.setPreferredSize(new java.awt.Dimension(783, 620));
+        modificaPreferiti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificaPreferitiMouseClicked(evt);
+            }
+        });
+        pannelloDestra.add(modificaPreferiti, "modificaPreferiti");
+
         javax.swing.GroupLayout contenitoreLayout = new javax.swing.GroupLayout(contenitore);
         contenitore.setLayout(contenitoreLayout);
         contenitoreLayout.setHorizontalGroup(
@@ -593,7 +661,8 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     //Bottone per tornare alla pagina principale
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setVisible(false);
+        risList.setEnabled(true);
+        this.dispose();
         risList.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -714,6 +783,34 @@ public class PaginaUtente extends javax.swing.JFrame {
         gestore.getArchivioUtenti().setUtenteAttuale(0);
     }//GEN-LAST:event_logoutActionPerformed
 
+    private void jLabel19MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseEntered
+        originale = jLabel19.getText();
+        jLabel19.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_jLabel19MouseEntered
+
+    private void jLabel19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseExited
+        jLabel19.setText(originale);
+    }//GEN-LAST:event_jLabel19MouseExited
+
+    private void jLabel20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseEntered
+        originale = jLabel20.getText();
+        jLabel20.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_jLabel20MouseEntered
+
+    private void jLabel20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseExited
+        jLabel20.setText(originale);
+    }//GEN-LAST:event_jLabel20MouseExited
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "preferiti");
+    }//GEN-LAST:event_jLabel19MouseClicked
+
+    private void modificaPreferitiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaPreferitiMouseClicked
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "modificaPreferiti");
+    }//GEN-LAST:event_modificaPreferitiMouseClicked
+
     
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -737,7 +834,9 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -746,9 +845,11 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton logout;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel modificaDati;
+    private javax.swing.JScrollPane modificaPreferiti;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField nome1;
     private javax.swing.JPanel pannelloDestra;
@@ -756,6 +857,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JPasswordField password1;
     private javax.swing.JTextField posizione;
     private javax.swing.JTextField posizione1;
+    private javax.swing.JScrollPane preferiti;
     private javax.swing.JPanel testa;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;

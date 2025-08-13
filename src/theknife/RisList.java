@@ -299,18 +299,17 @@ public class RisList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_detPrefActionPerformed
 
-    //Apre la pagina utente
+    /**
+     * 
+     * 
+     * @param evt 
+     */
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
-            PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
-            paginaUtente.setVisible(true);
-            this.setVisible(false);
-            paginaUtente.setLocationRelativeTo(null);
-        } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
-            RegRistorante regRistoranteFrame = new RegRistorante(gestore);
-            regRistoranteFrame.setVisible(true);
-            this.setVisible(false);
-        }         
+            PaginaUtente p = new PaginaUtente(gestore, this);
+            p.setVisible(true);
+            this.setEnabled(false);
+            p.setLocationRelativeTo(null);
+            
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed

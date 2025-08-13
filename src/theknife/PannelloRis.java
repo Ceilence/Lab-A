@@ -124,7 +124,7 @@ public final class PannelloRis extends JPanel{
                         caricamentoFrame.aggiornaProgress(loading++);
                     }
                 return null;
-        }
+            }
         };
         
         worker.execute();

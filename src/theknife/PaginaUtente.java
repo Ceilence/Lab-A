@@ -4,11 +4,23 @@
  */
 package theknife;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 /**
@@ -85,7 +97,108 @@ public class PaginaUtente extends javax.swing.JFrame {
         this.hidePass = hp3;
         
     }
-    @SuppressWarnings("unchecked")
+    
+    public void mostraPreferiti(){
+        // Pannello che conterrà i ristoranti preferiti
+        JPanel contenitore = new JPanel();
+        contenitore.setLayout(new BoxLayout(contenitore, BoxLayout.Y_AXIS));
+        contenitore.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Recupera l'utente attuale
+        Utente u = gestore.getArchivioUtenti().getUtenteAttuale();
+        
+        for(Preferito p : gestore.getArchivioPref().getPreferiti()){
+            if(p.getIdUtente() == u.getIdUtente()){
+                
+                //Ottengo il ristorante con l'id segnato in ArchivioPreferiti
+                Ristorante r = gestore.getArchivioRis().getRistorante(p.getIdRis());
+                
+                JPanel panelPreferiti = new JPanel(new BorderLayout());
+                panelPreferiti.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+                panelPreferiti.setBackground(new Color(245, 245, 245)); 
+            
+                panelPreferiti.setPreferredSize(new Dimension(preferiti.getViewport().getWidth() - 30, 80));
+                panelPreferiti.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70)); // altezza fissa
+                
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.setOpaque(false);
+                panel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 10));
+                
+                
+                
+                //Restituisce il nome ristorante e lo aggiunge al panel
+                JLabel nomeRisto = new JLabel(r.getNomeRis());
+                nomeRisto.setFont(new Font("Arial", Font.BOLD, 16));
+                panel.add(nomeRisto);
+                
+                //Restituisce il tipo di cucina e lo aggiunge al panel
+                JLabel tipoCucina = new JLabel(r.getCuisRis());
+                tipoCucina.setFont(new Font("Arial", Font.PLAIN, 14));
+                tipoCucina.setForeground(Color.DARK_GRAY);
+                panel.add(tipoCucina);
+                
+                
+                
+                //Bottone per rimuovere il preferito dal file
+                JButton rimuovi = new JButton("Rimuovi");
+                rimuovi.setPreferredSize(new Dimension(80, 10));
+                rimuovi.setFocusPainted(false);
+                rimuovi.setBackground(new Color(0,102,102));
+                rimuovi.setForeground(Color.WHITE);
+                
+                rimuovi.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        rimuovi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    }
+                });
+                
+                JPanel bottone = new JPanel();
+                bottone.setOpaque(false);
+                bottone.setLayout(new BoxLayout(bottone, BoxLayout.Y_AXIS));
+                bottone.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+                
+                
+                
+                //Action listener
+                rimuovi.addActionListener(e -> {
+                int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero rimuovere "+ r.getNomeRis() + " dai preferiti?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
+                if(conferma == JOptionPane.YES_OPTION){
+                    gestore.getArchivioPref().setPrefAttuale(r.getIdRis(), u.getIdUtente());
+                    gestore.getArchivioPref().rimuoviPreferito();
+                    gestore.getArchivioPref().aggiornaPref();
+
+                    //Cambia cursore quando ci si passa sopra
+                    rimuovi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+                    // Rimuovo il pannello
+                    contenitore.remove(panelPreferiti);
+                    contenitore.revalidate();
+                    contenitore.repaint();
+                }
+                });
+                
+                
+                //Aggiungo bottone al panel
+                bottone.add(rimuovi);
+                panelPreferiti.add(bottone, BorderLayout.EAST);
+                panelPreferiti.add(panel, BorderLayout.CENTER);
+                panelPreferiti.setBorder(BorderFactory.createCompoundBorder(panelPreferiti.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 20)));
+                
+                //Aggiungo il panel al contenitore
+                contenitore.add(panelPreferiti);
+                contenitore.add(Box.createVerticalStrut(10));
+                
+            }
+        }
+        // Metti il contenitore nello scrollPane
+        preferiti.setViewportView(contenitore);
+        preferiti.revalidate();
+        preferiti.repaint();
+    }
+    
+    
+        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -101,6 +214,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel20 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         pannelloDestra = new javax.swing.JPanel();
         dettagliUtente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -146,6 +262,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(500, 400));
 
         contenitore.setBackground(new java.awt.Color(0, 102, 102));
+        contenitore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         contenitore.setMinimumSize(new java.awt.Dimension(0, 0));
 
         testa.setBackground(new java.awt.Color(0, 102, 102));
@@ -254,12 +371,37 @@ public class PaginaUtente extends javax.swing.JFrame {
             }
         });
 
+        jSeparator3.setForeground(new java.awt.Color(0, 102, 102));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel21.setText("Recensioni");
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel21MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel21MouseExited(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel22.setText("Modifica recensioni");
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel22MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel22MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator2)
+            .addComponent(jSeparator3)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +411,9 @@ public class PaginaUtente extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel20)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel22))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -290,6 +434,12 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -546,27 +696,31 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addGroup(modificaDatiLayout.createSequentialGroup()
-                        .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(26, 26, 26)
                         .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(modificaDatiLayout.createSequentialGroup()
-                                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(251, 251, 251))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12)
+                        .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(modificaDatiLayout.createSequentialGroup()
+                                .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eyePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(aggiorna))
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         modificaDatiLayout.setVerticalGroup(
             modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,7 +746,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                         .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -663,6 +817,7 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     //Bottone per tornare alla pagina principale
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         risList.setEnabled(true);
         this.dispose();
         risList.setVisible(true);
@@ -804,6 +959,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel20MouseExited
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+        mostraPreferiti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "preferiti");
     }//GEN-LAST:event_jLabel19MouseClicked
@@ -812,6 +968,24 @@ public class PaginaUtente extends javax.swing.JFrame {
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modificaPreferiti");
     }//GEN-LAST:event_modificaPreferitiMouseClicked
+
+    private void jLabel21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseEntered
+        originale = jLabel21.getText();
+        jLabel21.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_jLabel21MouseEntered
+
+    private void jLabel21MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseExited
+        jLabel21.setText(originale);
+    }//GEN-LAST:event_jLabel21MouseExited
+
+    private void jLabel22MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseEntered
+        originale = jLabel22.getText();
+        jLabel22.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_jLabel22MouseEntered
+
+    private void jLabel22MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseExited
+        jLabel22.setText(originale);
+    }//GEN-LAST:event_jLabel22MouseExited
 
     
    
@@ -839,6 +1013,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -848,6 +1024,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton logout;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel modificaDati;

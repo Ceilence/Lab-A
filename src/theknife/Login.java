@@ -54,7 +54,7 @@ public class Login extends javax.swing.JFrame {
         Dati = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        logUser = new javax.swing.JTextField();
+        logMail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         logPass = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
@@ -133,13 +133,13 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Username:");
+        jLabel2.setText("Email:");
         Dati.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 154, 113, -1));
 
-        logUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        logUser.setMargin(new java.awt.Insets(6, 6, 6, 6));
-        logUser.setSelectionStart(6);
-        Dati.add(logUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, 340, 30));
+        logMail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        logMail.setMargin(new java.awt.Insets(6, 6, 6, 6));
+        logMail.setSelectionStart(6);
+        Dati.add(logMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, 340, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -225,8 +225,8 @@ public class Login extends javax.swing.JFrame {
     
     
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        if (gestore.getArchivioUtenti().esisteUtente(logUser.getText(), logPass.getText())) {
-                int idUtente = gestore.getArchivioUtenti().getId(logUser.getText(), logPass.getText());
+        if (gestore.getArchivioUtenti().esisteUtente(logMail.getText(), logPass.getText())) {
+                int idUtente = gestore.getArchivioUtenti().getId(logMail.getText(), logPass.getText());
                 gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
                 
             if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
@@ -242,7 +242,7 @@ public class Login extends javax.swing.JFrame {
             }
             
         } else {
-            JOptionPane.showMessageDialog(null, "Username o password errati");
+            JOptionPane.showMessageDialog(null, "Email o password errati");
             logPass.setText("");
         }
     }//GEN-LAST:event_LoginButtonActionPerformed
@@ -295,8 +295,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField logMail;
     private javax.swing.JPasswordField logPass;
-    private javax.swing.JTextField logUser;
     private javax.swing.JButton registratiButton;
     // End of variables declaration//GEN-END:variables
 }

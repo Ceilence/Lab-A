@@ -134,8 +134,6 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
-        cerca.setText("jButton1");
-        cerca.setMaximumSize(null);
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
         cerca.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +157,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panRicerca.add(jComboBox1, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setToolTipText("");
         jTextField1.setMaximumSize(null);
         jTextField1.setMinimumSize(new java.awt.Dimension(375, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(375, 40));

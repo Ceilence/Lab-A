@@ -38,8 +38,9 @@ public class ArchivioRis {
                 boolean prenotaOnline = Boolean.parseBoolean(token.nextToken());
                 String desRis = token.nextToken();
                 int idRis = Integer.parseInt(token.nextToken());
+                int idRistoratore = Integer.parseInt(token.nextToken());
 
-                listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis));
+                listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis, idRistoratore));
             }
         } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());

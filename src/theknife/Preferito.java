@@ -39,19 +39,30 @@ public class Preferito {
     public String toString() {
         return idRis + "§" + idUtente + "§";
     }
-    
-    @Override
-    public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Preferito)) return false;
-    Preferito other = (Preferito) o;
-    return this.idRis == other.idRis &&
-           this.idUtente == other.idUtente;
-    }
 
     @Override
     public int hashCode() {
-    return Objects.hash(idRis, idUtente);
+        int hash = 7;
+        return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Preferito other = (Preferito) obj;
+        if (this.idRis != other.idRis) {
+            return false;
+        }
+        return this.idUtente == other.idUtente;
+    }
+    
+    
 }

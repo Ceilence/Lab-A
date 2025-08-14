@@ -4,8 +4,7 @@
  */
 package theknife;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 
 /**
@@ -13,9 +12,6 @@ import java.util.StringTokenizer;
  * @author davim, sugo, alefrogs
  */
 public class ArchivioRis {
-    
-    //TOGLIERE URL, FACILITIES AND SERVICES, RANDOM PRENOTABILE 
-
     private static final String FILE_PATH = "data\\Ristoranti.csv";
     private Ristorante risAttuale;
     private final ArrayList<Ristorante> listaRis = new ArrayList<>();
@@ -27,27 +23,25 @@ public class ArchivioRis {
         listaRis.clear();
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
-            while ((line=rd.readLine()) != null && !line.isBlank()) {
+            while ((line = rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");
-                if(token.countTokens() == 13){
-                    String nomeRis = token.nextToken();
-                    String indRis = token.nextToken();
-                    String locRis = token.nextToken();
-                    String priceRis = token.nextToken();
-                    String cuisRis = token.nextToken();
-                    double longRis = Double.parseDouble(token.nextToken());
-                    double latRis = Double.parseDouble(token.nextToken());
-                    String telRis = token.nextToken();
-                    int mediaStelleRis = Integer.parseInt(token.nextToken());
-                    boolean delivery = Boolean.parseBoolean(token.nextToken());
-                    boolean prenotaOnline = Boolean.parseBoolean(token.nextToken());
-                    String desRis = token.nextToken();
-                    int idRis = Integer.parseInt(token.nextToken());
+                String nomeRis = token.nextToken();
+                String indRis = token.nextToken();
+                String locRis = token.nextToken();
+                String priceRis = token.nextToken();
+                String cuisRis = token.nextToken();
+                double longRis = Double.parseDouble(token.nextToken());
+                double latRis = Double.parseDouble(token.nextToken());
+                String telRis = token.nextToken();
+                int mediaStelleRis = Integer.parseInt(token.nextToken());
+                boolean delivery = Boolean.parseBoolean(token.nextToken());
+                boolean prenotaOnline = Boolean.parseBoolean(token.nextToken());
+                String desRis = token.nextToken();
+                int idRis = Integer.parseInt(token.nextToken());
 
-                    listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis));
-                }
+                listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis));
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());
         }
     }
@@ -67,16 +61,18 @@ public class ArchivioRis {
     //Metodo per creare un ID unico.
     public int creaID() {
         int max = 0;
-        for (Ristorante r : listaRis )
-            if (max < r.getIdRis())
+        for (Ristorante r : listaRis ) {
+            if (max < r.getIdRis()) {
                 max = r.getIdRis();
-        return max + 1;
+            }
+        }
+         return max + 1;
     }
     
     //Metodo per riscrivere il file di testo, aggiornando l'archivio.
     public void aggiornaRis() {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(FILE_PATH, false))) {
-            for (Ristorante ris : listaRis ) {
+            for (Ristorante ris : listaRis) {
                 wr.write(ris.toString());
                 wr.newLine();
             }
@@ -94,7 +90,6 @@ public class ArchivioRis {
         return risAttuale;
     }
     
-    //Per debug o controllo.
     public int getNumeroRis() {
         return listaRis.size();
     }

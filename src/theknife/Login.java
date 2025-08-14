@@ -65,10 +65,11 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TheKnife");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Login.setBackground(new java.awt.Color(204, 204, 204));
         Login.setPreferredSize(new java.awt.Dimension(800, 500));
-        Login.setLayout(null);
+        Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Logo.setBackground(new java.awt.Color(0, 102, 102));
         Logo.setPreferredSize(new java.awt.Dimension(400, 500));
@@ -116,8 +117,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Login.add(Logo);
-        Logo.setBounds(0, 0, 400, 500);
+        Login.add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Dati.setBackground(new java.awt.Color(255, 255, 255));
         Dati.setPreferredSize(new java.awt.Dimension(400, 500));
@@ -201,21 +201,9 @@ public class Login extends javax.swing.JFrame {
         jLabel8.setText("Oppure:");
         Dati.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 90, -1));
 
-        Login.add(Dati);
-        Dati.setBounds(400, 0, 400, 500);
+        Login.add(Dati, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

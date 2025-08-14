@@ -108,7 +108,7 @@ public final class PannelloRis extends JPanel{
                              * Cambia i valori del prpeferito attuale a quelli del ristorante cliccato e dell'utente attuale.
                              * Verifica se è già tra i preferiti e imposta l'icona del JButton detPref.
                             */
-                            gestore.getArchivioPref().setPrefAttuale(r.getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
+                            gestore.getArchivioPreferiti().setPrefAttuale(r.getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
                             risList.aggiornaDetPref();
                             
                             dettaglioPanel.revalidate();

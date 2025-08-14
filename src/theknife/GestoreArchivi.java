@@ -9,11 +9,11 @@ package theknife;
  * @author davim
  */
 public class GestoreArchivi {
-    private ArchivioUtenti archivioUtenti;
-    private ArchivioRis archivioRis;
-    private ArchivioCitta archivioCitta;
-    private ArchivioPreferiti archivioPref;
-    private ArchivioRecensioni archivioRec;
+    private final ArchivioUtenti archivioUtenti;
+    private final ArchivioRis archivioRis;
+    private final ArchivioCitta archivioCitta;
+    private final ArchivioPreferiti archivioPref;
+    private final ArchivioCommenti archivioCom;
     
     public static RisList RisListFrame;
     
@@ -22,7 +22,7 @@ public class GestoreArchivi {
         archivioRis = new ArchivioRis();
         archivioCitta = new ArchivioCitta();
         archivioPref = new ArchivioPreferiti();
-        archivioRec = new ArchivioRecensioni();
+        archivioCom = new ArchivioCommenti();    
     }
 
     public ArchivioUtenti getArchivioUtenti() {
@@ -37,11 +37,11 @@ public class GestoreArchivi {
         return archivioCitta;
     }
 
-    public ArchivioPreferiti getArchivioPref() {
+    public ArchivioPreferiti getArchivioPreferiti() {
         return archivioPref;
     }
-
-    public ArchivioRecensioni getArchivioRec() {
-        return archivioRec;
+    
+    public ArchivioCommenti getArchivioCommenti() {
+        return archivioCom;
     }
 }

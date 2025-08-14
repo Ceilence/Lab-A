@@ -124,7 +124,7 @@ public final class PannelloRis extends JPanel{
                         caricamentoFrame.aggiornaProgress(loading++);
                     }
                 return null;
-        }
+            }
         };
         
         worker.execute();
@@ -220,5 +220,9 @@ public final class PannelloRis extends JPanel{
             return this.flagUSA;
         
         return this.flagMondo;
+    }
+    
+    public int getNumeroPannelli(){
+        return gestore.getArchivioRis().getNumeroRis();
     }
 }

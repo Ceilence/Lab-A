@@ -46,10 +46,10 @@ public class ArchivioUtenti {
         }
     }
     
-    //Metodo per controllare se Username e Password sono già presenti nell'archivio.
-    public boolean esisteUtente(String user, String pass) {
+    //Metodo per controllare se Email e Password sono già presenti nell'archivio.
+    public boolean esisteUtente(String email, String pass) {
         for (Utente u: listaUtenti) {
-            if (u.getUsernameUtente().equals(user) && u.getPassUtente().equals(pass)) {
+            if (u.getEmailUtente().equals(email) && u.getPassUtente().equals(pass)) {
                 utenteAttuale = u;
                 return true;
             }
@@ -132,9 +132,9 @@ public class ArchivioUtenti {
     } 
       
     //Metodo che restituisce l'id verificando l'username e la password
-    public int getId(String username, String password) {
+    public int getId(String email, String password) {
     for (Utente u : listaUtenti) {
-        if (u.getUsernameUtente().equals(username) && u.getPassUtente().equals(password)) {
+        if (u.getEmailUtente().equals(email) && u.getPassUtente().equals(password)) {
             return u.getIdUtente();
         }
     }

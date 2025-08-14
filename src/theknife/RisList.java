@@ -150,8 +150,6 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
-        cerca.setText("jButton1");
-        cerca.setMaximumSize(null);
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
         cerca.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +173,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panRicerca.add(jComboBox1, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setToolTipText("");
         jTextField1.setMaximumSize(null);
         jTextField1.setMinimumSize(new java.awt.Dimension(375, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(375, 40));
@@ -490,14 +488,17 @@ public class RisList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_detPrefActionPerformed
 
+    /**
+     * 
+     * 
+     * @param evt 
+     */
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
-            PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
-            paginaUtente.setVisible(true);
-            this.setVisible(false);
-        } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
+            PaginaUtente p = new PaginaUtente(gestore, this);
+            p.setVisible(true);
+            this.setEnabled(false);
+            p.setLocationRelativeTo(null);
             
-        }         
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed

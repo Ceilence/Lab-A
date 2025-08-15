@@ -46,8 +46,6 @@ public final class PannelloRis extends JPanel{
         
         //Override getPreferredSize per adattarsi a scrollpane
         this.setPreferredSize(new Dimension(0, 0));
-        
-        //Passaggio dell'immagine come path
        
         SwingWorker<Void, JPanel> worker = new SwingWorker<>(){
             @Override

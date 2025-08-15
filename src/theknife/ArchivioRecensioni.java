@@ -31,7 +31,7 @@ public class ArchivioRecensioni {
                     int mediaStelle = Integer.parseInt(token.nextToken());
                     int idUtente = Integer.parseInt(token.nextToken());
                     int idRis = Integer.parseInt(token.nextToken());
-                   
+                    
                     listaRecensioni.add(new Recensione(recensione, mediaStelle, idUtente, idRis));
                 }
             }   

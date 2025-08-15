@@ -4,7 +4,9 @@
  */
 package theknife;
 import javax.swing.*;
+import javax.swing.text.*;
 import java.awt.*;
+import java.text.*;
 
 /**
  *
@@ -21,6 +23,10 @@ public class RegRistorante extends javax.swing.JFrame {
     public RegRistorante(GestoreArchivi gestore, RisList rislist) { 
         //Inizializzazione vari componenti e Lable.
         initComponents();  
+        
+        scrollPane.getVerticalScrollBar().setUnitIncrement(70);
+        
+        
         
         this.gestore = gestore;
         this.rislist = rislist;
@@ -132,8 +138,6 @@ public class RegRistorante extends javax.swing.JFrame {
         nomeRist = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         lonRist = new javax.swing.JLabel();
-        longitudine = new javax.swing.JTextField();
-        latitudine = new javax.swing.JTextField();
         latRist = new javax.swing.JLabel();
         descrizione = new javax.swing.JTextField();
         desRist = new javax.swing.JLabel();
@@ -145,6 +149,8 @@ public class RegRistorante extends javax.swing.JFrame {
         cucina = new javax.swing.JTextField();
         prezzoBox = new javax.swing.JComboBox<>();
         priceRist = new javax.swing.JLabel();
+        longitudine = new javax.swing.JTextField();
+        latitudine = new javax.swing.JTextField();
         modificaRisto = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         modCittà = new javax.swing.JTextField();
@@ -646,11 +652,9 @@ public class RegRistorante extends javax.swing.JFrame {
 
         lonRist.setText("Longitudine:");
         registraRisto.add(lonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
-        registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
-        registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 135, -1));
 
         latRist.setText("Latitudine:");
-        registraRisto.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 68, -1));
+        registraRisto.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 340, 68, -1));
         registraRisto.add(descrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
 
         desRist.setText("Descrizione:");
@@ -673,6 +677,20 @@ public class RegRistorante extends javax.swing.JFrame {
 
         priceRist.setText("Fascia prezzo:");
         registraRisto.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
+
+        longitudine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                longitudineActionPerformed(evt);
+            }
+        });
+        registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
+
+        latitudine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latitudineActionPerformed(evt);
+            }
+        });
+        registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
 
         pannelloDestra.add(registraRisto, "registra");
 
@@ -709,10 +727,10 @@ public class RegRistorante extends javax.swing.JFrame {
         modLonRist.setText("Longitudine:");
         modificaRisto.add(modLonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
         modificaRisto.add(modLongitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
-        modificaRisto.add(modLatitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 135, -1));
+        modificaRisto.add(modLatitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
 
         modLatRist.setText("Latitudine:");
-        modificaRisto.add(modLatRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 68, -1));
+        modificaRisto.add(modLatRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 340, 68, -1));
         modificaRisto.add(modDescrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
 
         modDesRist.setText("Descrizione:");
@@ -879,18 +897,31 @@ public class RegRistorante extends javax.swing.JFrame {
     
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
         // TODO add your handling code here:
-        gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
-        JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
-        nomeField.setText("");
-        indirizzo.setText("");
-        città.setText("");
-        prezzoBox.setSelectedItem("$");
-        cucina.setText("");
-        longitudine.setText("");
-        latitudine.setText("");
-        delcheck.setSelected(false);
-        prencheck.setSelected(false);
-        descrizione.setText("");
+        if(!longitudine.getText().matches("[0-9.]*") && !longitudine.getText().matches("[0-9.]*"))
+            JOptionPane.showMessageDialog(null, "Puoi inserire solo numeri e il punto come separatore decimale!");
+        else{
+            boolean trovato = false;
+            for(Ristorante r: gestore.getArchivioRis().getRis()){
+                if(Double.parseDouble(latitudine.getText()) == r.getLatRis() && Double.parseDouble(longitudine.getText()) == r.getLongRis())
+                    trovato = true;
+            }
+            if(trovato == true)
+                JOptionPane.showMessageDialog(null, "Esiste già un ristorante alla posizione inserita!");
+            else{
+                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
+                JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
+                nomeField.setText("");
+                indirizzo.setText("");
+                città.setText("");
+                prezzoBox.setSelectedItem("$");
+                cucina.setText("");
+                longitudine.setText("");
+                latitudine.setText("");
+                delcheck.setSelected(false);
+                prencheck.setSelected(false);
+                descrizione.setText("");
+            }
+        }
     }//GEN-LAST:event_regRisActionPerformed
 
     private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
@@ -1059,6 +1090,14 @@ public class RegRistorante extends javax.swing.JFrame {
         mostraRistoranti();
         
     }//GEN-LAST:event_modRisActionPerformed
+
+    private void longitudineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_longitudineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_longitudineActionPerformed
+
+    private void latitudineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latitudineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_latitudineActionPerformed
 
    
     public static void main(String args[]) {

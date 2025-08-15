@@ -51,6 +51,8 @@ public class RisList extends javax.swing.JFrame {
        
         PannelloRis pannelloDinamico = new PannelloRis(this, scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes, detPref, caricamentoFrame);
         scrollPane.setViewportView(pannelloDinamico);
+        
+        scrollPane.getVerticalScrollBar().setUnitIncrement(70);
     }
    
     @SuppressWarnings("unchecked")
@@ -304,11 +306,13 @@ public class RisList extends javax.swing.JFrame {
         if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
             PaginaUtente paginaUtente = new PaginaUtente(gestore, this);
             paginaUtente.setVisible(true);
+            paginaUtente.setLocationRelativeTo(null);
             this.setVisible(false);
             paginaUtente.setLocationRelativeTo(null);
         } else if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore")){
             RegRistorante regRistoranteFrame = new RegRistorante(gestore, this);
             regRistoranteFrame.setVisible(true);
+            regRistoranteFrame.setLocationRelativeTo(null);
             this.setVisible(false);
         }         
     }//GEN-LAST:event_profiloUtenteActionPerformed

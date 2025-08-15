@@ -187,6 +187,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         contenitore = new javax.swing.JPanel();
         testa = new javax.swing.JPanel();
@@ -244,12 +245,12 @@ public class PaginaUtente extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1110, 700));
         setMinimumSize(new java.awt.Dimension(1110, 700));
         setUndecorated(true);
-        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
 
         contenitore.setBackground(new java.awt.Color(0, 102, 102));
         contenitore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         contenitore.setMinimumSize(new java.awt.Dimension(0, 0));
+        contenitore.setLayout(new java.awt.GridBagLayout());
 
         testa.setBackground(new java.awt.Color(0, 102, 102));
         testa.setForeground(new java.awt.Color(0, 102, 102));
@@ -287,6 +288,14 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 8, 0, 8);
+        contenitore.add(testa, gridBagConstraints);
 
         menu.setMaximumSize(new java.awt.Dimension(309, 620));
         menu.setMinimumSize(new java.awt.Dimension(309, 620));
@@ -428,6 +437,13 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 8, 8, 0);
+        contenitore.add(menu, gridBagConstraints);
 
         pannelloDestra.setMaximumSize(new java.awt.Dimension(783, 620));
         pannelloDestra.setMinimumSize(new java.awt.Dimension(783, 620));
@@ -761,31 +777,12 @@ public class PaginaUtente extends javax.swing.JFrame {
         });
         pannelloDestra.add(modificaPreferiti, "modificaPreferiti");
 
-        javax.swing.GroupLayout contenitoreLayout = new javax.swing.GroupLayout(contenitore);
-        contenitore.setLayout(contenitoreLayout);
-        contenitoreLayout.setHorizontalGroup(
-            contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenitoreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(testa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(contenitoreLayout.createSequentialGroup()
-                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pannelloDestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        contenitoreLayout.setVerticalGroup(
-            contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenitoreLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(testa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pannelloDestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 8, 8);
+        contenitore.add(pannelloDestra, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -803,7 +800,6 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     //Bottone per tornare alla pagina principale
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         risList.setEnabled(true);
         this.dispose();
         risList.setVisible(true);

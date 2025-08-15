@@ -5,7 +5,12 @@
 package theknife;
 
 import java.awt.*;
+import java.util.*;
 import javax.swing.*;
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 
 
 /**
@@ -13,42 +18,105 @@ import javax.swing.*;
  * @author davim
  */
 public class RisList extends javax.swing.JFrame {
-    private final ImageIcon prefAdd;
-    private final ImageIcon prefRem;
-    private GestoreArchivi gestore;
+    private ImageIcon stellaVuota;
+    private ImageIcon stellaPiena;
+    private final GestoreArchivi gestore;
+    private final ArrayList<PannelloRis> tuttiIPannelli = new ArrayList<>();
+    private Caricamento caricamentoFrame;
+    private ImageIcon flagItalia;
+    private ImageIcon flagCina;
+    private ImageIcon flagFrancia;
+    private ImageIcon flagGermania;
+    private ImageIcon flagSpagna;
+    private ImageIcon flagUSA;
+    private ImageIcon flagGiappone;
+    private ImageIcon flagMondo;
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
-        Caricamento caricamentoFrame = new Caricamento(gestore);
-        caricamentoFrame.setVisible(true);
-        caricamentoFrame.pack();
+
+        caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
-                
-        
-        //Immagine per mostrare il logo ridimensionato ed applicato.
-        ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
-        Image tk1 = tkIcon.getImage();
-        Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon tk3 = new ImageIcon(tk2);
-        logo.setIcon(tk3);
-        
-        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
-        Image pa1 = paIcon.getImage();
-        Image pa2 = pa1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon pa3 = new ImageIcon(pa2);
-        this.prefAdd = pa3;
-        
-        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
-        Image pt1 = ptIcon.getImage();
-        Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon pt3 = new ImageIcon(pt2);
-        this.prefRem = pt3;
-        
-       
-        PannelloRis pannelloDinamico = new PannelloRis(this, scrollPane, gestore, dettaglioPanel, detNome, detCuis, detBan, detDes, detPref, caricamentoFrame);
-        scrollPane.setViewportView(pannelloDinamico);
+        caricamentoFrame.setVisible(true);
+
+        contenitorePanel.setLayout(new BoxLayout(contenitorePanel, BoxLayout.Y_AXIS));
+        scrollPane.setViewportView(contenitorePanel);
+
+        creaImmagine();
+        caricaPannelli();
     }
+    
+    private void caricaPannelli() {
+    contenitorePanel.removeAll();
+
+    ArrayList<Ristorante> lista = gestore.getArchivioRis().getRis();
+    int totale = lista.size();
+    contenitorePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    
+    SwingWorker<Void, Integer> worker = new SwingWorker<>() {
+        @Override
+        protected Void doInBackground() throws Exception {
+            int count = 0;
+            for (Ristorante r : lista) {
+                ImageIcon icona = selezionaImmagine(r.getLocRis());
+
+                PannelloRis p = new PannelloRis(RisList.this, gestore, r,dettaglioPanel, detNome, detCuis,detBan, detDes, detPref,icona);
+                tuttiIPannelli.add(p);
+                contenitorePanel.add(p);
+                contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+                count++;
+                publish(count); // manda il progresso
+            }
+            return null;
+        }
+            private int counter = 0;
+        @Override
+        protected void process(java.util.List<Integer> chunks) {
+            int ultimoValore = chunks.get(chunks.size() - 1);
+            caricamentoFrame.aggiornaProgresso(ultimoValore, totale);
+            if (counter % 10 == 0) { // aggiorna ogni 10 pannelli
+        contenitorePanel.revalidate();
+        contenitorePanel.repaint();
+            }
+        }
+
+        @Override
+        protected void done() {
+            contenitorePanel.revalidate();
+            contenitorePanel.repaint();
+            scrollPane.revalidate();
+            scrollPane.repaint();
+            
+            caricamentoFrame.dispose();
+            Login loginFrame = new Login(gestore);
+            loginFrame.pack();
+            loginFrame.setLocationRelativeTo(null);
+            loginFrame.setVisible(true);
+            
+        }
+    };
+
+    worker.execute();
+}
+    
+    private void filtraPannelli(String filtro) {
+    contenitorePanel.removeAll();
+    filtro = filtro.toLowerCase();
+
+    for (PannelloRis p : tuttiIPannelli) {
+        Ristorante r = p.getRistorante();
+        if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
+            contenitorePanel.add(p);
+            contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        }
+    }
+
+    contenitorePanel.revalidate();
+    contenitorePanel.repaint();
+}
+
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,12 +125,12 @@ public class RisList extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
-        pannelloRistoranti = new javax.swing.JPanel();
+        contenitorePanel = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         panRicerca = new javax.swing.JPanel();
         cerca = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        campoRicerca = new javax.swing.JTextField();
         scrollPaneDet = new javax.swing.JScrollPane();
         dettaglioPanel = new javax.swing.JPanel();
         detBan = new javax.swing.JLabel();
@@ -106,23 +174,23 @@ public class RisList extends javax.swing.JFrame {
         scrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
         scrollPane.setPreferredSize(new java.awt.Dimension(450, 2));
 
-        pannelloRistoranti.setBackground(new java.awt.Color(255, 255, 255));
-        pannelloRistoranti.setMaximumSize(null);
-        pannelloRistoranti.setPreferredSize(new java.awt.Dimension(0, 0));
-        pannelloRistoranti.setRequestFocusEnabled(false);
+        contenitorePanel.setBackground(new java.awt.Color(255, 255, 255));
+        contenitorePanel.setMaximumSize(null);
+        contenitorePanel.setOpaque(false);
+        contenitorePanel.setRequestFocusEnabled(false);
 
-        javax.swing.GroupLayout pannelloRistorantiLayout = new javax.swing.GroupLayout(pannelloRistoranti);
-        pannelloRistoranti.setLayout(pannelloRistorantiLayout);
-        pannelloRistorantiLayout.setHorizontalGroup(
-            pannelloRistorantiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
+        javax.swing.GroupLayout contenitorePanelLayout = new javax.swing.GroupLayout(contenitorePanel);
+        contenitorePanel.setLayout(contenitorePanelLayout);
+        contenitorePanelLayout.setHorizontalGroup(
+            contenitorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
-        pannelloRistorantiLayout.setVerticalGroup(
-            pannelloRistorantiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        contenitorePanelLayout.setVerticalGroup(
+            contenitorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
-        scrollPane.setViewportView(pannelloRistoranti);
+        scrollPane.setViewportView(contenitorePanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -173,16 +241,16 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panRicerca.add(jComboBox1, gridBagConstraints);
 
-        jTextField1.setToolTipText("");
-        jTextField1.setMaximumSize(null);
-        jTextField1.setMinimumSize(new java.awt.Dimension(375, 40));
-        jTextField1.setPreferredSize(new java.awt.Dimension(375, 40));
+        campoRicerca.setToolTipText("");
+        campoRicerca.setMaximumSize(null);
+        campoRicerca.setMinimumSize(new java.awt.Dimension(375, 40));
+        campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
-        panRicerca.add(jTextField1, gridBagConstraints);
+        panRicerca.add(campoRicerca, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -502,7 +570,7 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
-       
+        filtraPannelli(cerca.getText());
     }//GEN-LAST:event_cercaActionPerformed
 
     private void apriRecensioniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apriRecensioniMouseClicked
@@ -521,16 +589,107 @@ public class RisList extends javax.swing.JFrame {
     
     public void aggiornaDetPref() {
         if (gestore.getArchivioPreferiti().esistePref()) {
-            detPref.setIcon(prefRem);
+            detPref.setIcon(stellaPiena);
         } else {
-            detPref.setIcon(prefAdd);
+            detPref.setIcon(stellaVuota);
         }
     }
-         
+    
+     public void creaImmagine(){
+        ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
+        Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);
+        this.flagItalia = scaledIconItalia; 
+        
+        ImageIcon flagCN = new ImageIcon("src\\Flag_of_China.png");
+        Image scaledImageCina = flagCN.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconCina = new ImageIcon(scaledImageCina);
+        this.flagCina = scaledIconCina; 
+        
+        ImageIcon flagJP = new ImageIcon("src\\Flag_of_Japan.png");
+        Image scaledImageGiappone = flagJP.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconGiappone = new ImageIcon(scaledImageGiappone);
+        this.flagGiappone = scaledIconGiappone; 
+        
+        ImageIcon flagES = new ImageIcon("src\\Flag_of_Spain.png");
+        Image scaledImageSpagna = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconSpagna = new ImageIcon(scaledImageSpagna);
+        this.flagSpagna = scaledIconSpagna; 
+        
+        ImageIcon flagDE = new ImageIcon("src\\Flag_of_Germany.png");
+        Image scaledImageGermania = flagDE.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconGermania = new ImageIcon(scaledImageGermania);
+        this.flagGermania = scaledIconGermania; 
+        
+        ImageIcon flagUSA = new ImageIcon("src\\Flag_of_United_States.png");
+        Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
+        this.flagUSA = scaledIconUSA; 
+        
+        ImageIcon flagFR = new ImageIcon("src\\Flag_of_France.png");
+        Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconFrancia = new ImageIcon(scaledImageFrancia);
+        this.flagFrancia = scaledIconFrancia; 
+        
+        ImageIcon flagWD = new ImageIcon("src\\Globe.png");
+        Image scaledImageMondo = flagWD.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconMondo = new ImageIcon(scaledImageMondo);
+        this.flagMondo = scaledIconMondo; 
+        
+        ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
+        Image tk1 = tkIcon.getImage();
+        Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon tk3 = new ImageIcon(tk2);
+        logo.setIcon(tk3);
+        
+        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
+        Image pa1 = paIcon.getImage();
+        Image pa2 = pa1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pa3 = new ImageIcon(pa2);
+        this.stellaVuota = pa3;
+        
+        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
+        Image pt1 = ptIcon.getImage();
+        Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pt3 = new ImageIcon(pt2);
+        this.stellaPiena = pt3;
+        
+        
+    }
+     
+     public ImageIcon selezionaImmagine(String nazione){
+        if(nazione.contains("Italy"))
+            return this.flagItalia;
+        
+        if(nazione.contains("France"))
+            return this.flagFrancia;
+        
+        if(nazione.contains("Germany"))
+            return this.flagGermania;
+        
+        if(nazione.contains("China"))
+            return this.flagCina;
+        
+        if(nazione.contains("Japan"))
+            return this.flagGiappone;
+        
+        if(nazione.contains("Spain"))
+            return this.flagSpagna;
+        
+        if(nazione.contains("USA"))
+            return this.flagUSA;
+        
+        return this.flagMondo;
+    }
+    
+     
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apriRecensioni;
+    private javax.swing.JTextField campoRicerca;
     private javax.swing.JButton cerca;
+    private javax.swing.JPanel contenitorePanel;
     private javax.swing.JLabel detBan;
     private javax.swing.JLabel detCuis;
     private javax.swing.JLabel detDes;
@@ -539,14 +698,12 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nomeRec1;
     private javax.swing.JLabel nomeRec2;
     private javax.swing.JLabel nomeRec3;
     private javax.swing.JPanel panRicerca;
-    private javax.swing.JPanel pannelloRistoranti;
     private javax.swing.JButton profiloUtente;
     private javax.swing.JLabel rec1;
     private javax.swing.JLabel rec2;

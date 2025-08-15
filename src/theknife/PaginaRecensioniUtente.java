@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author davim
  */
-public class PaginaRecensioni extends javax.swing.JFrame {
+public class PaginaRecensioniUtente extends javax.swing.JFrame {
     private GestoreArchivi gestore;
     private final ImageIcon stellaVuota;
     private final ImageIcon stellaPiena;
@@ -20,7 +20,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     
     
     
-    public PaginaRecensioni(GestoreArchivi gestore) {
+    public PaginaRecensioniUtente(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
         
@@ -61,29 +61,124 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        contenitore = new javax.swing.JPanel();
+        menu = new javax.swing.JPanel();
+        recensioni = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        scriviRecensione = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        pannelloDestra = new javax.swing.JPanel();
+        pannelloRecensioni = new javax.swing.JScrollPane();
         scriviRecPannello = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         confermaButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         areaTesto = new javax.swing.JTextArea();
         stella1 = new javax.swing.JLabel();
         stella2 = new javax.swing.JLabel();
         stella3 = new javax.swing.JLabel();
         stella4 = new javax.swing.JLabel();
         stella5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 700));
-        setPreferredSize(new java.awt.Dimension(700, 700));
+        setMinimumSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
+        contenitore.setBackground(new java.awt.Color(0, 102, 102));
+        contenitore.setMinimumSize(new java.awt.Dimension(800, 500));
+        contenitore.setPreferredSize(new java.awt.Dimension(800, 500));
+
+        menu.setBackground(new java.awt.Color(255, 255, 255));
+
+        recensioni.setBackground(new java.awt.Color(255, 255, 255));
+        recensioni.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        recensioni.setText("Recensioni");
+        recensioni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recensioniMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recensioniMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recensioniMouseExited(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(0, 102, 102));
+
+        scriviRecensione.setBackground(new java.awt.Color(255, 255, 255));
+        scriviRecensione.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        scriviRecensione.setText("Scrivi recensione");
+        scriviRecensione.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        scriviRecensione.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                scriviRecensioneMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                scriviRecensioneMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                scriviRecensioneMouseExited(evt);
+            }
+        });
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Modifica recensione");
+
+        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
+        menu.setLayout(menuLayout);
+        menuLayout.setHorizontalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuLayout.createSequentialGroup()
+                        .addComponent(scriviRecensione, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(menuLayout.createSequentialGroup()
+                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(menuLayout.createSequentialGroup()
+                                .addComponent(recensioni, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+        );
+        menuLayout.setVerticalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(recensioni, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scriviRecensione, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pannelloDestra.setBackground(new java.awt.Color(255, 255, 255));
+        pannelloDestra.setLayout(new java.awt.CardLayout());
+
+        pannelloRecensioni.setBackground(new java.awt.Color(255, 255, 255));
+        pannelloDestra.add(pannelloRecensioni, "recensioni");
+
         scriviRecPannello.setBackground(new java.awt.Color(255, 255, 255));
-        scriviRecPannello.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 5, true));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         jLabel2.setText("Valutazione:");
         jLabel2.setToolTipText("");
 
@@ -97,12 +192,11 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         });
 
         areaTesto.setColumns(20);
-        areaTesto.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         areaTesto.setLineWrap(true);
         areaTesto.setRows(5);
         areaTesto.setWrapStyleWord(true);
-        areaTesto.setAutoscrolls(false);
-        areaTesto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
+        areaTesto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 2));
+        jScrollPane1.setViewportView(areaTesto);
 
         stella1.setBackground(new java.awt.Color(255, 255, 255));
         stella1.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,8 +274,6 @@ public class PaginaRecensioni extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("100/300");
-
         javax.swing.GroupLayout scriviRecPannelloLayout = new javax.swing.GroupLayout(scriviRecPannello);
         scriviRecPannello.setLayout(scriviRecPannelloLayout);
         scriviRecPannelloLayout.setHorizontalGroup(
@@ -189,29 +281,26 @@ public class PaginaRecensioni extends javax.swing.JFrame {
             .addGroup(scriviRecPannelloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                        .addComponent(stella1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stella2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stella3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stella4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stella5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(scriviRecPannelloLayout.createSequentialGroup()
+                                .addComponent(stella1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stella2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stella3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stella4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stella5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 192, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(scriviRecPannelloLayout.createSequentialGroup()
                 .addGap(221, 221, 221)
                 .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
         scriviRecPannelloLayout.setVerticalGroup(
             scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,16 +313,35 @@ public class PaginaRecensioni extends javax.swing.JFrame {
                     .addComponent(stella2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stella3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stella4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stella5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE)
+                    .addComponent(stella5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(confermaButton)
                 .addGap(16, 16, 16))
-            .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scriviRecPannelloLayout.createSequentialGroup()
-                    .addContainerGap(72, Short.MAX_VALUE)
-                    .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+        );
+
+        pannelloDestra.add(scriviRecPannello, "scrivi");
+
+        javax.swing.GroupLayout contenitoreLayout = new javax.swing.GroupLayout(contenitore);
+        contenitore.setLayout(contenitoreLayout);
+        contenitoreLayout.setHorizontalGroup(
+            contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenitoreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pannelloDestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        contenitoreLayout.setVerticalGroup(
+            contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenitoreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contenitoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pannelloDestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,20 +349,32 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(scriviRecPannello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contenitore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(scriviRecPannello, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contenitore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void scriviRecensioneMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scriviRecensioneMouseEntered
+        originale = scriviRecensione.getText();
+        scriviRecensione.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_scriviRecensioneMouseEntered
+
+    private void scriviRecensioneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scriviRecensioneMouseExited
+        scriviRecensione.setText(originale);
+    }//GEN-LAST:event_scriviRecensioneMouseExited
+
+    private void scriviRecensioneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scriviRecensioneMouseClicked
+        CardLayout cl = (CardLayout) (pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "scrivi");
+    }//GEN-LAST:event_scriviRecensioneMouseClicked
 
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (!areaTesto.getText().isBlank()) {
@@ -323,12 +443,35 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella5MouseExited
 
+    private void recensioniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recensioniMouseClicked
+        CardLayout cl = (CardLayout) (pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "recensioni");
+    }//GEN-LAST:event_recensioniMouseClicked
+
+    private void recensioniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recensioniMouseEntered
+        originale = recensioni.getText();
+        recensioni.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_recensioniMouseEntered
+
+    private void recensioniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recensioniMouseExited
+        recensioni.setText(originale);
+    }//GEN-LAST:event_recensioniMouseExited
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTesto;
     private javax.swing.JButton confermaButton;
+    private javax.swing.JPanel contenitore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel menu;
+    private javax.swing.JPanel pannelloDestra;
+    private javax.swing.JScrollPane pannelloRecensioni;
+    private javax.swing.JLabel recensioni;
     private javax.swing.JPanel scriviRecPannello;
+    private javax.swing.JLabel scriviRecensione;
     private javax.swing.JLabel stella1;
     private javax.swing.JLabel stella2;
     private javax.swing.JLabel stella3;

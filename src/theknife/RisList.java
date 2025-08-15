@@ -42,6 +42,8 @@ public class RisList extends javax.swing.JFrame {
 
         contenitorePanel.setLayout(new BoxLayout(contenitorePanel, BoxLayout.Y_AXIS));
         scrollPane.setViewportView(contenitorePanel);
+        
+        scrollPane.getVerticalScrollBar().setUnitIncrement(50);
 
         creaImmagine();
         caricaPannelli();

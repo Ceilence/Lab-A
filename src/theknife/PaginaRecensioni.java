@@ -61,7 +61,6 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         scriviRecPannello = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();

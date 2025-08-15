@@ -44,6 +44,8 @@ public class RisList extends javax.swing.JFrame {
         scrollPane.setViewportView(contenitorePanel);
         
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
+        scrollPaneDet.getVerticalScrollBar().setUnitIncrement(50);
+        scrollPaneRec.getVerticalScrollBar().setUnitIncrement(50);
 
         creaImmagine();
         caricaPannelli();
@@ -162,9 +164,9 @@ public class RisList extends javax.swing.JFrame {
         rec3 = new javax.swing.JLabel();
         recRisposta3 = new javax.swing.JLabel();
         scrollPaneRec = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
         setMinimumSize(new java.awt.Dimension(770, 660));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -191,7 +193,7 @@ public class RisList extends javax.swing.JFrame {
         );
         contenitorePanelLayout.setVerticalGroup(
             contenitorePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addGap(0, 824, Short.MAX_VALUE)
         );
 
         scrollPane.setViewportView(contenitorePanel);
@@ -249,6 +251,11 @@ public class RisList extends javax.swing.JFrame {
         campoRicerca.setMaximumSize(null);
         campoRicerca.setMinimumSize(new java.awt.Dimension(375, 40));
         campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
+        campoRicerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRicercaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -546,6 +553,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(jScrollPane1, new java.awt.GridBagConstraints());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -581,13 +589,17 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
-        filtraPannelli(cerca.getText());
+        filtraPannelli(campoRicerca.getText());
     }//GEN-LAST:event_cercaActionPerformed
 
     private void apriRecensioniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apriRecensioniMouseClicked
    
         
     }//GEN-LAST:event_apriRecensioniMouseClicked
+
+    private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRicercaActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
@@ -666,6 +678,8 @@ public class RisList extends javax.swing.JFrame {
         this.stellaPiena = pt3;
         
         
+        
+        
     }
      
      public ImageIcon selezionaImmagine(String nazione){
@@ -710,6 +724,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nomeRec1;

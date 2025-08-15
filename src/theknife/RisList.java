@@ -22,6 +22,7 @@ public class RisList extends javax.swing.JFrame {
     private ImageIcon stellaPiena;
     private final GestoreArchivi gestore;
     private final ArrayList<PannelloRis> tuttiIPannelli = new ArrayList<>();
+    private final ArrayList<PannelloRis> filtraPannelli = new ArrayList<>();
     private Caricamento caricamentoFrame;
     private ImageIcon flagItalia;
     private ImageIcon flagCina;
@@ -31,6 +32,7 @@ public class RisList extends javax.swing.JFrame {
     private ImageIcon flagUSA;
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
+    private int pagina = 1;
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
@@ -46,6 +48,11 @@ public class RisList extends javax.swing.JFrame {
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
         scrollPaneDet.getVerticalScrollBar().setUnitIncrement(50);
         scrollPaneRec.getVerticalScrollBar().setUnitIncrement(50);
+        for(PannelloRis p: tuttiIPannelli){
+            filtraPannelli.add(p);
+        }
+        
+        impaginazione(pagina);
 
         creaImmagine();
         caricaPannelli();
@@ -106,20 +113,29 @@ public class RisList extends javax.swing.JFrame {
 }
     
     private void filtraPannelli(String filtro) {
-    contenitorePanel.removeAll();
-    filtro = filtro.toLowerCase();
+        pagina = 1;
+        filtro = filtro.toLowerCase();
+        filtraPannelli.clear();
 
-    for (PannelloRis p : tuttiIPannelli) {
-        Ristorante r = p.getRistorante();
-        if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
-            contenitorePanel.add(p);
-            contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        for (PannelloRis p : tuttiIPannelli) {
+            Ristorante r = p.getRistorante();
+            if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
+                filtraPannelli.add(p);
+            }
         }
     }
-
-    contenitorePanel.revalidate();
-    contenitorePanel.repaint();
-}
+    
+    public void impaginazione(int pagina){
+        int da = 100 * (pagina - 1);
+        int a = 100 * pagina;
+        for(int i = da; i < a; i++){
+            contenitorePanel.add(filtraPannelli.get(da));
+            contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        }
+        
+        contenitorePanel.revalidate();
+        contenitorePanel.repaint();
+    }
 
    
     @SuppressWarnings("unchecked")
@@ -164,7 +180,9 @@ public class RisList extends javax.swing.JFrame {
         rec3 = new javax.swing.JLabel();
         recRisposta3 = new javax.swing.JLabel();
         scrollPaneRec = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        indietro = new javax.swing.JButton();
+        avanti = new javax.swing.JButton();
+        contatore = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(770, 660));
@@ -205,7 +223,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 4.5;
-        gridBagConstraints.insets = new java.awt.Insets(7, 0, 0, 7);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         jPanel1.add(scrollPane, gridBagConstraints);
 
         logo.setText("logo");
@@ -217,7 +235,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         jPanel1.add(logo, gridBagConstraints);
 
         panRicerca.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,7 +288,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 0.4;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 7);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel1.add(panRicerca, gridBagConstraints);
 
         profiloUtente.setText("jButton2");
@@ -282,7 +300,7 @@ public class RisList extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jPanel1.add(profiloUtente, gridBagConstraints);
 
         jPanel2.setLayout(new java.awt.CardLayout());
@@ -538,11 +556,46 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 2.4;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
         jPanel1.add(jPanel2, gridBagConstraints);
+
+        indietro.setText("indietro");
+        indietro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indietroActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel1.add(indietro, gridBagConstraints);
+
+        avanti.setText("avanti");
+        avanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avantiActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        jPanel1.add(avanti, gridBagConstraints);
+
+        contatore.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        contatore.setForeground(new java.awt.Color(255, 255, 255));
+        contatore.setText("/100");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        jPanel1.add(contatore, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -553,7 +606,6 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
-        getContentPane().add(jScrollPane1, new java.awt.GridBagConstraints());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -600,6 +652,18 @@ public class RisList extends javax.swing.JFrame {
     private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoRicercaActionPerformed
+
+    private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
+        // TODO add your handling code here:
+        pagina++;
+        impaginazione(pagina);
+    }//GEN-LAST:event_avantiActionPerformed
+
+    private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
+        // TODO add your handling code here:
+        pagina--;
+        impaginazione(pagina);
+    }//GEN-LAST:event_indietroActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
@@ -712,8 +776,10 @@ public class RisList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apriRecensioni;
+    private javax.swing.JButton avanti;
     private javax.swing.JTextField campoRicerca;
     private javax.swing.JButton cerca;
+    private javax.swing.JLabel contatore;
     private javax.swing.JPanel contenitorePanel;
     private javax.swing.JLabel detBan;
     private javax.swing.JLabel detCuis;
@@ -721,10 +787,10 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JLabel detNome;
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
+    private javax.swing.JButton indietro;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nomeRec1;

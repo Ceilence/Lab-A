@@ -18,7 +18,20 @@ public class Utente{
     private String posizioneUtente;
     private int idUtente;
     private String ruoloUtente;
-
+    
+    /**
+     * Costruttore della classe {@code Utente}.
+     * Crea un nuovo oggetto utente con i dati forniti.
+     * 
+     * @param nomeUtente      il nome dell'utente
+     * @param cognomeUtente   il cognome dell'utente
+     * @param usernameUtente  lo username scelto dall'utente
+     * @param emailUtente     l'indirizzo email dell'utente
+     * @param passUtente      la password dell'utente
+     * @param posizioneUtente la posizione o luogo di domicilio associato all'utente
+     * @param id              l'identificativo univoco dell'utente
+     * @param ruoloUtente     il ruolo assegnato all'utente (cliente o ristoratore)
+     */
     public Utente(String nomeUtente, String cognomeUtente, String usernameUtente, String emailUtente, String passUtente, String posizioneUtente, int id, String ruoloUtente) {
         this.nomeUtente = nomeUtente;
         this.cognomeUtente = cognomeUtente;

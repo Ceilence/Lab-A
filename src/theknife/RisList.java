@@ -16,21 +16,15 @@ import javax.swing.*;
  * @author davim
  */
 public class RisList extends javax.swing.JFrame {
-    private ImageIcon stellaVuota;
-    private ImageIcon stellaPiena;
+   
     private final GestoreArchivi gestore;
     private final ArrayList<PannelloRis> tuttiIPannelli = new ArrayList<>();
     private final ArrayList<PannelloRis> filtratore = new ArrayList<>();
-    private Caricamento caricamentoFrame;
-    private ImageIcon flagItalia;
-    private ImageIcon flagCina;
-    private ImageIcon flagFrancia;
-    private ImageIcon flagGermania;
-    private ImageIcon flagSpagna;
-    private ImageIcon flagUSA;
-    private ImageIcon flagGiappone;
-    private ImageIcon flagMondo;
+    private final Caricamento caricamentoFrame;
     private int pagina = 0;
+    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena;
+          
+    
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;

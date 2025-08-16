@@ -81,8 +81,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 700));
-        setPreferredSize(new java.awt.Dimension(700, 700));
+        setMinimumSize(new java.awt.Dimension(558, 498));
         setResizable(false);
 
         scriviRecPannello.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,6 +269,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (!areaTesto.getText().isBlank()) {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText(), gestore.getArchivioCommenti().creaID(), valutazione, true));
+            this.dispose();
         }
         
     }//GEN-LAST:event_confermaButtonActionPerformed

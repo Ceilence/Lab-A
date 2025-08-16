@@ -26,8 +26,6 @@ public class CommentiRistoranti {
         this.idCommento = idCommento;
         this.valutazione = valutazione;
         this.daLeggere = daLeggere;
-       
-        
     }
     
     /**

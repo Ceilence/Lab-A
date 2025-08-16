@@ -23,7 +23,7 @@ public class RisList extends javax.swing.JFrame {
     private final Caricamento caricamentoFrame;
     private int pagina = 0;
     private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena;
-          
+    private final int ELEMENTI_PER_PAGINA = 100;
     
     
     public RisList(GestoreArchivi gestore) {
@@ -107,8 +107,8 @@ public class RisList extends javax.swing.JFrame {
     
     public void impaginazione(int pagina){
         contenitorePanel.removeAll();
-        int da = 100 * pagina;
-        int a = Math.min(filtratore.size(), da + 100);
+        int da = ELEMENTI_PER_PAGINA * pagina;
+        int a = Math.min(filtratore.size(), da + ELEMENTI_PER_PAGINA);
         for(int i = da; i < a; i++){
             contenitorePanel.add(filtratore.get(i));
             contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -130,10 +130,11 @@ public class RisList extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         panRicerca = new javax.swing.JPanel();
         cerca = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         campoRicerca = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         profiloUtente = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        pannelloDestra = new javax.swing.JPanel();
         scrollPaneDet = new javax.swing.JScrollPane();
         dettaglioPanel = new javax.swing.JPanel();
         detBan = new javax.swing.JLabel();
@@ -142,25 +143,12 @@ public class RisList extends javax.swing.JFrame {
         detDes = new javax.swing.JLabel();
         detPref = new javax.swing.JButton();
         labelRecensioni = new javax.swing.JLabel();
-        apriRecensioni = new javax.swing.JLabel();
         scrollRecensioni = new javax.swing.JScrollPane();
-        recensioni = new javax.swing.JPanel();
-        recPan1 = new javax.swing.JPanel();
-        nomeRec1 = new javax.swing.JLabel();
-        valutazione1 = new javax.swing.JLabel();
-        rec1 = new javax.swing.JLabel();
-        recRisposta1 = new javax.swing.JLabel();
-        recPan2 = new javax.swing.JPanel();
-        nomeRec2 = new javax.swing.JLabel();
-        valutazione2 = new javax.swing.JLabel();
-        rec2 = new javax.swing.JLabel();
-        recRisposta2 = new javax.swing.JLabel();
-        recPan3 = new javax.swing.JPanel();
-        nomeRec3 = new javax.swing.JLabel();
-        valutazione3 = new javax.swing.JLabel();
-        rec3 = new javax.swing.JLabel();
-        recRisposta3 = new javax.swing.JLabel();
+        contenitoreAnteprima = new javax.swing.JPanel();
+        scriviRec = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         scrollPaneRec = new javax.swing.JScrollPane();
+        contenitoreRec = new javax.swing.JPanel();
         indietro = new javax.swing.JButton();
         avanti = new javax.swing.JButton();
         contatore = new javax.swing.JLabel();
@@ -237,15 +225,6 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panRicerca.add(cerca, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMaximumSize(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.weighty = 1.0;
-        panRicerca.add(jComboBox1, gridBagConstraints);
-
         campoRicerca.setToolTipText("");
         campoRicerca.setMaximumSize(null);
         campoRicerca.setMinimumSize(new java.awt.Dimension(375, 40));
@@ -261,6 +240,15 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
         panRicerca.add(campoRicerca, gridBagConstraints);
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        panRicerca.add(jScrollPane1, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -284,7 +272,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jPanel1.add(profiloUtente, gridBagConstraints);
 
-        jPanel2.setLayout(new java.awt.CardLayout());
+        pannelloDestra.setLayout(new java.awt.CardLayout());
 
         scrollPaneDet.setMaximumSize(null);
         scrollPaneDet.setMinimumSize(new java.awt.Dimension(600, 16));
@@ -365,160 +353,10 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.06;
         dettaglioPanel.add(labelRecensioni, gridBagConstraints);
 
-        apriRecensioni.setText("Vedi tutte.");
-        apriRecensioni.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                apriRecensioniMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 2.0;
-        dettaglioPanel.add(apriRecensioni, gridBagConstraints);
-
-        recensioni.setPreferredSize(new java.awt.Dimension(0, 0));
-        recensioni.setLayout(new java.awt.GridBagLayout());
-
-        recPan1.setBackground(new java.awt.Color(255, 255, 255));
-        recPan1.setLayout(new java.awt.GridBagLayout());
-
-        nomeRec1.setBackground(new java.awt.Color(255, 255, 255));
-        nomeRec1.setText("RISTORANTE GAY");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.4;
-        recPan1.add(nomeRec1, gridBagConstraints);
-
-        valutazione1.setText("4/10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.3;
-        recPan1.add(valutazione1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recPan1.add(rec1, gridBagConstraints);
-
-        recRisposta1.setText("Risposta");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.2;
-        recPan1.add(recRisposta1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recensioni.add(recPan1, gridBagConstraints);
-
-        recPan2.setBackground(new java.awt.Color(255, 255, 255));
-        recPan2.setLayout(new java.awt.GridBagLayout());
-
-        nomeRec2.setBackground(new java.awt.Color(255, 255, 255));
-        nomeRec2.setText("RISTORANTE GAY");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.6;
-        recPan2.add(nomeRec2, gridBagConstraints);
-
-        valutazione2.setText("4/10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.4;
-        recPan2.add(valutazione2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recPan2.add(rec2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.2;
-        recPan2.add(recRisposta2, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recensioni.add(recPan2, gridBagConstraints);
-
-        recPan3.setBackground(new java.awt.Color(255, 255, 255));
-        recPan3.setLayout(new java.awt.GridBagLayout());
-
-        nomeRec3.setBackground(new java.awt.Color(255, 255, 255));
-        nomeRec3.setText("RISTORANTE GAY");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.6;
-        recPan3.add(nomeRec3, gridBagConstraints);
-
-        valutazione3.setText("4/10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.4;
-        recPan3.add(valutazione3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recPan3.add(rec3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.2;
-        recPan3.add(recRisposta3, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        recensioni.add(recPan3, gridBagConstraints);
-
-        scrollRecensioni.setViewportView(recensioni);
+        contenitoreAnteprima.setBackground(new java.awt.Color(255, 255, 255));
+        contenitoreAnteprima.setPreferredSize(new java.awt.Dimension(0, 0));
+        contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
+        scrollRecensioni.setViewportView(contenitoreAnteprima);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -529,10 +367,44 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         dettaglioPanel.add(scrollRecensioni, gridBagConstraints);
 
+        scriviRec.setText("scrivi");
+        scriviRec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scriviRecActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 2.0;
+        dettaglioPanel.add(scriviRec, gridBagConstraints);
+
+        jButton1.setText("jButton1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
+        dettaglioPanel.add(jButton1, gridBagConstraints);
+
         scrollPaneDet.setViewportView(dettaglioPanel);
 
-        jPanel2.add(scrollPaneDet, "card2");
-        jPanel2.add(scrollPaneRec, "card3");
+        pannelloDestra.add(scrollPaneDet, "dettagli");
+
+        javax.swing.GroupLayout contenitoreRecLayout = new javax.swing.GroupLayout(contenitoreRec);
+        contenitoreRec.setLayout(contenitoreRecLayout);
+        contenitoreRecLayout.setHorizontalGroup(
+            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 811, Short.MAX_VALUE)
+        );
+        contenitoreRecLayout.setVerticalGroup(
+            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 680, Short.MAX_VALUE)
+        );
+
+        scrollPaneRec.setViewportView(contenitoreRec);
+
+        pannelloDestra.add(scrollPaneRec, "recensioni");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -542,7 +414,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 2.4;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        jPanel1.add(jPanel2, gridBagConstraints);
+        jPanel1.add(pannelloDestra, gridBagConstraints);
 
         indietro.setText("indietro");
         indietro.addActionListener(new java.awt.event.ActionListener() {
@@ -626,11 +498,6 @@ public class RisList extends javax.swing.JFrame {
         impaginazione(pagina);
     }//GEN-LAST:event_cercaActionPerformed
 
-    private void apriRecensioniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apriRecensioniMouseClicked
-   
-        
-    }//GEN-LAST:event_apriRecensioniMouseClicked
-
     private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoRicercaActionPerformed
@@ -652,6 +519,16 @@ public class RisList extends javax.swing.JFrame {
             impaginazione(pagina);   
         }
     }//GEN-LAST:event_indietroActionPerformed
+
+    private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed
+        PaginaRecensioni pagRec = new PaginaRecensioni(gestore);
+        pagRec.setLocationRelativeTo(scrollPaneDet);
+        pagRec.pack();
+        pagRec.setVisible(true);
+        
+        
+
+    }//GEN-LAST:event_scriviRecActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
@@ -763,12 +640,13 @@ public class RisList extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel apriRecensioni;
     private javax.swing.JButton avanti;
     private javax.swing.JTextField campoRicerca;
     private javax.swing.JButton cerca;
     private javax.swing.JLabel contatore;
+    private javax.swing.JPanel contenitoreAnteprima;
     private javax.swing.JPanel contenitorePanel;
+    private javax.swing.JPanel contenitoreRec;
     private javax.swing.JLabel detBan;
     private javax.swing.JLabel detCuis;
     private javax.swing.JLabel detDes;
@@ -776,32 +654,19 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JButton indietro;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel nomeRec1;
-    private javax.swing.JLabel nomeRec2;
-    private javax.swing.JLabel nomeRec3;
     private javax.swing.JPanel panRicerca;
+    private javax.swing.JPanel pannelloDestra;
     private javax.swing.JButton profiloUtente;
-    private javax.swing.JLabel rec1;
-    private javax.swing.JLabel rec2;
-    private javax.swing.JLabel rec3;
-    private javax.swing.JPanel recPan1;
-    private javax.swing.JPanel recPan2;
-    private javax.swing.JPanel recPan3;
-    private javax.swing.JLabel recRisposta1;
-    private javax.swing.JLabel recRisposta2;
-    private javax.swing.JLabel recRisposta3;
-    private javax.swing.JPanel recensioni;
+    private javax.swing.JButton scriviRec;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPaneDet;
     private javax.swing.JScrollPane scrollPaneRec;
     private javax.swing.JScrollPane scrollRecensioni;
-    private javax.swing.JLabel valutazione1;
-    private javax.swing.JLabel valutazione2;
-    private javax.swing.JLabel valutazione3;
     // End of variables declaration//GEN-END:variables
 }

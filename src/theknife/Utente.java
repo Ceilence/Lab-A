@@ -17,7 +17,7 @@ public class Utente{
     private String passUtente;
     private String posizioneUtente;
     private int idUtente;
-    private String ruoloUtente;
+    private final String ruoloUtente;
     
     /**
      * Costruttore della classe {@code Utente}.

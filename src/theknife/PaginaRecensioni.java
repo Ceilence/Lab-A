@@ -17,6 +17,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private final ImageIcon stellaPiena;
     private String originale;
     private int valutazione = 0;
+    private final int MAX_CHAR =  200;
     
     
     
@@ -35,6 +36,12 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         Image sp2 = sp1.getScaledInstance(stella1.getWidth(), stella1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);
         this.stellaPiena = sp3;
+        
+        stella1.setIcon(stellaVuota);
+        stella2.setIcon(stellaVuota);
+        stella3.setIcon(stellaVuota);
+        stella4.setIcon(stellaVuota);
+        stella5.setIcon(stellaVuota);
         
         
     }
@@ -102,6 +109,11 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         areaTesto.setWrapStyleWord(true);
         areaTesto.setAutoscrolls(false);
         areaTesto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
+        areaTesto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                areaTestoKeyTyped(evt);
+            }
+        });
 
         stella1.setBackground(new java.awt.Color(255, 255, 255));
         stella1.setForeground(new java.awt.Color(255, 255, 255));
@@ -321,6 +333,12 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private void stella5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella5MouseExited
+
+    private void areaTestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyTyped
+        if (areaTesto.getText().length() >= MAX_CHAR) {
+            evt.consume(); 
+        }
+    }//GEN-LAST:event_areaTestoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTesto;

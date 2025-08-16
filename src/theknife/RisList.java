@@ -22,7 +22,7 @@ public class RisList extends javax.swing.JFrame {
     private ImageIcon stellaPiena;
     private final GestoreArchivi gestore;
     private final ArrayList<PannelloRis> tuttiIPannelli = new ArrayList<>();
-    private final ArrayList<PannelloRis> filtraPannelli = new ArrayList<>();
+    private final ArrayList<PannelloRis> filtratore = new ArrayList<>();
     private Caricamento caricamentoFrame;
     private ImageIcon flagItalia;
     private ImageIcon flagCina;
@@ -32,7 +32,7 @@ public class RisList extends javax.swing.JFrame {
     private ImageIcon flagUSA;
     private ImageIcon flagGiappone;
     private ImageIcon flagMondo;
-    private int pagina = 1;
+    private int pagina = 0;
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
@@ -48,22 +48,19 @@ public class RisList extends javax.swing.JFrame {
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
         scrollPaneDet.getVerticalScrollBar().setUnitIncrement(50);
         scrollPaneRec.getVerticalScrollBar().setUnitIncrement(50);
-        for(PannelloRis p: tuttiIPannelli){
-            filtraPannelli.add(p);
-        }
         
-        impaginazione(pagina);
-
         creaImmagine();
         caricaPannelli();
+        impaginazione(pagina);
+        System.out.println(tuttiIPannelli.size());
+        System.out.println(filtratore.size());
     }
     
     private void caricaPannelli() {
-    contenitorePanel.removeAll();
 
     ArrayList<Ristorante> lista = gestore.getArchivioRis().getRis();
     int totale = lista.size();
-    contenitorePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    //contenitorePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     
     SwingWorker<Void, Integer> worker = new SwingWorker<>() {
         @Override
@@ -74,8 +71,7 @@ public class RisList extends javax.swing.JFrame {
 
                 PannelloRis p = new PannelloRis(RisList.this, gestore, r,dettaglioPanel, detNome, detCuis,detBan, detDes, detPref,icona);
                 tuttiIPannelli.add(p);
-                contenitorePanel.add(p);
-                contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
+                filtratore.add(p);
 
                 count++;
                 publish(count); // manda il progresso
@@ -83,23 +79,14 @@ public class RisList extends javax.swing.JFrame {
             return null;
         }
             private int counter = 0;
-        @Override
-        protected void process(java.util.List<Integer> chunks) {
-            int ultimoValore = chunks.get(chunks.size() - 1);
-            caricamentoFrame.aggiornaProgresso(ultimoValore, totale);
-            if (counter % 10 == 0) { // aggiorna ogni 10 pannelli
-        contenitorePanel.revalidate();
-        contenitorePanel.repaint();
-            }
+            @Override
+            protected void process(java.util.List<Integer> chunks) {
+                int ultimoValore = chunks.get(chunks.size() - 1);
+                caricamentoFrame.aggiornaProgresso(ultimoValore, totale);
         }
 
         @Override
         protected void done() {
-            contenitorePanel.revalidate();
-            contenitorePanel.repaint();
-            scrollPane.revalidate();
-            scrollPane.repaint();
-            
             caricamentoFrame.dispose();
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
@@ -113,28 +100,31 @@ public class RisList extends javax.swing.JFrame {
 }
     
     private void filtraPannelli(String filtro) {
-        pagina = 1;
+        pagina = 0;
         filtro = filtro.toLowerCase();
-        filtraPannelli.clear();
+        filtratore.clear();
+        contenitorePanel.removeAll();
 
         for (PannelloRis p : tuttiIPannelli) {
             Ristorante r = p.getRistorante();
             if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
-                filtraPannelli.add(p);
+                filtratore.add(p);
             }
         }
     }
     
     public void impaginazione(int pagina){
-        int da = 100 * (pagina - 1);
-        int a = 100 * pagina;
+        int da = 100 * (pagina);
+        int a = Math.min(filtratore.size(), 100 * pagina);
         for(int i = da; i < a; i++){
-            contenitorePanel.add(filtraPannelli.get(da));
+            contenitorePanel.add(filtratore.get(da));
             contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
         
         contenitorePanel.revalidate();
         contenitorePanel.repaint();
+        scrollPane.revalidate();
+        scrollPane.repaint();
     }
 
    

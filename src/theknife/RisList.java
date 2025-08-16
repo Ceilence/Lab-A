@@ -112,6 +112,7 @@ public class RisList extends javax.swing.JFrame {
     }
     
     public void impaginazione(int pagina){
+        contenitorePanel.removeAll();
         int da = 100 * pagina;
         int a = Math.min(filtratore.size(), da + 100);
         for(int i = da; i < a; i++){
@@ -628,6 +629,7 @@ public class RisList extends javax.swing.JFrame {
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
         filtraPannelli(campoRicerca.getText());
+        impaginazione(pagina);
     }//GEN-LAST:event_cercaActionPerformed
 
     private void apriRecensioniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apriRecensioniMouseClicked
@@ -641,14 +643,20 @@ public class RisList extends javax.swing.JFrame {
 
     private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
         // TODO add your handling code here:
-        pagina++;
-        impaginazione(pagina);
+        scrollPane.getVerticalScrollBar().setValue(0);
+        if(pagina < (filtratore.size() / 100)){
+            pagina++;
+            impaginazione(pagina);
+        }
     }//GEN-LAST:event_avantiActionPerformed
 
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
         // TODO add your handling code here:
-        pagina--;
-        impaginazione(pagina);
+        scrollPane.getVerticalScrollBar().setValue(0);
+        if(pagina > 0){
+            pagina--;
+            impaginazione(pagina);   
+        }
     }//GEN-LAST:event_indietroActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest

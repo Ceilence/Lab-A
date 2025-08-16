@@ -8,8 +8,6 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 
 
@@ -51,16 +49,13 @@ public class RisList extends javax.swing.JFrame {
         
         creaImmagine();
         caricaPannelli();
-        impaginazione(pagina);
-        System.out.println(tuttiIPannelli.size());
-        System.out.println(filtratore.size());
     }
     
     private void caricaPannelli() {
 
     ArrayList<Ristorante> lista = gestore.getArchivioRis().getRis();
     int totale = lista.size();
-    //contenitorePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+   
     
     SwingWorker<Void, Integer> worker = new SwingWorker<>() {
         @Override
@@ -87,6 +82,9 @@ public class RisList extends javax.swing.JFrame {
 
         @Override
         protected void done() {
+            System.out.println(tuttiIPannelli.size());
+            System.out.println(filtratore.size());
+            impaginazione(pagina);
             caricamentoFrame.dispose();
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
@@ -114,17 +112,15 @@ public class RisList extends javax.swing.JFrame {
     }
     
     public void impaginazione(int pagina){
-        int da = 100 * (pagina);
-        int a = Math.min(filtratore.size(), 100 * pagina);
+        int da = 100 * pagina;
+        int a = Math.min(filtratore.size(), da + 100);
         for(int i = da; i < a; i++){
-            contenitorePanel.add(filtratore.get(da));
+            contenitorePanel.add(filtratore.get(i));
             contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
-        
         contenitorePanel.revalidate();
         contenitorePanel.repaint();
-        scrollPane.revalidate();
-        scrollPane.repaint();
+        
     }
 
    

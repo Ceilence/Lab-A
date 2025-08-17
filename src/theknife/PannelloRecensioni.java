@@ -31,17 +31,21 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
         panelScritte.setOpaque(false);
         
+        JLabel nome = new JLabel(utente.getUsernameUtente() + " #" + utente.getIdUtente());
+        nome.setFont(new Font("Arial", Font.ITALIC, 15));
+        
         JLabel titolo = new JLabel(commento.getTitolo());
         titolo.setFont(new Font("Arial", Font.BOLD, 16));
         
+        JLabel spazio = new JLabel(" ");
+        spazio.setFont(new Font("Arial", Font.PLAIN, 10));
         
-        JLabel nome = new JLabel(utente.getUsernameUtente() + " #" + utente.getIdUtente());
-        nome.setFont(new Font("Arial", Font.BOLD, 16));
-        
-        JLabel testo = new JLabel(commento.getTesto());
-        testo.setFont(new Font("Arial", Font.BOLD, 16));
+        JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
+        testo.setFont(new Font("Arial", Font.PLAIN, 15));
         
         panelScritte.add(nome);
+        panelScritte.add(titolo);
+        panelScritte.add(spazio);
         panelScritte.add(testo);
 
         add(panelScritte, BorderLayout.NORTH);
@@ -49,3 +53,4 @@ public final class PannelloRecensioni extends JPanel{
 }
 
 //graficamente pannelli belli, controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
+//campi vuoti commento e ristorante

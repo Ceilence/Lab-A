@@ -114,10 +114,10 @@ public class CommentiRistoranti {
     @Override
     public String toString() {
         if ("recensione".equals(tipoCommento)){
-            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + 
+            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" +
                   idCommento + "§" + idRistorante + "§" + valutazione + "§" + daLeggere + "§";
         } else {
-            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§";
+            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" + idCommento + "§";
         }
     }
 

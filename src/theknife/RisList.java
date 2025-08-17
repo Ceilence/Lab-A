@@ -632,6 +632,10 @@ public class RisList extends javax.swing.JFrame {
         
         return this.flagMondo;
     }
+     
+    public void generaAnteprima(){
+        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore);
+    }
     
      
    

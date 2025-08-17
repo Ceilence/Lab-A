@@ -269,6 +269,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (!areaTesto.getText().isBlank()) {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText(), gestore.getArchivioCommenti().creaID(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, true));
+            GestoreArchivi.RisListFrame.generaAnteprima();
             this.dispose();
         }
         

@@ -4,8 +4,12 @@
  */
 package theknife;
 
+import java.awt.Dimension;
 import java.io.*;
 import java.util.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JPanel;
 
 /**
  *
@@ -86,5 +90,23 @@ public class ArchivioCommenti {
     
     public ArrayList<CommentiRistoranti> getListaCommenti() {
         return listaCommenti;
+    }
+    
+    public void generaCommenti(JPanel contenitoreCommenti, GestoreArchivi gestore){
+        contenitoreCommenti.removeAll();
+        int numero = 0;
+        contenitoreCommenti.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        for(int i = listaCommenti.size()-1; i >= 0; i--){
+            if (gestore.getArchivioRis().getRisAttuale().getIdRis() == listaCommenti.get(i).getIdRistorante() && numero < 3){
+                contenitoreCommenti.add(new PannelloRecensioni(gestore, listaCommenti.get(i)));
+                contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
+                numero++;
+            }
+            if (numero == 3)
+                break;
+        }
+        contenitoreCommenti.revalidate();
+        contenitoreCommenti.repaint();
     }
 }

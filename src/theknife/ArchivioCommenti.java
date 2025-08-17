@@ -24,19 +24,20 @@ public class ArchivioCommenti {
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))){
             String line;
             while ((line = rd.readLine()) != null && !line.isBlank()) {
-            StringTokenizer token = new StringTokenizer(line, "§");
-            String tipoCommento = token.nextToken();
-            int idScrittore = Integer.parseInt(token.nextToken());
-            String testo = token.nextToken();
-            int idCommento = Integer.parseInt(token.nextToken());
-            
-            if ("recensione".equals(tipoCommento)) {
-                int valutazione = Integer.parseInt(token.nextToken());
-                boolean daLeggere = Boolean.parseBoolean(token.nextToken());
-                listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento, valutazione, daLeggere));
-            } else if ("risposta".equals(tipoCommento)) {
-                listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento));
-            }
+                StringTokenizer token = new StringTokenizer(line, "§");
+                String tipoCommento = token.nextToken();
+                int idScrittore = Integer.parseInt(token.nextToken());
+                String testo = token.nextToken();
+                int idCommento = Integer.parseInt(token.nextToken());
+
+                if ("recensione".equals(tipoCommento)) {
+                    int idRistorante = Integer.parseInt(token.nextToken());
+                    int valutazione = Integer.parseInt(token.nextToken());
+                    boolean daLeggere = Boolean.parseBoolean(token.nextToken());
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento, idRistorante, valutazione, daLeggere));
+                } else if ("risposta".equals(tipoCommento)) {
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento));
+                }
             }
         } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());

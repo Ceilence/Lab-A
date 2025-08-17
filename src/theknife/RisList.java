@@ -58,7 +58,7 @@ public class RisList extends javax.swing.JFrame {
             for (Ristorante r : lista) {
                 ImageIcon icona = selezionaImmagine(r.getLocRis());
 
-                PannelloRis p = new PannelloRis(RisList.this, gestore, r,dettaglioPanel, detNome, detCuis,detBan, detDes, detPref,icona);
+                PannelloRis p = new PannelloRis(RisList.this, gestore, r,dettaglioPanel, detNome, detCuis,detBan, detDes, detPref, icona, contenitoreAnteprima);
                 tuttiIPannelli.add(p);
                 filtratore.add(p);
 
@@ -143,7 +143,6 @@ public class RisList extends javax.swing.JFrame {
         detDes = new javax.swing.JLabel();
         detPref = new javax.swing.JButton();
         labelRecensioni = new javax.swing.JLabel();
-        scrollRecensioni = new javax.swing.JScrollPane();
         contenitoreAnteprima = new javax.swing.JPanel();
         scriviRec = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -356,8 +355,6 @@ public class RisList extends javax.swing.JFrame {
         contenitoreAnteprima.setBackground(new java.awt.Color(255, 255, 255));
         contenitoreAnteprima.setPreferredSize(new java.awt.Dimension(0, 0));
         contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
-        scrollRecensioni.setViewportView(contenitoreAnteprima);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -365,7 +362,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
-        dettaglioPanel.add(scrollRecensioni, gridBagConstraints);
+        dettaglioPanel.add(contenitoreAnteprima, gridBagConstraints);
 
         scriviRec.setText("scrivi");
         scriviRec.addActionListener(new java.awt.event.ActionListener() {
@@ -667,6 +664,5 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPaneDet;
     private javax.swing.JScrollPane scrollPaneRec;
-    private javax.swing.JScrollPane scrollRecensioni;
     // End of variables declaration//GEN-END:variables
 }

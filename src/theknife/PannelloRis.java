@@ -24,7 +24,8 @@ public final class PannelloRis extends JPanel{
     JLabel dettaglioImmagine,
     JLabel labelDescrizione,
     JButton detPref,
-    ImageIcon iconaBandiera // <-- aggiunto parametro
+    ImageIcon iconaBandiera,
+    JPanel contenitoreCommenti
 ) {
     this.ristorante = r;
 
@@ -74,11 +75,25 @@ public final class PannelloRis extends JPanel{
                 ristorante.getIdRis(),
                 gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()
             );
-
+            
+            contenitoreCommenti.removeAll();
+            int numero = 0;
+            for(int i = gestore.getArchivioCommenti().getListaCommenti().size()-1; i >= 0; i--){
+                if (gestore.getArchivioRis().getRisAttuale().getIdRis() == gestore.getArchivioCommenti().getListaCommenti().get(i).getIdRistorante() && numero < 3){
+                    contenitoreCommenti.add(new PannelloRecensioni(gestore, gestore.getArchivioCommenti().getListaCommenti().get(i)));
+                    numero++;
+                }
+                if (numero == 3)
+                    break;
+            }
+            
             risList.aggiornaDetPref();
 
             dettaglioPanel.revalidate();
             dettaglioPanel.repaint();
+            
+            contenitoreCommenti.revalidate();
+            contenitoreCommenti.repaint();
         }
     });
 }

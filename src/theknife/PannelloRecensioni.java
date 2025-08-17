@@ -31,6 +31,10 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
         panelScritte.setOpaque(false);
         
+        JLabel titolo = new JLabel(commento.getTitolo());
+        titolo.setFont(new Font("Arial", Font.BOLD, 16));
+        
+        
         JLabel nome = new JLabel(utente.getUsernameUtente() + " #" + utente.getIdUtente());
         nome.setFont(new Font("Arial", Font.BOLD, 16));
         

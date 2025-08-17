@@ -12,6 +12,7 @@ public class CommentiRistoranti {
     private String tipoCommento;
     private int idScrittore;
     private String testo;
+    private String titolo;
     private int idCommento;
     private int idRistorante;
     private int valutazione;
@@ -20,10 +21,11 @@ public class CommentiRistoranti {
     /**
      * Recensioni
      */
-    public CommentiRistoranti(int idScrittore, String testo, int idCommento, int idRistorante, int valutazione, boolean daLeggere) {
+    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento, int idRistorante, int valutazione, boolean daLeggere) {
         this.tipoCommento = "recensione";
         this.idScrittore = idScrittore;
         this.testo = testo;
+        this.titolo = titolo;
         this.idCommento = idCommento;
         this.idRistorante = idRistorante;
         this.valutazione = valutazione;
@@ -33,10 +35,11 @@ public class CommentiRistoranti {
     /**
      * Risposte
      */
-    public CommentiRistoranti(int idScrittore, String testo, int idCommento) {
+    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento) {
         this.tipoCommento = "risposta";
         this.idScrittore = idScrittore;
         this.testo = testo;
+        this.titolo = titolo;
         this.idCommento = idCommento; 
     }
 
@@ -62,6 +65,14 @@ public class CommentiRistoranti {
 
     public void setTesto(String testo) {
         this.testo = testo;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
     }
     
     public Integer getIdCommento() {

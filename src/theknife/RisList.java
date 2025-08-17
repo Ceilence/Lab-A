@@ -145,7 +145,7 @@ public class RisList extends javax.swing.JFrame {
         labelRecensioni = new javax.swing.JLabel();
         contenitoreAnteprima = new javax.swing.JPanel();
         scriviRec = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        vediTutte = new javax.swing.JButton();
         scrollPaneRec = new javax.swing.JScrollPane();
         contenitoreRec = new javax.swing.JPanel();
         indietro = new javax.swing.JButton();
@@ -364,6 +364,8 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         dettaglioPanel.add(contenitoreAnteprima, gridBagConstraints);
 
+        scriviRec.setBackground(new java.awt.Color(0, 102, 102));
+        scriviRec.setForeground(new java.awt.Color(255, 255, 255));
         scriviRec.setText("scrivi");
         scriviRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,13 +378,20 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 2.0;
         dettaglioPanel.add(scriviRec, gridBagConstraints);
 
-        jButton1.setText("jButton1");
+        vediTutte.setBackground(new java.awt.Color(0, 102, 102));
+        vediTutte.setForeground(new java.awt.Color(255, 255, 255));
+        vediTutte.setText("Vedi tutte");
+        vediTutte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vediTutteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        dettaglioPanel.add(jButton1, gridBagConstraints);
+        dettaglioPanel.add(vediTutte, gridBagConstraints);
 
         scrollPaneDet.setViewportView(dettaglioPanel);
 
@@ -527,6 +536,10 @@ public class RisList extends javax.swing.JFrame {
 
     }//GEN-LAST:event_scriviRecActionPerformed
 
+    private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vediTutteActionPerformed
+
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
@@ -655,7 +668,6 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JButton indietro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -668,5 +680,6 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPaneDet;
     private javax.swing.JScrollPane scrollPaneRec;
+    private javax.swing.JButton vediTutte;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,12 +19,9 @@ public final class PannelloRecensioni extends JPanel{
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-        setLayout(new BorderLayout());
-        setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         setBackground(Color.WHITE);
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, ALTEZZA_PANNELLO));
-        setPreferredSize(new Dimension(0, ALTEZZA_PANNELLO));
-        setMinimumSize(new Dimension(0, ALTEZZA_PANNELLO));
 
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();
@@ -54,3 +51,4 @@ public final class PannelloRecensioni extends JPanel{
 
 //graficamente pannelli belli, controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
 //campi vuoti commento e ristorante
+//metodo haRisposta + creazione panel risposta, creazione metodo commento attuale

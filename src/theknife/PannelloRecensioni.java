@@ -11,18 +11,18 @@ import java.awt.*;
  * @author SSSSUGOI
  */
 public final class PannelloRecensioni extends JPanel{
-    private CommentiRistoranti commento;
-    private final int ALTEZZA_PANNELLO = 100;
     
     public PannelloRecensioni(GestoreArchivi gestore, CommentiRistoranti commento){    
-        this.commento = commento;
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(Color.GRAY, 1),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
         setBackground(Color.WHITE);
-
+        
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();
         panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
@@ -52,3 +52,4 @@ public final class PannelloRecensioni extends JPanel{
 //controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
 //campi vuoti commento e ristorante
 //metodo haRisposta + creazione panel risposta, creazione metodo commento attuale
+//rislist prima pagina = primo ristorantea

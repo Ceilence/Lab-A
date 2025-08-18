@@ -200,7 +200,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel20 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -242,14 +241,15 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
-        setMaximumSize(new java.awt.Dimension(1110, 700));
         setMinimumSize(new java.awt.Dimension(1110, 700));
         setUndecorated(true);
         setSize(new java.awt.Dimension(500, 400));
 
         contenitore.setBackground(new java.awt.Color(0, 102, 102));
         contenitore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        contenitore.setMinimumSize(new java.awt.Dimension(0, 0));
+        contenitore.setMaximumSize(new java.awt.Dimension(1110, 700));
+        contenitore.setMinimumSize(new java.awt.Dimension(1110, 700));
+        contenitore.setPreferredSize(new java.awt.Dimension(1110, 700));
         contenitore.setLayout(new java.awt.GridBagLayout());
 
         testa.setBackground(new java.awt.Color(0, 102, 102));
@@ -275,9 +275,9 @@ public class PaginaUtente extends javax.swing.JFrame {
             .addGroup(testaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 999, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         testaLayout.setVerticalGroup(
             testaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,18 +354,6 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel20.setText("Gestisci preferiti");
-        jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel20MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel20MouseExited(evt);
-            }
-        });
-
         jSeparator3.setForeground(new java.awt.Color(0, 102, 102));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -405,7 +393,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                         .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel20)
                             .addComponent(jLabel19)
                             .addComponent(jLabel21)
                             .addComponent(jLabel22))
@@ -427,15 +414,13 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -927,15 +912,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel19.setText(originale);
     }//GEN-LAST:event_jLabel19MouseExited
 
-    private void jLabel20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseEntered
-        originale = jLabel20.getText();
-        jLabel20.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel20MouseEntered
-
-    private void jLabel20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseExited
-        jLabel20.setText(originale);
-    }//GEN-LAST:event_jLabel20MouseExited
-
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
         mostraPreferiti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
@@ -990,7 +966,6 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;

@@ -96,7 +96,7 @@ public class ArchivioCommenti {
     public void generaCommenti(JPanel contenitoreCommenti, GestoreArchivi gestore, int conto){
         contenitoreCommenti.removeAll();
         int numero = 0;
-        contenitoreCommenti.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
         
         for(int i = listaCommenti.size()-1; i >= 0; i--){
             if (gestore.getArchivioRis().getRisAttuale().getIdRis() == listaCommenti.get(i).getIdRistorante() && numero < conto){
@@ -104,9 +104,12 @@ public class ArchivioCommenti {
                 contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
                 numero++;
             }
-            if (numero == conto)
-                break;
+            if (numero < 3)
+                GestoreArchivi.RisListFrame.disattivaBottone();
+            else
+                GestoreArchivi.RisListFrame.attivaBottone();
         }
+        
         contenitoreCommenti.revalidate();
         contenitoreCommenti.repaint();
     }

@@ -15,20 +15,14 @@ import java.awt.event.MouseEvent;
 public final class PannelloRis extends JPanel{
     private Ristorante ristorante;
     private final int ALTEZZA_PANNELLO = 100;
-    // Icone (come prima)
+    private ImageIcon immagine;
     
     
-    
-    public PannelloRis(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel dettaglioPanel,JLabel dettaglioNome,      
-    JLabel dettaglioCucina,
-    JLabel dettaglioImmagine,
-    JLabel labelDescrizione,
-    JButton detPref,
-    ImageIcon iconaBandiera,
-    JPanel contenitoreCommenti
-    ) {
+    public PannelloRis(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel contenitoreCommenti) {
         this.ristorante = r;
-
+        immagine = risList.selezionaImmagine(r.getLocRis());
+        
+        
         // Layout verticale con margini
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -54,12 +48,12 @@ public final class PannelloRis extends JPanel{
         add(panelScritte, BorderLayout.NORTH);
 
         // --- IMMAGINE ---
-        JLabel immagine = new JLabel(iconaBandiera); // <-- uso immagine passata
-        immagine.setPreferredSize(new Dimension(60, 40));
-        immagine.setOpaque(true);
-        immagine.setBackground(Color.WHITE);
-        immagine.setHorizontalAlignment(SwingConstants.CENTER);
-        add(immagine, BorderLayout.WEST);
+        JLabel bandiera = new JLabel(immagine);
+        bandiera.setPreferredSize(new Dimension(60, 40));
+        bandiera.setOpaque(true);
+        bandiera.setBackground(Color.WHITE);
+        bandiera.setHorizontalAlignment(SwingConstants.CENTER);
+        add(bandiera, BorderLayout.WEST);
 
         // --- LISTENER PER CLICK ---
         addMouseListener(new MouseAdapter() {
@@ -75,6 +69,7 @@ public final class PannelloRis extends JPanel{
         });
 
     }
+
         public Ristorante getRistorante() {
             return ristorante;
         }

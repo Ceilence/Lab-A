@@ -76,7 +76,7 @@ public final class PannelloRis extends JPanel{
                     gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()
                 );
 
-                gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore);
+                gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, 3);
 
                 risList.aggiornaDetPref();
 

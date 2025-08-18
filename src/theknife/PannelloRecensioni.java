@@ -49,6 +49,6 @@ public final class PannelloRecensioni extends JPanel{
     }
 }
 
-//graficamente pannelli belli, controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
+//controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
 //campi vuoti commento e ristorante
 //metodo haRisposta + creazione panel risposta, creazione metodo commento attuale

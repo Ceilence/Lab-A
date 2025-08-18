@@ -56,14 +56,12 @@ public class RisList extends javax.swing.JFrame {
         protected Void doInBackground() throws Exception {
             int count = 0;
             for (Ristorante r : lista) {
-                ImageIcon icona = selezionaImmagine(r.getLocRis());
-
-                PannelloRis p = new PannelloRis(RisList.this, gestore, r,dettaglioPanel, detNome, detCuis,detBan, detDes, detPref, icona, contenitoreAnteprima);
+                PannelloRis p = new PannelloRis(RisList.this, gestore, r, contenitoreAnteprima);
                 tuttiIPannelli.add(p);
                 filtratore.add(p);
 
                 count++;
-                publish(count); // manda il progresso
+                publish(count); 
             }
             return null;
         }
@@ -80,6 +78,8 @@ public class RisList extends javax.swing.JFrame {
             System.out.println(filtratore.size());
             impaginazione(pagina);
             caricamentoFrame.dispose();
+            aggiornaLabel(filtratore.get(1).getRistorante());
+            
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
             loginFrame.setLocationRelativeTo(null);
@@ -103,6 +103,7 @@ public class RisList extends javax.swing.JFrame {
                 filtratore.add(p);
             }
         }
+        aggiornaLabel(filtratore.get(1).getRistorante());
     }
     
     public void impaginazione(int pagina){
@@ -118,6 +119,15 @@ public class RisList extends javax.swing.JFrame {
         
     }
 
+     public void aggiornaLabel(Ristorante r) {
+        detNome.setText(r.getNomeRis());
+        detCuis.setText(r.getCuisRis());
+        detDes.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
+        detBan.setIcon(selezionaImmagine(r.getLocRis()));
+        
+        dettaglioPanel.revalidate();
+        dettaglioPanel.repaint();
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -496,7 +506,6 @@ public class RisList extends javax.swing.JFrame {
             p.setVisible(true);
             this.setEnabled(false);
             p.setLocationRelativeTo(null);
-            
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed

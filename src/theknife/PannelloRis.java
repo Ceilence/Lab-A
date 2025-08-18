@@ -15,20 +15,14 @@ import java.awt.event.MouseEvent;
 public final class PannelloRis extends JPanel{
     private Ristorante ristorante;
     private final int ALTEZZA_PANNELLO = 100;
-    // Icone (come prima)
+    private ImageIcon immagine;
     
     
-    
-    public PannelloRis(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel dettaglioPanel,JLabel dettaglioNome,      
-    JLabel dettaglioCucina,
-    JLabel dettaglioImmagine,
-    JLabel labelDescrizione,
-    JButton detPref,
-    ImageIcon iconaBandiera,
-    JPanel contenitoreCommenti
-    ) {
+    public PannelloRis(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel contenitoreCommenti) {
         this.ristorante = r;
-
+        immagine = risList.selezionaImmagine(r.getLocRis());
+        
+        
         // Layout verticale con margini
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -54,34 +48,23 @@ public final class PannelloRis extends JPanel{
         add(panelScritte, BorderLayout.NORTH);
 
         // --- IMMAGINE ---
-        JLabel immagine = new JLabel(iconaBandiera); // <-- uso immagine passata
-        immagine.setPreferredSize(new Dimension(60, 40));
-        immagine.setOpaque(true);
-        immagine.setBackground(Color.WHITE);
-        immagine.setHorizontalAlignment(SwingConstants.CENTER);
-        add(immagine, BorderLayout.WEST);
+        JLabel bandiera = new JLabel(immagine);
+        bandiera.setPreferredSize(new Dimension(60, 40));
+        bandiera.setOpaque(true);
+        bandiera.setBackground(Color.WHITE);
+        bandiera.setHorizontalAlignment(SwingConstants.CENTER);
+        add(bandiera, BorderLayout.WEST);
 
         // --- LISTENER PER CLICK ---
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 gestore.getArchivioRis().setRisAttuale(ristorante);
-                dettaglioNome.setText(ristorante.getNomeRis());
-                dettaglioCucina.setText(ristorante.getCuisRis());
-                labelDescrizione.setText("<html><p style='width:635px'>" + ristorante.getDesRis() + "</p></html>");
-                dettaglioImmagine.setIcon(iconaBandiera); // <-- anche qui uso immagine già pronta
-
-                gestore.getArchivioPreferiti().setPrefAttuale(
-                    ristorante.getIdRis(),
-                    gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()
-                );
-
+                gestore.getArchivioPreferiti().setPrefAttuale(ristorante.getIdRis(),gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
                 gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore);
 
+                risList.aggiornaLabel(r);
                 risList.aggiornaDetPref();
-
-                dettaglioPanel.revalidate();
-                dettaglioPanel.repaint();
             }
         });
 
@@ -89,4 +72,6 @@ public final class PannelloRis extends JPanel{
     public Ristorante getRistorante() {
         return ristorante;
     }
+    
+   
 }

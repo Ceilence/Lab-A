@@ -36,6 +36,8 @@ public class RisList extends javax.swing.JFrame {
 
         contenitorePanel.setLayout(new BoxLayout(contenitorePanel, BoxLayout.Y_AXIS));
         scrollPane.setViewportView(contenitorePanel);
+        contenitoreRec.setLayout(new BoxLayout(contenitoreRec, BoxLayout.Y_AXIS));
+        scrollPaneRec.setViewportView(contenitoreRec);
         
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
         scrollPaneDet.getVerticalScrollBar().setUnitIncrement(50);
@@ -74,11 +76,13 @@ public class RisList extends javax.swing.JFrame {
 
         @Override
         protected void done() {
-            System.out.println(tuttiIPannelli.size());
-            System.out.println(filtratore.size());
-            impaginazione(pagina);
             caricamentoFrame.dispose();
-            aggiornaLabel(filtratore.get(1).getRistorante());
+            gestore.getArchivioRis().setRisAttuale(filtratore.get(0).getRistorante());
+            impaginazione(pagina);
+            gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+            aggiornaLabel(filtratore.get(0).getRistorante());
+           
+            
             
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
@@ -103,7 +107,8 @@ public class RisList extends javax.swing.JFrame {
                 filtratore.add(p);
             }
         }
-        aggiornaLabel(filtratore.get(1).getRistorante());
+        aggiornaLabel(filtratore.get(0).getRistorante());
+        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
     
     public void impaginazione(int pagina){
@@ -157,7 +162,9 @@ public class RisList extends javax.swing.JFrame {
         scriviRec = new javax.swing.JButton();
         vediTutte = new javax.swing.JButton();
         scrollPaneRec = new javax.swing.JScrollPane();
+        recensioniPanel = new javax.swing.JPanel();
         contenitoreRec = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         indietro = new javax.swing.JButton();
         avanti = new javax.swing.JButton();
         contatore = new javax.swing.JLabel();
@@ -288,6 +295,7 @@ public class RisList extends javax.swing.JFrame {
         scrollPaneDet.setPreferredSize(new java.awt.Dimension(600, 2));
 
         dettaglioPanel.setBackground(new java.awt.Color(255, 255, 255));
+        dettaglioPanel.setMinimumSize(new java.awt.Dimension(200, 132));
         dettaglioPanel.setPreferredSize(new java.awt.Dimension(268, 1250));
         dettaglioPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -303,6 +311,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         dettaglioPanel.add(detBan, gridBagConstraints);
 
+        detNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         detNome.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -325,6 +334,7 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.add(detCuis, gridBagConstraints);
 
         detDes.setBackground(new java.awt.Color(204, 204, 204));
+        detDes.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         detDes.setText("Desc");
         detDes.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -407,18 +417,32 @@ public class RisList extends javax.swing.JFrame {
 
         pannelloDestra.add(scrollPaneDet, "dettagli");
 
-        javax.swing.GroupLayout contenitoreRecLayout = new javax.swing.GroupLayout(contenitoreRec);
-        contenitoreRec.setLayout(contenitoreRecLayout);
-        contenitoreRecLayout.setHorizontalGroup(
-            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 811, Short.MAX_VALUE)
-        );
-        contenitoreRecLayout.setVerticalGroup(
-            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-        );
+        scrollPaneRec.setPreferredSize(new java.awt.Dimension(600, 2));
 
-        scrollPaneRec.setViewportView(contenitoreRec);
+        recensioniPanel.setBackground(new java.awt.Color(255, 255, 255));
+        recensioniPanel.setLayout(new java.awt.GridBagLayout());
+
+        contenitoreRec.setBackground(new java.awt.Color(255, 255, 255));
+        contenitoreRec.setFocusCycleRoot(true);
+        contenitoreRec.setPreferredSize(new java.awt.Dimension(0, 0));
+        contenitoreRec.setLayout(new javax.swing.BoxLayout(contenitoreRec, javax.swing.BoxLayout.Y_AXIS));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        recensioniPanel.add(contenitoreRec, gridBagConstraints);
+
+        jButton1.setText("jButton1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.1;
+        recensioniPanel.add(jButton1, gridBagConstraints);
+
+        scrollPaneRec.setViewportView(recensioniPanel);
 
         pannelloDestra.add(scrollPaneRec, "recensioni");
 
@@ -540,13 +564,13 @@ public class RisList extends javax.swing.JFrame {
         pagRec.setLocationRelativeTo(scrollPaneDet);
         pagRec.pack();
         pagRec.setVisible(true);
-        
-        
-
     }//GEN-LAST:event_scriviRecActionPerformed
 
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
         // TODO add your handling code here:
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "recensioni");
+        gestore.getArchivioCommenti().generaCommenti(contenitoreRec, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
     }//GEN-LAST:event_vediTutteActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
@@ -656,7 +680,7 @@ public class RisList extends javax.swing.JFrame {
     }
      
     public void generaAnteprima(){
-        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore);
+        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
     
      
@@ -677,6 +701,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JButton indietro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -685,6 +710,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JPanel panRicerca;
     private javax.swing.JPanel pannelloDestra;
     private javax.swing.JButton profiloUtente;
+    private javax.swing.JPanel recensioniPanel;
     private javax.swing.JButton scriviRec;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPaneDet;

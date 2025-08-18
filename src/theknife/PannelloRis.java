@@ -61,7 +61,7 @@ public final class PannelloRis extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 gestore.getArchivioRis().setRisAttuale(ristorante);
                 gestore.getArchivioPreferiti().setPrefAttuale(ristorante.getIdRis(),gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
-                gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore);
+                gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, 3);
 
                 risList.aggiornaLabel(r);
                 risList.aggiornaDetPref();

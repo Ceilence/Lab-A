@@ -24,6 +24,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     
     public PaginaRecensioni(GestoreArchivi gestore) {
         this.gestore = gestore;
+        setUndecorated(true);
         initComponents();
         
         ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));

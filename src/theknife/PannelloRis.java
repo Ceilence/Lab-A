@@ -66,27 +66,16 @@ public final class PannelloRis extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 gestore.getArchivioRis().setRisAttuale(ristorante);
-                dettaglioNome.setText(ristorante.getNomeRis());
-                dettaglioCucina.setText(ristorante.getCuisRis());
-                labelDescrizione.setText("<html><p style='width:635px'>" + ristorante.getDesRis() + "</p></html>");
-                dettaglioImmagine.setIcon(iconaBandiera); // <-- anche qui uso immagine già pronta
-
-                gestore.getArchivioPreferiti().setPrefAttuale(
-                    ristorante.getIdRis(),
-                    gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()
-                );
-
+                gestore.getArchivioPreferiti().setPrefAttuale(ristorante.getIdRis(),gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
                 gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, 3);
 
+                risList.aggiornaLabel(r);
                 risList.aggiornaDetPref();
-
-                dettaglioPanel.revalidate();
-                dettaglioPanel.repaint();
             }
         });
 
     }
-    public Ristorante getRistorante() {
-        return ristorante;
-    }
+        public Ristorante getRistorante() {
+            return ristorante;
+        }
 }

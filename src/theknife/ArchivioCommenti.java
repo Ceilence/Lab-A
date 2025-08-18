@@ -104,9 +104,12 @@ public class ArchivioCommenti {
                 contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
                 numero++;
             }
-            if (numero == conto)
-                break;
+            if (numero < 3)
+                GestoreArchivi.RisListFrame.disattivaBottone();
+            else
+                GestoreArchivi.RisListFrame.attivaBottone();
         }
+        
         contenitoreCommenti.revalidate();
         contenitoreCommenti.repaint();
     }

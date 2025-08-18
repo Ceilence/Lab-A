@@ -120,7 +120,14 @@ public class RisList extends javax.swing.JFrame {
         
     }
 
-   
+    public void disattivaBottone(){
+        vediTutte.setVisible(false);
+    }
+    
+    public void attivaBottone(){
+        vediTutte.setVisible(true);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -148,10 +155,10 @@ public class RisList extends javax.swing.JFrame {
         contenitoreAnteprima = new javax.swing.JPanel();
         scriviRec = new javax.swing.JButton();
         vediTutte = new javax.swing.JButton();
-        scrollPaneRec = new javax.swing.JScrollPane();
-        recensioniPanel = new javax.swing.JPanel();
-        contenitoreRec = new javax.swing.JPanel();
+        recensioniPannello = new javax.swing.JPanel();
         indietroBottone = new javax.swing.JButton();
+        scrollPaneRec = new javax.swing.JScrollPane();
+        contenitoreRec = new javax.swing.JPanel();
         indietro = new javax.swing.JButton();
         avanti = new javax.swing.JButton();
         contatore = new javax.swing.JLabel();
@@ -404,8 +411,22 @@ public class RisList extends javax.swing.JFrame {
 
         pannelloDestra.add(scrollPaneDet, "dettagli");
 
-        recensioniPanel.setBackground(new java.awt.Color(255, 255, 255));
-        recensioniPanel.setLayout(new java.awt.GridBagLayout());
+        recensioniPannello.setBackground(new java.awt.Color(255, 255, 255));
+        recensioniPannello.setLayout(new java.awt.GridBagLayout());
+
+        indietroBottone.setBackground(new java.awt.Color(0, 102, 102));
+        indietroBottone.setForeground(new java.awt.Color(255, 255, 255));
+        indietroBottone.setText("X");
+        indietroBottone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indietroBottoneActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        recensioniPannello.add(indietroBottone, gridBagConstraints);
 
         contenitoreRec.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -413,37 +434,29 @@ public class RisList extends javax.swing.JFrame {
         contenitoreRec.setLayout(contenitoreRecLayout);
         contenitoreRecLayout.setHorizontalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
         contenitoreRecLayout.setVerticalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
+            .addGap(0, 699, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 2.0;
-        gridBagConstraints.weighty = 1.0;
-        recensioniPanel.add(contenitoreRec, gridBagConstraints);
+        scrollPaneRec.setViewportView(contenitoreRec);
 
-        indietroBottone.setBackground(new java.awt.Color(0, 102, 102));
-        indietroBottone.setForeground(new java.awt.Color(255, 255, 255));
-        indietroBottone.setText("X");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 705;
+        gridBagConstraints.ipady = 685;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        recensioniPanel.add(indietroBottone, gridBagConstraints);
+        recensioniPannello.add(scrollPaneRec, gridBagConstraints);
 
-        scrollPaneRec.setViewportView(recensioniPanel);
-
-        pannelloDestra.add(scrollPaneRec, "recensioni");
+        pannelloDestra.add(recensioniPannello, "recensioni");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -564,9 +577,6 @@ public class RisList extends javax.swing.JFrame {
         pagRec.setLocationRelativeTo(scrollPaneDet);
         pagRec.pack();
         pagRec.setVisible(true);
-        
-        
-
     }//GEN-LAST:event_scriviRecActionPerformed
 
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
@@ -575,6 +585,12 @@ public class RisList extends javax.swing.JFrame {
         cl.show(pannelloDestra, "recensioni");
         gestore.getArchivioCommenti().generaCommenti(contenitoreRec, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
     }//GEN-LAST:event_vediTutteActionPerformed
+
+    private void indietroBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroBottoneActionPerformed
+        // TODO add your handling code here:
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "dettagli");
+    }//GEN-LAST:event_indietroBottoneActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
@@ -713,7 +729,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JPanel panRicerca;
     private javax.swing.JPanel pannelloDestra;
     private javax.swing.JButton profiloUtente;
-    private javax.swing.JPanel recensioniPanel;
+    private javax.swing.JPanel recensioniPannello;
     private javax.swing.JButton scriviRec;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPaneDet;

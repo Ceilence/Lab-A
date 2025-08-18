@@ -68,6 +68,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         }
         aggiornaStelle(valutazione);
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

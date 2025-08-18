@@ -87,7 +87,7 @@ public class CommentiRistoranti {
         return idRistorante;
     }
 
-    public void setIdRistorante(Integer idCommento) {
+    public void setIdRistorante(Integer idRistorante) {
         this.idRistorante = idRistorante;
     }
 

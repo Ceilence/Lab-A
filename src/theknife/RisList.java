@@ -29,6 +29,7 @@ public class RisList extends javax.swing.JFrame {
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        
 
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
@@ -122,6 +123,8 @@ public class RisList extends javax.swing.JFrame {
         contenitorePanel.revalidate();
         contenitorePanel.repaint();
         
+        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        contatore.setText((pagina + 1) + " / " + totalePagine);
     }
     
     public void aggiornaLabel (Ristorante r) {
@@ -138,7 +141,7 @@ public class RisList extends javax.swing.JFrame {
     public void attivaBottone(){
         vediTutte.setVisible(true);
     }
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -232,6 +235,8 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
+        cerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LenteRicerca.png"))); // NOI18N
+        cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
         cerca.addActionListener(new java.awt.event.ActionListener() {
@@ -281,8 +286,10 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel1.add(panRicerca, gridBagConstraints);
 
-        profiloUtente.setText("jButton2");
-        profiloUtente.setPreferredSize(new java.awt.Dimension(45, 45));
+        profiloUtente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pagina Utente.png"))); // NOI18N
+        profiloUtente.setMaximumSize(new java.awt.Dimension(50, 51));
+        profiloUtente.setMinimumSize(new java.awt.Dimension(50, 51));
+        profiloUtente.setPreferredSize(new java.awt.Dimension(50, 50));
         profiloUtente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profiloUtenteActionPerformed(evt);
@@ -479,7 +486,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
         jPanel1.add(pannelloDestra, gridBagConstraints);
 
-        indietro.setText("indietro");
+        indietro.setText("Indietro");
         indietro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indietroActionPerformed(evt);
@@ -492,7 +499,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         jPanel1.add(indietro, gridBagConstraints);
 
-        avanti.setText("avanti");
+        avanti.setText("Avanti");
         avanti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avantiActionPerformed(evt);
@@ -507,7 +514,7 @@ public class RisList extends javax.swing.JFrame {
 
         contatore.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         contatore.setForeground(new java.awt.Color(255, 255, 255));
-        contatore.setText("/100");
+        contatore.setText("0/100");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -558,6 +565,7 @@ public class RisList extends javax.swing.JFrame {
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
         filtraPannelli(campoRicerca.getText());
         impaginazione(pagina);
+     
     }//GEN-LAST:event_cercaActionPerformed
 
     private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
@@ -567,19 +575,29 @@ public class RisList extends javax.swing.JFrame {
     private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
         // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
-        if(pagina < (filtratore.size() / 100)){
+        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        //if(totalePagine == 0) totalePagine = 1;
+        
+        if(pagina < totalePagine - 1){
             pagina++;
             impaginazione(pagina);
         }
+
+        contatore.setText((pagina + 1) + " / " + totalePagine);
     }//GEN-LAST:event_avantiActionPerformed
 
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
         // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
+        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        //if(totalePagine == 0) totalePagine = 1;
+        
         if(pagina > 0){
             pagina--;
             impaginazione(pagina);   
         }
+        
+        contatore.setText((pagina + 1) + " / " + totalePagine);
     }//GEN-LAST:event_indietroActionPerformed
 
     private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed
@@ -600,6 +618,7 @@ public class RisList extends javax.swing.JFrame {
         // TODO add your handling code here:
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
+        resettaBarra();
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
@@ -624,7 +643,11 @@ public class RisList extends javax.swing.JFrame {
         cl.show(pannelloDestra, "dettagli");
     }
     
-     public void creaImmagine(){
+    public void resettaBarra(){
+        scrollPaneDet.getVerticalScrollBar().setValue(0);
+    }
+    
+    public void creaImmagine(){
         ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
         Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);

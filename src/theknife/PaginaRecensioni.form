@@ -64,6 +64,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="confermaButton" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="conteggio" min="-2" pref="46" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="areaTesto" min="-2" pref="536" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -81,16 +92,13 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="stella5" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="jLabel2" min="-2" pref="344" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" pref="344" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -136,6 +144,9 @@
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Component id="areaTesto" min="-2" pref="304" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confermaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="conteggio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="confermaButton" max="32767" attributes="0"/>
                       <Component id="contaChar" max="32767" attributes="0"/>
@@ -287,7 +298,10 @@
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stella5MouseExited"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="contaChar">
+        <Component class="javax.swing.JLabel" name="conteggio">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0/400"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="titoloRec">
           <Properties>

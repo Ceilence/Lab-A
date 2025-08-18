@@ -53,3 +53,4 @@ public final class PannelloRecensioni extends JPanel{
 //campi vuoti commento e ristorante
 //metodo haRisposta + creazione panel risposta, creazione metodo commento attuale
 //rislist prima pagina = primo ristorantea
+//guest modifiche ai pulsanti (alla fine)

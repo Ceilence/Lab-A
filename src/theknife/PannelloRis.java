@@ -59,6 +59,7 @@ public final class PannelloRis extends JPanel{
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                risList.resettaBarra();
                 gestore.getArchivioRis().setRisAttuale(ristorante);
                 gestore.getArchivioPreferiti().setPrefAttuale(ristorante.getIdRis(),gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
                 gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, 3);
@@ -70,9 +71,8 @@ public final class PannelloRis extends JPanel{
         });
 
     }
-    public Ristorante getRistorante() {
-        return ristorante;
-    }
-    
-   
+
+        public Ristorante getRistorante() {
+            return ristorante;
+        }
 }

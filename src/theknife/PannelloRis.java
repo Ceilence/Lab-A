@@ -65,6 +65,7 @@ public final class PannelloRis extends JPanel{
 
                 risList.aggiornaLabel(r);
                 risList.aggiornaDetPref();
+                risList.aggiornaDettagli();
             }
         });
 

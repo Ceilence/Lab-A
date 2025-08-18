@@ -619,6 +619,11 @@ public class RisList extends javax.swing.JFrame {
         }
     }
     
+    public void aggiornaDettagli(){
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "dettagli");
+    }
+    
      public void creaImmagine(){
         ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
         Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);

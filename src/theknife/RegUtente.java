@@ -214,7 +214,7 @@ public class RegUtente extends javax.swing.JFrame {
         jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, 20));
 
         jLabel11.setText("Stato:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setMaximumSize(new java.awt.Dimension(400, 500));

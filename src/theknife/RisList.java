@@ -686,7 +686,7 @@ public class RisList extends javax.swing.JFrame {
         this.flagGiappone = scaledIconGiappone; 
         
         ImageIcon flagES = new ImageIcon("src\\Flag_of_Spain.png");
-        Image scaledImageSpagna = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        Image scaledImageSpagna = flagES.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconSpagna = new ImageIcon(scaledImageSpagna);
         this.flagSpagna = scaledIconSpagna; 
         
@@ -730,25 +730,25 @@ public class RisList extends javax.swing.JFrame {
     }
      
      public ImageIcon selezionaImmagine(String nazione){
-        if(nazione.contains("Italy"))
+        if(nazione.equals("Italy"))
             return this.flagItalia;
         
-        if(nazione.contains("France"))
+        if(nazione.equals("France"))
             return this.flagFrancia;
         
-        if(nazione.contains("Germany"))
+        if(nazione.equals("Germany"))
             return this.flagGermania;
         
-        if(nazione.contains("China"))
+        if(nazione.equals("China"))
             return this.flagCina;
         
-        if(nazione.contains("Japan"))
+        if(nazione.equals("Japan"))
             return this.flagGiappone;
         
-        if(nazione.contains("Spain"))
+        if(nazione.equals("Spain"))
             return this.flagSpagna;
         
-        if(nazione.contains("USA"))
+        if(nazione.equals("USA"))
             return this.flagUSA;
         
         return this.flagMondo;

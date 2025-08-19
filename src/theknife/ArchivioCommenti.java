@@ -38,8 +38,9 @@ public class ArchivioCommenti {
                 if ("recensione".equals(tipoCommento)) {
                     int idRistorante = Integer.parseInt(token.nextToken());
                     int valutazione = Integer.parseInt(token.nextToken());
+                    boolean haRisposta = Boolean.parseBoolean(token.nextToken());
                     boolean daLeggere = Boolean.parseBoolean(token.nextToken());
-                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento, idRistorante, valutazione, daLeggere));
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento, idRistorante, valutazione, haRisposta, daLeggere));
                 } else if ("risposta".equals(tipoCommento)) {
                     listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento));
                 }

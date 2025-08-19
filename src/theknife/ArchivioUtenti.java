@@ -28,7 +28,7 @@ public class ArchivioUtenti {
             String line;
             while ((line = rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");
-                if(token.countTokens() == 8){
+                if(token.countTokens() == 9){
                     String nome = token.nextToken();
                     String cognome = token.nextToken();
                     String username = token.nextToken();

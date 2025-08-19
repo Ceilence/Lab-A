@@ -20,7 +20,7 @@ public final class PannelloRis extends JPanel{
     
     public PannelloRis(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel contenitoreCommenti) {
         this.ristorante = r;
-        immagine = risList.selezionaImmagine(r.getLocRis());
+        immagine = risList.selezionaImmagine(r.getStatoRis());
         
         
         // Layout verticale con margini

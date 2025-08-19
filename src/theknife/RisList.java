@@ -30,7 +30,6 @@ public class RisList extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
         
-
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
         caricamentoFrame.setVisible(true);
@@ -46,8 +45,6 @@ public class RisList extends javax.swing.JFrame {
         
         creaImmagine();
         caricaPannelli();
-        
-        
     }
     
     private void caricaPannelli() {
@@ -120,14 +117,15 @@ public class RisList extends javax.swing.JFrame {
         
         for(PannelloRis p : tuttiIPannelli){
             Ristorante r = p.getRistorante();
-            
             Citta cittaRis = gestore.getArchivioCitta().getCitta(r.getLocRis());
-            if(cittaRis != null){
+            
+            if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
+                if(cittaRis != null){
                 double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), cittaRis.getLatCitta(), cittaRis.getLonCitta());
-                
                 if(distanza <= distanzaMax){
                     filtratore.add(p);
                 }
+            } 
             } 
         }
         if (!filtratore.isEmpty()) {
@@ -539,7 +537,6 @@ public class RisList extends javax.swing.JFrame {
 
         contatore.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         contatore.setForeground(new java.awt.Color(255, 255, 255));
-        contatore.setText("0/100");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -581,10 +578,10 @@ public class RisList extends javax.swing.JFrame {
      * @param evt 
      */
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
-            PaginaUtente p = new PaginaUtente(gestore, this);
-            p.setVisible(true);
-            this.setEnabled(false);
-            p.setLocationRelativeTo(null);
+        PaginaUtente p = new PaginaUtente(gestore, this);
+        p.setVisible(true);
+        this.setEnabled(false);
+        p.setLocationRelativeTo(null);
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
@@ -602,7 +599,6 @@ public class RisList extends javax.swing.JFrame {
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
         
-        
         if(pagina < totalePagine - 1){
             pagina++;
             impaginazione(pagina);
@@ -615,7 +611,6 @@ public class RisList extends javax.swing.JFrame {
         // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
-        
         
         if(pagina > 0){
             pagina--;
@@ -729,11 +724,7 @@ public class RisList extends javax.swing.JFrame {
         Image pt1 = ptIcon.getImage();
         Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon pt3 = new ImageIcon(pt2);
-        this.stellaPiena = pt3;
-        
-        
-        
-        
+        this.stellaPiena = pt3;  
     }
      
      public ImageIcon selezionaImmagine(String nazione){

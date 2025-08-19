@@ -16,12 +16,16 @@ public final class PannelloRecensioni extends JPanel{
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(Color.GRAY, 1),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
-        ));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         setBackground(Color.WHITE);
+        if (commento.isRisposta()) {
+           
+            
+        } else {
+           
+        }
+        
         
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();

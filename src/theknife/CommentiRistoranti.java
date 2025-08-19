@@ -109,7 +109,7 @@ public class CommentiRistoranti {
         this.valutazione = valutazione;
     }
 
-    public boolean isHaRisposta() {
+    public boolean haRisposta() {
         return haRisposta;
     }
 

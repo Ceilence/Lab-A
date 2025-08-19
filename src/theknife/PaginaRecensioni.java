@@ -82,7 +82,6 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         stella3 = new javax.swing.JLabel();
         stella4 = new javax.swing.JLabel();
         stella5 = new javax.swing.JLabel();
-        contaChar = new javax.swing.JLabel();
         titoloRec = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -247,16 +246,15 @@ public class PaginaRecensioni extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))))
-                    .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                            .addGap(223, 223, 223)
-                            .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(contaChar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(scriviRecPannelloLayout.createSequentialGroup()
+                        .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(scriviRecPannelloLayout.createSequentialGroup()
+                                .addGap(223, 223, 223)
+                                .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(scriviRecPannelloLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         scriviRecPannelloLayout.setVerticalGroup(
@@ -282,9 +280,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confermaButton)
-                    .addComponent(contaChar))
+                .addComponent(confermaButton)
                 .addContainerGap())
         );
 
@@ -399,7 +395,6 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTesto;
     private javax.swing.JButton confermaButton;
-    private javax.swing.JLabel contaChar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

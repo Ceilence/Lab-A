@@ -88,6 +88,8 @@ public class RegRisto extends javax.swing.JFrame {
         erroreEmail = new javax.swing.JLabel();
         accediErrore = new javax.swing.JLabel();
         qmLabel = new javax.swing.JLabel();
+        statoUtente = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -147,7 +149,7 @@ public class RegRisto extends javax.swing.JFrame {
 
         jLabel8.setText("Posizione:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 75, -1));
-        jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 288, -1));
+        jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 135, -1));
         jPanel3.add(passwordCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 288, -1));
 
         jLabel10.setText("Nome:");
@@ -190,6 +192,12 @@ public class RegRisto extends javax.swing.JFrame {
             }
         });
         jPanel3.add(qmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 20, -1));
+
+        statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, -1));
+
+        jLabel11.setText("Stato:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 500));
@@ -289,7 +297,7 @@ public class RegRisto extends javax.swing.JFrame {
         } else if (!ValidaReg.passValida(passwordCliente.getText().trim())) { 
             JOptionPane.showMessageDialog(null, "Formato password non valido");
         } else if (!gestore.getArchivioUtenti().esisteMail(emailCliente.getText().trim())) {
-            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), gestore.getArchivioUtenti().creaID(), "cliente"));
+            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), (String) statoUtente.getSelectedItem(), gestore.getArchivioUtenti().creaID(), "cliente"));
             
             Login LoginFrame = new Login(gestore);
             LoginFrame.setVisible(true);
@@ -361,6 +369,7 @@ public class RegRisto extends javax.swing.JFrame {
     private javax.swing.JScrollPane infoPassPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -376,6 +385,7 @@ public class RegRisto extends javax.swing.JFrame {
     private javax.swing.JTextField posizioneCliente;
     private javax.swing.JLabel qmLabel;
     private javax.swing.JButton regCliente;
+    private javax.swing.JComboBox<String> statoUtente;
     private javax.swing.JTextField usernameCliente;
     // End of variables declaration//GEN-END:variables
 }

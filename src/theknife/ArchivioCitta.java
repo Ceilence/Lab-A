@@ -82,7 +82,7 @@ public class ArchivioCitta {
     public Citta getCitta(String nome) {
     for (Citta c : listaCitta) {
         String s = nome.trim().toLowerCase();
-        if (s.contains(c.getNomeCitta().trim().toLowerCase())) {
+        if (s.equals(c.getNomeCitta().trim().toLowerCase())) {
             return c;
         }
     }

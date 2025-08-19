@@ -215,7 +215,7 @@
         <Component class="javax.swing.JTextField" name="posizioneCliente">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="60" y="400" width="288" height="-1"/>
+              <AbsoluteConstraints x="60" y="400" width="135" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -307,6 +307,82 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="330" width="20" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="statoUtente">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="50">
+                <StringItem index="0" value="Abu Dhabi"/>
+                <StringItem index="1" value="Andorra"/>
+                <StringItem index="2" value="Argentina"/>
+                <StringItem index="3" value="Austria"/>
+                <StringItem index="4" value="Belgium"/>
+                <StringItem index="5" value="Brazil"/>
+                <StringItem index="6" value="Canada"/>
+                <StringItem index="7" value="China Mainland"/>
+                <StringItem index="8" value="Croatia"/>
+                <StringItem index="9" value="Czech Republic"/>
+                <StringItem index="10" value="Czechia"/>
+                <StringItem index="11" value="Denmark"/>
+                <StringItem index="12" value="Dubai"/>
+                <StringItem index="13" value="Estonia"/>
+                <StringItem index="14" value="Finland"/>
+                <StringItem index="15" value="France"/>
+                <StringItem index="16" value="Germany"/>
+                <StringItem index="17" value="Greece"/>
+                <StringItem index="18" value="Hong Kong"/>
+                <StringItem index="19" value="Hong Kong SAR China"/>
+                <StringItem index="20" value="Hungary"/>
+                <StringItem index="21" value="Iceland"/>
+                <StringItem index="22" value="Ireland"/>
+                <StringItem index="23" value="Italy"/>
+                <StringItem index="24" value="Japan"/>
+                <StringItem index="25" value="Latvia"/>
+                <StringItem index="26" value="Lithuania"/>
+                <StringItem index="27" value="Luxembourg"/>
+                <StringItem index="28" value="Macau"/>
+                <StringItem index="29" value="Malaysia"/>
+                <StringItem index="30" value="Malta"/>
+                <StringItem index="31" value="Mexico"/>
+                <StringItem index="32" value="Netherlands"/>
+                <StringItem index="33" value="Norway"/>
+                <StringItem index="34" value="Poland"/>
+                <StringItem index="35" value="Portugal"/>
+                <StringItem index="36" value="Qatar"/>
+                <StringItem index="37" value="Serbia"/>
+                <StringItem index="38" value="Singapore"/>
+                <StringItem index="39" value="Slovenia"/>
+                <StringItem index="40" value="South Korea"/>
+                <StringItem index="41" value="Spain"/>
+                <StringItem index="42" value="Sweden"/>
+                <StringItem index="43" value="Switzerland"/>
+                <StringItem index="44" value="Taiwan"/>
+                <StringItem index="45" value="Thailand"/>
+                <StringItem index="46" value="T&#xfc;rkiye"/>
+                <StringItem index="47" value="USA"/>
+                <StringItem index="48" value="United Kingdom"/>
+                <StringItem index="49" value="Vietnam"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="210" y="400" width="135" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Stato:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="210" y="380" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

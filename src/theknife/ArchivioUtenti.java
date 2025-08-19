@@ -35,10 +35,11 @@ public class ArchivioUtenti {
                     String email = token.nextToken();
                     String password = token.nextToken();
                     String posizione = token.nextToken();
+                    String stato = token.nextToken();
                     int id = Integer.parseInt(token.nextToken());
                     String ruolo = token.nextToken();
                     
-                    listaUtenti.add(new Utente (nome, cognome, username, email, password, posizione, id, ruolo));
+                    listaUtenti.add(new Utente (nome, cognome, username, email, password, posizione, stato, id, ruolo));
                 }
             }
         } catch (IOException e) {

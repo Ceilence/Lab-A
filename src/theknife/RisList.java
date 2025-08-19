@@ -120,7 +120,7 @@ public class RisList extends javax.swing.JFrame {
         
         for(PannelloRis p : tuttiIPannelli){
             Ristorante r = p.getRistorante();
-      
+            
             Citta cittaRis = gestore.getArchivioCitta().getCitta(r.getLocRis());
             if(cittaRis != null){
                 double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), cittaRis.getLatCitta(), cittaRis.getLonCitta());

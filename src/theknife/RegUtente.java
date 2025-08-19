@@ -65,6 +65,7 @@ public class RegUtente extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel3 = new javax.swing.JPanel();
         infoPassPane = new javax.swing.JScrollPane();
@@ -88,14 +89,24 @@ public class RegUtente extends javax.swing.JFrame {
         erroreEmail = new javax.swing.JLabel();
         accediErrore = new javax.swing.JLabel();
         qmLabel = new javax.swing.JLabel();
+        statoUtente = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         backArrow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
+        setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(400, 500));
+        jPanel3.setMinimumSize(new java.awt.Dimension(400, 500));
+        jPanel3.setName(""); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(400, 500));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -147,7 +158,7 @@ public class RegUtente extends javax.swing.JFrame {
 
         jLabel8.setText("Posizione:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 75, -1));
-        jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 288, -1));
+        jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 135, -1));
         jPanel3.add(passwordCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 288, -1));
 
         jLabel10.setText("Nome:");
@@ -197,7 +208,28 @@ public class RegUtente extends javax.swing.JFrame {
         });
         jPanel3.add(qmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 20, -1));
 
+        statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        statoUtente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statoUtenteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, -1));
+
+        jLabel11.setText("Stato:");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jPanel3, gridBagConstraints);
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setMaximumSize(new java.awt.Dimension(400, 500));
+        jPanel2.setMinimumSize(new java.awt.Dimension(400, 500));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 500));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TheKnife.png"))); // NOI18N
@@ -238,38 +270,20 @@ public class RegUtente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(139, 139, 139))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 400, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 400, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jPanel2, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,7 +309,7 @@ public class RegUtente extends javax.swing.JFrame {
         } else if (!ValidaReg.passValida(passwordCliente.getText().trim())) { 
             JOptionPane.showMessageDialog(null, "Formato password non valido");
         } else if (!gestore.getArchivioUtenti().esisteMail(emailCliente.getText().trim())) {
-            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), gestore.getArchivioUtenti().creaID(), "cliente"));
+            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), (String) statoUtente.getSelectedItem(), gestore.getArchivioUtenti().creaID(), "cliente"));
             
             Login LoginFrame = new Login(gestore);
             LoginFrame.setVisible(true);
@@ -360,6 +374,10 @@ public class RegUtente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeClienteActionPerformed
 
+    private void statoUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statoUtenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statoUtenteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accediErrore;
     private javax.swing.JButton backArrow;
@@ -371,6 +389,7 @@ public class RegUtente extends javax.swing.JFrame {
     private javax.swing.JScrollPane infoPassPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -386,6 +405,7 @@ public class RegUtente extends javax.swing.JFrame {
     private javax.swing.JTextField posizioneCliente;
     private javax.swing.JLabel qmLabel;
     private javax.swing.JButton regCliente;
+    private javax.swing.JComboBox<String> statoUtente;
     private javax.swing.JTextField usernameCliente;
     // End of variables declaration//GEN-END:variables
 }

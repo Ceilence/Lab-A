@@ -134,12 +134,12 @@ public class RisList extends javax.swing.JFrame {
         detBan.setIcon(selezionaImmagine(r.getLocRis())); 
     }
 
-    public void disattivaBottone(){
-        vediTutte.setVisible(false);
-    }
-    
-    public void attivaBottone(){
-        vediTutte.setVisible(true);
+    public void aggiornaBottoneVedi(int numero) {
+        if (numero <= 3) {
+            vediTutte.setVisible(false);
+        } else {
+            vediTutte.setVisible(true);
+        }
     }
    
     @SuppressWarnings("unchecked")

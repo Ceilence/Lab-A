@@ -4,10 +4,10 @@
  */
 package theknife;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.*;
 import java.util.*;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
@@ -61,9 +61,9 @@ public class ArchivioCommenti {
         }
     }
     
-    public CommentiRistoranti getRisposta(int idCommento) {
+    public CommentiRistoranti getRisposta(CommentiRistoranti commento) {
         for (CommentiRistoranti cr : listaCommenti) {
-            if (cr.getIdCommento() == idCommento && cr.isRisposta()) {
+            if (cr.getIdCommento() == commento.getIdCommento() && cr.isRisposta()) {
                 return cr;
                         
             }
@@ -99,20 +99,26 @@ public class ArchivioCommenti {
         contenitoreCommenti.removeAll();
         int numero = 0;
         
-        
-        for(int i = listaCommenti.size()-1; i >= 0; i--){
-            if (gestore.getArchivioRis().getRisAttuale().getIdRis() == listaCommenti.get(i).getIdRistorante() && numero < conto){
-                contenitoreCommenti.add(new PannelloRecensioni(gestore, listaCommenti.get(i)));
-                contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
+        for (int i = listaCommenti.size()-1; i >= 0; i--){
+            CommentiRistoranti commento = listaCommenti.get(i);
+            if (gestore.getArchivioRis().getRisAttuale().getIdRis() == commento.getIdRistorante() && numero < conto){
+                contenitoreCommenti.add(new PannelloRecensioni(gestore, commento));
+                if (commento.haRisposta()){
+                    contenitoreCommenti.add(new PannelloRecensioni(gestore, getRisposta(commento)));
+                    contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
+                } else {
+                    contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
+                }
                 numero++;
             }
-            if (numero < 3)
-                GestoreArchivi.RisListFrame.disattivaBottone();
-            else
+        }
+        if (numero < 3){
+                GestoreArchivi.RisListFrame.disattivaBottone(); 
+        } else {
                 GestoreArchivi.RisListFrame.attivaBottone();
         }
         
         contenitoreCommenti.revalidate();
         contenitoreCommenti.repaint();
     }
-}
+}   

@@ -24,9 +24,12 @@ public class RegRistorante extends javax.swing.JFrame {
         //Inizializzazione vari componenti e Lable.
         initComponents();  
         
-        scrollPane.getVerticalScrollBar().setUnitIncrement(70);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(50);
+        commentiRistorante.getVerticalScrollBar().setUnitIncrement(50);
         
         
+        contenitoreCommenti.setLayout(new BoxLayout(contenitoreCommenti, BoxLayout.Y_AXIS));
+        commentiRistorante.setViewportView(contenitoreCommenti);
         
         this.gestore = gestore;
         this.rislist = rislist;
@@ -97,6 +100,9 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pannelloDestra = new javax.swing.JPanel();
         pannelloRisposte = new javax.swing.JScrollPane();
+        contenitoreRisposte = new javax.swing.JPanel();
+        commentiRistorante = new javax.swing.JScrollPane();
+        contenitoreCommenti = new javax.swing.JPanel();
         dettagliRisto = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         nome = new javax.swing.JTextField();
@@ -332,7 +338,39 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         pannelloDestra.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout contenitoreRisposteLayout = new javax.swing.GroupLayout(contenitoreRisposte);
+        contenitoreRisposte.setLayout(contenitoreRisposteLayout);
+        contenitoreRisposteLayout.setHorizontalGroup(
+            contenitoreRisposteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 781, Short.MAX_VALUE)
+        );
+        contenitoreRisposteLayout.setVerticalGroup(
+            contenitoreRisposteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        pannelloRisposte.setViewportView(contenitoreRisposte);
+
         pannelloDestra.add(pannelloRisposte, "rispondiPanel");
+
+        contenitoreCommenti.setBackground(new java.awt.Color(255, 255, 255));
+        contenitoreCommenti.setMinimumSize(new java.awt.Dimension(16, 0));
+
+        javax.swing.GroupLayout contenitoreCommentiLayout = new javax.swing.GroupLayout(contenitoreCommenti);
+        contenitoreCommenti.setLayout(contenitoreCommentiLayout);
+        contenitoreCommentiLayout.setHorizontalGroup(
+            contenitoreCommentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
+        contenitoreCommentiLayout.setVerticalGroup(
+            contenitoreCommentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        commentiRistorante.setViewportView(contenitoreCommenti);
+
+        pannelloDestra.add(commentiRistorante, "commenti");
 
         dettagliRisto.setMaximumSize(new java.awt.Dimension(783, 620));
         dettagliRisto.setMinimumSize(new java.awt.Dimension(783, 620));
@@ -498,7 +536,7 @@ public class RegRistorante extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -953,16 +991,15 @@ public class RegRistorante extends javax.swing.JFrame {
                 JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
                 pulsantiPanel.setOpaque(false);
 
-                JButton btnModifica = new JButton("Modifica");
-                btnModifica.addActionListener(e -> {
+                JButton btnMostra = new JButton("Mostra Commenti");
+                btnMostra.addActionListener(e -> {                                   
+                    CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+                    cl.show(pannelloDestra, "commenti");
+                    gestore.getArchivioRis().setRisAttuale(r);
+                    gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
                 });
 
-                JButton btnElimina = new JButton("Elimina");
-                btnElimina.addActionListener(e -> {
-                });
-
-                pulsantiPanel.add(btnModifica);
-                pulsantiPanel.add(btnElimina);
+                pulsantiPanel.add(btnMostra);
 
                 panelRisto.add(pulsantiPanel, BorderLayout.EAST);
 
@@ -1216,6 +1253,9 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JTextField città;
     private javax.swing.JTextField cognome;
     private javax.swing.JTextField cognome1;
+    private javax.swing.JScrollPane commentiRistorante;
+    private javax.swing.JPanel contenitoreCommenti;
+    private javax.swing.JPanel contenitoreRisposte;
     private javax.swing.JTextField cucina;
     private javax.swing.JLabel cuisRist;
     private javax.swing.JCheckBox delcheck;

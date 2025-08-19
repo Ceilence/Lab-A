@@ -16,12 +16,14 @@ public final class PannelloRecensioni extends JPanel{
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(Color.GRAY, 1),
-            BorderFactory.createEmptyBorder(5, 5, 5, 5)
-        ));
-        setBackground(Color.WHITE);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        if (commento.isRisposta()) {
+            setBackground(Color.LIGHT_GRAY);
+        } else {
+            setBackground(Color.WHITE);
+        }
+        
         
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();
@@ -54,3 +56,4 @@ public final class PannelloRecensioni extends JPanel{
 //metodo haRisposta + creazione panel risposta, creazione metodo commento attuale
 //rislist prima pagina = primo ristorantea
 //guest modifiche ai pulsanti (alla fine)
+//risposte spostate verso destra leggermente

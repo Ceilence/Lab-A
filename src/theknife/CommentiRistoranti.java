@@ -16,6 +16,7 @@ public class CommentiRistoranti {
     private int idCommento;
     private int idRistorante;
     private int valutazione;
+    private boolean haRisposta = false;
     private boolean daLeggere;
     
     /**
@@ -105,6 +106,14 @@ public class CommentiRistoranti {
 
     public void setValutazione(Integer valutazione) {
         this.valutazione = valutazione;
+    }
+
+    public boolean isHaRisposta() {
+        return haRisposta;
+    }
+
+    public void setHaRisposta(boolean haRisposta) {
+        this.haRisposta = haRisposta;
     }
     
     public boolean isRisposta() {

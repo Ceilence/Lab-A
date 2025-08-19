@@ -6,6 +6,7 @@ package theknife;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 import javax.swing.*;
 
 
@@ -117,16 +118,14 @@ public class RisList extends javax.swing.JFrame {
         
         for(PannelloRis p : tuttiIPannelli){
             Ristorante r = p.getRistorante();
-            Citta cittaRis = gestore.getArchivioCitta().getCitta(r.getLocRis());
             
             if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
-                if(cittaRis != null){
-                double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), cittaRis.getLatCitta(), cittaRis.getLonCitta());
+                double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
                 if(distanza <= distanzaMax){
                     filtratore.add(p);
                 }
             } 
-            } 
+             
         }
         if (!filtratore.isEmpty()) {
             aggiornaLabel(filtratore.get(0).getRistorante());
@@ -134,6 +133,9 @@ public class RisList extends javax.swing.JFrame {
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
         impaginazione(pagina);
     }
+    
+    //porcodio sono un ritardato mi ammazzo, perchè adoro complicarmi la vita dio merda
+    //Ah si ragazzi le hashmap mlml belle da usare risolvono tutto
     
     public void impaginazione(int pagina){
         contenitorePanel.removeAll();
@@ -154,7 +156,7 @@ public class RisList extends javax.swing.JFrame {
         detNome.setText(r.getNomeRis());
         detCuis.setText(r.getCuisRis());
         detDes.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
-        detBan.setIcon(selezionaImmagine(r.getLocRis())); 
+        detBan.setIcon(selezionaImmagine(r.getStatoRis())); 
     }
 
     public void aggiornaBottoneVedi(int numero) {

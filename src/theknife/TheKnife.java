@@ -22,7 +22,7 @@ public class TheKnife {
         gestore.getArchivioRis().leggiArchivio();
         gestore.getArchivioCitta().leggiArchivio();
         gestore.getArchivioPreferiti().leggiArchivio();
-        gestore.getArchivioCommenti().leggiArchivio();
+        gestore.getArchivioCommenti().leggiArchivio();       
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

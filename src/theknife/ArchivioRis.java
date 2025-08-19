@@ -22,12 +22,14 @@ public class ArchivioRis {
     public void leggiArchivio() {
         listaRis.clear();
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))) {
+            int contodiocane = 0;
             String line;
             while ((line = rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");
                 String nomeRis = token.nextToken();
                 String indRis = token.nextToken();
                 String locRis = token.nextToken();
+                String statoRis = token.nextToken();
                 String priceRis = token.nextToken();
                 String cuisRis = token.nextToken();
                 double longRis = Double.parseDouble(token.nextToken());
@@ -40,7 +42,7 @@ public class ArchivioRis {
                 int idRis = Integer.parseInt(token.nextToken());
                 int idRistoratore = Integer.parseInt(token.nextToken());
 
-                listaRis.add(new Ristorante(nomeRis, indRis, locRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis, idRistoratore));
+                listaRis.add(new Ristorante(nomeRis, indRis, locRis, statoRis, priceRis, cuisRis, longRis, latRis, telRis,mediaStelleRis, delivery, prenotaOnline, desRis, idRis, idRistoratore));
             }
         } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());

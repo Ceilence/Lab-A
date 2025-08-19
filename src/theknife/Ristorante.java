@@ -14,6 +14,7 @@ public class Ristorante {
     private String nomeRis;
     private String indRis;
     private String locRis;
+    private String statoRis;
     private String priceRis;
     private String cuisRis;
     private double longRis;
@@ -26,10 +27,11 @@ public class Ristorante {
     private int idRis;
     private int idRistoratore;
 
-    public Ristorante(String nomeRis, String indRis, String locRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, int mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
+    public Ristorante(String nomeRis, String indRis, String locRis, String statoRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, int mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
         this.nomeRis = nomeRis;
         this.indRis = indRis;
         this.locRis = locRis;
+        this.statoRis = statoRis;
         this.priceRis = priceRis;
         this.cuisRis = cuisRis;
         this.longRis = longRis;
@@ -67,6 +69,14 @@ public class Ristorante {
         this.locRis = locRis;
     }
 
+    public String getStatoRis() {
+        return statoRis;
+    }
+
+    public void setStatoRis(String statoRis) {
+        this.statoRis = statoRis;
+    }
+    
     public String getPriceRis() {
         return priceRis;
     }
@@ -159,9 +169,9 @@ public class Ristorante {
     
     @Override
     public String toString () {
-        return nomeRis + "§" + indRis + "§" + locRis + "§" + 
-               priceRis + "§" + cuisRis + "§" + longRis + "§" + 
-               latRis + "§" + pnRis + "§" + mediaStelleRis + "§" +
+        return nomeRis + "§" + indRis + "§" + locRis + "§" +
+               statoRis.trim() + "§" + priceRis + "§" + cuisRis + "§" +
+               longRis + "§" + latRis + "§" + pnRis + "§" + mediaStelleRis + "§" +
                delivery + "§" + prenotaOnline + "§" + desRis + "§" + idRis + "§" + idRistoratore + "§";      
     }
 }

@@ -60,13 +60,14 @@ public class ArchivioCommenti {
         }
     }
     
-    public boolean haRisposta(int idCommento) {
+    public CommentiRistoranti getRisposta(int idCommento) {
         for (CommentiRistoranti cr : listaCommenti) {
             if (cr.getIdCommento() == idCommento && cr.isRisposta()) {
-                return true;
+                return cr;
+                        
             }
-        }   
-        return false;
+        }
+        return null;
     }
     
     public void aggiungiCommento(CommentiRistoranti c) {

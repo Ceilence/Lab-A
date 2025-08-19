@@ -92,7 +92,7 @@ public class ArchivioCommenti {
     public ArrayList<CommentiRistoranti> getListaCommenti() {
         return listaCommenti;
     }
-    
+     
     public void generaCommenti(JPanel contenitoreCommenti, GestoreArchivi gestore, int conto){
         contenitoreCommenti.removeAll();
         int numero = 0;

@@ -38,8 +38,9 @@ public class ArchivioCommenti {
                 if ("recensione".equals(tipoCommento)) {
                     int idRistorante = Integer.parseInt(token.nextToken());
                     int valutazione = Integer.parseInt(token.nextToken());
+                    boolean haRisposta = Boolean.parseBoolean(token.nextToken());
                     boolean daLeggere = Boolean.parseBoolean(token.nextToken());
-                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento, idRistorante, valutazione, daLeggere));
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento, idRistorante, valutazione, haRisposta, daLeggere));
                 } else if ("risposta".equals(tipoCommento)) {
                     listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento));
                 }
@@ -60,13 +61,14 @@ public class ArchivioCommenti {
         }
     }
     
-    public boolean haRisposta(int idCommento) {
+    public CommentiRistoranti getRisposta(int idCommento) {
         for (CommentiRistoranti cr : listaCommenti) {
             if (cr.getIdCommento() == idCommento && cr.isRisposta()) {
-                return true;
+                return cr;
+                        
             }
-        }   
-        return false;
+        }
+        return null;
     }
     
     public void aggiungiCommento(CommentiRistoranti c) {
@@ -92,8 +94,7 @@ public class ArchivioCommenti {
     public ArrayList<CommentiRistoranti> getListaCommenti() {
         return listaCommenti;
     }
-    
-    
+     
     public void generaCommenti(JPanel contenitoreCommenti, GestoreArchivi gestore, int conto){
         contenitoreCommenti.removeAll();
         int numero = 0;

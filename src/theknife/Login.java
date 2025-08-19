@@ -20,6 +20,7 @@ public class Login extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
         
+        
         //Setta il pulsante che si attiva con invio su LoginButton
         getRootPane().setDefaultButton(LoginButton);
                 
@@ -219,10 +220,12 @@ public class Login extends javax.swing.JFrame {
                 gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
                 
             if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
+                GestoreArchivi.RisListFrame.filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 50);
                 GestoreArchivi.RisListFrame.versioneGuest();
                 GestoreArchivi.RisListFrame.setVisible(true);
                 GestoreArchivi.RisListFrame.pack();
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
+                
                 this.dispose();
             } else{
                 RegRistorante rg = new RegRistorante(gestore, risList);

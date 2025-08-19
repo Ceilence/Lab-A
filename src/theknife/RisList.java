@@ -46,6 +46,8 @@ public class RisList extends javax.swing.JFrame {
         
         creaImmagine();
         caricaPannelli();
+        
+        
     }
     
     private void caricaPannelli() {
@@ -79,7 +81,6 @@ public class RisList extends javax.swing.JFrame {
         protected void done() {
             caricamentoFrame.dispose();
             gestore.getArchivioRis().setRisAttuale(filtratore.get(0).getRistorante());
-            impaginazione(pagina);
             gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
             aggiornaLabel(filtratore.get(0).getRistorante());
            
@@ -110,6 +111,31 @@ public class RisList extends javax.swing.JFrame {
         }
         aggiornaLabel(filtratore.get(0).getRistorante());
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+    }
+    
+    public void filtraPosizione(String cittaUtente, double distanzaMax){
+        
+        filtratore.clear();
+        contenitorePanel.removeAll();
+        Citta citta = gestore.getArchivioCitta().getCitta(cittaUtente);
+        
+        for(PannelloRis p : tuttiIPannelli){
+            Ristorante r = p.getRistorante();
+      
+            Citta cittaRis = gestore.getArchivioCitta().getCitta(r.getLocRis());
+            if(cittaRis != null){
+                double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), cittaRis.getLatCitta(), cittaRis.getLonCitta());
+                
+                if(distanza <= distanzaMax){
+                    filtratore.add(p);
+                }
+            } 
+        }
+        if (!filtratore.isEmpty()) {
+            aggiornaLabel(filtratore.get(0).getRistorante());
+        }
+        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+        impaginazione(pagina);
     }
     
     public void impaginazione(int pagina){
@@ -576,7 +602,7 @@ public class RisList extends javax.swing.JFrame {
         // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
-        //if(totalePagine == 0) totalePagine = 1;
+        
         
         if(pagina < totalePagine - 1){
             pagina++;
@@ -590,7 +616,7 @@ public class RisList extends javax.swing.JFrame {
         // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
-        //if(totalePagine == 0) totalePagine = 1;
+        
         
         if(pagina > 0){
             pagina--;

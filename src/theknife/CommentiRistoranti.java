@@ -16,12 +16,13 @@ public class CommentiRistoranti {
     private int idCommento;
     private int idRistorante;
     private int valutazione;
+    private boolean haRisposta;
     private boolean daLeggere;
     
     /**
      * Recensioni
      */
-    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento, int idRistorante, int valutazione, boolean daLeggere) {
+    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento, int idRistorante, int valutazione, boolean haRisposta, boolean daLeggere) {
         this.tipoCommento = "recensione";
         this.idScrittore = idScrittore;
         this.testo = testo;
@@ -29,6 +30,7 @@ public class CommentiRistoranti {
         this.idCommento = idCommento;
         this.idRistorante = idRistorante;
         this.valutazione = valutazione;
+        this.haRisposta = haRisposta;
         this.daLeggere = daLeggere;
     }
     
@@ -106,6 +108,14 @@ public class CommentiRistoranti {
     public void setValutazione(Integer valutazione) {
         this.valutazione = valutazione;
     }
+
+    public boolean isHaRisposta() {
+        return haRisposta;
+    }
+
+    public void setHaRisposta(boolean haRisposta) {
+        this.haRisposta = haRisposta;
+    }
     
     public boolean isRisposta() {
         return "risposta".equals(tipoCommento);
@@ -115,7 +125,7 @@ public class CommentiRistoranti {
     public String toString() {
         if ("recensione".equals(tipoCommento)){
             return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" +
-                  idCommento + "§" + idRistorante + "§" + valutazione + "§" + daLeggere + "§";
+                  idCommento + "§" + idRistorante + "§" + valutazione + "§" + haRisposta + "§" + daLeggere + "§";
         } else {
             return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" + idCommento + "§";
         }

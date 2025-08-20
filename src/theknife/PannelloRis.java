@@ -31,7 +31,7 @@ public final class PannelloRis extends JPanel{
         setPreferredSize(new Dimension(0, ALTEZZA_PANNELLO));
         setMinimumSize(new Dimension(0, ALTEZZA_PANNELLO));
 
-        // --- SEZIONE SCRITTE ---
+        // Sezione scritte
         JPanel panelScritte = new JPanel();
         panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
         panelScritte.setOpaque(false);
@@ -47,7 +47,7 @@ public final class PannelloRis extends JPanel{
 
         add(panelScritte, BorderLayout.NORTH);
 
-        // --- IMMAGINE ---
+        // Immagine
         JLabel bandiera = new JLabel(immagine);
         bandiera.setPreferredSize(new Dimension(60, 40));
         bandiera.setOpaque(true);
@@ -55,7 +55,7 @@ public final class PannelloRis extends JPanel{
         bandiera.setHorizontalAlignment(SwingConstants.CENTER);
         add(bandiera, BorderLayout.WEST);
 
-        // --- LISTENER PER CLICK ---
+        // Listener per click
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -243,21 +243,21 @@ public class Login extends javax.swing.JFrame {
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
                                   
-        // ---- JDialog ----
+        //JDialog
         JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);
         
-        // ---- Text field, Combo box e Bottone conferma culo ----
+        //Text field, Combo box e Bottone conferma
         JTextField posizione = new JTextField(15);
         JComboBox<String> stato = new JComboBox<>(new String[]{"Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam"});
         stato.setSelectedIndex(-1);
         JButton conferma = new JButton("Conferma");
 
-        // ---- Contenitore sbura ----
+        //Contenitore
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
         
-        // ---- Grandezza e allineamento componenti sboro ----
+        //Grandezza e allineamento componenti
         posizione.setPreferredSize(new Dimension(250, 30));
         posizione.setMaximumSize(new Dimension(250, 30));
         posizione.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -292,7 +292,7 @@ public class Login extends javax.swing.JFrame {
         dialog.setSize(300, 300);
         dialog.setLocationRelativeTo(this);
 
-        // ---- Bottone conferma cum ----
+        //Bottone conferma
         conferma.addActionListener(e -> {
             String p = posizione.getText();
             String s = (String) stato.getSelectedItem();

@@ -901,7 +901,6 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
-        gestore.getArchivioPreferiti().getPreferiti().clear();
         risList.setEnabled(true);
         risList.dispose();
         Login LoginFrame = new Login(gestore);

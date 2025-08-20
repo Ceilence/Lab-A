@@ -379,20 +379,10 @@ public class RegRistorante extends javax.swing.JFrame {
         nome.setBackground(new java.awt.Color(204, 204, 204));
         nome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeActionPerformed(evt);
-            }
-        });
 
         cognome.setBackground(new java.awt.Color(204, 204, 204));
         cognome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognomeActionPerformed(evt);
-            }
-        });
 
         email.setBackground(new java.awt.Color(204, 204, 204));
         email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -420,11 +410,6 @@ public class RegRistorante extends javax.swing.JFrame {
         password.setBackground(new java.awt.Color(204, 204, 204));
         password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setMaximumSize(new java.awt.Dimension(64, 22));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
         eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -546,19 +531,9 @@ public class RegRistorante extends javax.swing.JFrame {
 
         nome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome1.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome1ActionPerformed(evt);
-            }
-        });
 
         cognome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome1.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognome1ActionPerformed(evt);
-            }
-        });
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel31.setText("E-mail");
@@ -571,11 +546,6 @@ public class RegRistorante extends javax.swing.JFrame {
 
         password1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password1.setMaximumSize(new java.awt.Dimension(64, 22));
-        password1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password1ActionPerformed(evt);
-            }
-        });
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel34.setText("Username");
@@ -732,19 +702,7 @@ public class RegRistorante extends javax.swing.JFrame {
 
         priceRist.setText("Fascia prezzo:");
         registraRisto.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
-
-        longitudine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                longitudineActionPerformed(evt);
-            }
-        });
         registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
-
-        latitudine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latitudineActionPerformed(evt);
-            }
-        });
         registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
 
         jLabel2.setText("Stato:");
@@ -1036,18 +994,6 @@ public class RegRistorante extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_regRisActionPerformed
 
-    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeActionPerformed
-
-    private void cognomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cognomeActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -1066,18 +1012,6 @@ public class RegRistorante extends javax.swing.JFrame {
         LoginFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_logout2ActionPerformed
-
-    private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome1ActionPerformed
-
-    private void cognome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cognome1ActionPerformed
-
-    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password1ActionPerformed
 
     private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
         if (eyePass1.isSelected()) {
@@ -1209,14 +1143,6 @@ public class RegRistorante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_modRisActionPerformed
 
-    private void longitudineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_longitudineActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_longitudineActionPerformed
-
-    private void latitudineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latitudineActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_latitudineActionPerformed
-
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
         mostraCommenti();
@@ -1235,16 +1161,6 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel17.setText(originale);
     }//GEN-LAST:event_jLabel17MouseExited
 
-   
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegRistorante(gestore, rislist).setVisible(true);
-            }
-        });
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiorna;
     private javax.swing.JTextField città;

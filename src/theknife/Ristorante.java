@@ -20,14 +20,14 @@ public class Ristorante {
     private double longRis;
     private double latRis;
     private String pnRis;
-    private int mediaStelleRis;
+    private double mediaStelleRis;
     private boolean delivery;
     private boolean prenotaOnline;
     private String desRis;
     private int idRis;
     private int idRistoratore;
 
-    public Ristorante(String nomeRis, String indRis, String locRis, String statoRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, int mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
+    public Ristorante(String nomeRis, String indRis, String locRis, String statoRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, double mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
         this.nomeRis = nomeRis;
         this.indRis = indRis;
         this.locRis = locRis;
@@ -117,11 +117,11 @@ public class Ristorante {
         this.pnRis = pnRis;
     }
 
-    public int getMediaStelleRis() {
+    public double getMediaStelleRis() {
         return mediaStelleRis;
     }
 
-    public void setMediaStelleRis(int mediaStelleRis) {
+    public void setMediaStelleRis(double mediaStelleRis) {
         this.mediaStelleRis = mediaStelleRis;
     }
 

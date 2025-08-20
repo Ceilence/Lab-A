@@ -22,7 +22,6 @@ public class ArchivioRis {
     public void leggiArchivio() {
         listaRis.clear();
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))) {
-            int contodiocane = 0;
             String line;
             while ((line = rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");
@@ -35,7 +34,7 @@ public class ArchivioRis {
                 double longRis = Double.parseDouble(token.nextToken());
                 double latRis = Double.parseDouble(token.nextToken());
                 String telRis = token.nextToken();
-                int mediaStelleRis = Integer.parseInt(token.nextToken());
+                double mediaStelleRis = Double.parseDouble(token.nextToken());
                 boolean delivery = Boolean.parseBoolean(token.nextToken());
                 boolean prenotaOnline = Boolean.parseBoolean(token.nextToken());
                 String desRis = token.nextToken();

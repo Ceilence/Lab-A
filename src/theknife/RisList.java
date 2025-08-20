@@ -106,6 +106,7 @@ public class RisList extends javax.swing.JFrame {
                 filtratore.add(p);
             }
         }
+        impostaRisAttuale();
         aggiornaLabel(filtratore.get(0).getRistorante());
         setPreferitoVisualizzato();
         aggiornaDetPref();
@@ -128,6 +129,7 @@ public class RisList extends javax.swing.JFrame {
             }
         }
         if (!filtratore.isEmpty()) {
+            impostaRisAttuale();
             aggiornaLabel(filtratore.get(0).getRistorante());
             setPreferitoVisualizzato();
             aggiornaDetPref();
@@ -168,6 +170,24 @@ public class RisList extends javax.swing.JFrame {
     
     public void setPreferitoVisualizzato() {
         gestore.getArchivioPreferiti().setPrefAttuale(filtratore.get(0).getRistorante().getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
+    }
+    
+    public void impostaRisAttuale() {
+        gestore.getArchivioRis().setRisAttuale(filtratore.get(0).getRistorante());
+    }
+    
+    public void setMediaValutazioni() {
+        Ristorante risAtt = gestore.getArchivioRis().getRisAttuale();
+        int sommaValutazioni = 0;
+        int numeroCommenti = 0;
+        for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
+            if (c.getIdRistorante() == risAtt.getIdRis()) {
+                sommaValutazioni += c.getValutazione();
+                numeroCommenti++;
+            }
+        }
+        double media = (numeroCommenti > 0) ? (double) sommaValutazioni / numeroCommenti : 0.0;
+        risAtt.setMediaStelleRis(media);
     }
    
     @SuppressWarnings("unchecked")
@@ -613,7 +633,7 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_indietroActionPerformed
 
     private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed
-        PaginaRecensioni pagRec = new PaginaRecensioni(gestore);
+        PaginaRecensioni pagRec = new PaginaRecensioni(gestore, RisList.this);
         pagRec.setLocationRelativeTo(scrollPaneDet);
         pagRec.pack();
         pagRec.setVisible(true);

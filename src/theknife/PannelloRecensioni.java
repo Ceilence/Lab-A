@@ -6,6 +6,7 @@
 package theknife;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author SSSSUGOI
@@ -16,7 +17,7 @@ public final class PannelloRecensioni extends JPanel{
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridBagLayout());
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         if (commento.isRisposta()) {
             setBackground(Color.LIGHT_GRAY);
@@ -24,9 +25,32 @@ public final class PannelloRecensioni extends JPanel{
             setBackground(Color.WHITE);
         }
         
+        JPanel panelStelle = new JPanel();
+        panelStelle.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0)); // orizzontale, poco spazio tra le stelle
+        panelStelle.setBorder(new LineBorder(Color.BLACK, 5));
+        panelStelle.setPreferredSize(new Dimension(200,25));
+        panelStelle.setMaximumSize(new Dimension(200,25));
+        panelStelle.setOpaque(false);
+
+        // Creo 5 label "stella"
+        JLabel stella1 = creaStellina();
+        JLabel stella2 = creaStellina();
+        JLabel stella3 = creaStellina();
+        JLabel stella4 = creaStellina();
+        JLabel stella5 = creaStellina();
+
+        // Le aggiungo al pannellino
+        panelStelle.add(stella1);
+        panelStelle.add(stella2);
+        panelStelle.add(stella3);
+        panelStelle.add(stella4);
+        panelStelle.add(stella5);
+
+       
         
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();
+        panelScritte.setBorder(new LineBorder(Color.BLACK, 5));
         panelScritte.setLayout(new BoxLayout(panelScritte, BoxLayout.Y_AXIS));
         panelScritte.setOpaque(false);
         
@@ -41,32 +65,36 @@ public final class PannelloRecensioni extends JPanel{
         
         JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
         testo.setFont(new Font("Arial", Font.PLAIN, 15));
+        panelScritte.add(nome);
+        panelScritte.add(titolo);
+        panelScritte.add(panelStelle);
+        panelScritte.add(spazio);
+        panelScritte.add(testo);
+        add(panelScritte, BorderLayout.NORTH);
         
         // --- SEZIONE PULSANTI ---
         if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore") && !commento.isRisposta()) {
-            JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
-            pulsantiPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-            pulsantiPanel.setOpaque(false);
-
             JButton btnRispondi = new JButton("Rispondi");
             btnRispondi.addActionListener(e -> {
-                PaginaRecensioni pagRec = new PaginaRecensioni(gestore, GestoreArchivi.RisListFrame);
-                pagRec.setLocationRelativeTo(null);
-                pagRec.pack();
-                pagRec.setVisible(true);
+            PaginaRecensioni pagRec = new PaginaRecensioni(gestore, GestoreArchivi.RisListFrame);
+            pagRec.setLocationRelativeTo(null);
+            pagRec.pack();
+            pagRec.setVisible(true);
             });
-            
-            pulsantiPanel.add(btnRispondi);
-            add(pulsantiPanel, BorderLayout.SOUTH);
+             
+            add(btnRispondi, BorderLayout.SOUTH);
         }
-        
-        panelScritte.add(nome);
-        panelScritte.add(titolo);
-        panelScritte.add(spazio);
-        panelScritte.add(testo);
-
-        add(panelScritte, BorderLayout.NORTH);
+        repaint();
+        revalidate();
     }
+    
+    private JLabel creaStellina() {
+    JLabel stella = new JLabel();
+    stella.setPreferredSize(new Dimension(15, 15));
+    stella.setOpaque(true);
+    stella.setBackground(Color.YELLOW); // colore giallo come "stella"
+    return stella;
+}
 }
 
 //controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti
@@ -75,3 +103,4 @@ public final class PannelloRecensioni extends JPanel{
 //rislist prima pagina = primo ristorantea
 //guest modifiche ai pulsanti (alla fine)
 //risposte spostate verso destra leggermente
+

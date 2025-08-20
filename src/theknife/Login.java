@@ -242,11 +242,77 @@ public class Login extends javax.swing.JFrame {
 
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
-        GestoreArchivi.RisListFrame.versioneGuest();
-        GestoreArchivi.RisListFrame.setVisible(true);
-        GestoreArchivi.RisListFrame.pack();
-        GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
-        this.dispose();
+                                  
+        // ---- JDialog ----
+        JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);
+        
+        // ---- Text field, Combo box e Bottone conferma culo ----
+        JTextField posizione = new JTextField(15);
+        JComboBox<String> stato = new JComboBox<>(new String[]{"Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam"});
+        stato.setSelectedIndex(-1);
+        JButton conferma = new JButton("Conferma");
+
+        // ---- Contenitore sbura ----
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
+        
+        // ---- Grandezza e allineamento componenti sboro ----
+        posizione.setPreferredSize(new Dimension(250, 30));
+        posizione.setMaximumSize(new Dimension(250, 30));
+        posizione.setAlignmentX(Component.CENTER_ALIGNMENT);
+        stato.setPreferredSize(new Dimension(250, 30));
+        stato.setMaximumSize(new Dimension(250, 30));
+        stato.setAlignmentX(Component.CENTER_ALIGNMENT);
+        conferma.setAlignmentX(Component.CENTER_ALIGNMENT);
+        conferma.setPreferredSize(new Dimension(150, 40));
+        conferma.setMaximumSize(new Dimension(130, 40));
+        conferma.setFont(new Font("Arial", Font.BOLD, 14));
+        conferma.setBackground(new Color(0, 102, 102));
+        conferma.setForeground(new Color(255, 255, 255));
+        
+
+        JLabel labelPosizione = new JLabel("Posizione:");
+        labelPosizione.setFont(new Font("Arial", Font.BOLD, 18));
+        labelPosizione.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(labelPosizione);
+        panel.add(posizione);
+        panel.add(Box.createVerticalStrut(15)); 
+
+        JLabel labelStato = new JLabel("Stato:");
+        labelStato.setFont(new Font("Arial", Font.BOLD, 18));
+        labelStato.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(labelStato);
+        panel.add(stato);
+        panel.add(Box.createVerticalStrut(15)); 
+
+        panel.add(conferma);
+
+        dialog.add(panel);
+        dialog.setSize(300, 300);
+        dialog.setLocationRelativeTo(this);
+
+        // ---- Bottone conferma cum ----
+        conferma.addActionListener(e -> {
+            String p = posizione.getText();
+            String s = (String) stato.getSelectedItem();
+            gestore.getArchivioUtenti().getUtenteAttuale().setStatoUtente(s);
+
+            if (p.isEmpty() || s == null) {
+                JOptionPane.showMessageDialog(dialog, "Compila i campi obbligatori", "Errore", JOptionPane.ERROR_MESSAGE);
+            } else {
+                dialog.dispose();  
+                this.dispose(); 
+                GestoreArchivi.RisListFrame.filtraPosizione(p, 10);
+                GestoreArchivi.RisListFrame.versioneGuest();
+                GestoreArchivi.RisListFrame.setVisible(true);
+                GestoreArchivi.RisListFrame.pack();
+                GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
+            }
+        });
+
+        dialog.setVisible(true);
+        
     }//GEN-LAST:event_guestButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed

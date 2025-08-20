@@ -28,6 +28,8 @@ public class RegUtente extends javax.swing.JFrame {
         infoPassPane.setVisible(false);
         infoPass.setVisible(false);
         
+        statoUtente.setSelectedIndex(-1);
+        
         
         //Immagine punto di domanda per le informazioni password ridimensionata ed applicata.
         ImageIcon qmIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\qm.png"));
@@ -151,7 +153,7 @@ public class RegUtente extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel6.setText("cliente ");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 130, 26));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 110, 26));
 
         jLabel8.setText("Posizione:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 75, -1));
@@ -298,7 +300,7 @@ public class RegUtente extends javax.swing.JFrame {
     //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
         
-        if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText()))) {
+        if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText(), (String)statoUtente.getSelectedItem()))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(emailCliente.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");

@@ -78,8 +78,6 @@ public class RegRisto extends javax.swing.JFrame {
         usernameCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        posizioneCliente = new javax.swing.JTextField();
         passwordCliente = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         nomeCliente = new javax.swing.JTextField();
@@ -88,8 +86,6 @@ public class RegRisto extends javax.swing.JFrame {
         erroreEmail = new javax.swing.JLabel();
         accediErrore = new javax.swing.JLabel();
         qmLabel = new javax.swing.JLabel();
-        statoUtente = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -132,7 +128,7 @@ public class RegRisto extends javax.swing.JFrame {
                 regClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(regCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 90, 30));
+        jPanel3.add(regCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 90, 30));
 
         jLabel2.setText("Username:");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 79, -1));
@@ -145,12 +141,8 @@ public class RegRisto extends javax.swing.JFrame {
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 70, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        jLabel6.setText("cliente ");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 130, 26));
-
-        jLabel8.setText("Posizione:");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 75, -1));
-        jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 135, -1));
+        jLabel6.setText("ristoratore ");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 170, 26));
         jPanel3.add(passwordCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 288, -1));
 
         jLabel10.setText("Nome:");
@@ -193,12 +185,6 @@ public class RegRisto extends javax.swing.JFrame {
             }
         });
         jPanel3.add(qmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 20, -1));
-
-        statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
-        jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, -1));
-
-        jLabel11.setText("Stato:");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
@@ -269,14 +255,14 @@ public class RegRisto extends javax.swing.JFrame {
     //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
         
-        if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText()))) {
+        if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), "guest", "guest"))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(emailCliente.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");
         } else if (!ValidaReg.passValida(passwordCliente.getText().trim())) { 
             JOptionPane.showMessageDialog(null, "Formato password non valido");
         } else if (!gestore.getArchivioUtenti().esisteMail(emailCliente.getText().trim())) {
-            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), posizioneCliente.getText().trim(), (String) statoUtente.getSelectedItem(), gestore.getArchivioUtenti().creaID(), "cliente"));
+            gestore.getArchivioUtenti().aggiungiUtente(new Utente(nomeCliente.getText().trim(), cognomeCliente.getText().trim(), usernameCliente.getText().trim(), emailCliente.getText().trim(), passwordCliente.getText().trim(), "guest", "guest", gestore.getArchivioUtenti().creaID(), "ristoratore"));
             
             Login LoginFrame = new Login(gestore);
             LoginFrame.setVisible(true);
@@ -348,23 +334,19 @@ public class RegRisto extends javax.swing.JFrame {
     private javax.swing.JScrollPane infoPassPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nomeCliente;
     private javax.swing.JPasswordField passwordCliente;
-    private javax.swing.JTextField posizioneCliente;
     private javax.swing.JLabel qmLabel;
     private javax.swing.JButton regCliente;
-    private javax.swing.JComboBox<String> statoUtente;
     private javax.swing.JTextField usernameCliente;
     // End of variables declaration//GEN-END:variables
 }

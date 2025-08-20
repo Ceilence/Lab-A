@@ -647,6 +647,7 @@ public class RisList extends javax.swing.JFrame {
     public void versioneGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
             detPref.setVisible(false);
+            profiloUtente.setVisible(false);
         } else {
             detPref.setVisible(true);
         }

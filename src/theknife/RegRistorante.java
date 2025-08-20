@@ -30,6 +30,8 @@ public class RegRistorante extends javax.swing.JFrame {
         
         contenitoreCommenti.setLayout(new BoxLayout(contenitoreCommenti, BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "dettagli");
         
         this.gestore = gestore;
         this.rislist = rislist;
@@ -45,8 +47,6 @@ public class RegRistorante extends javax.swing.JFrame {
         email.setEditable(false);
         username.setText(u.getUsernameUtente());
         username.setEditable(false);
-        posizione.setText(u.getPosizioneUtente());
-        posizione.setEditable(false);
         password.setText(u.getPassUtente());
         password.setEditable(false);
         
@@ -59,8 +59,6 @@ public class RegRistorante extends javax.swing.JFrame {
         email1.setEditable(true);
         username1.setText(u.getUsernameUtente());
         username1.setEditable(true);
-        posizione1.setText(u.getPosizioneUtente());
-        posizione1.setEditable(true);
         password1.setText(u.getPassUtente());
         password1.setEditable(true);
         
@@ -109,12 +107,10 @@ public class RegRistorante extends javax.swing.JFrame {
         cognome = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
-        posizione = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         eyePass = new javax.swing.JToggleButton();
@@ -131,9 +127,7 @@ public class RegRistorante extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         email1 = new javax.swing.JTextField();
         password1 = new javax.swing.JPasswordField();
-        jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        posizione1 = new javax.swing.JTextField();
         username1 = new javax.swing.JTextField();
         eyePass1 = new javax.swing.JToggleButton();
         aggiorna = new javax.swing.JButton();
@@ -408,10 +402,6 @@ public class RegRistorante extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        posizione.setBackground(new java.awt.Color(204, 204, 204));
-        posizione.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione.setMaximumSize(new java.awt.Dimension(64, 22));
-
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel22.setText("Nome");
 
@@ -423,9 +413,6 @@ public class RegRistorante extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel25.setText("Password");
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel26.setText("Posizione");
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel27.setText("Username");
@@ -453,6 +440,7 @@ public class RegRistorante extends javax.swing.JFrame {
         logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         logout2.setForeground(new java.awt.Color(255, 255, 255));
         logout2.setText("Logout");
+        logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logout2ActionPerformed(evt);
@@ -471,23 +459,20 @@ public class RegRistorante extends javax.swing.JFrame {
                         .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(dettagliRistoLayout.createSequentialGroup()
-                                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(logout2))
+                    .addComponent(logout2)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
         dettagliRistoLayout.setVerticalGroup(
@@ -514,13 +499,9 @@ public class RegRistorante extends javax.swing.JFrame {
                         .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27))
+                .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dettagliRistoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logout2)
                 .addContainerGap(286, Short.MAX_VALUE))
@@ -596,14 +577,8 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel33.setText("Posizione");
-
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel34.setText("Username");
-
-        posizione1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione1.setMaximumSize(new java.awt.Dimension(64, 22));
 
         username1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username1.setMaximumSize(new java.awt.Dimension(64, 22));
@@ -641,23 +616,20 @@ public class RegRistorante extends javax.swing.JFrame {
                         .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nome1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                            .addComponent(email1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(posizione1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(email1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(modificaDatiLayout.createSequentialGroup()
-                                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(password1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(username1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eyePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(aggiorna))
+                    .addComponent(aggiorna)
+                    .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
         modificaDatiLayout.setVerticalGroup(
@@ -684,13 +656,9 @@ public class RegRistorante extends javax.swing.JFrame {
                         .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel34))
+                .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(aggiorna)
                 .addContainerGap(286, Short.MAX_VALUE))
@@ -710,6 +678,7 @@ public class RegRistorante extends javax.swing.JFrame {
         regRis.setBackground(new java.awt.Color(0, 102, 102));
         regRis.setForeground(new java.awt.Color(255, 255, 255));
         regRis.setText("Registra");
+        regRis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regRis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regRisActionPerformed(evt);
@@ -741,7 +710,11 @@ public class RegRistorante extends javax.swing.JFrame {
 
         desRist.setText("Descrizione:");
         registraRisto.add(desRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+
+        delcheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registraRisto.add(delcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+
+        prencheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registraRisto.add(prencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
 
         deliveryRist.setText("Delivery:");
@@ -1082,6 +1055,11 @@ public class RegRistorante extends javax.swing.JFrame {
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
+        Login LoginFrame = new Login(gestore);
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_logout2ActionPerformed
 
     private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
@@ -1107,7 +1085,7 @@ public class RegRistorante extends javax.swing.JFrame {
     }//GEN-LAST:event_eyePass1ActionPerformed
 
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
-        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText()))) {
+        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), "guest", "guest"))) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(email1.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");
@@ -1120,7 +1098,6 @@ public class RegRistorante extends javax.swing.JFrame {
             u.setEmailUtente(email1.getText());
             u.setPassUtente(password1.getText());
             u.setUsernameUtente(username1.getText());
-            u.setPosizioneUtente(posizione1.getText());
             gestore.getArchivioUtenti().aggiornaUtenti();
             
             nome.setText(nome1.getText());
@@ -1128,7 +1105,7 @@ public class RegRistorante extends javax.swing.JFrame {
             email.setText(email1.getText());
             password.setText(password1.getText());
             username.setText(username1.getText());
-            posizione.setText(posizione1.getText());
+            
 
             JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
 
@@ -1299,7 +1276,6 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1307,7 +1283,6 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1356,8 +1331,6 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JScrollPane pannelloRisposte;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField password1;
-    private javax.swing.JTextField posizione;
-    private javax.swing.JTextField posizione1;
     private javax.swing.JLabel prenOnl;
     private javax.swing.JCheckBox prencheck;
     private javax.swing.JComboBox<String> prezzoBox;

@@ -862,7 +862,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     }//GEN-LAST:event_eyePass1ActionPerformed
 
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
-        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText()))) {
+        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText(), gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente()))) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(email1.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");
@@ -901,6 +901,14 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
+        gestore.getArchivioPreferiti().getPreferiti().clear();
+        risList.setEnabled(true);
+        risList.dispose();
+        Login LoginFrame = new Login(gestore);
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void jLabel19MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseEntered

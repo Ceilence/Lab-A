@@ -42,6 +42,24 @@ public final class PannelloRecensioni extends JPanel{
         JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
         testo.setFont(new Font("Arial", Font.PLAIN, 15));
         
+        // --- SEZIONE PULSANTI ---
+        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore") && !commento.isRisposta()) {
+            JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+            pulsantiPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            pulsantiPanel.setOpaque(false);
+
+            JButton btnRispondi = new JButton("Rispondi");
+            btnRispondi.addActionListener(e -> {
+                PaginaRecensioni pagRec = new PaginaRecensioni(gestore, GestoreArchivi.RisListFrame);
+                pagRec.setLocationRelativeTo(null);
+                pagRec.pack();
+                pagRec.setVisible(true);
+            });
+            
+            pulsantiPanel.add(btnRispondi);
+            add(pulsantiPanel, BorderLayout.SOUTH);
+        }
+        
         panelScritte.add(nome);
         panelScritte.add(titolo);
         panelScritte.add(spazio);

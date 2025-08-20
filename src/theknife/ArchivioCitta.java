@@ -18,7 +18,6 @@ public class ArchivioCitta {
     private static final double RAGGIO_TERRA_KM = 6371;
             
     private final ArrayList<Citta> listaCitta = new ArrayList<>();
-    private final ArrayList<Citta> filtrate = new ArrayList<>();
     
     public ArchivioCitta() {}
     
@@ -37,45 +36,6 @@ public class ArchivioCitta {
         } catch (IOException e) {
             System.out.println("Errore nella lettura del file:" + e.getMessage());
         }
-    }
-    
-    public boolean continuaRicerca(String s) {
-        if (s.equals(stringInserita) || s.startsWith(stringInserita)) {
-            this.stringInserita = s;
-            return true; 
-        } else {     
-            this.stringInserita = s;
-            return false;
-        }
-    }
-    
-    public boolean uguale(Citta a, Citta b) {
-        return (a.getNomeCitta().equals(b.getNomeCitta()) 
-                && a.getLatCitta() == b.getLatCitta () 
-                && a.getLonCitta() == b.getLonCitta());
-    }
-    
-    public boolean giaInserita(Citta c) {
-        for (Citta f : listaCitta) {
-            if (uguale(f, c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public ArrayList<Citta> getCercate(String s) {
-        if (!continuaRicerca(s)) {
-            filtrate.clear();
-        }
-        for (Citta f : listaCitta) {
-            if (!giaInserita(f)) {
-                if (f.getNomeCitta().startsWith(s)) {
-                    filtrate.add(f);
-                }
-            }
-        }
-        return filtrate;
     }
     
     //Restituisce la città

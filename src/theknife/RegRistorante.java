@@ -155,8 +155,8 @@ public class RegRistorante extends javax.swing.JFrame {
         priceRist = new javax.swing.JLabel();
         longitudine = new javax.swing.JTextField();
         latitudine = new javax.swing.JTextField();
-        stato = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        stato = new javax.swing.JComboBox<>();
         modificaRisto = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         modCittà = new javax.swing.JTextField();
@@ -180,8 +180,8 @@ public class RegRistorante extends javax.swing.JFrame {
         modCucina = new javax.swing.JTextField();
         modPrezzoBox = new javax.swing.JComboBox<>();
         modPriceRist = new javax.swing.JLabel();
-        modStato = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        modStato = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -746,10 +746,13 @@ public class RegRistorante extends javax.swing.JFrame {
             }
         });
         registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
-        registraRisto.add(stato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, -1));
 
         jLabel2.setText("Stato:");
         registraRisto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 240, -1, -1));
+
+        stato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        stato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        registraRisto.add(stato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
 
         pannelloDestra.add(registraRisto, "registra");
 
@@ -812,10 +815,13 @@ public class RegRistorante extends javax.swing.JFrame {
 
         modPriceRist.setText("Fascia prezzo:");
         modificaRisto.add(modPriceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
-        modificaRisto.add(modStato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, -1));
 
         jLabel3.setText("Stato:");
         modificaRisto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 240, -1, -1));
+
+        modStato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        modStato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        modificaRisto.add(modStato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
@@ -906,7 +912,7 @@ public class RegRistorante extends javax.swing.JFrame {
                     modCucina.setEditable(true);
                     modCittà.setText(r.getLocRis());
                     modCittà.setEditable(true);
-                    modStato.setText(r.getStatoRis());
+                    modStato.setSelectedItem(r.getStatoRis());
                     modStato.setEditable(true);
                     modIndirizzo.setText(r.getIndRis());
                     modIndirizzo.setEditable(true);
@@ -1003,7 +1009,6 @@ public class RegRistorante extends javax.swing.JFrame {
     }
     
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
-        // TODO add your handling code here:
         if(!longitudine.getText().matches("[0-9.]*") && !longitudine.getText().matches("[0-9.]*"))
             JOptionPane.showMessageDialog(null, "Puoi inserire solo numeri e il punto come separatore decimale!");
         else{
@@ -1015,7 +1020,7 @@ public class RegRistorante extends javax.swing.JFrame {
             if(trovato == true)
                 JOptionPane.showMessageDialog(null, "Esiste già un ristorante alla posizione inserita!");
             else{
-                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), stato.getText(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
+                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String) stato.getSelectedItem(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
                 JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
                 nomeField.setText("");
                 indirizzo.setText("");
@@ -1187,7 +1192,7 @@ public class RegRistorante extends javax.swing.JFrame {
         gestore.getArchivioRis().getRisAttuale().setNomeRis(modNomeField.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setCuisRis(modCucina.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setLocRis(modCittà.getText().trim());
-        gestore.getArchivioRis().getRisAttuale().setStatoRis(modStato.getText().trim());
+        gestore.getArchivioRis().getRisAttuale().setStatoRis((String) modStato.getSelectedItem());
         gestore.getArchivioRis().getRisAttuale().setIndRis(modIndirizzo.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setLongRis(Double.parseDouble(modLongitudine.getText().trim()));
         gestore.getArchivioRis().getRisAttuale().setLatRis(Double.parseDouble(modLatitudine.getText().trim())); 
@@ -1320,7 +1325,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> modPrezzoBox;
     private javax.swing.JLabel modPriceRist;
     private javax.swing.JButton modRis;
-    private javax.swing.JTextField modStato;
+    private javax.swing.JComboBox<String> modStato;
     private javax.swing.JPanel modificaDati;
     private javax.swing.JPanel modificaRisto;
     private javax.swing.JTextField nome;
@@ -1338,7 +1343,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JButton regRis;
     private javax.swing.JPanel registraRisto;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JTextField stato;
+    private javax.swing.JComboBox<String> stato;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables

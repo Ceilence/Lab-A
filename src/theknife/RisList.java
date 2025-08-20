@@ -16,6 +16,8 @@ import javax.swing.*;
  *
  * @author davim
  */
+
+//QUANDO SI FANNO FILTRI RICORDARSI DI AGGIORNARE LABEL, DETPREF E PREF ATTUALE.
 public class RisList extends javax.swing.JFrame {
    
     private final GestoreArchivi gestore;
@@ -81,8 +83,6 @@ public class RisList extends javax.swing.JFrame {
             gestore.getArchivioRis().setRisAttuale(filtratore.get(0).getRistorante());
             gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
             aggiornaLabel(filtratore.get(0).getRistorante());
-           
-            
             
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
@@ -91,7 +91,6 @@ public class RisList extends javax.swing.JFrame {
             
         }
     };
-
     worker.execute();
 }
     
@@ -108,6 +107,8 @@ public class RisList extends javax.swing.JFrame {
             }
         }
         aggiornaLabel(filtratore.get(0).getRistorante());
+        setPreferitoVisualizzato();
+        aggiornaDetPref();
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
     
@@ -124,18 +125,16 @@ public class RisList extends javax.swing.JFrame {
                 if(distanza <= distanzaMax){
                     filtratore.add(p);
                 }
-            } 
-             
+            }
         }
         if (!filtratore.isEmpty()) {
             aggiornaLabel(filtratore.get(0).getRistorante());
+            setPreferitoVisualizzato();
+            aggiornaDetPref();
         }
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
         impaginazione(pagina);
     }
-    
-    //porcodio sono un ritardato mi ammazzo, perchè adoro complicarmi la vita dio merda
-    //Ah si ragazzi le hashmap mlml belle da usare risolvono tutto
     
     public void impaginazione(int pagina){
         contenitorePanel.removeAll();
@@ -165,6 +164,10 @@ public class RisList extends javax.swing.JFrame {
         } else {
             vediTutte.setVisible(true);
         }
+    }
+    
+    public void setPreferitoVisualizzato() {
+        gestore.getArchivioPreferiti().setPrefAttuale(filtratore.get(0).getRistorante().getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
     }
    
     @SuppressWarnings("unchecked")
@@ -280,11 +283,6 @@ public class RisList extends javax.swing.JFrame {
         campoRicerca.setMaximumSize(null);
         campoRicerca.setMinimumSize(new java.awt.Dimension(375, 40));
         campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
-        campoRicerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoRicercaActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -589,15 +587,9 @@ public class RisList extends javax.swing.JFrame {
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
         filtraPannelli(campoRicerca.getText());
         impaginazione(pagina);
-     
     }//GEN-LAST:event_cercaActionPerformed
 
-    private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoRicercaActionPerformed
-
     private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
-        // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
         
@@ -610,7 +602,6 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_avantiActionPerformed
 
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
-        // TODO add your handling code here:
         scrollPane.getVerticalScrollBar().setValue(0);
         int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
         
@@ -618,7 +609,6 @@ public class RisList extends javax.swing.JFrame {
             pagina--;
             impaginazione(pagina);   
         }
-        
         contatore.setText((pagina + 1) + " / " + totalePagine);
     }//GEN-LAST:event_indietroActionPerformed
 
@@ -630,14 +620,12 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_scriviRecActionPerformed
 
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
-        // TODO add your handling code here:
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");
         gestore.getArchivioCommenti().generaCommenti(contenitoreRec, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
     }//GEN-LAST:event_vediTutteActionPerformed
 
     private void indietroBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroBottoneActionPerformed
-        // TODO add your handling code here:
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
         resettaBarra();
@@ -794,3 +782,6 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton vediTutte;
     // End of variables declaration//GEN-END:variables
 }
+
+
+

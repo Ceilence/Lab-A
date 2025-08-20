@@ -51,6 +51,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         posizione.setEditable(false);
         password.setText(u.getPassUtente());
         password.setEditable(false);
+        statoUtente.setSelectedItem(u.getStatoUtente());
+        statoUtente.setEditable(false);
+        
         
         //Dati dell'utente modificabili
         nome1.setText(u.getNomeUtente());
@@ -65,6 +68,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         posizione1.setEditable(true);
         password1.setText(u.getPassUtente());
         password1.setEditable(true);
+        statoUtente1.setSelectedItem(u.getStatoUtente());
+        statoUtente1.setEditable(true);
+        
         
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\show_pass.png"));
@@ -220,6 +226,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         eyePass = new javax.swing.JToggleButton();
         logout = new javax.swing.JButton();
+        statoUtente = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
         modificaDati = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -236,6 +244,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         username1 = new javax.swing.JTextField();
         eyePass1 = new javax.swing.JToggleButton();
         aggiorna = new javax.swing.JButton();
+        statoUtente1 = new javax.swing.JComboBox<>();
+        jLabel23 = new javax.swing.JLabel();
         preferiti = new javax.swing.JScrollPane();
         modificaPreferiti = new javax.swing.JScrollPane();
 
@@ -520,6 +530,13 @@ public class PaginaUtente extends javax.swing.JFrame {
             }
         });
 
+        statoUtente.setBackground(new java.awt.Color(204, 204, 204));
+        statoUtente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel20.setText("Stato");
+
         javax.swing.GroupLayout dettagliUtenteLayout = new javax.swing.GroupLayout(dettagliUtente);
         dettagliUtente.setLayout(dettagliUtenteLayout);
         dettagliUtenteLayout.setHorizontalGroup(
@@ -531,30 +548,34 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addGroup(dettagliUtenteLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logout))
-                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logout)
                             .addGroup(dettagliUtenteLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(statoUtente, 0, 285, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(posizione, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(dettagliUtenteLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(dettagliUtenteLayout.createSequentialGroup()
-                                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(dettagliUtenteLayout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(dettagliUtenteLayout.createSequentialGroup()
+                                                .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
         dettagliUtenteLayout.setVerticalGroup(
@@ -589,8 +610,12 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statoUtente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(logout)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(dettagliUtente, "dettagli");
@@ -674,6 +699,12 @@ public class PaginaUtente extends javax.swing.JFrame {
             }
         });
 
+        statoUtente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statoUtente1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel23.setText("Stato");
+
         javax.swing.GroupLayout modificaDatiLayout = new javax.swing.GroupLayout(modificaDati);
         modificaDati.setLayout(modificaDatiLayout);
         modificaDatiLayout.setHorizontalGroup(
@@ -685,24 +716,28 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addGroup(modificaDatiLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aggiorna))
-                        .addGap(32, 32, 32)
-                        .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statoUtente1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(modificaDatiLayout.createSequentialGroup()
-                                .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eyePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cognome1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(modificaDatiLayout.createSequentialGroup()
+                                        .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(eyePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(aggiorna)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(127, Short.MAX_VALUE))
         );
         modificaDatiLayout.setVerticalGroup(
@@ -737,8 +772,12 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statoUtente1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(aggiorna)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(modificaDati, "modifica");
@@ -781,6 +820,8 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     //Bottone per tornare alla pagina principale
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        risList.setPreferitoVisualizzato();
+        risList.aggiornaDetPref();
         risList.setEnabled(true);
         this.dispose();
         risList.setVisible(true);
@@ -878,6 +919,7 @@ public class PaginaUtente extends javax.swing.JFrame {
             u.setPassUtente(password1.getText());
             u.setUsernameUtente(username1.getText());
             u.setPosizioneUtente(posizione1.getText());
+            u.setStatoUtente((String) statoUtente1.getSelectedItem());
             gestore.getArchivioUtenti().aggiornaUtenti();
             
             nome.setText(nome1.getText());
@@ -886,6 +928,7 @@ public class PaginaUtente extends javax.swing.JFrame {
             password.setText(password1.getText());
             username.setText(username1.getText());
             posizione.setText(posizione1.getText());
+            statoUtente.setSelectedItem(statoUtente1.getSelectedItem());
             
         
             JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
@@ -973,8 +1016,10 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -997,6 +1042,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JTextField posizione;
     private javax.swing.JTextField posizione1;
     private javax.swing.JScrollPane preferiti;
+    private javax.swing.JComboBox<String> statoUtente;
+    private javax.swing.JComboBox<String> statoUtente1;
     private javax.swing.JPanel testa;
     private javax.swing.JTextField username;
     private javax.swing.JTextField username1;

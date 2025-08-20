@@ -4,9 +4,7 @@
  */
 package theknife;
 import javax.swing.*;
-import javax.swing.text.*;
 import java.awt.*;
-import java.text.*;
 
 /**
  *
@@ -14,8 +12,8 @@ import java.text.*;
  */
 public class RegRistorante extends javax.swing.JFrame {
     //Dichiarazione variabili
-    private static GestoreArchivi gestore;
-    private static RisList rislist;
+    private GestoreArchivi gestore;
+    private RisList rislist;
     private final ImageIcon showPass;
     private final ImageIcon hidePass;
     private String originale;

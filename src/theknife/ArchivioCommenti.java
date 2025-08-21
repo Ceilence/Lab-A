@@ -32,17 +32,17 @@ public class ArchivioCommenti {
                 String tipoCommento = token.nextToken();
                 int idScrittore = Integer.parseInt(token.nextToken());
                 String testo = token.nextToken();
-                String titolo = token.nextToken();
                 int idCommento = Integer.parseInt(token.nextToken());
 
                 if ("recensione".equals(tipoCommento)) {
+                    String titolo = token.nextToken();
                     int idRistorante = Integer.parseInt(token.nextToken());
                     int valutazione = Integer.parseInt(token.nextToken());
                     boolean haRisposta = Boolean.parseBoolean(token.nextToken());
                     boolean daLeggere = Boolean.parseBoolean(token.nextToken());
-                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento, idRistorante, valutazione, haRisposta, daLeggere));
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento, titolo, idRistorante, valutazione, haRisposta, daLeggere));
                 } else if ("risposta".equals(tipoCommento)) {
-                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, titolo, idCommento));
+                    listaCommenti.add(new CommentiRistoranti(idScrittore, testo, idCommento));
                 }
             }
         } catch (IOException e) {
@@ -65,7 +65,6 @@ public class ArchivioCommenti {
         for (CommentiRistoranti cr : listaCommenti) {
             if (cr.getIdCommento() == commento.getIdCommento() && cr.isRisposta()) {
                 return cr;
-                        
             }
         }
         return null;

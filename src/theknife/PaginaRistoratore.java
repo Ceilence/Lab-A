@@ -5,21 +5,23 @@
 package theknife;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author davim Alefr AntoPar
  */
-public class RegRistorante extends javax.swing.JFrame {
+public class PaginaRistoratore extends javax.swing.JFrame {
     //Dichiarazione variabili
     private GestoreArchivi gestore;
     private RisList rislist;
-    private final ImageIcon showPass;
-    private final ImageIcon hidePass;
+    private final ImageIcon showPass, hidePass;
+    private ArrayList<CommentiRistoranti> listaDaLeggere = new ArrayList<>();
     private String originale;
     
-    public RegRistorante(GestoreArchivi gestore, RisList rislist) { 
-        //Inizializzazione vari componenti e Lable.
+    
+    public PaginaRistoratore(GestoreArchivi gestore, RisList rislist) { 
+        //Inizializzazione vari componenti e Label.
         initComponents();  
         
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
@@ -86,11 +88,11 @@ public class RegRistorante extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        dettagliUtente = new javax.swing.JLabel();
+        modificaDatiUtente = new javax.swing.JLabel();
+        registraRistorante = new javax.swing.JLabel();
+        areaRistoranti = new javax.swing.JLabel();
+        areaCommenti = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -204,78 +206,78 @@ public class RegRistorante extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 102, 102));
         jSeparator1.setMaximumSize(new java.awt.Dimension(50, 10));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("Dettagli ristoratore");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        dettagliUtente.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        dettagliUtente.setText("Dettagli ristoratore");
+        dettagliUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dettagliUtente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                dettagliUtenteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel10MouseEntered(evt);
+                dettagliUtenteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel10MouseExited(evt);
+                dettagliUtenteMouseExited(evt);
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel13.setText("Modifica dati");
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        modificaDatiUtente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        modificaDatiUtente.setText("Modifica dati");
+        modificaDatiUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificaDatiUtente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                modificaDatiUtenteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel13MouseEntered(evt);
+                modificaDatiUtenteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel13MouseExited(evt);
+                modificaDatiUtenteMouseExited(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("Registra ristorante");
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        registraRistorante.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        registraRistorante.setText("Registra ristorante");
+        registraRistorante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registraRistorante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+                registraRistoranteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel12MouseEntered(evt);
+                registraRistoranteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel12MouseExited(evt);
+                registraRistoranteMouseExited(evt);
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel15.setText("I tuoi ristoranti");
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+        areaRistoranti.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        areaRistoranti.setText("I tuoi ristoranti");
+        areaRistoranti.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        areaRistoranti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
+                areaRistorantiMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel15MouseEntered(evt);
+                areaRistorantiMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel15MouseExited(evt);
+                areaRistorantiMouseExited(evt);
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel17.setText("Rispondi ai commenti");
-        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+        areaCommenti.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        areaCommenti.setText("Rispondi ai commenti");
+        areaCommenti.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        areaCommenti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
+                areaCommentiMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel17MouseEntered(evt);
+                areaCommentiMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel17MouseExited(evt);
+                areaCommentiMouseExited(evt);
             }
         });
 
@@ -297,11 +299,11 @@ public class RegRistorante extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel17))
+                            .addComponent(dettagliUtente)
+                            .addComponent(modificaDatiUtente)
+                            .addComponent(registraRistorante)
+                            .addComponent(areaRistoranti)
+                            .addComponent(areaCommenti))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -314,19 +316,19 @@ public class RegRistorante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(dettagliUtente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(modificaDatiUtente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel15)
+                .addComponent(areaRistoranti)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
+                .addComponent(registraRistorante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17)
+                .addComponent(areaCommenti)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -839,7 +841,6 @@ public class RegRistorante extends javax.swing.JFrame {
         for (Ristorante r : gestore.getArchivioRis().getRis()) {
             // Mostra solo i ristoranti di questo utente
             if (r.getIdRistoratore() == attuale.getIdUtente()) {
-
                 JPanel panelRisto = new JPanel(new BorderLayout());
                 panelRisto.setBorder(BorderFactory.createLineBorder(Color.GRAY));
                 panelRisto.setBackground(new Color(245, 245, 245)); 
@@ -922,6 +923,7 @@ public class RegRistorante extends javax.swing.JFrame {
         for (Ristorante r : gestore.getArchivioRis().getRis()) {
             // Mostra solo i ristoranti di questo utente
             if (r.getIdRistoratore() == attuale.getIdUtente()) {
+                
 
                 JPanel panelRisto = new JPanel(new BorderLayout());
                 panelRisto.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -930,11 +932,13 @@ public class RegRistorante extends javax.swing.JFrame {
                 panelRisto.setPreferredSize(new Dimension(scrollPane.getViewport().getWidth() - 30, 80));
                 panelRisto.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70)); // altezza fissa
 
-                //nome del ristorante
+                //label
                 JLabel nomeLabel = new JLabel(r.getNomeRis());
                 nomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
                 nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                 panelRisto.add(nomeLabel, BorderLayout.CENTER);
+                
+                JLabel daLeggere = new JLabel("Hai " + quanteDaLeggere + " nuove recensioni da leggere.");
 
                 //pulsanti
                 JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
@@ -992,6 +996,12 @@ public class RegRistorante extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_regRisActionPerformed
 
+    public void aggiungiDaLeggere() {
+        for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
+            
+        }
+    }
+    
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -1052,75 +1062,64 @@ public class RegRistorante extends javax.swing.JFrame {
 
     }//GEN-LAST:event_aggiornaActionPerformed
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void dettagliUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_dettagliUtenteMouseClicked
 
-    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-        // TODO add your handling code here:
-        originale = jLabel10.getText();
-        jLabel10.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel10MouseEntered
+    private void dettagliUtenteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseEntered
+        originale = dettagliUtente.getText();
+        dettagliUtente.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_dettagliUtenteMouseEntered
 
-    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
-        // TODO add your handling code here:
-        jLabel10.setText(originale);
-    }//GEN-LAST:event_jLabel10MouseExited
+    private void dettagliUtenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseExited
+        dettagliUtente.setText(originale);
+    }//GEN-LAST:event_dettagliUtenteMouseExited
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void modificaDatiUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modifica");
-    }//GEN-LAST:event_jLabel13MouseClicked
+    }//GEN-LAST:event_modificaDatiUtenteMouseClicked
 
-    private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
-        // TODO add your handling code here:
-        originale = jLabel13.getText();
-        jLabel13.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel13MouseEntered
+    private void modificaDatiUtenteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseEntered
+        originale = modificaDatiUtente.getText();
+        modificaDatiUtente.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_modificaDatiUtenteMouseEntered
 
-    private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
-        // TODO add your handling code here:
-        jLabel13.setText(originale);
-    }//GEN-LAST:event_jLabel13MouseExited
+    private void modificaDatiUtenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseExited
+        modificaDatiUtente.setText(originale);
+    }//GEN-LAST:event_modificaDatiUtenteMouseExited
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        // TODO add your handling code here:
+    private void registraRistoranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "registra");
-    }//GEN-LAST:event_jLabel12MouseClicked
+    }//GEN-LAST:event_registraRistoranteMouseClicked
 
-    private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
-        // TODO add your handling code here:
-        originale = jLabel12.getText();
-        jLabel12.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel12MouseEntered
+    private void registraRistoranteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseEntered
+        originale = registraRistorante.getText();
+        registraRistorante.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_registraRistoranteMouseEntered
 
-    private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
-        // TODO add your handling code here:
-        jLabel12.setText(originale);
-    }//GEN-LAST:event_jLabel12MouseExited
+    private void registraRistoranteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseExited
+        registraRistorante.setText(originale);
+    }//GEN-LAST:event_registraRistoranteMouseExited
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
-        // TODO add your handling code here:
+    private void areaRistorantiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseClicked
         mostraRistoranti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "ristorantiMenu");
-    }//GEN-LAST:event_jLabel15MouseClicked
+    }//GEN-LAST:event_areaRistorantiMouseClicked
 
-    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
-        // TODO add your handling code here:
-        originale = jLabel15.getText();
-        jLabel15.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel15MouseEntered
+    private void areaRistorantiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseEntered
+        originale = areaRistoranti.getText();
+        areaRistoranti.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_areaRistorantiMouseEntered
 
-    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
-        // TODO add your handling code here:
-        jLabel15.setText(originale);
-    }//GEN-LAST:event_jLabel15MouseExited
+    private void areaRistorantiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseExited
+        areaRistoranti.setText(originale);
+    }//GEN-LAST:event_areaRistorantiMouseExited
 
     private void modRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modRisActionPerformed
-        // TODO add your handling code here:
         gestore.getArchivioRis().getRisAttuale().setNomeRis(modNomeField.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setCuisRis(modCucina.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setLocRis(modCittà.getText().trim());
@@ -1141,26 +1140,25 @@ public class RegRistorante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_modRisActionPerformed
 
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-        // TODO add your handling code here:
+    private void areaCommentiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseClicked
         mostraCommenti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "rispondiPanel");
-    }//GEN-LAST:event_jLabel17MouseClicked
+    }//GEN-LAST:event_areaCommentiMouseClicked
 
-    private void jLabel17MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseEntered
-        // TODO add your handling code here:
-        originale = jLabel17.getText();
-        jLabel17.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel17MouseEntered
+    private void areaCommentiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseEntered
+        originale = areaCommenti.getText();
+        areaCommenti.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_areaCommentiMouseEntered
 
-    private void jLabel17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseExited
-        // TODO add your handling code here:
-        jLabel17.setText(originale);
-    }//GEN-LAST:event_jLabel17MouseExited
+    private void areaCommentiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseExited
+        areaCommenti.setText(originale);
+    }//GEN-LAST:event_areaCommentiMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiorna;
+    private javax.swing.JLabel areaCommenti;
+    private javax.swing.JLabel areaRistoranti;
     private javax.swing.JTextField città;
     private javax.swing.JTextField cognome;
     private javax.swing.JTextField cognome1;
@@ -1174,6 +1172,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel desRist;
     private javax.swing.JTextField descrizione;
     private javax.swing.JPanel dettagliRisto;
+    private javax.swing.JLabel dettagliUtente;
     private javax.swing.JTextField email;
     private javax.swing.JTextField email1;
     private javax.swing.JToggleButton eyePass;
@@ -1181,14 +1180,9 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel indRist;
     private javax.swing.JTextField indirizzo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1241,6 +1235,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JButton modRis;
     private javax.swing.JComboBox<String> modStato;
     private javax.swing.JPanel modificaDati;
+    private javax.swing.JLabel modificaDatiUtente;
     private javax.swing.JPanel modificaRisto;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField nome1;
@@ -1256,6 +1251,7 @@ public class RegRistorante extends javax.swing.JFrame {
     private javax.swing.JLabel priceRist;
     private javax.swing.JButton regRis;
     private javax.swing.JPanel registraRisto;
+    private javax.swing.JLabel registraRistorante;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JComboBox<String> stato;
     private javax.swing.JTextField username;

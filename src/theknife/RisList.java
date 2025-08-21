@@ -633,7 +633,7 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_indietroActionPerformed
 
     private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed
-        PaginaRecensioni pagRec = new PaginaRecensioni(gestore, RisList.this);
+        ScriviRecensione pagRec = new ScriviRecensione(gestore, RisList.this);
         pagRec.setLocationRelativeTo(scrollPaneDet);
         pagRec.pack();
         pagRec.setVisible(true);

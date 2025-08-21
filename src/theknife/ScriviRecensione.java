@@ -5,24 +5,25 @@
 package theknife;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 /**
  *
  * @author davim
  */
-public class PaginaRecensioni extends javax.swing.JFrame {
+public class ScriviRecensione extends javax.swing.JFrame {
     private GestoreArchivi gestore;
     private final ImageIcon stellaVuota;
     private final ImageIcon stellaPiena;
     private int valutazione = 0;
-    private final int MAX_CHAR =  399;
+    private final int MAX_CHAR =  400;
     private final int MAX_CHAR_TITOLO = 35;
     private RisList risList;
     
     
     
-    public PaginaRecensioni(GestoreArchivi gestore, RisList risList) {
+    public ScriviRecensione(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
         setUndecorated(true);
@@ -118,6 +119,9 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         areaTesto.setAutoscrolls(false);
         areaTesto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
         areaTesto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                areaTestoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 areaTestoKeyTyped(evt);
             }
@@ -315,7 +319,8 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         if (areaTesto.getText().isBlank() || titoloRec.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else {
-            gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), titoloRec.getText().trim(), gestore.getArchivioCommenti().creaID(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, false, true)); GestoreArchivi.RisListFrame.generaAnteprima();
+            gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), gestore.getArchivioCommenti().creaID(), titoloRec.getText().trim(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, false, true));
+            GestoreArchivi.RisListFrame.generaAnteprima();
             risList.setMediaValutazioni();
             this.dispose();
         }
@@ -382,7 +387,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     }//GEN-LAST:event_stella5MouseExited
 
     private void areaTestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyTyped
-       if (areaTesto.getText().length() >= MAX_CHAR) {
+        if (areaTesto.getText().length() >= MAX_CHAR) {
             evt.consume(); 
         }
         conteggio.setText((areaTesto.getText().length()) + "/400");
@@ -397,6 +402,12 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void areaTestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_areaTestoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaTesto;

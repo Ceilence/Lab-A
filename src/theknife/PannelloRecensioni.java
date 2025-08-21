@@ -17,7 +17,7 @@ public final class PannelloRecensioni extends JPanel{
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
         // Layout verticale con margini
-        setLayout(new GridBagLayout());
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         if (commento.isRisposta()) {
             setBackground(Color.LIGHT_GRAY);
@@ -55,6 +55,7 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.setOpaque(false);
         
         JLabel nome = new JLabel(utente.getUsernameUtente() + " #" + utente.getIdUtente());
+        nome.setBorder(new LineBorder(Color.BLACK, 5));
         nome.setFont(new Font("Arial", Font.ITALIC, 15));
         
         JLabel titolo = new JLabel(commento.getTitolo());
@@ -76,7 +77,7 @@ public final class PannelloRecensioni extends JPanel{
         if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore") && !commento.isRisposta()) {
             JButton btnRispondi = new JButton("Rispondi");
             btnRispondi.addActionListener(e -> {
-            PaginaRecensioni pagRec = new PaginaRecensioni(gestore, GestoreArchivi.RisListFrame);
+            ScriviRecensione pagRec = new ScriviRecensione(gestore, GestoreArchivi.RisListFrame);
             pagRec.setLocationRelativeTo(null);
             pagRec.pack();
             pagRec.setVisible(true);

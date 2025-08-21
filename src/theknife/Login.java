@@ -228,7 +228,7 @@ public class Login extends javax.swing.JFrame {
                 
                 this.dispose();
             } else{
-                RegRistorante rg = new RegRistorante(gestore, risList);
+                PaginaRistoratore rg = new PaginaRistoratore(gestore, risList);
                 rg.setVisible(true);
                 rg.setLocationRelativeTo(null);
                 this.dispose();

@@ -12,8 +12,8 @@ public class CommentiRistoranti {
     private String tipoCommento;
     private int idScrittore;
     private String testo;
-    private String titolo;
     private int idCommento;
+    private String titolo;
     private int idRistorante;
     private int valutazione;
     private boolean haRisposta;
@@ -22,7 +22,7 @@ public class CommentiRistoranti {
     /**
      * Recensioni
      */
-    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento, int idRistorante, int valutazione, boolean haRisposta, boolean daLeggere) {
+    public CommentiRistoranti(int idScrittore, String testo, int idCommento, String titolo, int idRistorante, int valutazione, boolean haRisposta, boolean daLeggere) {
         this.tipoCommento = "recensione";
         this.idScrittore = idScrittore;
         this.testo = testo;
@@ -37,11 +37,10 @@ public class CommentiRistoranti {
     /**
      * Risposte
      */
-    public CommentiRistoranti(int idScrittore, String testo, String titolo, int idCommento) {
+    public CommentiRistoranti(int idScrittore, String testo, int idCommento) {
         this.tipoCommento = "risposta";
         this.idScrittore = idScrittore;
         this.testo = testo;
-        this.titolo = titolo;
         this.idCommento = idCommento; 
     }
 
@@ -124,10 +123,10 @@ public class CommentiRistoranti {
     @Override
     public String toString() {
         if ("recensione".equals(tipoCommento)){
-            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" +
-                  idCommento + "§" + idRistorante + "§" + valutazione + "§" + haRisposta + "§" + daLeggere + "§";
+            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§" + 
+                titolo + "§" + idRistorante + "§" + valutazione + "§" + haRisposta + "§" + daLeggere + "§";
         } else {
-            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + titolo + "§" + idCommento + "§";
+            return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§";
         }
     }
 

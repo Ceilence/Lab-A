@@ -77,7 +77,7 @@ public final class PannelloRecensioni extends JPanel{
         if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore") && !commento.isRisposta()) {
             JButton btnRispondi = new JButton("Rispondi");
             btnRispondi.addActionListener(e -> {
-            ScriviRecensione pagRec = new ScriviRecensione(gestore, GestoreArchivi.RisListFrame);
+            ScriviRisposta pagRec = new ScriviRisposta(gestore, commento);
             pagRec.setLocationRelativeTo(null);
             pagRec.pack();
             pagRec.setVisible(true);

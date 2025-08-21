@@ -23,6 +23,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     public PaginaRistoratore(GestoreArchivi gestore, RisList rislist) { 
         //Inizializzazione vari componenti e Label.
         initComponents();  
+        //aggiungiDaLeggere();
         
         scrollPane.getVerticalScrollBar().setUnitIncrement(50);
         commentiRistorante.getVerticalScrollBar().setUnitIncrement(50);
@@ -936,9 +937,13 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 JLabel nomeLabel = new JLabel(r.getNomeRis());
                 nomeLabel.setFont(new Font("Arial", Font.BOLD, 16));
                 nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                panelRisto.add(nomeLabel, BorderLayout.CENTER);
+                panelRisto.add(nomeLabel, BorderLayout.WEST);
                 
-                JLabel daLeggere = new JLabel("Hai " + quanteDaLeggere + " nuove recensioni da leggere.");
+                JLabel daLeggere = new JLabel("Hai " + listaDaLeggere.size() + " nuove recensioni da leggere.");
+                daLeggere.setFont(new Font("Arial", Font.ITALIC, 12));
+                nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                impostaGiaLette();
+                panelRisto.add(daLeggere, BorderLayout.SOUTH);
 
                 //pulsanti
                 JPanel pulsantiPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 5, 5));
@@ -998,9 +1003,19 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
     public void aggiungiDaLeggere() {
         for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
-            
+            if (c.getIdScrittore() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()) {
+                if (c.isDaLeggere()) {
+                    listaDaLeggere.add(c);
+                }
+            }
         }
     }
+    
+   public void impostaGiaLette() {
+       for (CommentiRistoranti c : listaDaLeggere) {
+           c.setDaLeggere(false);
+       }
+   }
     
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {

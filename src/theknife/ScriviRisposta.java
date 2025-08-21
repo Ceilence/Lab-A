@@ -155,14 +155,18 @@ public class ScriviRisposta extends javax.swing.JFrame {
         titoloRec.setText("jLabel4");
         titoloRec.setEnabled(false);
 
+        testoRec.setEditable(false);
         testoRec.setColumns(20);
         testoRec.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        testoRec.setForeground(new java.awt.Color(255, 255, 255));
         testoRec.setLineWrap(true);
         testoRec.setRows(5);
-        testoRec.setText("sdfffffffffffff");
+        testoRec.setText("sdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffff");
         testoRec.setWrapStyleWord(true);
+        testoRec.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         testoRec.setDragEnabled(true);
         testoRec.setEnabled(false);
+        testoRec.setSelectionColor(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout scriviRecPannelloLayout = new javax.swing.GroupLayout(scriviRecPannello);
         scriviRecPannello.setLayout(scriviRecPannelloLayout);
@@ -171,18 +175,13 @@ public class ScriviRisposta extends javax.swing.JFrame {
             .addGroup(scriviRecPannelloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                        .addComponent(nomeRec, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                    .addComponent(testoRec)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scriviRecPannelloLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(219, 219, 219)
-                        .addComponent(conteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nomeRec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jButton1))
                     .addGroup(scriviRecPannelloLayout.createSequentialGroup()
-                        .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(areaTesto)
+                        .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(scriviRecPannelloLayout.createSequentialGroup()
                                 .addComponent(stella1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +193,14 @@ public class ScriviRisposta extends javax.swing.JFrame {
                                 .addComponent(stella4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stella5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(titoloRec, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(testoRec))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(scriviRecPannelloLayout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(conteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titoloRec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         scriviRecPannelloLayout.setVerticalGroup(
@@ -222,10 +226,10 @@ public class ScriviRisposta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confermaButton)
-                    .addComponent(conteggio))
-                .addContainerGap())
+                .addGroup(scriviRecPannelloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(conteggio)
+                    .addComponent(confermaButton))
+                .addGap(3, 3, 3))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

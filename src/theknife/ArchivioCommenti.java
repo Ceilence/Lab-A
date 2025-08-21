@@ -21,7 +21,9 @@ public class ArchivioCommenti {
     
     public ArchivioCommenti() {}
     
-    
+    /**
+     * Mi lecca il pisello.
+     */
     public void leggiArchivio() {
         listaCommenti.clear();
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))){

@@ -9,7 +9,6 @@ package theknife;
  * @author davim antoniopardo alefrigio
  */
 public class Utente{
-    
     private String nomeUtente;
     private String cognomeUtente;
     private String usernameUtente;

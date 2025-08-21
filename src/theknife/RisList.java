@@ -113,6 +113,7 @@ public class RisList extends javax.swing.JFrame {
         aggiornaLabel(filtratore.get(0).getRistorante());
         setPreferitoVisualizzato();
         aggiornaDetPref();
+        aggiornaTastoScrivi();
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
     
@@ -153,6 +154,7 @@ public class RisList extends javax.swing.JFrame {
             aggiornaLabel(filtratore.get(0).getRistorante());
             setPreferitoVisualizzato();
             aggiornaDetPref();
+            aggiornaTastoScrivi();
         }
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
         impaginazione(pagina);
@@ -209,6 +211,16 @@ public class RisList extends javax.swing.JFrame {
         double media = (numeroCommenti > 0) ? (double) sommaValutazioni / numeroCommenti : 0.0;
         risAtt.setMediaStelleRis(media);
     }
+    
+    public void aggiornaTastoScrivi() {
+        int idUtente = gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente();
+        int idRistorante = gestore.getArchivioRis().getRisAttuale().getIdRis();
+        if (gestore.getArchivioCommenti().haGiaRecensione(idUtente, idRistorante)) {
+            scriviRec.setVisible(false);
+        } else {
+            scriviRec.setVisible(true);
+        }
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -245,6 +257,7 @@ public class RisList extends javax.swing.JFrame {
         indietro = new javax.swing.JButton();
         avanti = new javax.swing.JButton();
         contatore = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(770, 660));
@@ -280,7 +293,7 @@ public class RisList extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.6;
@@ -358,7 +371,7 @@ public class RisList extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.6;
@@ -558,7 +571,7 @@ public class RisList extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 2.4;
@@ -598,6 +611,26 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         jPanel1.add(contatore, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 15.0;
+        jPanel1.add(jPanel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -845,6 +878,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton indietroBottone;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;

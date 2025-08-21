@@ -103,7 +103,7 @@ public class ArchivioCommenti {
             if (gestore.getArchivioRis().getRisAttuale().getIdRis() == commento.getIdRistorante() && numero < conto){
                 contenitoreCommenti.add(new PannelloRecensioni(gestore, commento));
                 if (commento.haRisposta()){
-                    contenitoreCommenti.add(new PannelloRecensioni(gestore, getRisposta(commento)));
+                    contenitoreCommenti.add(new PannelloRisposte(gestore, getRisposta(commento)));
                     contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
                 } else {
                     contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -115,5 +115,14 @@ public class ArchivioCommenti {
         
         contenitoreCommenti.revalidate();
         contenitoreCommenti.repaint();
+    }
+    
+    public boolean haGiaRecensione(int idUtente, int idRistorante) {
+        for (CommentiRistoranti c : listaCommenti) {
+            if (c.getIdScrittore() == idUtente && c.getIdRistorante() == idRistorante) {
+                return true;
+            }
+        }
+        return false;
     }
 }   

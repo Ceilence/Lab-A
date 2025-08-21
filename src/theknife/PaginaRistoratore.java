@@ -18,6 +18,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     private final ImageIcon showPass, hidePass;
     private ArrayList<CommentiRistoranti> listaDaLeggere = new ArrayList<>();
     private String originale;
+    private static int numero = 0;
     
     
     public PaginaRistoratore(GestoreArchivi gestore, RisList rislist) { 
@@ -924,8 +925,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         for (Ristorante r : gestore.getArchivioRis().getRis()) {
             // Mostra solo i ristoranti di questo utente
             if (r.getIdRistoratore() == attuale.getIdUtente()) {
+                contaCommenti(r);
                 
-
                 JPanel panelRisto = new JPanel(new BorderLayout());
                 panelRisto.setBorder(BorderFactory.createLineBorder(Color.GRAY));
                 panelRisto.setBackground(new Color(245, 245, 245)); 
@@ -939,7 +940,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                 panelRisto.add(nomeLabel, BorderLayout.WEST);
                 
-                JLabel daLeggere = new JLabel("Hai " + listaDaLeggere.size() + " nuove recensioni da leggere.");
+                JLabel daLeggere = new JLabel("Hai " + listaDaLeggere.size() + " nuove recensioni da leggere su " + numero + " totali.");
                 daLeggere.setFont(new Font("Arial", Font.ITALIC, 12));
                 nomeLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                 impostaGiaLette();
@@ -950,7 +951,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 pulsantiPanel.setOpaque(false);
 
                 JButton btnMostra = new JButton("Mostra Commenti");
-                btnMostra.addActionListener(e -> {                                   
+                btnMostra.addActionListener(e -> {                 
+                    impostaGiaLette();
                     CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
                     cl.show(pannelloDestra, "commenti");
                     gestore.getArchivioRis().setRisAttuale(r);
@@ -1001,9 +1003,11 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_regRisActionPerformed
 
-    public void aggiungiDaLeggere() {
+    public void contaCommenti(Ristorante r) {
+        numero = 0;
         for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
-            if (c.getIdScrittore() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()) {
+            if (r.getIdRis() == c.getIdRistorante()) {
+                numero++;
                 if (c.isDaLeggere()) {
                     listaDaLeggere.add(c);
                 }
@@ -1015,6 +1019,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
        for (CommentiRistoranti c : listaDaLeggere) {
            c.setDaLeggere(false);
        }
+       gestore.getArchivioCommenti().aggiornaCommenti();
+       listaDaLeggere.clear();
    }
     
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed

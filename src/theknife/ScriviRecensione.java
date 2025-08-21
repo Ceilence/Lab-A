@@ -322,6 +322,7 @@ public class ScriviRecensione extends javax.swing.JFrame {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), gestore.getArchivioCommenti().creaID(), titoloRec.getText().trim(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, false, true));
             GestoreArchivi.RisListFrame.generaAnteprima();
             risList.setMediaValutazioni();
+            risList.aggiornaTastoScrivi();
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed

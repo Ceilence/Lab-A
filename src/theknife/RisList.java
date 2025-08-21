@@ -6,7 +6,6 @@ package theknife;
 
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 import javax.swing.*;
 
 
@@ -25,13 +24,16 @@ public class RisList extends javax.swing.JFrame {
     private final ArrayList<PannelloRis> filtratore = new ArrayList<>();
     private final Caricamento caricamentoFrame;
     private int pagina = 0;
-    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena;
+    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro, immagineLogo;
     private final int ELEMENTI_PER_PAGINA = 100;
     
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
+        
+        
+        
         
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
@@ -99,6 +101,7 @@ public class RisList extends javax.swing.JFrame {
         filtro = filtro.toLowerCase();
         filtratore.clear();
         contenitorePanel.removeAll();
+        
 
         for (PannelloRis p : tuttiIPannelli) {
             Ristorante r = p.getRistorante();
@@ -116,17 +119,34 @@ public class RisList extends javax.swing.JFrame {
     public void filtraPosizione(String cittaUtente, double distanzaMax){ 
         filtratore.clear();
         contenitorePanel.removeAll();
+        filtri.setIcon(immagineFiltro);
         Citta citta = gestore.getArchivioCitta().getCitta(cittaUtente);
         
-        for(PannelloRis p : tuttiIPannelli){
-            Ristorante r = p.getRistorante();
-            
-            if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
-                double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
-                if(distanza <= distanzaMax){
+        if (citta != null) {
+            for(PannelloRis p : tuttiIPannelli){
+                Ristorante r = p.getRistorante();
+
+                if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
+                    double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
+                    if(distanza <= distanzaMax){
+                        filtratore.add(p);
+                    }
+                }
+            }
+        }
+        
+        if(citta == null){
+            filtratore.clear();
+            for(PannelloRis p : tuttiIPannelli){
+                Ristorante r = p.getRistorante();
+                if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
                     filtratore.add(p);
                 }
             }
+            JOptionPane.showMessageDialog(this,
+                "Nessun ristorante trovato a " + cittaUtente + "\n" +
+                "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente() + " ",
+                "Avviso", JOptionPane.INFORMATION_MESSAGE);
         }
         if (!filtratore.isEmpty()) {
             impostaRisAttuale();
@@ -204,6 +224,7 @@ public class RisList extends javax.swing.JFrame {
         campoRicerca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        filtri = new javax.swing.JButton();
         profiloUtente = new javax.swing.JButton();
         pannelloDestra = new javax.swing.JPanel();
         scrollPaneDet = new javax.swing.JScrollPane();
@@ -280,7 +301,8 @@ public class RisList extends javax.swing.JFrame {
         jPanel1.add(logo, gridBagConstraints);
 
         panRicerca.setBackground(new java.awt.Color(255, 255, 255));
-        panRicerca.setPreferredSize(new java.awt.Dimension(0, 0));
+        panRicerca.setMaximumSize(new java.awt.Dimension(415, 40));
+        panRicerca.setPreferredSize(new java.awt.Dimension(415, 40));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
         cerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LenteRicerca.png"))); // NOI18N
@@ -301,8 +323,13 @@ public class RisList extends javax.swing.JFrame {
 
         campoRicerca.setToolTipText("");
         campoRicerca.setMaximumSize(null);
-        campoRicerca.setMinimumSize(new java.awt.Dimension(375, 40));
+        campoRicerca.setMinimumSize(new java.awt.Dimension(315, 40));
         campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
+        campoRicerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRicercaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -318,6 +345,16 @@ public class RisList extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         panRicerca.add(jScrollPane1, new java.awt.GridBagConstraints());
+
+        filtri.setMaximumSize(new java.awt.Dimension(60, 40));
+        filtri.setMinimumSize(new java.awt.Dimension(60, 40));
+        filtri.setPreferredSize(new java.awt.Dimension(40, 40));
+        filtri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtriActionPerformed(evt);
+            }
+        });
+        panRicerca.add(filtri, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -495,7 +532,7 @@ public class RisList extends javax.swing.JFrame {
         contenitoreRec.setLayout(contenitoreRecLayout);
         contenitoreRecLayout.setHorizontalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 744, Short.MAX_VALUE)
+            .addGap(0, 787, Short.MAX_VALUE)
         );
         contenitoreRecLayout.setVerticalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -651,6 +688,17 @@ public class RisList extends javax.swing.JFrame {
         resettaBarra();
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
+    private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRicercaActionPerformed
+
+    private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
+        Filtri filtri = new Filtri(gestore,this);
+        filtri.setVisible(true);
+        this.setEnabled(false);
+        filtri.setLocationRelativeTo(null);
+    }//GEN-LAST:event_filtriActionPerformed
+
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
     public void versioneGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
@@ -735,7 +783,15 @@ public class RisList extends javax.swing.JFrame {
         Image pt1 = ptIcon.getImage();
         Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon pt3 = new ImageIcon(pt2);
-        this.stellaPiena = pt3;  
+        this.stellaPiena = pt3; 
+        
+        ImageIcon filtriIcon = new ImageIcon("src\\filtri.png");
+        Image filtri1 = filtriIcon.getImage();
+        Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon filtri3 = new ImageIcon(newImg);
+        this.immagineFiltro = filtri3;
+        
+        
     }
      
      public ImageIcon selezionaImmagine(String nazione){
@@ -784,6 +840,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JLabel detNome;
     private javax.swing.JButton detPref;
     private javax.swing.JPanel dettaglioPanel;
+    private javax.swing.JButton filtri;
     private javax.swing.JButton indietro;
     private javax.swing.JButton indietroBottone;
     private javax.swing.JList<String> jList1;

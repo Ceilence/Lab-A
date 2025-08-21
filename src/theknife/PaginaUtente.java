@@ -31,7 +31,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         //Setta il pulsante che si attiva con invio su aggiorna
         getRootPane().setDefaultButton(aggiorna);
         
-        //Per togliere sottolineatura
         
         //Pannello di destra, all'apertura mostra dettagli utente
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
@@ -159,6 +158,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                     gestore.getArchivioPreferiti().setPrefAttuale(r.getIdRis(), u.getIdUtente());
                     gestore.getArchivioPreferiti().rimuoviPreferito();
                     gestore.getArchivioPreferiti().aggiornaPref();
+                    risList.aggiornaDetPref();
 
                     //Cambia cursore quando ci si passa sopra
                     rimuovi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

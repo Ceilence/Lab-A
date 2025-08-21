@@ -31,7 +31,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         //Setta il pulsante che si attiva con invio su aggiorna
         getRootPane().setDefaultButton(aggiorna);
         
-        //Per togliere sottolineatura
         
         //Pannello di destra, all'apertura mostra dettagli utente
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());

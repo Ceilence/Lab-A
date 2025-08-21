@@ -14,7 +14,6 @@ import java.util.*;
 public class ArchivioCitta {
     
     private final String FILE_PATH = "data\\Citta.csv";
-    private String stringInserita = "";
     private static final double RAGGIO_TERRA_KM = 6371;
             
     private final ArrayList<Citta> listaCitta = new ArrayList<>();
@@ -38,7 +37,11 @@ public class ArchivioCitta {
         }
     }
     
-    //Restituisce la città
+    /**
+     * 
+     * @param nome 
+     * @return  
+     */
     public Citta getCitta(String nome) {
     for (Citta c : listaCitta) {
         String s = nome.trim().toLowerCase();
@@ -49,7 +52,14 @@ public class ArchivioCitta {
         return null; 
     }
     
-    //Formula di Haversine per calcolare la distanza in km data latitudine e longitudine di 2 città
+    /**
+     * 
+     * @param lat1
+     * @param lon1
+     * @param lat2
+     * @param lon2
+     * @return 
+     */
     public double calcolaDistanza(double lat1, double lon1, double lat2, double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);

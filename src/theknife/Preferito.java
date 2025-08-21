@@ -14,6 +14,11 @@ public class Preferito {
     private int idRis;
     private int idUtente;
 
+    /**
+     * 
+     * @param idRis
+     * @param idUtente 
+     */
     public Preferito(int idRis, int idUtente) {
         this.idRis = idRis;
         this.idUtente = idUtente;

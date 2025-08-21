@@ -27,6 +27,25 @@ public class Ristorante {
     private int idRis;
     private int idRistoratore;
 
+    
+    /**
+     * 
+     * @param nomeRis
+     * @param indRis
+     * @param locRis
+     * @param statoRis
+     * @param priceRis
+     * @param cuisRis
+     * @param longRis
+     * @param latRis
+     * @param pnRis
+     * @param mediaStelleRis
+     * @param delivery
+     * @param prenotaOnline
+     * @param desRis
+     * @param idRis
+     * @param idRistoratore 
+     */
     public Ristorante(String nomeRis, String indRis, String locRis, String statoRis, String priceRis, String cuisRis, double longRis, double latRis, String pnRis, double mediaStelleRis, boolean delivery, boolean prenotaOnline, String desRis, int idRis, int idRistoratore) {
         this.nomeRis = nomeRis;
         this.indRis = indRis;

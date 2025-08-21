@@ -10,13 +10,21 @@ import java.util.regex.Pattern;
  * @author davim
  */
 public class ValidaReg {
-    
     //Dichiarazione e compilazione dell regex per password e email una volta sola in modo da non doverlo compilare ad ogni errore.
     private static final Pattern PATTERN_MAIL = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+[A-Za-z0-9+_.-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
     private static final Pattern PATTERN_PASS = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{4,20}$");
     
- 
-    //Metodo per verificare che tutti i campi inseriti siano pieni.
+    /**
+     * 
+     * @param nome
+     * @param cognome
+     * @param username
+     * @param email
+     * @param password
+     * @param posizione
+     * @param stato
+     * @return 
+     */
     public static boolean campiPieni(String nome, String cognome, String username, String email, String password, String posizione, String stato) {
         return nome != null && !nome.isBlank() 
                 &&  cognome != null && !cognome.isBlank() 
@@ -27,18 +35,23 @@ public class ValidaReg {
                 && stato != null && !stato.isBlank();
     }
     
-    //Metodo per verificare che il formato mail sia valido.
+    /**
+     * 
+     * @param mail
+     * @return 
+     */
     public static boolean mailValida(String mail) {
         return mail != null &&  PATTERN_MAIL.matcher(mail).matches();
     }
 
-    //Metodo per verificare che il formato password sia valido.
+    /**
+     * 
+     * @param pass
+     * @return
+     */
     public static boolean passValida(String pass) {
         return pass != null && 
                 PATTERN_PASS.matcher(pass).matches() 
                 && !pass.contains("@");
     }   
 }
-
-// ho messo i metodi static così da non dover usare un costruttore inutile che spreca memorria
-//Usando il Pattern dichiarandolo in alto static java lo deve compilare solo una volta e non tutte le volte che l'utente sbaglia!!!!! meglio per memoria, riusabilità e pulizia

@@ -28,9 +28,7 @@ public class Filtri extends javax.swing.JFrame {
         Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon tk3 = new ImageIcon(tk2);
         logo.setIcon(tk3);
-        
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

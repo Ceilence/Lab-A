@@ -49,10 +49,3 @@ public final class PannelloRisposte extends JPanel{
     }
 }
 
-//controllo di utente 1 solo commento (sparisce tasto scrivi), se ci sono <= 3 commenti non c'è tasto vedi tutti e controllo una sola risposta
-//campi vuoti commento e ristorante
-//metodo haRisposta + creazione panel risposta, creazione metodo commento attuale
-//rislist prima pagina = primo ristorantea
-//guest modifiche ai pulsanti (alla fine)
-//risposte spostate verso destra leggermente
-

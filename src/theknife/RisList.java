@@ -102,7 +102,6 @@ public class RisList extends javax.swing.JFrame {
         filtratore.clear();
         contenitorePanel.removeAll();
         
-
         for (PannelloRis p : tuttiIPannelli) {
             Ristorante r = p.getRistorante();
             if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
@@ -338,11 +337,6 @@ public class RisList extends javax.swing.JFrame {
         campoRicerca.setMaximumSize(null);
         campoRicerca.setMinimumSize(new java.awt.Dimension(315, 40));
         campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
-        campoRicerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoRicercaActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -721,10 +715,6 @@ public class RisList extends javax.swing.JFrame {
         resettaBarra();
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
-    private void campoRicercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRicercaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoRicercaActionPerformed
-
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
         Filtri filtri = new Filtri(gestore,this);
         filtri.setVisible(true);
@@ -823,8 +813,6 @@ public class RisList extends javax.swing.JFrame {
         Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon filtri3 = new ImageIcon(newImg);
         this.immagineFiltro = filtri3;
-        
-        
     }
      
      public ImageIcon selezionaImmagine(String nazione){

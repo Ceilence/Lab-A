@@ -152,7 +152,7 @@ public class ScriviRisposta extends javax.swing.JFrame {
         stella5.setPreferredSize(new java.awt.Dimension(25, 25));
 
         titoloRec.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        titoloRec.setText("jLabel4");
+        titoloRec.setText("   ");
         titoloRec.setEnabled(false);
 
         testoRec.setEditable(false);
@@ -161,7 +161,6 @@ public class ScriviRisposta extends javax.swing.JFrame {
         testoRec.setForeground(new java.awt.Color(255, 255, 255));
         testoRec.setLineWrap(true);
         testoRec.setRows(5);
-        testoRec.setText("sdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffffsdfffffffffffff");
         testoRec.setWrapStyleWord(true);
         testoRec.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         testoRec.setDragEnabled(true);

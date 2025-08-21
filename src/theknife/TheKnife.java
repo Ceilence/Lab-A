@@ -4,10 +4,6 @@
 
 package theknife;
 
-import java.awt.*;
-
-
-
 /**
  *
  * @author Alefr
@@ -16,7 +12,6 @@ public class TheKnife {
 
     public static void main(String[] args) {
         GestoreArchivi gestore = new GestoreArchivi();
-        
         
         gestore.getArchivioUtenti().leggiArchivio();
         gestore.getArchivioRis().leggiArchivio();

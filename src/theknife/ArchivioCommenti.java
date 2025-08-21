@@ -4,7 +4,6 @@
  */
 package theknife;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.io.*;
 import java.util.*;

@@ -28,7 +28,6 @@ public class RegRisto extends javax.swing.JFrame {
         infoPassPane.setVisible(false);
         infoPass.setVisible(false);
         
-        
         //Immagine punto di domanda per le informazioni password ridimensionata ed applicata.
         ImageIcon qmIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\qm.png"));
         Image qm1 = qmIcon.getImage();
@@ -58,8 +57,6 @@ public class RegRisto extends javax.swing.JFrame {
         ImageIcon ba3 = new ImageIcon(ba2); 
         backArrow.setIcon(ba3);
     }
-    
-    
     
     //Generated Code.
     @SuppressWarnings("unchecked")
@@ -241,8 +238,6 @@ public class RegRisto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     //Codice per il bottone "freccia" per tornare al Frame precedente.
     private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
         Reg1 Reg1Frame = new Reg1(gestore);
@@ -254,7 +249,6 @@ public class RegRisto extends javax.swing.JFrame {
 
     //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
-        
         if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), "guest", "guest"))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(emailCliente.getText().trim())) {
@@ -277,7 +271,6 @@ public class RegRisto extends javax.swing.JFrame {
             accediErrore.setVisible(true);
             emailCliente.setText("");
         }
-        
     }//GEN-LAST:event_regClienteActionPerformed
 
     private void accediErroreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accediErroreMouseClicked

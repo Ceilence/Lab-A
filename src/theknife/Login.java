@@ -20,7 +20,6 @@ public class Login extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
         
-        
         //Setta il pulsante che si attiva con invio su LoginButton
         getRootPane().setDefaultButton(LoginButton);
                 
@@ -39,8 +38,6 @@ public class Login extends javax.swing.JFrame {
         ImageIcon hp3 = new ImageIcon(hp2); 
         this.hidePass = hp3;
     }
-    
-    
     
     //Generated code
     @SuppressWarnings("unchecked")
@@ -211,9 +208,6 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logMail.getText(), logPass.getText())) {
                 int idUtente = gestore.getArchivioUtenti().getId(logMail.getText(), logPass.getText());
@@ -310,9 +304,7 @@ public class Login extends javax.swing.JFrame {
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
             }
         });
-
         dialog.setVisible(true);
-        
     }//GEN-LAST:event_guestButtonActionPerformed
 
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
@@ -333,11 +325,6 @@ public class Login extends javax.swing.JFrame {
             logPass.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePassActionPerformed
-    
-    /**
-     * @param args the command line arguments
-     */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dati;

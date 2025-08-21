@@ -968,7 +968,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 contenitore.add(Box.createVerticalStrut(10));
             }
         }
-
         // Metti il contenitore nello scrollPane
         pannelloRisposte.setViewportView(contenitore);
         pannelloRisposte.revalidate();
@@ -1080,7 +1079,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
             cl.show(pannelloDestra, "dettagli");
         }
-
     }//GEN-LAST:event_aggiornaActionPerformed
 
     private void dettagliUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseClicked
@@ -1158,7 +1156,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "ristorantiMenu");
         mostraRistoranti();
-        
     }//GEN-LAST:event_modRisActionPerformed
 
     private void areaCommentiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseClicked

@@ -22,7 +22,6 @@ public final class PannelloRis extends JPanel{
         this.ristorante = r;
         immagine = risList.selezionaImmagine(r.getStatoRis());
         
-        
         // Layout verticale con margini
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -72,7 +71,6 @@ public final class PannelloRis extends JPanel{
         });
 
     }
-
         public Ristorante getRistorante() {
             return ristorante;
         }

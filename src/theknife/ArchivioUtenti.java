@@ -17,7 +17,7 @@ public class ArchivioUtenti {
     
     private final String FILE_PATH = "data\\Utenti.csv";
     private Utente utenteAttuale;
-    private ArrayList<Utente> listaUtenti = new ArrayList<>();
+    private final ArrayList<Utente> listaUtenti = new ArrayList<>();
     
     public ArchivioUtenti() {}
     

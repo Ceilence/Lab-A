@@ -6,7 +6,6 @@
 package theknife;
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.LineBorder;
 /**
  *
  * @author SSSSUGOI
@@ -75,5 +74,6 @@ public final class PannelloRecensioni extends JPanel{
 
 //guest modifiche ai pulsanti (alla fine)
 //modifiche recensioni e risposte (pagUtente e pagRistoratore)
+//mettere campo ricerca in rislist che ricerca tra i filtrati
 
 

@@ -27,10 +27,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         
         initComponents();
         
-        
         //Setta il pulsante che si attiva con invio su aggiorna
         getRootPane().setDefaultButton(aggiorna);
-        
         
         //Pannello di destra, all'apertura mostra dettagli utente
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
@@ -53,7 +51,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         statoUtente.setSelectedItem(u.getStatoUtente());
         statoUtente.setEditable(false);
         
-        
         //Dati dell'utente modificabili
         nome1.setText(u.getNomeUtente());
         nome1.setEditable(true);
@@ -69,7 +66,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         password1.setEditable(true);
         statoUtente1.setSelectedItem(u.getStatoUtente());
         statoUtente1.setEditable(true);
-        
         
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\show_pass.png"));
@@ -115,8 +111,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                 panel.setOpaque(false);
                 panel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 10));
                 
-                
-                
                 //Restituisce il nome ristorante e lo aggiunge al panel
                 JLabel nomeRisto = new JLabel(r.getNomeRis());
                 nomeRisto.setFont(new Font("Arial", Font.BOLD, 16));
@@ -127,8 +121,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                 tipoCucina.setFont(new Font("Arial", Font.PLAIN, 14));
                 tipoCucina.setForeground(Color.DARK_GRAY);
                 panel.add(tipoCucina);
-                
-                
                 
                 //Bottone per rimuovere il preferito dal file
                 JButton rimuovi = new JButton("Rimuovi");
@@ -149,8 +141,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                 bottone.setLayout(new BoxLayout(bottone, BoxLayout.Y_AXIS));
                 bottone.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
                 
-                
-                
                 //Action listener
                 rimuovi.addActionListener(e -> {
                 int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero rimuovere "+ r.getNomeRis() + " dai preferiti?", "Conferma", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
@@ -169,8 +159,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                     contenitore.repaint();
                 }
                 });
-                
-                
                 //Aggiungo bottone al panel
                 bottone.add(rimuovi);
                 panelPreferiti.add(bottone, BorderLayout.EAST);
@@ -180,7 +168,6 @@ public class PaginaUtente extends javax.swing.JFrame {
                 //Aggiungo il panel al contenitore
                 contenitore.add(panelPreferiti);
                 contenitore.add(Box.createVerticalStrut(10));
-                
             }
         }
         // Metti il contenitore nello scrollPane
@@ -188,7 +175,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         preferiti.revalidate();
         preferiti.repaint();
     }
-    
     
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -455,20 +441,10 @@ public class PaginaUtente extends javax.swing.JFrame {
         nome.setBackground(new java.awt.Color(204, 204, 204));
         nome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeActionPerformed(evt);
-            }
-        });
 
         cognome.setBackground(new java.awt.Color(204, 204, 204));
         cognome.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognomeActionPerformed(evt);
-            }
-        });
 
         email.setBackground(new java.awt.Color(204, 204, 204));
         email.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -503,11 +479,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         password.setBackground(new java.awt.Color(204, 204, 204));
         password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password.setMaximumSize(new java.awt.Dimension(64, 22));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
         eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -635,19 +606,9 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         nome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nome1.setMaximumSize(new java.awt.Dimension(64, 22));
-        nome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome1ActionPerformed(evt);
-            }
-        });
 
         cognome1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cognome1.setMaximumSize(new java.awt.Dimension(64, 22));
-        cognome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cognome1ActionPerformed(evt);
-            }
-        });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setText("E-mail");
@@ -660,11 +621,6 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         password1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         password1.setMaximumSize(new java.awt.Dimension(64, 22));
-        password1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password1ActionPerformed(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel17.setText("Posizione");
@@ -837,18 +793,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eyePassActionPerformed
 
-    private void cognomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cognomeActionPerformed
-
-    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
-
     //Apre pagina dettagli utente se cliccato
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
@@ -880,18 +824,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel11.setText(originale);
     }//GEN-LAST:event_jLabel11MouseExited
 
-    private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nome1ActionPerformed
-
-    private void cognome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cognome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cognome1ActionPerformed
-
-    private void password1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password1ActionPerformed
-
     private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
          if (eyePass1.isSelected()) {
             eyePass1.setIcon(hidePass);
@@ -910,7 +842,6 @@ public class PaginaUtente extends javax.swing.JFrame {
         } else if (!ValidaReg.passValida(password1.getText().trim())) { 
             JOptionPane.showMessageDialog(null, "Formato password non valido");
         }else{
-            
             //Aggiorna il file utenti con i dati aggiornati
             Utente u = gestore.getArchivioUtenti().getUtenteAttuale();
             u.setNomeUtente(nome1.getText());
@@ -930,16 +861,11 @@ public class PaginaUtente extends javax.swing.JFrame {
             posizione.setText(posizione1.getText());
             statoUtente.setSelectedItem(statoUtente1.getSelectedItem());
             
-        
             JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
             
             CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
             cl.show(pannelloDestra, "dettagli");
         }
-        
-        
-       
-        
     }//GEN-LAST:event_aggiornaActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

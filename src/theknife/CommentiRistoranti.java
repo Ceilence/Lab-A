@@ -20,7 +20,15 @@ public class CommentiRistoranti {
     private boolean daLeggere;
     
     /**
-     * Recensioni
+     * 
+     * @param idScrittore
+     * @param testo
+     * @param idCommento
+     * @param titolo
+     * @param idRistorante
+     * @param valutazione
+     * @param haRisposta
+     * @param daLeggere 
      */
     public CommentiRistoranti(int idScrittore, String testo, int idCommento, String titolo, int idRistorante, int valutazione, boolean haRisposta, boolean daLeggere) {
         this.tipoCommento = "recensione";
@@ -35,7 +43,10 @@ public class CommentiRistoranti {
     }
     
     /**
-     * Risposte
+     * 
+     * @param idScrittore
+     * @param testo
+     * @param idCommento 
      */
     public CommentiRistoranti(int idScrittore, String testo, int idCommento) {
         this.tipoCommento = "risposta";

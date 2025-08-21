@@ -30,7 +30,6 @@ public class RegUtente extends javax.swing.JFrame {
         
         statoUtente.setSelectedIndex(-1);
         
-        
         //Immagine punto di domanda per le informazioni password ridimensionata ed applicata.
         ImageIcon qmIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\qm.png"));
         Image qm1 = qmIcon.getImage();
@@ -60,8 +59,6 @@ public class RegUtente extends javax.swing.JFrame {
         ImageIcon ba3 = new ImageIcon(ba2); 
         backArrow.setIcon(ba3);
     }
-    
-    
     
     //Generated Code.
     @SuppressWarnings("unchecked")
@@ -162,12 +159,6 @@ public class RegUtente extends javax.swing.JFrame {
 
         jLabel10.setText("Nome:");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 49, -1));
-
-        nomeCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeClienteActionPerformed(evt);
-            }
-        });
         jPanel3.add(nomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 288, -1));
 
         jLabel9.setText("Email:");
@@ -208,11 +199,6 @@ public class RegUtente extends javax.swing.JFrame {
         jPanel3.add(qmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 20, -1));
 
         statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
-        statoUtente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statoUtenteActionPerformed(evt);
-            }
-        });
         jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, 20));
 
         jLabel11.setText("Stato:");
@@ -286,8 +272,6 @@ public class RegUtente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     //Codice per il bottone "freccia" per tornare al Frame precedente.
     private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
         Reg1 Reg1Frame = new Reg1(gestore);
@@ -299,7 +283,6 @@ public class RegUtente extends javax.swing.JFrame {
 
     //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
-        
         if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText(), (String)statoUtente.getSelectedItem()))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(emailCliente.getText().trim())) {
@@ -367,14 +350,6 @@ public class RegUtente extends javax.swing.JFrame {
             passwordCliente.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePassActionPerformed
-
-    private void nomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeClienteActionPerformed
-
-    private void statoUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statoUtenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statoUtenteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accediErrore;

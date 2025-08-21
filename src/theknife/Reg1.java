@@ -15,8 +15,7 @@ public class Reg1 extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
     }
-
-   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -153,7 +152,6 @@ public class Reg1 extends javax.swing.JFrame {
     }//GEN-LAST:event_regClienteButtonActionPerformed
 
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
-        // TODO add your handling code here:
         Login LoginFrame = new Login(gestore);
         LoginFrame.setVisible(true);
         LoginFrame.pack();

@@ -6,7 +6,6 @@ package theknife;
 
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 import javax.swing.*;
 
 
@@ -117,12 +116,24 @@ public class RisList extends javax.swing.JFrame {
         contenitorePanel.removeAll();
         Citta citta = gestore.getArchivioCitta().getCitta(cittaUtente);
         
-        for(PannelloRis p : tuttiIPannelli){
-            Ristorante r = p.getRistorante();
-            
-            if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
-                double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
-                if(distanza <= distanzaMax){
+        if (citta != null) {
+            for(PannelloRis p : tuttiIPannelli){
+                Ristorante r = p.getRistorante();
+
+                if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
+                    double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
+                    if(distanza <= distanzaMax){
+                        filtratore.add(p);
+                    }
+                }
+            }
+        }
+        
+        if(citta == null){
+            filtratore.clear();
+            for(PannelloRis p : tuttiIPannelli){
+                Ristorante r = p.getRistorante();
+                if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
                     filtratore.add(p);
                 }
             }

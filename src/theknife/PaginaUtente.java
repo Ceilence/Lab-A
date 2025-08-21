@@ -159,6 +159,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                     gestore.getArchivioPreferiti().setPrefAttuale(r.getIdRis(), u.getIdUtente());
                     gestore.getArchivioPreferiti().rimuoviPreferito();
                     gestore.getArchivioPreferiti().aggiornaPref();
+                    risList.aggiornaDetPref();
 
                     //Cambia cursore quando ci si passa sopra
                     rimuovi.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

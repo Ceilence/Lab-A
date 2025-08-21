@@ -251,6 +251,7 @@ public class ScriviRisposta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inserisci un testo valido");
         } else {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), commento.getIdCommento()));
+            
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed

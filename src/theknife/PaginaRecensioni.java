@@ -15,15 +15,16 @@ public class PaginaRecensioni extends javax.swing.JFrame {
     private GestoreArchivi gestore;
     private final ImageIcon stellaVuota;
     private final ImageIcon stellaPiena;
-    private String originale;
     private int valutazione = 0;
-    private final int MAX_CHAR =  400;
+    private final int MAX_CHAR =  399;
     private final int MAX_CHAR_TITOLO = 35;
+    private RisList risList;
     
     
     
-    public PaginaRecensioni(GestoreArchivi gestore) {
+    public PaginaRecensioni(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
+        this.risList = risList;
         setUndecorated(true);
         initComponents();
         
@@ -254,7 +255,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
                             .addGap(223, 223, 223)
                             .addComponent(confermaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(conteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(conteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(scriviRecPannelloLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(areaTesto, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,8 +315,8 @@ public class PaginaRecensioni extends javax.swing.JFrame {
         if (areaTesto.getText().isBlank() || titoloRec.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else {
-            gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), titoloRec.getText().trim(), gestore.getArchivioCommenti().creaID(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, false, true));
-            GestoreArchivi.RisListFrame.generaAnteprima();
+            gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), titoloRec.getText().trim(), gestore.getArchivioCommenti().creaID(), gestore.getArchivioRis().getRisAttuale().getIdRis(), valutazione, false, true)); GestoreArchivi.RisListFrame.generaAnteprima();
+            risList.setMediaValutazioni();
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed
@@ -384,8 +385,7 @@ public class PaginaRecensioni extends javax.swing.JFrame {
        if (areaTesto.getText().length() >= MAX_CHAR) {
             evt.consume(); 
         }
-
-        conteggio.setText((areaTesto.getText().length() + 1) + "/" + MAX_CHAR);
+        conteggio.setText((areaTesto.getText().length()) + "/400");
     }//GEN-LAST:event_areaTestoKeyTyped
 
     private void titoloRecKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_titoloRecKeyTyped

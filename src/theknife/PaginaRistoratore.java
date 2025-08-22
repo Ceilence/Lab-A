@@ -894,14 +894,10 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                         mostraRistoranti();
                     }
                 });
-
                 pulsantiPanel.add(btnModifica);
                 pulsantiPanel.add(btnElimina);
-
                 panelRisto.add(pulsantiPanel, BorderLayout.EAST);
-
                 contenitore.add(panelRisto);
-
                 contenitore.add(Box.createVerticalStrut(10));
             }
         }

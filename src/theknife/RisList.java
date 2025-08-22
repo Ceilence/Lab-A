@@ -116,6 +116,11 @@ public class RisList extends javax.swing.JFrame {
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
     
+    /**
+     * 
+     * @param cittaUtente
+     * @param distanzaMax 
+     */
     public void filtraPosizione(String cittaUtente, double distanzaMax){ 
         filtratore.clear();
         contenitorePanel.removeAll();
@@ -134,7 +139,7 @@ public class RisList extends javax.swing.JFrame {
                 }
             }
         }
-        
+      
         if(citta == null){
             filtratore.clear();
             for(PannelloRis p : tuttiIPannelli){

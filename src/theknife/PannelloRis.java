@@ -75,4 +75,6 @@ public final class PannelloRis extends JPanel{
         public Ristorante getRistorante() {
             return ristorante;
         }
+        
+        
 }

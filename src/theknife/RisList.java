@@ -693,10 +693,33 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_campoRicercaActionPerformed
 
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
-        Filtri filtri = new Filtri(gestore,this);
-        filtri.setVisible(true);
+        Filtro f = new Filtro(gestore,this);
+        f.setVisible(true);
         this.setEnabled(false);
-        filtri.setLocationRelativeTo(null);
+        f.setLocationRelativeTo(null);
+        
+        f.getApplicaFiltri().addActionListener(e -> {
+            ArrayList<PannelloRis> risultatiFiltrati = f.filtra(tuttiIPannelli);
+            if (!risultatiFiltrati.isEmpty()) {
+                filtratore.clear();
+                filtratore.addAll(risultatiFiltrati);
+                pagina = 0;
+                impaginazione(pagina);
+                aggiornaLabel(filtratore.get(0).getRistorante());
+                setPreferitoVisualizzato();
+                aggiornaDetPref();
+                this.setEnabled(true);
+                f.setVisible(false);
+                this.setVisible(true);
+            }else{
+                /*filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 10);
+                impaginazione(pagina);
+                aggiornaLabel(filtratore.get(0).getRistorante());
+                setPreferitoVisualizzato();
+                aggiornaDetPref();*/
+                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
+            }
+            });
     }//GEN-LAST:event_filtriActionPerformed
 
     //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
@@ -822,6 +845,7 @@ public class RisList extends javax.swing.JFrame {
     public void generaAnteprima(){
         gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
     }
+   
     
      
    

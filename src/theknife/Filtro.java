@@ -7,6 +7,7 @@ package theknife;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.*;
 
 /**
  *
@@ -17,8 +18,8 @@ public class Filtro extends JDialog{
     private RisList risList;
     private JComboBox<String> stato;
     private JComboBox<String> citta;
+    private JComboBox<String> tipoCucina;
     private JTextField distanza;
-    private JTextField distanzaFiltro;
     private JCheckBox[] mediaStelle;
     private JCheckBox[] fasciaPrezzo;
     private JCheckBox deliverySi, deliveryNo;
@@ -33,7 +34,6 @@ public class Filtro extends JDialog{
         
         JPanel pannelloFiltri = new JPanel();
         distanza = new JTextField();
-        distanzaFiltro = new JTextField();
         pannelloFiltri.setLayout(new BoxLayout(pannelloFiltri, BoxLayout.Y_AXIS));
         
         JLabel titolo = new JLabel("Pannello filtri");
@@ -60,19 +60,24 @@ public class Filtro extends JDialog{
 
         pannelloFiltri.add(pannelloTitolo);
         
-        stato = new JComboBox<>(new String[] {"Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam"});
+        stato = new JComboBox<>(new String[] {"","Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam"});
         citta= new JComboBox<>(new String[] {""});
+        tipoCucina = new JComboBox<>(new String[]{""});
         JLabel labelStato = new JLabel("Stato: ");
         labelStato.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelStato.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelStato);
         stato.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(stato);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         JLabel labelCitta = new JLabel("Città: ");
         labelCitta.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelCitta.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelCitta);
         citta.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(citta);
         citta.setEnabled(false);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         stato.addActionListener(e -> {
             String statoSelezionato = (String) stato.getSelectedItem();
@@ -96,12 +101,14 @@ public class Filtro extends JDialog{
             }
         });
         
-        JLabel labelDistanza2 = new JLabel("Distanza massima dalla città selezionata (km):");
+        /*JLabel labelDistanza2 = new JLabel("Distanza massima dalla città selezionata (km):");
         labelDistanza2.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelDistanza2.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelDistanza2);
         distanzaFiltro.setAlignmentX(Component.LEFT_ALIGNMENT);
         distanzaFiltro.setBackground(new Color(153,153,153));
         pannelloFiltri.add(distanzaFiltro);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         
         citta.addActionListener(e -> {
@@ -115,16 +122,27 @@ public class Filtro extends JDialog{
                 distanzaFiltro.setText("");
             }
         });
-        
+        */
         
         JLabel labelDistanza = new JLabel("Distanza massima dalla tua città(km):");
         labelDistanza.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelDistanza.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelDistanza);
         distanza.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(distanza);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
+        
+        JLabel labelCucina = new JLabel("Tipo di cucina:");
+        labelCucina.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelCucina.setFont(new Font("Arial", Font.BOLD, 18));
+        pannelloFiltri.add(labelCucina);
+        tipoCucina.setAlignmentX(Component.LEFT_ALIGNMENT);
+        pannelloFiltri.add(tipoCucina);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         JLabel labelStelle = new JLabel("Media stelle:");
         labelStelle.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelStelle.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelStelle);
         mediaStelle = new JCheckBox[5];
         mediaStelle[0] = new JCheckBox("1 stella");
@@ -134,9 +152,11 @@ public class Filtro extends JDialog{
         mediaStelle[4] = new JCheckBox("5 stelle");
         for (JCheckBox s : mediaStelle) s.setAlignmentX(Component.LEFT_ALIGNMENT);
         for (JCheckBox s : mediaStelle) pannelloFiltri.add(s);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         JLabel labelPrezzo = new JLabel("Fascia di prezzo:");
         labelPrezzo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelPrezzo.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelPrezzo);
         fasciaPrezzo = new JCheckBox[4];
         fasciaPrezzo[0] = new JCheckBox("€");
@@ -145,9 +165,11 @@ public class Filtro extends JDialog{
         fasciaPrezzo[3] = new JCheckBox("€€€€");
         for (JCheckBox c : fasciaPrezzo) c.setAlignmentX(Component.LEFT_ALIGNMENT);
         for (JCheckBox c : fasciaPrezzo) pannelloFiltri.add(c);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         JLabel labelDelivery = new JLabel("Servizio delivery:");
         labelDelivery.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelDelivery.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelDelivery);
         deliverySi = new JCheckBox("Sì");
         deliveryNo = new JCheckBox("No");
@@ -155,9 +177,11 @@ public class Filtro extends JDialog{
         deliveryNo.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(deliverySi);
         pannelloFiltri.add(deliveryNo);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         JLabel labelPrenotazione = new JLabel("Servizio di prenotazione:");
         labelPrenotazione.setAlignmentX(Component.LEFT_ALIGNMENT);
+        labelPrenotazione.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelPrenotazione);
         prenotazioneSi = new JCheckBox("Sì");
         prenotazioneNo = new JCheckBox("No");
@@ -165,8 +189,11 @@ public class Filtro extends JDialog{
         prenotazioneNo.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(prenotazioneSi);
         pannelloFiltri.add(prenotazioneNo);
+        pannelloFiltri.add(Box.createVerticalStrut(15));
         
         applicaFiltri = new JButton("Applica filtri");
+        applicaFiltri.setBackground(new Color(0,102,102));
+        applicaFiltri.setForeground(Color.WHITE);
         pannelloFiltri.add(applicaFiltri);
         
         JScrollPane filtri = new JScrollPane(pannelloFiltri);
@@ -190,7 +217,10 @@ public class Filtro extends JDialog{
     public ArrayList<PannelloRis> filtra(ArrayList<PannelloRis> tuttiIPannelli){
         ArrayList<PannelloRis> filtrati = new ArrayList<>();
         Citta cittaUtente = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
-        Citta cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
+        Citta cittaFiltrata = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
+        if(citta.getSelectedItem() != null){
+            cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
+        }
         
         String cittaScelta = (String) citta.getSelectedItem();
         String statoScelto = (String) stato.getSelectedItem();
@@ -217,9 +247,9 @@ public class Filtro extends JDialog{
             distanzaMax = Double.parseDouble(distanza.getText().trim());
         }
         
-        if(!distanzaFiltro.getText().trim().isEmpty()){
+       /* if(!distanzaFiltro.getText().trim().isEmpty()){
             distanzaMax2 = Double.parseDouble(distanzaFiltro.getText().trim());
-        }
+        }*/
         
         ArrayList<Integer> stelleSelezionate = new ArrayList<>();
         for(int i = 0; i < mediaStelle.length; i++) {
@@ -254,14 +284,14 @@ public class Filtro extends JDialog{
             continue;
             }
             
-            if(distanzaMax2 != null && distanzaMax2 > 0) {
+            /*if(distanzaMax2 != null && distanzaMax2 > 0) {
                 if(cittaFiltrata != null) {
-                    double distanzaKm = gestore.getArchivioCitta().calcolaDistanza(cittaFiltrata.getLatCitta(), cittaFiltrata.getLonCitta(), r.getLatRis(), r.getLongRis());
-                    if(distanzaKm > distanzaMax2) {
+                    double distanzaKm2 = gestore.getArchivioCitta().calcolaDistanza(cittaFiltrata.getLatCitta(), cittaFiltrata.getLonCitta(), r.getLatRis(), r.getLongRis());
+                    if(distanzaKm2 > distanzaMax2) {
                         continue;
                     }
                 }
-            }
+            }*/
             
             if(distanzaMax != null && distanzaMax > 0) {
                 if(cittaUtente != null) {

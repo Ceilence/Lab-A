@@ -111,16 +111,36 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.add(spazio3);
         add(panelScritte, BorderLayout.NORTH);
         
+        JPanel panelBottoni = new JPanel();
+        panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
+        panelBottoni.setOpaque(false);
+
         JButton modRecensione = new JButton("Modifica");
         modRecensione.addActionListener(e -> {
             ModificaRecensione mr = new ModificaRecensione(gestore, GestoreArchivi.RisListFrame, commento, pagUtente);
-            
+            mr.setVisible(true);
+            mr.setLocationRelativeTo(null);
         });
+
+        JButton elimRecensione = new JButton("Elimina");
+        elimRecensione.addActionListener(e -> {
+            int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
+            if (conferma == JOptionPane.YES_OPTION) {
+                gestore.getArchivioCommenti().rimuoviCommento(commento);
+                pagUtente.generaCommentiUtente();
+                pagUtente.contenitoreRepaint();
+            }
+        });
+
+        panelBottoni.add(modRecensione);
+        panelBottoni.add(elimRecensione);
+        add(panelBottoni, BoxLayout.Y_AXIS); 
         add(modRecensione, BoxLayout.Y_AXIS);
         repaint();
         revalidate();
-    
+
     }
+    
 }
 
 

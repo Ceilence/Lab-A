@@ -185,6 +185,16 @@ public class PaginaUtente extends javax.swing.JFrame {
             }
         }
     }
+    
+    public void pulisciPanel(){
+        contenitoreRec.removeAll();
+    }
+
+    public void contenitoreRepaint(){
+        contenitoreRec.revalidate();
+        contenitoreRec.repaint();
+    }
+    
         
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -179,7 +179,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     public void generaCommentiUtente() {
         for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
             if (c.getIdScrittore() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()) {
-                contenitoreRec.add(new PannelloRecensioni(gestore, c));
+                contenitoreRec.add(new PannelloRecensioni(gestore, c, PaginaUtente.this));
             }
         }
     }
@@ -392,8 +392,8 @@ public class PaginaUtente extends javax.swing.JFrame {
                             .addComponent(detUtenteLabel)
                             .addComponent(modDatiLabel)
                             .addComponent(prefLabel)
-                            .addComponent(recLabel))
-                        .addGap(0, 113, Short.MAX_VALUE)))
+                            .addComponent(recLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         menuLayout.setVerticalGroup(
@@ -756,11 +756,11 @@ public class PaginaUtente extends javax.swing.JFrame {
         contenitoreRec.setLayout(contenitoreRecLayout);
         contenitoreRecLayout.setHorizontalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 781, Short.MAX_VALUE)
         );
         contenitoreRecLayout.setVerticalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGap(0, 618, Short.MAX_VALUE)
         );
 
         recensioni.setViewportView(contenitoreRec);

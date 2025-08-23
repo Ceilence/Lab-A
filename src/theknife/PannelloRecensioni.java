@@ -111,21 +111,12 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.add(spazio3);
         add(panelScritte, BorderLayout.NORTH);
         
-        // --- SEZIONE PULSANTI ---
-        if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("ristoratore") && !commento.isRisposta() && !commento.haRisposta()) {
-            JButton btnRispondi = new JButton("Rispondi");
-            btnRispondi.addActionListener(e -> {
-                ScriviRisposta wrRisposta = new ScriviRisposta(gestore, commento, btnRispondi);
-                wrRisposta.setLocationRelativeTo(null);
-                wrRisposta.pack();
-                wrRisposta.setVisible(true);
-            });
-            add(btnRispondi, BorderLayout.SOUTH);
-        }
         JButton modRecensione = new JButton("Modifica");
         modRecensione.addActionListener(e -> {
+            ModificaRecensione mr = new ModificaRecensione(gestore, GestoreArchivi.RisListFrame, commento, pagUtente);
             
         });
+        add(modRecensione, BoxLayout.Y_AXIS);
         repaint();
         revalidate();
     

@@ -100,4 +100,14 @@ public class ArchivioCommenti {
         }
         return false;
     }
+    
+     public int contaCommenti(Ristorante r) {
+        int numero = 0;
+        for (CommentiRistoranti c : listaCommenti) {
+            if (r.getIdRis() == c.getIdRistorante()) {
+                numero++;                    
+                }
+            }
+        return numero;
+        }
 }   

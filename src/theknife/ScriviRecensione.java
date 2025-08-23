@@ -323,6 +323,7 @@ public class ScriviRecensione extends javax.swing.JFrame {
             GestoreArchivi.RisListFrame.generaAnteprima();
             risList.setMediaValutazioni();
             risList.aggiornaTastoScrivi();
+            risList.aggiornaBottoneVedi();
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed

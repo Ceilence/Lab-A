@@ -124,7 +124,7 @@ public final class PannelloRecensioni extends JPanel{
         }
         JButton modRecensione = new JButton("Modifica");
         modRecensione.addActionListener(e -> {
-            pagUtente.cambiaLayoutModifica(commento);
+            
         });
         repaint();
         revalidate();

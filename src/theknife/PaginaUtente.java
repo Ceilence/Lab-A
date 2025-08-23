@@ -179,7 +179,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     public void generaCommentiUtente() {
         for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
             if (c.getIdScrittore() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()) {
-                contenitoreRec.add(new PannelloRecensioni(gestore, c, true));
+                contenitoreRec.add(new PannelloRecensioni(gestore, c));
             }
         }
     }

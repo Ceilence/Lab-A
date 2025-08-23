@@ -83,8 +83,8 @@ public class RisList extends javax.swing.JFrame {
         protected void done() {
             caricamentoFrame.dispose();
             gestore.getArchivioRis().setRisAttuale(filtratore.get(0).getRistorante());
-            gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
             aggiornaLabel(filtratore.get(0).getRistorante());
+            generaAnteprima();
             
             Login loginFrame = new Login(gestore);
             loginFrame.pack();
@@ -113,7 +113,8 @@ public class RisList extends javax.swing.JFrame {
         setPreferitoVisualizzato();
         aggiornaDetPref();
         aggiornaTastoScrivi();
-        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+        aggiornaBottoneVedi();
+        generaAnteprima();
     }
     
     /**
@@ -159,8 +160,9 @@ public class RisList extends javax.swing.JFrame {
             setPreferitoVisualizzato();
             aggiornaDetPref();
             aggiornaTastoScrivi();
+            aggiornaBottoneVedi();
         }
-        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+        generaAnteprima();
         impaginazione(pagina);
     }
     
@@ -186,11 +188,13 @@ public class RisList extends javax.swing.JFrame {
         detBan.setIcon(selezionaImmagine(r.getStatoRis())); 
     }
 
-    public void aggiornaBottoneVedi(int numero) {
-        if (numero < 3) {
-            vediTutte.setVisible(false);
-        } else {
+    
+    public void aggiornaBottoneVedi() {
+        int numeroCommenti = gestore.getArchivioCommenti().contaCommenti(gestore.getArchivioRis().getRisAttuale());
+        if (numeroCommenti >= 3) {
             vediTutte.setVisible(true);
+        } else {
+            vediTutte.setVisible(false);
         }
     }
     
@@ -253,7 +257,8 @@ public class RisList extends javax.swing.JFrame {
         scrollPaneDet.getVerticalScrollBar().setValue(0);
     }
     public void generaAnteprima(){
-        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+        GeneratorePannelli p = new GeneratorePannelli(gestore);
+        p.generaCommenti(contenitoreAnteprima, 3);
     }
     
     public void creaImmagine(){
@@ -832,7 +837,8 @@ public class RisList extends javax.swing.JFrame {
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");
-        gestore.getArchivioCommenti().generaRecensioni(contenitoreRec, gestore);
+        GeneratorePannelli p = new GeneratorePannelli(gestore);
+        p.generaCommenti(contenitoreRec, gestore.getArchivioCommenti().contaCommenti(gestore.getArchivioRis().getRisAttuale()));
     }//GEN-LAST:event_vediTutteActionPerformed
 
     private void indietroBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroBottoneActionPerformed

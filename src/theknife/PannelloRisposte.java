@@ -17,7 +17,7 @@ public final class PannelloRisposte extends JPanel{
         // Layout verticale con margini
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
-        setBackground(Color.WHITE);
+        setBackground(new Color(254, 254, 254));
         
         // --- SEZIONE SCRITTE ---
         JPanel panelScritte = new JPanel();

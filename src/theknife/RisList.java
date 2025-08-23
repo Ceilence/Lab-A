@@ -26,14 +26,13 @@ public class RisList extends javax.swing.JFrame {
     private int pagina = 0;
     private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro, immagineLogo;
     private final int ELEMENTI_PER_PAGINA = 100;
+    public static Filtro f;
     
     
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
-        
-        
-        
+        f = new Filtro(gestore,this);
         
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
@@ -693,7 +692,7 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_campoRicercaActionPerformed
 
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
-        Filtro f = new Filtro(gestore,this);
+
         f.setVisible(true);
         this.setEnabled(false);
         f.setLocationRelativeTo(null);
@@ -712,11 +711,6 @@ public class RisList extends javax.swing.JFrame {
                 f.setVisible(false);
                 this.setVisible(true);
             }else{
-                /*filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 10);
-                impaginazione(pagina);
-                aggiornaLabel(filtratore.get(0).getRistorante());
-                setPreferitoVisualizzato();
-                aggiornaDetPref();*/
                 JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
             }
             });

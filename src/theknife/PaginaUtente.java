@@ -176,6 +176,14 @@ public class PaginaUtente extends javax.swing.JFrame {
         preferiti.repaint();
     }
     
+    public void generaCommentiUtente() {
+        for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
+            if (c.getIdScrittore() == gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()) {
+                contenitoreRec.add(new PannelloRecensioni(gestore, c, true));
+            }
+        }
+    }
+        
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -188,13 +196,12 @@ public class PaginaUtente extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        detUtenteLabel = new javax.swing.JLabel();
+        modDatiLabel = new javax.swing.JLabel();
+        prefLabel = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        recLabel = new javax.swing.JLabel();
         pannelloDestra = new javax.swing.JPanel();
         dettagliUtente = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -234,6 +241,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         preferiti = new javax.swing.JScrollPane();
         modificaPreferiti = new javax.swing.JScrollPane();
+        recensioni = new javax.swing.JScrollPane();
+        contenitoreRec = new javax.swing.JPanel();
+        modRecensioni = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -298,53 +308,53 @@ public class PaginaUtente extends javax.swing.JFrame {
         menu.setPreferredSize(new java.awt.Dimension(309, 620));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jLabel9.setText("Pagina utente");
+        jLabel9.setText("Pagina utente:");
 
         jSeparator1.setForeground(new java.awt.Color(0, 102, 102));
         jSeparator1.setMaximumSize(new java.awt.Dimension(50, 10));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("Dettagli utente");
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        detUtenteLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        detUtenteLabel.setText("Dettagli utente");
+        detUtenteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        detUtenteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                detUtenteLabelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel10MouseEntered(evt);
+                detUtenteLabelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel10MouseExited(evt);
+                detUtenteLabelMouseExited(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Modifica dati");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        modDatiLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        modDatiLabel.setText("Modifica dati");
+        modDatiLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modDatiLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                modDatiLabelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel11MouseEntered(evt);
+                modDatiLabelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel11MouseExited(evt);
+                modDatiLabelMouseExited(evt);
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel19.setText("Preferiti");
-        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
+        prefLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        prefLabel.setText("Preferiti");
+        prefLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        prefLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel19MouseClicked(evt);
+                prefLabelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel19MouseEntered(evt);
+                prefLabelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel19MouseExited(evt);
+                prefLabelMouseExited(evt);
             }
         });
 
@@ -352,25 +362,17 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         jSeparator3.setForeground(new java.awt.Color(0, 102, 102));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel21.setText("Recensioni");
-        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
+        recLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        recLabel.setText("Le mie recensioni");
+        recLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recLabelMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel21MouseEntered(evt);
+                recLabelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel21MouseExited(evt);
-            }
-        });
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel22.setText("Modifica recensioni");
-        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel22MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel22MouseExited(evt);
+                recLabelMouseExited(evt);
             }
         });
 
@@ -387,12 +389,11 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                     .addGroup(menuLayout.createSequentialGroup()
                         .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel22))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(detUtenteLabel)
+                            .addComponent(modDatiLabel)
+                            .addComponent(prefLabel)
+                            .addComponent(recLabel))
+                        .addGap(0, 113, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         menuLayout.setVerticalGroup(
@@ -403,20 +404,18 @@ public class PaginaUtente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(detUtenteLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
+                .addComponent(modDatiLabel)
                 .addGap(12, 12, 12)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel19)
+                .addComponent(prefLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addComponent(recLabel)
+                .addContainerGap(354, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -753,6 +752,22 @@ public class PaginaUtente extends javax.swing.JFrame {
         });
         pannelloDestra.add(modificaPreferiti, "modificaPreferiti");
 
+        javax.swing.GroupLayout contenitoreRecLayout = new javax.swing.GroupLayout(contenitoreRec);
+        contenitoreRec.setLayout(contenitoreRecLayout);
+        contenitoreRecLayout.setHorizontalGroup(
+            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 452, Short.MAX_VALUE)
+        );
+        contenitoreRecLayout.setVerticalGroup(
+            contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 481, Short.MAX_VALUE)
+        );
+
+        recensioni.setViewportView(contenitoreRec);
+
+        pannelloDestra.add(recensioni, "recensioni");
+        pannelloDestra.add(modRecensioni, "modRecensioni");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -778,6 +793,7 @@ public class PaginaUtente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         risList.setPreferitoVisualizzato();
         risList.aggiornaDetPref();
+        risList.impostaRisAttuale();
         risList.setEnabled(true);
         this.dispose();
         risList.setVisible(true);
@@ -794,35 +810,35 @@ public class PaginaUtente extends javax.swing.JFrame {
     }//GEN-LAST:event_eyePassActionPerformed
 
     //Apre pagina dettagli utente se cliccato
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void detUtenteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_detUtenteLabelMouseClicked
 
     //Apre pagina modifica dati utente se cliccato
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void modDatiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modifica");
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_modDatiLabelMouseClicked
     
     //Eventi per sottolineare label nel menù
-    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
-        originale = jLabel10.getText();
-        jLabel10.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel10MouseEntered
+    private void detUtenteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseEntered
+        originale = detUtenteLabel.getText();
+        detUtenteLabel.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_detUtenteLabelMouseEntered
 
-    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
-        jLabel10.setText(originale);
-    }//GEN-LAST:event_jLabel10MouseExited
+    private void detUtenteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseExited
+        detUtenteLabel.setText(originale);
+    }//GEN-LAST:event_detUtenteLabelMouseExited
 
-    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
-        originale = jLabel11.getText();
-        jLabel11.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel11MouseEntered
+    private void modDatiLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseEntered
+        originale = modDatiLabel.getText();
+        modDatiLabel.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_modDatiLabelMouseEntered
 
-    private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
-        jLabel11.setText(originale);
-    }//GEN-LAST:event_jLabel11MouseExited
+    private void modDatiLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseExited
+        modDatiLabel.setText(originale);
+    }//GEN-LAST:event_modDatiLabelMouseExited
 
     private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
          if (eyePass1.isSelected()) {
@@ -879,43 +895,40 @@ public class PaginaUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
-    private void jLabel19MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseEntered
-        originale = jLabel19.getText();
-        jLabel19.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel19MouseEntered
+    private void prefLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseEntered
+        originale = prefLabel.getText();
+        prefLabel.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_prefLabelMouseEntered
 
-    private void jLabel19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseExited
-        jLabel19.setText(originale);
-    }//GEN-LAST:event_jLabel19MouseExited
+    private void prefLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseExited
+        prefLabel.setText(originale);
+    }//GEN-LAST:event_prefLabelMouseExited
 
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+    private void prefLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseClicked
         mostraPreferiti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "preferiti");
-    }//GEN-LAST:event_jLabel19MouseClicked
+    }//GEN-LAST:event_prefLabelMouseClicked
 
     private void modificaPreferitiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaPreferitiMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modificaPreferiti");
     }//GEN-LAST:event_modificaPreferitiMouseClicked
 
-    private void jLabel21MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseEntered
-        originale = jLabel21.getText();
-        jLabel21.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel21MouseEntered
+    private void recLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseEntered
+        originale = recLabel.getText();
+        recLabel.setText("<html><u>" + originale + "</u></html>");
+    }//GEN-LAST:event_recLabelMouseEntered
 
-    private void jLabel21MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseExited
-        jLabel21.setText(originale);
-    }//GEN-LAST:event_jLabel21MouseExited
+    private void recLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseExited
+        recLabel.setText(originale);
+    }//GEN-LAST:event_recLabelMouseExited
 
-    private void jLabel22MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseEntered
-        originale = jLabel22.getText();
-        jLabel22.setText("<html><u>" + originale + "</u></html>");
-    }//GEN-LAST:event_jLabel22MouseEntered
-
-    private void jLabel22MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseExited
-        jLabel22.setText(originale);
-    }//GEN-LAST:event_jLabel22MouseExited
+    private void recLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseClicked
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "recensioni");
+        GeneratorePannelli p = new GeneratorePannelli(gestore);
+    }//GEN-LAST:event_recLabelMouseClicked
 
     
    
@@ -924,6 +937,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JTextField cognome;
     private javax.swing.JTextField cognome1;
     private javax.swing.JPanel contenitore;
+    private javax.swing.JPanel contenitoreRec;
+    private javax.swing.JLabel detUtenteLabel;
     private javax.swing.JPanel dettagliUtente;
     private javax.swing.JTextField email;
     private javax.swing.JTextField email1;
@@ -931,8 +946,6 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JToggleButton eyePass1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -940,11 +953,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -958,6 +968,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton logout;
     private javax.swing.JPanel menu;
+    private javax.swing.JLabel modDatiLabel;
+    private javax.swing.JScrollPane modRecensioni;
     private javax.swing.JPanel modificaDati;
     private javax.swing.JScrollPane modificaPreferiti;
     private javax.swing.JTextField nome;
@@ -967,7 +979,10 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JPasswordField password1;
     private javax.swing.JTextField posizione;
     private javax.swing.JTextField posizione1;
+    private javax.swing.JLabel prefLabel;
     private javax.swing.JScrollPane preferiti;
+    private javax.swing.JLabel recLabel;
+    private javax.swing.JScrollPane recensioni;
     private javax.swing.JComboBox<String> statoUtente;
     private javax.swing.JComboBox<String> statoUtente1;
     private javax.swing.JPanel testa;

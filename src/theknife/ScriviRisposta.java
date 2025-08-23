@@ -19,12 +19,14 @@ public class ScriviRisposta extends javax.swing.JFrame {
     private int valutazione = 0;
     private final int MAX_CHAR =  400;
     private CommentiRistoranti commento;
+    private final JButton bottoneScrivi;
    
     
     
     
-    public ScriviRisposta(GestoreArchivi gestore, CommentiRistoranti commento) {
+    public ScriviRisposta(GestoreArchivi gestore, CommentiRistoranti commento, JButton bottoneScrivi) {
         this.gestore = gestore;
+        this.bottoneScrivi = bottoneScrivi;
         this.commento = commento;
         setUndecorated(true);
         initComponents();
@@ -251,6 +253,7 @@ public class ScriviRisposta extends javax.swing.JFrame {
         } else {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), commento.getIdCommento()));
             commento.setHaRisposta(true);
+            bottoneScrivi.setVisible(false);
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed

@@ -225,7 +225,128 @@ public class RisList extends javax.swing.JFrame {
             scriviRec.setVisible(true);
         }
     }
-   
+    
+    //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
+    public void versioneGuest() {
+        if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
+            detPref.setVisible(false);
+            profiloUtente.setVisible(false);
+        } else {
+            detPref.setVisible(true);
+        }
+    }
+    
+    public void aggiornaDetPref() {
+        if (gestore.getArchivioPreferiti().esistePref()) {
+            detPref.setIcon(stellaPiena);
+        } else {
+            detPref.setIcon(stellaVuota);
+        }
+    }
+    
+    public void aggiornaDettagli(){
+        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
+        cl.show(pannelloDestra, "dettagli");
+    }
+    
+    public void resettaBarra(){
+        scrollPaneDet.getVerticalScrollBar().setValue(0);
+    }
+    public void generaAnteprima(){
+        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
+    }
+    
+    public void creaImmagine(){
+        ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
+        Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);
+        this.flagItalia = scaledIconItalia; 
+        
+        ImageIcon flagCN = new ImageIcon("src\\Flag_of_China.png");
+        Image scaledImageCina = flagCN.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconCina = new ImageIcon(scaledImageCina);
+        this.flagCina = scaledIconCina; 
+        
+        ImageIcon flagJP = new ImageIcon("src\\Flag_of_Japan.png");
+        Image scaledImageGiappone = flagJP.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconGiappone = new ImageIcon(scaledImageGiappone);
+        this.flagGiappone = scaledIconGiappone; 
+        
+        ImageIcon flagES = new ImageIcon("src\\Flag_of_Spain.png");
+        Image scaledImageSpagna = flagES.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconSpagna = new ImageIcon(scaledImageSpagna);
+        this.flagSpagna = scaledIconSpagna; 
+        
+        ImageIcon flagDE = new ImageIcon("src\\Flag_of_Germany.png");
+        Image scaledImageGermania = flagDE.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconGermania = new ImageIcon(scaledImageGermania);
+        this.flagGermania = scaledIconGermania; 
+        
+        ImageIcon flagUSA = new ImageIcon("src\\Flag_of_United_States.png");
+        Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
+        this.flagUSA = scaledIconUSA; 
+        
+        ImageIcon flagFR = new ImageIcon("src\\Flag_of_France.png");
+        Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconFrancia = new ImageIcon(scaledImageFrancia);
+        this.flagFrancia = scaledIconFrancia; 
+        
+        ImageIcon flagWD = new ImageIcon("src\\Globe.png");
+        Image scaledImageMondo = flagWD.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon scaledIconMondo = new ImageIcon(scaledImageMondo);
+        this.flagMondo = scaledIconMondo; 
+        
+        ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
+        Image tk1 = tkIcon.getImage();
+        Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon tk3 = new ImageIcon(tk2);
+        logo.setIcon(tk3);
+        
+        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
+        Image pa1 = paIcon.getImage();
+        Image pa2 = pa1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pa3 = new ImageIcon(pa2);
+        this.stellaVuota = pa3;
+        
+        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
+        Image pt1 = ptIcon.getImage();
+        Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon pt3 = new ImageIcon(pt2);
+        this.stellaPiena = pt3; 
+        
+        ImageIcon filtriIcon = new ImageIcon("src\\filtri.png");
+        Image filtri1 = filtriIcon.getImage();
+        Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon filtri3 = new ImageIcon(newImg);
+        this.immagineFiltro = filtri3;
+    }
+     
+     public ImageIcon selezionaImmagine(String nazione){
+        if(nazione.equals("Italy"))
+            return this.flagItalia;
+        
+        if(nazione.equals("France"))
+            return this.flagFrancia;
+        
+        if(nazione.equals("Germany"))
+            return this.flagGermania;
+        
+        if(nazione.equals("China"))
+            return this.flagCina;
+        
+        if(nazione.equals("Japan"))
+            return this.flagGiappone;
+        
+        if(nazione.equals("Spain"))
+            return this.flagSpagna;
+        
+        if(nazione.equals("USA"))
+            return this.flagUSA;
+        
+        return this.flagMondo;
+    }
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -711,7 +832,7 @@ public class RisList extends javax.swing.JFrame {
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");
-        gestore.getArchivioCommenti().generaCommenti(contenitoreRec, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
+        gestore.getArchivioCommenti().generaRecensioni(contenitoreRec, gestore);
     }//GEN-LAST:event_vediTutteActionPerformed
 
     private void indietroBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroBottoneActionPerformed
@@ -721,137 +842,36 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
-        Filtri filtri = new Filtri(gestore,this);
-        filtri.setVisible(true);
+        Filtro f = new Filtro(gestore,this);
+        f.setVisible(true);
         this.setEnabled(false);
-        filtri.setLocationRelativeTo(null);
+        f.setLocationRelativeTo(null);
+        
+        f.getApplicaFiltri().addActionListener(e -> {
+            ArrayList<PannelloRis> risultatiFiltrati = f.filtra(tuttiIPannelli);
+            if (!risultatiFiltrati.isEmpty()) {
+                filtratore.clear();
+                filtratore.addAll(risultatiFiltrati);
+                pagina = 0;
+                impaginazione(pagina);
+                aggiornaLabel(filtratore.get(0).getRistorante());
+                setPreferitoVisualizzato();
+                aggiornaDetPref();
+                this.setEnabled(true);
+                f.setVisible(false);
+                this.setVisible(true);
+            }else{
+                /*filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 10);
+                impaginazione(pagina);
+                aggiornaLabel(filtratore.get(0).getRistorante());
+                setPreferitoVisualizzato();
+                aggiornaDetPref();*/
+                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
+            }
+            });
     }//GEN-LAST:event_filtriActionPerformed
 
-    //Metodo per cambiare il comportamento di vari componenti se l'utente loggato è un guest
-    public void versioneGuest() {
-        if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
-            detPref.setVisible(false);
-            profiloUtente.setVisible(false);
-        } else {
-            detPref.setVisible(true);
-        }
-    }
     
-    public void aggiornaDetPref() {
-        if (gestore.getArchivioPreferiti().esistePref()) {
-            detPref.setIcon(stellaPiena);
-        } else {
-            detPref.setIcon(stellaVuota);
-        }
-    }
-    
-    public void aggiornaDettagli(){
-        CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
-        cl.show(pannelloDestra, "dettagli");
-    }
-    
-    public void resettaBarra(){
-        scrollPaneDet.getVerticalScrollBar().setValue(0);
-    }
-    
-    public void creaImmagine(){
-        ImageIcon flagIT = new ImageIcon("src\\Flag_of_Italy.png");
-        Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);
-        this.flagItalia = scaledIconItalia; 
-        
-        ImageIcon flagCN = new ImageIcon("src\\Flag_of_China.png");
-        Image scaledImageCina = flagCN.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconCina = new ImageIcon(scaledImageCina);
-        this.flagCina = scaledIconCina; 
-        
-        ImageIcon flagJP = new ImageIcon("src\\Flag_of_Japan.png");
-        Image scaledImageGiappone = flagJP.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconGiappone = new ImageIcon(scaledImageGiappone);
-        this.flagGiappone = scaledIconGiappone; 
-        
-        ImageIcon flagES = new ImageIcon("src\\Flag_of_Spain.png");
-        Image scaledImageSpagna = flagES.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconSpagna = new ImageIcon(scaledImageSpagna);
-        this.flagSpagna = scaledIconSpagna; 
-        
-        ImageIcon flagDE = new ImageIcon("src\\Flag_of_Germany.png");
-        Image scaledImageGermania = flagDE.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconGermania = new ImageIcon(scaledImageGermania);
-        this.flagGermania = scaledIconGermania; 
-        
-        ImageIcon flagUSA = new ImageIcon("src\\Flag_of_United_States.png");
-        Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
-        this.flagUSA = scaledIconUSA; 
-        
-        ImageIcon flagFR = new ImageIcon("src\\Flag_of_France.png");
-        Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconFrancia = new ImageIcon(scaledImageFrancia);
-        this.flagFrancia = scaledIconFrancia; 
-        
-        ImageIcon flagWD = new ImageIcon("src\\Globe.png");
-        Image scaledImageMondo = flagWD.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon scaledIconMondo = new ImageIcon(scaledImageMondo);
-        this.flagMondo = scaledIconMondo; 
-        
-        ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\TheKnife.png"));
-        Image tk1 = tkIcon.getImage();
-        Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon tk3 = new ImageIcon(tk2);
-        logo.setIcon(tk3);
-        
-        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Aggiungi.png"));
-        Image pa1 = paIcon.getImage();
-        Image pa2 = pa1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon pa3 = new ImageIcon(pa2);
-        this.stellaVuota = pa3;
-        
-        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("src\\pref_Togli.png"));
-        Image pt1 = ptIcon.getImage();
-        Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon pt3 = new ImageIcon(pt2);
-        this.stellaPiena = pt3; 
-        
-        ImageIcon filtriIcon = new ImageIcon("src\\filtri.png");
-        Image filtri1 = filtriIcon.getImage();
-        Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon filtri3 = new ImageIcon(newImg);
-        this.immagineFiltro = filtri3;
-    }
-     
-     public ImageIcon selezionaImmagine(String nazione){
-        if(nazione.equals("Italy"))
-            return this.flagItalia;
-        
-        if(nazione.equals("France"))
-            return this.flagFrancia;
-        
-        if(nazione.equals("Germany"))
-            return this.flagGermania;
-        
-        if(nazione.equals("China"))
-            return this.flagCina;
-        
-        if(nazione.equals("Japan"))
-            return this.flagGiappone;
-        
-        if(nazione.equals("Spain"))
-            return this.flagSpagna;
-        
-        if(nazione.equals("USA"))
-            return this.flagUSA;
-        
-        return this.flagMondo;
-    }
-     
-    public void generaAnteprima(){
-        gestore.getArchivioCommenti().generaCommenti(contenitoreAnteprima, gestore, 3);
-    }
-    
-     
-   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton avanti;
     private javax.swing.JTextField campoRicerca;

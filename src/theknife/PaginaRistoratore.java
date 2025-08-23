@@ -952,7 +952,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                     CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
                     cl.show(pannelloDestra, "commenti");
                     gestore.getArchivioRis().setRisAttuale(r);
-                    gestore.getArchivioCommenti().generaCommenti(contenitoreCommenti, gestore, gestore.getArchivioCommenti().getListaCommenti().size());
+                    GeneratorePannelli p = new GeneratorePannelli(gestore);
+                    p.generaCommenti(contenitoreCommenti, gestore.getArchivioCommenti().getListaCommenti().size());
                 });
 
                 pulsantiPanel.add(btnMostra);

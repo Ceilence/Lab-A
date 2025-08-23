@@ -27,6 +27,8 @@ public class TheKnife {
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
             }
         });
+        
+        
     }
 }
 

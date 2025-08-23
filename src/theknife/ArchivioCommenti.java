@@ -4,11 +4,8 @@
  */
 package theknife;
 
-import java.awt.Dimension;
 import java.io.*;
 import java.util.*;
-import javax.swing.Box;
-import javax.swing.JPanel;
 
 /**
  *
@@ -95,29 +92,6 @@ public class ArchivioCommenti {
         return listaCommenti;
     }
      
-    public void generaCommenti(JPanel contenitoreCommenti, GestoreArchivi gestore, int conto){
-        contenitoreCommenti.removeAll();
-        int numero = 0;
-        
-        for (int i = listaCommenti.size() - 1; i >= 0; i--){
-            CommentiRistoranti commento = listaCommenti.get(i);
-            if (gestore.getArchivioRis().getRisAttuale().getIdRis() == commento.getIdRistorante() && numero < conto){
-                contenitoreCommenti.add(new PannelloRecensioni(gestore, commento));
-                if (commento.haRisposta()){
-                    contenitoreCommenti.add(new PannelloRisposte(gestore, getRisposta(commento)));
-                    contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
-                } else {
-                    contenitoreCommenti.add(Box.createRigidArea(new Dimension(0, 10)));
-                }
-                numero++;
-            }
-        }
-        GestoreArchivi.RisListFrame.aggiornaBottoneVedi(numero);
-        
-        contenitoreCommenti.revalidate();
-        contenitoreCommenti.repaint();
-    }
-    
     public boolean haGiaRecensione(int idUtente, int idRistorante) {
         for (CommentiRistoranti c : listaCommenti) {
             if (c.getIdScrittore() == idUtente && c.getIdRistorante() == idRistorante) {

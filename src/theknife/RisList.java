@@ -26,7 +26,7 @@ public class RisList extends javax.swing.JFrame {
     private int pagina = 0;
     private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro, immagineLogo;
     private final int ELEMENTI_PER_PAGINA = 100;
-    public static Filtro f;
+    public Filtro f;
     
     
     public RisList(GestoreArchivi gestore) {
@@ -49,6 +49,26 @@ public class RisList extends javax.swing.JFrame {
         
         creaImmagine();
         caricaPannelli();
+        
+        //Bottone per applicare i filtri
+        f.getApplicaFiltri().addActionListener(e -> {
+            ArrayList<PannelloRis> risultatiFiltrati = f.filtra(tuttiIPannelli);
+            if (!risultatiFiltrati.isEmpty()) {
+                filtratore.clear();
+                filtratore.addAll(risultatiFiltrati);
+                pagina = 0;
+                impaginazione(pagina);
+                aggiornaLabel(filtratore.get(0).getRistorante());
+                setPreferitoVisualizzato();
+                aggiornaDetPref();
+                
+                this.setEnabled(true);
+                f.setVisible(false);
+                this.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
+            }
+            });
     }
     
     private void caricaPannelli() {
@@ -847,28 +867,14 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
-
+        
+        if(f.getStato().getSelectedItem() == null){
+            f.getStato().setSelectedItem(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente());
+            f.getCitta().setSelectedItem(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
+        }
         f.setVisible(true);
         this.setEnabled(false);
         f.setLocationRelativeTo(null);
-        
-        f.getApplicaFiltri().addActionListener(e -> {
-            ArrayList<PannelloRis> risultatiFiltrati = f.filtra(tuttiIPannelli);
-            if (!risultatiFiltrati.isEmpty()) {
-                filtratore.clear();
-                filtratore.addAll(risultatiFiltrati);
-                pagina = 0;
-                impaginazione(pagina);
-                aggiornaLabel(filtratore.get(0).getRistorante());
-                setPreferitoVisualizzato();
-                aggiornaDetPref();
-                this.setEnabled(true);
-                f.setVisible(false);
-                this.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
-            }
-            });
     }//GEN-LAST:event_filtriActionPerformed
 
     

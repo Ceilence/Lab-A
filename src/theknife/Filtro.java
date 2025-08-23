@@ -62,7 +62,7 @@ public class Filtro extends JDialog{
         
         stato = new JComboBox<>(new String[] {"","Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam"});
         citta= new JComboBox<>(new String[] {""});
-        tipoCucina = new JComboBox<>(new String[]{""});
+        tipoCucina = new JComboBox<>(new String[]{"", "Afghan", "African", "Alpine", "Alsatian", "American", "American Contemporary", "Andalusian", "Apulian", "Argentinian", "Asian", "Asian Contemporary", "Asian Influences", "Asian and Western", "Asturian", "Australian Contemporary", "Austrian", "Balkan", "Barbecue", "Basque", "Beef", "Beijing Cuisine", "Belgian", "Brazilian", "Breton", "British Contemporary", "Bulgogi", "Burgundian", "Burmese", "Californian", "Cambodian", "Campanian", "Cantonese", "Cantonese Roast Meats", "Caribbean", "Castilian", "Catalan", "Central Asian", "Chao Zhou", "Chicken Specialities", "Chinese", "Chinese Contemporary", "Chueotang", "Classic Cuisine", "Classic French", "Colombian", "Contemporary", "Corsican", "Country cooking", "Crab Specialities", "Creative", "Creative British", "Creative French", "Croatian", "Cuban", "Cuisine from Abruzzo", "Cuisine from Basilicata", "Cuisine from Lazio", "Cuisine from Romagna", "Cuisine from South West France", "Cuisine from Valtellina", "Czech", "Danish", "Deli", "Dim Sum", "Duck Specialities", "Dumplings", "Dwaeji-gukbap", "Eastern European", "Emilian", "Emirati Cuisine", "English", "Ethiopian", "European", "European Contemporary", "Farm to table", "Filipino", "Finnish", "Flemish", "French", "French Contemporary", "Fugu / Pufferfish", "Fujian", "Fusion", "Galician", "Gastropub", "Gejang", "German", "Greek", "Grills", "Hainanese", "Hakkanese", "Hang Zhou", "Home Cooking", "Hotpot", "Huaiyang", "Hubei", "Hui Cuisine", "Hunanese", "Hungarian", "Indian", "Indian Vegetarian", "Indonesian", "Innovative", "International", "Irish", "Isan", "Israeli", "Italian", "Italian Contemporary", "Italian and Japanese", "Italian-American", "Izakaya", "Jamaican", "Japanese", "Japanese Contemporary", "Japanese Steakhouse", "Jiangzhe", "Jokbal", "Korean", "Korean Contemporary", "Kushiage", "Lao", "Latin American", "Lebanese", "Ligurian", "Lombardian", "Lyonnaise", "Macanese", "Malaysian", "Mandu", "Meats and Grills", "Meats and Seafood", "Mediterranean Cuisine", "Memil-guksu", "Mexican", "Middle Eastern", "Modern British", "Modern Cuisine", "Modern French", "Moroccan", "Naengmyeon", "Ningbo", "Noodles", "Noodles and Congee", "Northern Thai", "Norwegian", "Obanzai", "Oden", "Onigiri", "Organic", "Peranakan", "Persian", "Peruvian", "Piedmontese", "Pizza", "Pork", "Portuguese", "Proven al", "Puerto Rican", "Ramen", "Regional Cuisine", "Regional European", "Rice Dishes", "Roman", "Russian", "Sardinian", "Savoyard", "Scandinavian", "Seafood", "Seasonal Cuisine", "Seolleongtang", "Shandong", "Shanghainese", "Sharing", "Shojin", "Shun Tak", "Sichuan", "Sicilian", "Singaporean", "Small eats", "Sm rrebr d", "Soba", "South African", "South American", "South East Asian", "Southern", "Southern Thai", "Spanish", "Spanish Contemporary", "Sri Lankan", "Steakhouse", "Street Food", "Sushi", "Swedish", "Swiss", "Taiwanese", "Taiwanese contemporary", "Taizhou", "Tempura", "Teochew", "Teppanyaki", "Tex-Mex", "Thai", "Thai contemporary", "Thai-Chinese", "Tonkatsu", "Traditional British", "Traditional Cuisine", "Turkish", "Tuscan", "Udon", "Unagi / Freshwater Eel", "Vegan", "Vegetarian", "Venetian", "Vietnamese", "Vietnamese Contemporary", "World Cuisine", "Yakitori", "Yoshoku", "Zhejiang"});
         JLabel labelStato = new JLabel("Stato: ");
         labelStato.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelStato.setFont(new Font("Arial", Font.BOLD, 18));
@@ -75,9 +75,10 @@ public class Filtro extends JDialog{
         labelCitta.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelCitta);
         citta.setAlignmentX(Component.LEFT_ALIGNMENT);
-        pannelloFiltri.add(citta);
         citta.setEnabled(false);
+        pannelloFiltri.add(citta);
         pannelloFiltri.add(Box.createVerticalStrut(15));
+        
         
         stato.addActionListener(e -> {
             String statoSelezionato = (String) stato.getSelectedItem();
@@ -90,41 +91,26 @@ public class Filtro extends JDialog{
                 }
 
                 citta.removeAllItems();
+                citta.addItem("");
                 for(String cittaDiStato : c) {
                     citta.addItem(cittaDiStato);
                 }
                 citta.setSelectedIndex(-1);
                 citta.setEnabled(true);
-            }else {
-                citta.removeAllItems();
-                citta.setEnabled(false);
             }
         });
-        
-        /*JLabel labelDistanza2 = new JLabel("Distanza massima dalla città selezionata (km):");
-        labelDistanza2.setAlignmentX(Component.LEFT_ALIGNMENT);
-        labelDistanza2.setFont(new Font("Arial", Font.BOLD, 18));
-        pannelloFiltri.add(labelDistanza2);
-        distanzaFiltro.setAlignmentX(Component.LEFT_ALIGNMENT);
-        distanzaFiltro.setBackground(new Color(153,153,153));
-        pannelloFiltri.add(distanzaFiltro);
-        pannelloFiltri.add(Box.createVerticalStrut(15));
-        
         
         citta.addActionListener(e -> {
-            Object scelta = citta.getSelectedItem();
-            if(scelta != null && !scelta.toString().trim().isEmpty()) {
-                distanzaFiltro.setEditable(true);
-                distanzaFiltro.setBackground(Color.WHITE);
-            }else {
-                distanzaFiltro.setEditable(false);
-                distanzaFiltro.setBackground(new Color(153, 153, 153));
-                distanzaFiltro.setText("");
+            if(citta.getSelectedItem() == null){
+                distanza.setEditable(false);
+                distanza.setBackground(Color.DARK_GRAY);
+            }else{
+                distanza.setEditable(true);
+                distanza.setBackground(Color.WHITE);
             }
         });
-        */
         
-        JLabel labelDistanza = new JLabel("Distanza massima dalla tua città(km):");
+        JLabel labelDistanza = new JLabel("Distanza massima dalla città(km):");
         labelDistanza.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelDistanza.setFont(new Font("Arial", Font.BOLD, 18));
         pannelloFiltri.add(labelDistanza);
@@ -203,7 +189,8 @@ public class Filtro extends JDialog{
         
         stato.setSelectedIndex(-1);
         
-        applicaFiltri.addActionListener(e -> { 
+        applicaFiltri.addActionListener(e -> {
+            filtri.getVerticalScrollBar().setValue(0);
         });
         
         setUndecorated(true);
@@ -216,16 +203,16 @@ public class Filtro extends JDialog{
     
     public ArrayList<PannelloRis> filtra(ArrayList<PannelloRis> tuttiIPannelli){
         ArrayList<PannelloRis> filtrati = new ArrayList<>();
-        Citta cittaUtente = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
         Citta cittaFiltrata = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
-        if(citta.getSelectedItem() != null){
-            cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
-        }
+        
+        cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
+  
         
         String cittaScelta = (String) citta.getSelectedItem();
         String statoScelto = (String) stato.getSelectedItem();
+        String cucinaScelta = (String) tipoCucina.getSelectedItem();
         Double distanzaMax = 0.0;
-        Double distanzaMax2 = 0.0;
+        
         
         Boolean delivery = null;
         if(deliverySi.isSelected()){
@@ -247,9 +234,6 @@ public class Filtro extends JDialog{
             distanzaMax = Double.parseDouble(distanza.getText().trim());
         }
         
-       /* if(!distanzaFiltro.getText().trim().isEmpty()){
-            distanzaMax2 = Double.parseDouble(distanzaFiltro.getText().trim());
-        }*/
         
         ArrayList<Integer> stelleSelezionate = new ArrayList<>();
         for(int i = 0; i < mediaStelle.length; i++) {
@@ -276,31 +260,29 @@ public class Filtro extends JDialog{
                 continue;
             }
             
-            if(statoScelto != null && !statoScelto.isEmpty() && !r.getStatoRis().equals(statoScelto)){
-            continue;
+            if(cucinaScelta != null && !cucinaScelta.isEmpty() && !r.getCuisRis().equals(cucinaScelta)){
+                continue;
             }
-            
-            if(cittaScelta != null && !cittaScelta.isEmpty() && !r.getLocRis().equals(cittaScelta)){
-            continue;
-            }
-            
-            /*if(distanzaMax2 != null && distanzaMax2 > 0) {
-                if(cittaFiltrata != null) {
-                    double distanzaKm2 = gestore.getArchivioCitta().calcolaDistanza(cittaFiltrata.getLatCitta(), cittaFiltrata.getLonCitta(), r.getLatRis(), r.getLongRis());
-                    if(distanzaKm2 > distanzaMax2) {
-                        continue;
-                    }
-                }
-            }*/
             
             if(distanzaMax != null && distanzaMax > 0) {
-                if(cittaUtente != null) {
-                    double distanzaKm = gestore.getArchivioCitta().calcolaDistanza(cittaUtente.getLatCitta(), cittaUtente.getLonCitta(), r.getLatRis(), r.getLongRis());
+                if(cittaFiltrata != null) {
+                    double distanzaKm = gestore.getArchivioCitta().calcolaDistanza(cittaFiltrata.getLatCitta(), cittaFiltrata.getLonCitta(), r.getLatRis(), r.getLongRis());
+                    cittaScelta = null;
+                    statoScelto = null;
                     if(distanzaKm > distanzaMax) {
                         continue;
                     }
                 }
             }
+            
+            if(statoScelto != null && !statoScelto.isEmpty() && !r.getStatoRis().equals(statoScelto)){
+                continue;
+            }
+            
+            if(cittaScelta != null && !cittaScelta.isEmpty() && !r.getLocRis().equals(cittaScelta)){
+                continue;
+            }
+            
             
             if(!stelleSelezionate.isEmpty()) {
                 int media = (int) r.getMediaStelleRis();
@@ -323,5 +305,13 @@ public class Filtro extends JDialog{
     
     public JButton getApplicaFiltri(){
         return applicaFiltri;
+    }
+    
+    public JComboBox getStato(){
+        return stato;
+    }
+    
+    public JComboBox getCitta(){
+        return citta;
     }
 }

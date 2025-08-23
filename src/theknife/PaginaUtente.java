@@ -21,9 +21,11 @@ public class PaginaUtente extends javax.swing.JFrame {
     private String originale;
     
     
+    
     public PaginaUtente(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
+        
         
         initComponents();
         

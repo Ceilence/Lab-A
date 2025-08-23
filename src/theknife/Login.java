@@ -16,6 +16,7 @@ public class Login extends javax.swing.JFrame {
     private GestoreArchivi gestore;
     private static RisList risList;
     
+    
     public Login(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();

@@ -210,6 +210,7 @@ public class Filtro extends JDialog{
         
         String cittaScelta = (String) citta.getSelectedItem();
         String statoScelto = (String) stato.getSelectedItem();
+        String cucinaScelta = (String) tipoCucina.getSelectedItem();
         Double distanzaMax = 0.0;
         
         
@@ -259,6 +260,9 @@ public class Filtro extends JDialog{
                 continue;
             }
             
+            if(cucinaScelta != null && !cucinaScelta.isEmpty() && !r.getCuisRis().equals(cucinaScelta)){
+                continue;
+            }
             
             if(distanzaMax != null && distanzaMax > 0) {
                 if(cittaFiltrata != null) {

@@ -109,8 +109,9 @@ public final class PannelloRecensioni extends JPanel{
         panelScritte.add(spazio2);
         panelScritte.add(testo);
         panelScritte.add(spazio3);
-        add(panelScritte, BorderLayout.NORTH);
+        add(panelScritte);
         
+        //--- SEZIONE PULSANTI ---
         JPanel panelBottoni = new JPanel();
         panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
         panelBottoni.setOpaque(false);
@@ -127,15 +128,16 @@ public final class PannelloRecensioni extends JPanel{
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
             if (conferma == JOptionPane.YES_OPTION) {
                 gestore.getArchivioCommenti().rimuoviCommento(commento);
+                pagUtente.pulisciPanel();
                 pagUtente.generaCommentiUtente();
                 pagUtente.contenitoreRepaint();
+                gestore.getArchivioCommenti().aggiornaCommenti();
             }
         });
 
         panelBottoni.add(modRecensione);
         panelBottoni.add(elimRecensione);
         add(panelBottoni, BoxLayout.Y_AXIS); 
-        add(modRecensione, BoxLayout.Y_AXIS);
         repaint();
         revalidate();
 

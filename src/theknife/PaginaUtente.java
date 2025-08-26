@@ -84,6 +84,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         ImageIcon hp3 = new ImageIcon(hp2); 
         this.hidePass = hp3;
         
+        contenitoreRec.setLayout(new BoxLayout(contenitoreRec, BoxLayout.Y_AXIS));
+        recensioni.setViewportView(contenitoreRec);
+        
     }
     
     public void mostraPreferiti(){
@@ -939,7 +942,9 @@ public class PaginaUtente extends javax.swing.JFrame {
     private void recLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");
-        GeneratorePannelli p = new GeneratorePannelli(gestore);
+        pulisciPanel();
+        generaCommentiUtente();
+        contenitoreRepaint();
     }//GEN-LAST:event_recLabelMouseClicked
 
     

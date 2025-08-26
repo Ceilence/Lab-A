@@ -322,7 +322,10 @@ public class ModificaRecensione extends javax.swing.JFrame {
             commento.setTitolo(titoloRec.getText());
             commento.setValutazione(valutazione);
             risList.setMediaValutazioni();
+            pagUtente.pulisciPanel();
             pagUtente.generaCommentiUtente();
+            pagUtente.contenitoreRepaint();
+            gestore.getArchivioCommenti().aggiornaCommenti();
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed

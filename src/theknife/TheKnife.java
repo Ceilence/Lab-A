@@ -4,6 +4,9 @@
 
 package theknife;
 
+import theknife.gestori.GestoreArchivi;
+import theknife.grafica.RisList;
+
 /**
  *
  * @author Alefr
@@ -27,10 +30,10 @@ public class TheKnife {
                 GestoreArchivi.RisListFrame.setLocationRelativeTo(null);
             }
         });
-        
-        
     }
 }
+
+
 
 
 

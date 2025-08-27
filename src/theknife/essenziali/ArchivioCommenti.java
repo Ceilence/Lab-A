@@ -88,6 +88,12 @@ public class ArchivioCommenti {
         aggiornaCommenti();
     }
     
+    public void rimuoviRisposta(CommentiRistoranti c) {
+        listaCommenti.remove(c);
+        aggiornaCommenti();
+    }
+    
+    
     public int creaID() {
         int max = 0;
         for (CommentiRistoranti cr : listaCommenti) {

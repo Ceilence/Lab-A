@@ -4,16 +4,16 @@
  */
 package theknife.grafica;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
@@ -21,11 +21,11 @@ import theknife.gestori.GestoreArchivi;
  *
  * @author davim
  */
-public class PannelloRisposta extends JPanel{
+public class PannelloRispostaRistoratore extends JPanel{
     
-    public PannelloRisposta(GestoreArchivi gestore, CommentiRistoranti commento) {
+    public PannelloRispostaRistoratore(GestoreArchivi gestore, CommentiRistoranti commento, PaginaRistoratore pagRisto) {
         CommentiRistoranti risposta = gestore.getArchivioCommenti().getRisposta(commento);
-
+        
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(254, 254, 254));
 
@@ -43,12 +43,36 @@ public class PannelloRisposta extends JPanel{
         contenitoreScritte.setBackground(Color.WHITE);
 
         JLabel nomeRisposta = new JLabel();
-        nomeRisposta.setText("Risposta del ristoratore:");
+        nomeRisposta.setText("La tua risposta:");
         nomeRisposta.setFont(new Font("Arial", Font.BOLD, 15));
 
         JLabel testoRisposta = new JLabel("<html><p style='width: 570px'>" + risposta.getTesto() + "</p></html>");
         testoRisposta.setFont(new Font("Arial", Font.PLAIN, 15));
 
+         JPanel panelBottoni = new JPanel();
+        panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
+        panelBottoni.setOpaque(false);
+
+        JButton modRecensione = new JButton("Modifica");
+        modRecensione.addActionListener(e -> {
+            ModificaRisposta mr = new ModificaRisposta(gestore, commento, risposta, pagRisto);
+            pagRisto.cambiaCard();
+            mr.setVisible(true);
+            mr.setLocationRelativeTo(null);
+        });
+
+        JButton elimRecensione = new JButton("Elimina");
+        elimRecensione.addActionListener(e -> {
+            int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
+            if (conferma == JOptionPane.YES_OPTION) {
+                gestore.getArchivioCommenti().rimuoviRisposta(risposta);
+                pagRisto.cambiaCard();
+            }
+        });
+       
+        panelBottoni.add(modRecensione);
+        panelBottoni.add(elimRecensione);
+        panelBottoni.setAlignmentX(Component.LEFT_ALIGNMENT);
         contenitoreScritte.add(nomeRisposta);
         contenitoreScritte.add(Box.createVerticalStrut(20));
         contenitoreScritte.add(testoRisposta);
@@ -56,7 +80,9 @@ public class PannelloRisposta extends JPanel{
 
         pannelloRisposta.add(contenitoreScritte);
 
+        pannelloRisposta.add(panelBottoni);
         add(pannelloRisposta);
+        
 
         revalidate();
         repaint();

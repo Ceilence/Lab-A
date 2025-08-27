@@ -80,7 +80,7 @@ public class RecensioniRistorantiGestiti extends JPanel {
             for (CommentiRistoranti c : lista) {
                 contenitoreCommenti.add(new PannelloRecDaRispondere(gestore, c, pagRisto));
                 if (c.haRisposta()) {
-                    contenitoreCommenti.add(new PannelloRisposta(gestore, c));
+                    contenitoreCommenti.add(new PannelloRispostaRistoratore(gestore, c, pagRisto));
                 }
                 contenitoreCommenti.add(Box.createVerticalStrut(10));
             }

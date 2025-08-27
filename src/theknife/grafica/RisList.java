@@ -29,7 +29,7 @@ public class RisList extends javax.swing.JFrame {
     private final ArrayList<PannelloRistorante> filtratore = new ArrayList<>();
     private final Caricamento caricamentoFrame;
     private int pagina = 0;
-    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro, immagineLogo;
+    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagStatiUniti, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro;
     private Filtro f;
     
     
@@ -455,7 +455,6 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
         cerca.setBackground(new java.awt.Color(254, 254, 254));
-        cerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LenteRicerca.png"))); // NOI18N
         cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -902,7 +901,7 @@ public class RisList extends javax.swing.JFrame {
         ImageIcon flagUSA = new ImageIcon("resources\\images\\Flag_of_United_States.png");
         Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
-        this.flagUSA = scaledIconUSA; 
+        this.flagStatiUniti = scaledIconUSA; 
         
         ImageIcon flagFR = new ImageIcon("resources\\images\\Flag_of_France.png");
         Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -934,9 +933,15 @@ public class RisList extends javax.swing.JFrame {
         
         ImageIcon filtriIcon = new ImageIcon("resources\\images\\filtri.png");
         Image filtri1 = filtriIcon.getImage();
-        Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon filtri3 = new ImageIcon(newImg);
-        this.immagineFiltro = filtri3;
+        Image filtri2 = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon filtri3 = new ImageIcon(filtri2);
+        filtri.setIcon(filtri3);
+        
+        ImageIcon cercaIcon = new ImageIcon("resources\\images\\Lente.png");
+        Image ci1 = cercaIcon.getImage();
+        Image ci2 = ci1.getScaledInstance(cerca.getWidth(), cerca.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon ci3 = new ImageIcon(ci2);
+        cerca.setIcon(ci3);
     }
      
      public ImageIcon selezionaImmagine(String nazione){
@@ -959,7 +964,7 @@ public class RisList extends javax.swing.JFrame {
             return this.flagSpagna;
         
         if(nazione.equals("USA"))
-            return this.flagUSA;
+            return this.flagStatiUniti;
         
         return this.flagMondo;
     }

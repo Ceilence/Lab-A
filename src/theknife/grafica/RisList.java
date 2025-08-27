@@ -221,8 +221,11 @@ public class RisList extends javax.swing.JFrame {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
             detPref.setVisible(false);
             profiloUtente.setVisible(false);
+            scriviRec.setVisible(false);
+            logoutBottone.setVisible(true);
         } else {
             detPref.setVisible(true);
+            logoutBottone.setVisible(false);
         }
     }
     
@@ -390,6 +393,7 @@ public class RisList extends javax.swing.JFrame {
         indietro = new javax.swing.JButton();
         avanti = new javax.swing.JButton();
         contatore = new javax.swing.JLabel();
+        logoutBottone = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(770, 660));
@@ -445,11 +449,12 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         jPanel1.add(logo, gridBagConstraints);
 
-        panRicerca.setBackground(new java.awt.Color(255, 255, 255));
+        panRicerca.setBackground(new java.awt.Color(240, 240, 240));
         panRicerca.setMaximumSize(new java.awt.Dimension(415, 40));
         panRicerca.setPreferredSize(new java.awt.Dimension(415, 40));
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
+        cerca.setBackground(new java.awt.Color(254, 254, 254));
         cerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LenteRicerca.png"))); // NOI18N
         cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
@@ -486,6 +491,7 @@ public class RisList extends javax.swing.JFrame {
 
         panRicerca.add(jScrollPane1, new java.awt.GridBagConstraints());
 
+        filtri.setBackground(new java.awt.Color(254, 254, 254));
         filtri.setMaximumSize(new java.awt.Dimension(60, 40));
         filtri.setMinimumSize(new java.awt.Dimension(60, 40));
         filtri.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -526,7 +532,7 @@ public class RisList extends javax.swing.JFrame {
         scrollPaneDet.setMinimumSize(new java.awt.Dimension(600, 16));
         scrollPaneDet.setPreferredSize(new java.awt.Dimension(600, 2));
 
-        dettaglioPanel.setBackground(new java.awt.Color(255, 255, 255));
+        dettaglioPanel.setBackground(new java.awt.Color(254, 254, 254));
         dettaglioPanel.setMinimumSize(new java.awt.Dimension(200, 132));
         dettaglioPanel.setPreferredSize(new java.awt.Dimension(268, 1250));
         dettaglioPanel.setLayout(new java.awt.GridBagLayout());
@@ -706,6 +712,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
         jPanel1.add(pannelloDestra, gridBagConstraints);
 
+        indietro.setBackground(new java.awt.Color(254, 254, 254));
         indietro.setText("Indietro");
         indietro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -719,6 +726,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         jPanel1.add(indietro, gridBagConstraints);
 
+        avanti.setBackground(new java.awt.Color(254, 254, 254));
         avanti.setText("Avanti");
         avanti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -738,6 +746,21 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         jPanel1.add(contatore, gridBagConstraints);
+
+        logoutBottone.setBackground(new java.awt.Color(254, 254, 254));
+        logoutBottone.setText("Logout");
+        logoutBottone.setFocusPainted(false);
+        logoutBottone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBottoneActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel1.add(logoutBottone, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -838,6 +861,17 @@ public class RisList extends javax.swing.JFrame {
         this.setEnabled(false);
         f.setLocationRelativeTo(null);
     }//GEN-LAST:event_filtriActionPerformed
+
+    private void logoutBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBottoneActionPerformed
+        // TODO add your handling code here:                                    
+        gestore.getArchivioUtenti().setUtenteAttuale(0);
+        this.setEnabled(true);
+        this.setVisible(false);
+        this.chiudiFiltro();
+        
+        this.creaLogin();
+        this.dispose();
+    }//GEN-LAST:event_logoutBottoneActionPerformed
 
     private void creaImmagini(){
         ImageIcon flagIT = new ImageIcon("resources\\images\\Flag_of_Italy.png");
@@ -952,6 +986,7 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton logoutBottone;
     private javax.swing.JPanel panRicerca;
     private javax.swing.JPanel pannelloDestra;
     private javax.swing.JButton profiloUtente;

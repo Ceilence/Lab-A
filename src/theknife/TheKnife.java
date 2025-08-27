@@ -12,7 +12,7 @@ import theknife.grafica.RisList;
  * @author Alefr
  */
 public class TheKnife {
-
+    
     public static void main(String[] args) {
         GestoreArchivi gestore = new GestoreArchivi();
         

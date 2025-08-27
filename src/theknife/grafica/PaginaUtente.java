@@ -67,8 +67,6 @@ public class PaginaUtente extends javax.swing.JFrame {
             
             if (c.haRisposta()) {
                 PannelloRisposta panRisposta = new PannelloRisposta(gestore, c);
-                panRisposta.setPreferredSize(new Dimension(650,80));
-                panRisposta.setMaximumSize(new Dimension(650,80));
                 
                 contenitoreRec.add(panRisposta);
             }
@@ -689,6 +687,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         pannelloDestra.add(modificaPreferiti, "modificaPreferiti");
 
         contenitoreRec.setBackground(new java.awt.Color(255, 255, 255));
+        contenitoreRec.setMaximumSize(new java.awt.Dimension(749, 0));
+        contenitoreRec.setPreferredSize(new java.awt.Dimension(749, 0));
         contenitoreRec.setLayout(new javax.swing.BoxLayout(contenitoreRec, javax.swing.BoxLayout.Y_AXIS));
         recensioni.setViewportView(contenitoreRec);
 

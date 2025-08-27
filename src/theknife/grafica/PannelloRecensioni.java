@@ -40,24 +40,15 @@ public final class PannelloRecensioni extends JPanel{
         JLabel titolo = new JLabel(commento.getTitolo());
         titolo.setFont(new Font("Arial", Font.BOLD, 16));
         
-        JLabel spazio1 = new JLabel(" ");
-        spazio1.setFont(new Font("Arial", Font.PLAIN, 10));
-        
-        JLabel spazio2 = new JLabel(" ");
-        spazio2.setFont(new Font("Arial", Font.PLAIN, 10));
-        
-        JLabel spazio3 = new JLabel(" ");
-        spazio3.setFont(new Font("Arial", Font.PLAIN, 10));
-        
-        JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
+        JLabel testo = new JLabel("<html><p style='width: 590px'>" + commento.getTesto() + "</p></html>");
         testo.setFont(new Font("Arial", Font.PLAIN, 15));
         panelScritte.add(nome);
         panelScritte.add(voto);
-        panelScritte.add(spazio1);
+        panelScritte.add(Box.createVerticalStrut(20));
         panelScritte.add(titolo);
-        panelScritte.add(spazio2);
+        panelScritte.add(Box.createVerticalStrut(20));
         panelScritte.add(testo);
-        panelScritte.add(spazio3);
+        panelScritte.add(Box.createVerticalStrut(10));
         add(panelScritte, BorderLayout.NORTH);
         
         repaint();

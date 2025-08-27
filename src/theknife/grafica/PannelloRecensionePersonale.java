@@ -7,6 +7,7 @@ import theknife.grafica.ScriviRisposta;
 import theknife.essenziali.Utente;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
@@ -23,7 +24,6 @@ public final class PannelloRecensionePersonale extends JPanel{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY, 1),BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         setBackground(Color.WHITE);
-        setMaximumSize(new Dimension(750, Integer.MAX_VALUE));
 
         
         // --- SEZIONE SCRITTE ---
@@ -40,7 +40,7 @@ public final class PannelloRecensionePersonale extends JPanel{
         JLabel titolo = new JLabel(commento.getTitolo());
         titolo.setFont(new Font("Arial", Font.BOLD, 16));
         
-        JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
+        JLabel testo = new JLabel("<html><p style='width: 580px'>" + commento.getTesto() + "</p></html>");
         testo.setFont(new Font("Arial", Font.PLAIN, 15));
         
         panelScritte.add(nome);
@@ -79,8 +79,7 @@ public final class PannelloRecensionePersonale extends JPanel{
         panelBottoni.add(modRecensione);
         panelBottoni.add(elimRecensione);
         panelBottoni.setAlignmentX(Component.LEFT_ALIGNMENT);
-         
-        add(Box.createVerticalGlue());
+        
         add(panelBottoni);
         
         repaint();

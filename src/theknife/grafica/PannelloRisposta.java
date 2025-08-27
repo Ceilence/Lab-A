@@ -6,6 +6,7 @@ package theknife.grafica;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -49,12 +50,13 @@ public class PannelloRisposta extends JPanel{
         }
         nomeRisposta.setFont(new Font("Arial", Font.BOLD, 15));
 
-        JLabel testoRisposta = new JLabel("<html><p style='width: 600px'>" + risposta.getTesto() + "</p></html>");
+        JLabel testoRisposta = new JLabel("<html><p style='width: 570px'>" + risposta.getTesto() + "</p></html>");
         testoRisposta.setFont(new Font("Arial", Font.PLAIN, 15));
 
         contenitoreScritte.add(nomeRisposta);
-        contenitoreScritte.add(Box.createVerticalStrut(7));
+        contenitoreScritte.add(Box.createVerticalStrut(20));
         contenitoreScritte.add(testoRisposta);
+        contenitoreScritte.add(Box.createVerticalStrut(10));
 
         pannelloRisposta.add(contenitoreScritte);
 

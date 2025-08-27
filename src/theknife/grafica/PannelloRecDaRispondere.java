@@ -56,7 +56,7 @@ public class PannelloRecDaRispondere extends JPanel{
         JLabel spazio3 = new JLabel(" ");
         spazio3.setFont(new Font("Arial", Font.PLAIN, 10));
         
-        JLabel testo = new JLabel("<html><p style='width: 600px'>" + commento.getTesto() + "</p></html>");
+        JLabel testo = new JLabel("<html><p style='width: 550px'>" + commento.getTesto() + "</p></html>");
         testo.setFont(new Font("Arial", Font.PLAIN, 15));
         
         panelScritte.add(nome);

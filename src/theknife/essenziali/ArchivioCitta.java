@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.essenziali;
 
@@ -9,8 +8,20 @@ import java.io.*;
 import java.util.*;
 
 /**
- *
- * @author davim
+ * Gestisce l'archivio delle Città.
+ * <p>
+ * Questa classe si occupa di:
+ *  <ul>
+ *      <li>Leggere i dati delle città da un file CSV.</li>
+ *      <li>Fornire l'accesso alle città registrate in memoria.</li>
+ *      <li>Calcolare la distanza geografica tra due coordinate (formula dell'Haversine).</li>
+ *  </ul>
+ * </p>
+ * 
+ * <p>Il file di riferimento è: data\Citta.csv, con formato righe: <br>
+ * @code NomeCittà § Latitudine § Longitudine</p>
+ * 
+ * @see Citta
  */
 public class ArchivioCitta {
     

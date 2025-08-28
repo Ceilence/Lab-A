@@ -1,10 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) - Sede: Como
  */
 package theknife.essenziali;
 
 /**
+ * Rappresenta un commento relativo a un ristorante. <br>
+ * Un commento può essere di due tipi:
+ *  <ul>
+ *      <li><b>recensione</b>: include titolo, valutazione e id del ristorante</li>
+ *      <li><b>risposta</b>: risposta del ristoratore senza valutazione</li>
+ *  </ul>
+ *
+ * I commenti vengono identificati tramite idCommento.
  *
  * @author davim
  */
@@ -20,15 +27,16 @@ public class CommentiRistoranti {
     private boolean daLeggere;
     
     /**
-     * 
-     * @param idScrittore
-     * @param testo
-     * @param idCommento
-     * @param titolo
-     * @param idRistorante
-     * @param valutazione
-     * @param haRisposta
-     * @param daLeggere 
+     * Costruttore per creare una recensione di un ristorante.
+     *
+     * @param idScrittore  l'ID dell'utente che ha scritto la recensione
+     * @param testo        il contenuto testuale della recensione
+     * @param idCommento   identificativo del commento
+     * @param titolo       titolo della recensione
+     * @param idRistorante ID del ristorante recensito
+     * @param valutazione  valutazione numerica assegnata al ristorante
+     * @param haRisposta   true se la recensione ha ricevuto risposta
+     * @param daLeggere    true se la recensione deve ancora essere letta
      */
     public CommentiRistoranti(int idScrittore, String testo, int idCommento, String titolo, int idRistorante, int valutazione, boolean haRisposta, boolean daLeggere) {
         this.tipoCommento = "recensione";
@@ -43,10 +51,11 @@ public class CommentiRistoranti {
     }
     
     /**
-     * 
-     * @param idScrittore
-     * @param testo
-     * @param idCommento 
+     * Costruttore per creare una risposta a un commento/recensione.
+     *
+     * @param idScrittore l'ID dell'utente che ha scritto la risposta
+     * @param testo       il contenuto testuale della risposta
+     * @param idCommento  identificativo del commento
      */
     public CommentiRistoranti(int idScrittore, String testo, int idCommento) {
         this.tipoCommento = "risposta";
@@ -56,102 +65,113 @@ public class CommentiRistoranti {
         this.haRisposta = false;
     }
 
-    public String getTipoCommento() {
-        return tipoCommento;
-    }
-
-    public void setTipoCommento(String tipoCommento) {
-        this.tipoCommento = tipoCommento;
-    }
-
-    public int getIdScrittore() {
-        return idScrittore;
-    }
-
-    public void setIdScrittore(int idScrittore) {
-        this.idScrittore = idScrittore;
-    }
-
-    public String getTesto() {
-        return testo;
-    }
-
-    public void setTesto(String testo) {
-        this.testo = testo;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
+    /** @return il tipo di commento: "recensione" o "risposta" */
+    public String getTipoCommento() { 
+        return tipoCommento; 
     }
     
-    public Integer getIdCommento() {
-        return idCommento;
+    public void setTipoCommento(String tipoCommento) { 
+        this.tipoCommento = tipoCommento; 
     }
 
-    public void setIdCommento(Integer idCommento) {
-        this.idCommento = idCommento;
+    /** @return l'ID dello scrittore del commento */
+    public int getIdScrittore() { 
+        return idScrittore; 
+    }
+    public void setIdScrittore(int idScrittore) { 
+        this.idScrittore = idScrittore; 
+    }
+
+    /** @return il testo del commento */
+    public String getTesto() { 
+        return testo; 
+    }
+    public void setTesto(String testo) { 
+        this.testo = testo; 
+    }
+
+    /** @return il titolo della recensione (solo se {@link #isRisposta()} è false) */
+    public String getTitolo() { 
+        return titolo; 
+    }
+    public void setTitolo(String titolo) { 
+        this.titolo = titolo; 
     }
     
-    public Integer getIdRistorante() {
-        return idRistorante;
+    /** @return l'ID univoco del commento */
+    public Integer getIdCommento() { 
+        return idCommento; 
     }
-
-    public void setIdRistorante(Integer idRistorante) {
-        this.idRistorante = idRistorante;
-    }
-
-    public boolean isDaLeggere() {
-        return daLeggere;
-    }
-
-    public void setDaLeggere(boolean daLeggere) {
-        this.daLeggere = daLeggere;
-    }
-
-    public Integer getValutazione() {
-        return valutazione;
-    }
-
-    public void setValutazione(Integer valutazione) {
-        this.valutazione = valutazione;
-    }
-
-    public boolean haRisposta() {
-        return haRisposta;
-    }
-
-    public void setHaRisposta(boolean haRisposta) {
-        this.haRisposta = haRisposta;
+    public void setIdCommento(Integer idCommento) { 
+        this.idCommento = idCommento; 
     }
     
-    public boolean isRisposta() {
-        return "risposta".equals(tipoCommento);
+    /** @return l'ID del ristorante associato (solo recensioni) */
+    public Integer getIdRistorante() { 
+        return idRistorante; 
+    }
+    public void setIdRistorante(Integer idRistorante) { 
+        this.idRistorante = idRistorante; 
+    }
+
+    /** @return true se il commento è ancora da leggere */
+    public boolean isDaLeggere() { 
+        return daLeggere; 
+    }
+    public void setDaLeggere(boolean daLeggere) { 
+        this.daLeggere = daLeggere; 
+    }
+
+    /** @return la valutazione numerica (solo recensioni) */
+    public Integer getValutazione() { 
+        return valutazione; 
+    }
+    public void setValutazione(Integer valutazione) { 
+        this.valutazione = valutazione; 
+    }
+
+    /** @return true se la recensione ha ricevuto risposta */
+    public boolean haRisposta() { 
+        return haRisposta; 
+    }
+    public void setHaRisposta(boolean haRisposta) { 
+        this.haRisposta = haRisposta; 
     }
     
+    /** @return true se il commento è una risposta */
+    public boolean isRisposta() { 
+        return "risposta".equals(tipoCommento); 
+    }
+    
+    /**
+     * Rappresentazione testuale del commento per salvataggio su file CSV.
+     *
+     * @return una stringa contenente i dati principali del commento
+     */
     @Override
     public String toString() {
         if ("recensione".equals(tipoCommento)){
             return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§" + 
-                titolo + "§" + idRistorante + "§" + valutazione + "§" + haRisposta + "§" + daLeggere + "§";
+                   titolo + "§" + idRistorante + "§" + valutazione + "§" + haRisposta + "§" + daLeggere + "§";
         } else {
             return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§";
         }
     }
 
+    /**
+     * Due commenti sono considerati uguali se hanno lo stesso idCommento.
+     */
     @Override
     public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-    CommentiRistoranti other = (CommentiRistoranti) obj;
-    return this.idCommento == other.idCommento;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        CommentiRistoranti other = (CommentiRistoranti) obj;
+        return this.idCommento == other.idCommento;
     }
 
     @Override
     public int hashCode() {
-    return Integer.hashCode(idCommento);
+        return Integer.hashCode(idCommento);
     } 
 }
+

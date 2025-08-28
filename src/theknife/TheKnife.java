@@ -12,9 +12,9 @@ import theknife.grafica.RisList;
  * <p>
  *  Questa classe contiene il main. Si occupa di:
  *  <ul>
- *      <li>Inizializzare il GestoreArchivi, che gestisce i vari archivi (utenti, risorse, città, preferiti, commenti).</li>
+ *      <li>Inizializzare il {@link GestoreArchivi}, che gestisce i vari archivi (utenti, risorse, città, preferiti, commenti).</li>
  *      <li>Caricare i dati salvati dai file tramite i metodi (leggiArchivio()}).</li>
- *      <li>Avviare l'interfaccia grafica principale (RisList).</li>
+ *      <li>Avviare l'interfaccia grafica principale {@link RisList}.</li>
  *  </ul>
  * </p>
  */
@@ -25,9 +25,9 @@ public class TheKnife {
      * <p>
      *  Esegue le seguenti operazioni:
      *  <ol>
-     *      <li>Inizializza il GestoreArchivi.</li>
+     *      <li>Inizializza il {@link GestoreArchivi}.</li>
      *      <li>Legge i dati degli archivi (utenti, risorse, città, preferiti, commenti).</li>
-     *      <li>Carica la finestra RisList, l'interfaccia grafica principale.</li>
+     *      <li>Carica la finestra {@link RisList}, l'interfaccia grafica principale.</li>
      *  </ol>
      * </p>
      *

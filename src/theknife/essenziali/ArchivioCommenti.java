@@ -21,11 +21,10 @@ import javax.swing.JOptionPane;
  * </p>
  *
  * <p>
- *  Il file di riferimento è data\Commenti.csv.  
- *  Ogni riga segue la struttura:
+ *  Il file di riferimento è data\Commenti.csv, e contiene i seguenti token:
  *  <pre>
- *      recensione: recensione § idScrittore § testo § idCommento § titolo § idRistorante § valutazione § haRisposta § daLeggere.
- *      risposta: risposta § idScrittore § testo § idCommento.
+ *      <b>recensione</b>: recensione § idScrittore § testo § idCommento § titolo § idRistorante § valutazione § haRisposta § daLeggere.
+ *      <b>risposta</b>: risposta § idScrittore § testo § idCommento.
  *  </pre>
  * </p>
  *

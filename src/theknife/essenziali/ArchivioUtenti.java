@@ -1,29 +1,55 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como
  */
 package theknife.essenziali;
 import theknife.essenziali.Utente;
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 
 /**
+ * Gestisce l'archivio degli utenti dell'applicazione.
+ * <p>
+ * Questa classe si occupa di:
+ *  <ul>
+ *      <li>Caricare gli utenti da un file CSV.</li>
+ *      <li>Verificare l'esistenza di un account tramite email e password.</li>
+ *      <li>Aggiungere o rimuovere utenti.</li>
+ *      <li>Generare ID unici per nuovi utenti.</li>
+ *      <li>Gestire l'utente attualmente loggato.</li>
+ *  </ul>
+ * </p>
  *
- * @author davim sugo alefro
+ * <p>
+ * Il file di riferimento è: data\Utenti.csv,  
+ * con righe salvate nel formato generato da {@link Utente#toString()}.
+ * </p>
+ *
+ * @see Utente
  */
 
 public class ArchivioUtenti {
     
-    
+    /** Percorso del file CSV degli utenti. */
     private final String FILE_PATH = "data\\Utenti.csv";
+    
+    /** Utente attualmente autenticato. */
     private Utente utenteAttuale;
+    
+    /** Lista di tutti gli utenti caricati dall'archivio. */
     private final ArrayList<Utente> listaUtenti = new ArrayList<>();
     
+    /**
+     * Costruttore vuoto.
+     * <p>Inizializza un archivio senza caricare automaticamente i dati.</p>
+     */
     public ArchivioUtenti() {}
     
-    //Metodo per leggere l'archivio.
-    public void leggiArchivio () {
+    /**
+     * Legge l'archivio degli utenti dal file CSV e compila la lista interna.
+     */
+    public void leggiArchivio() {
         listaUtenti.clear();
         try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
@@ -40,15 +66,22 @@ public class ArchivioUtenti {
                     int id = Integer.parseInt(token.nextToken());
                     String ruolo = token.nextToken();
                     
-                    listaUtenti.add(new Utente (nome, cognome, username, email, password, posizione, stato, id, ruolo));
+                    listaUtenti.add(new Utente(nome, cognome, username, email, password, posizione, stato, id, ruolo));
                 }
             }
         } catch (IOException e) {
-            System.out.println("Errore nella lettura del file:" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Errore: archivio utenti non trovato.", "Errore", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
-    //Metodo per controllare se Email e Password sono già presenti nell'archivio.
+    /**
+     * Verifica se esiste un utente con email e password specificati.
+     * Se trovato, imposta l' {@link #utenteAttuale}.
+     *
+     * @param email email dell'utente
+     * @param pass  password dell'utente
+     * @return true se l'utente esiste, false altrimenti
+     */
     public boolean esisteUtente(String email, String pass) {
         for (Utente u: listaUtenti) {
             if (u.getEmailUtente().equals(email) && u.getPassUtente().equals(pass)) {
@@ -59,7 +92,12 @@ public class ArchivioUtenti {
         return false;
     }
 
-    //Metodo per controllare se un'Email è già presente nell'archivio.
+    /**
+     * Verifica se un'email è già presente nell'archivio.
+     *
+     * @param email email da controllare
+     * @return true se l'email esiste, false altrimenti
+     */
     public boolean esisteMail(String email) {
         for (Utente u: listaUtenti) {
             if (u.getEmailUtente().equals(email)) {
@@ -69,7 +107,11 @@ public class ArchivioUtenti {
         return false;
     }
     
-    //Metodo per creare un ID unico.
+    /**
+     * Genera un nuovo ID univoco per un utente.
+     *
+     * @return ID non ancora utilizzato
+     */
     public int creaID() {
         int max = 0;
         for (Utente f : listaUtenti)
@@ -78,52 +120,89 @@ public class ArchivioUtenti {
         return max + 1;
     }
     
-    //Metodo per riscrivere il file di testo, aggiornando l'archivio.
+    /**
+     * Riscrive il file CSV aggiornandolo con la lista attuale degli utenti.
+     */
     public void aggiornaUtenti() {
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Utente f : listaUtenti) {
                 wr.write(f.toString());
                 wr.newLine();
-                }
-            } catch (IOException e) {
-                 System.out.println("Errore nella lettura del file:" + e.getMessage());
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Errore: archivio utenti non trovato.", "Errore", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
-    //Metodo per aggiungere un utente all'archivio.
+    /**
+     * Aggiunge un nuovo utente all'archivio e aggiorna il file.
+     *
+     * @param u utente da aggiungere
+     */
     public void aggiungiUtente(Utente u) {
         listaUtenti.add(u);
         aggiornaUtenti();
     }
     
-    //Metodo per rimuovere un utente dall'archivio.
+    /**
+     * Rimuove un utente dall'archivio e aggiorna il file.
+     *
+     * @param u utente da rimuovere
+     */
     public void rimuoviUtente(Utente u) {
         listaUtenti.remove(u);
         aggiornaUtenti();
     }
     
-    //Metodi per gestire l'utente attuale.
+    /**
+     * Imposta come attuale l'utente con l'ID specificato.
+     *
+     * @param i ID dell'utente da selezionare
+     */
     public void setUtenteAttuale(int i) {
         this.utenteAttuale = getUtente(i);
     }
     
+    /**
+     * Restituisce l'utente attualmente loggato.
+     *
+     * @return utente attuale, oppure "null" se non autenticato
+     */
     public Utente getUtenteAttuale() {
         return utenteAttuale;
     }
     
+    /**
+     * Esegue il logout, rimuovendo l'utente attuale.
+     */
     public void logout() {
         this.utenteAttuale = null;
     }
     
-    //Per debug o controllo.
+    /**
+     * Restituisce il numero totale di utenti presenti nell'archivio.
+     *
+     * @return numero degli utenti
+     */
     public int getNumeroUtenti() {
         return listaUtenti.size();
     }
     
+    /**
+     * Restituisce la lista di tutti gli utenti caricati.
+     *
+     * @return lista di {@link Utente}
+     */
     public ArrayList<Utente> getUtenti() {
         return listaUtenti;
     }
     
+    /**
+     * Restituisce un utente dato il suo ID.
+     *
+     * @param i identificativo dell'utente
+     * @return utente con l'ID corrispondente, oppure "null" se non trovato
+     */
     public Utente getUtente(int i) {
         for (Utente u : listaUtenti) {
             if (u.getIdUtente() == i) {
@@ -133,13 +212,19 @@ public class ArchivioUtenti {
         return null;
     } 
       
-    //Metodo che restituisce l'id verificando l'username e la password
+    /**
+     * Restituisce l'ID di un utente verificando email e password.
+     *
+     * @param email email dell'utente
+     * @param password password dell'utente
+     * @return ID dell'utente se trovato, -1 altrimenti
+     */
     public int getId(String email, String password) {
-    for (Utente u : listaUtenti) {
-        if (u.getEmailUtente().equals(email) && u.getPassUtente().equals(password)) {
-            return u.getIdUtente();
+        for (Utente u : listaUtenti) {
+            if (u.getEmailUtente().equals(email) && u.getPassUtente().equals(password)) {
+                return u.getIdUtente();
+            }
         }
-    }
         return -1;
     }
 }

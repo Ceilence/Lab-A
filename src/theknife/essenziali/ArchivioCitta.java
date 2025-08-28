@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *  </ul>
  * </p>
  * 
- * <p>Il file kletto dall'archivio è: data\Citta.csv, e contiene i seguenti token: <br>
+ * <p>Il file letto dall'archivio è: data\Citta.csv, e contiene i seguenti token: <br>
  * NomeCittà § Latitudine § Longitudine 
  * </p>
  * 

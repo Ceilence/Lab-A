@@ -38,7 +38,6 @@ public class RisList extends javax.swing.JFrame {
         initComponents();
         f = new Filtro(gestore,this);
         
-        
         //Creazione frame di caricamento
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
@@ -320,6 +319,9 @@ public class RisList extends javax.swing.JFrame {
     private void aggiornaLabel (Ristorante r) {
         detNome.setText(r.getNomeRis());
         detCuis.setText(r.getCuisRis());
+        detInd.setText("Indirizzo: " + r.getIndRis());
+        detPrezzo.setText("Fascia di prezzo: " + String.valueOf(r.getPriceRis()));
+        detMedia.setText("Valutazione media: " + String.valueOf(r.getMediaStelleRis()) + "/5");
         detDes.setText("<html><p style='width:635px'>" + r.getDesRis() + "</p></html>");
         detBan.setIcon(selezionaImmagine(r.getStatoRis())); 
     }
@@ -386,6 +388,9 @@ public class RisList extends javax.swing.JFrame {
         contenitoreAnteprima = new javax.swing.JPanel();
         scriviRec = new javax.swing.JButton();
         vediTutte = new javax.swing.JButton();
+        detInd = new javax.swing.JLabel();
+        detMedia = new javax.swing.JLabel();
+        detPrezzo = new javax.swing.JLabel();
         recensioniPannello = new javax.swing.JPanel();
         indietroBottone = new javax.swing.JButton();
         scrollPaneRec = new javax.swing.JScrollPane();
@@ -531,6 +536,7 @@ public class RisList extends javax.swing.JFrame {
         scrollPaneDet.setMaximumSize(null);
         scrollPaneDet.setMinimumSize(new java.awt.Dimension(600, 16));
         scrollPaneDet.setPreferredSize(new java.awt.Dimension(600, 2));
+        scrollPaneDet.setViewportView(null);
 
         dettaglioPanel.setBackground(new java.awt.Color(254, 254, 254));
         dettaglioPanel.setMinimumSize(new java.awt.Dimension(200, 132));
@@ -556,7 +562,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 15.0;
-        gridBagConstraints.weighty = 0.06;
+        gridBagConstraints.weighty = 0.01;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         dettaglioPanel.add(detNome, gridBagConstraints);
 
@@ -564,7 +570,6 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.03;
@@ -577,7 +582,7 @@ public class RisList extends javax.swing.JFrame {
         detDes.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -603,7 +608,7 @@ public class RisList extends javax.swing.JFrame {
         labelRecensioni.setText("Recensioni:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
@@ -615,7 +620,7 @@ public class RisList extends javax.swing.JFrame {
         contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 2.0;
@@ -632,7 +637,7 @@ public class RisList extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 2.0;
         dettaglioPanel.add(scriviRec, gridBagConstraints);
 
@@ -646,10 +651,37 @@ public class RisList extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         dettaglioPanel.add(vediTutte, gridBagConstraints);
+
+        detInd.setText("Indirizzo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.01;
+        dettaglioPanel.add(detInd, gridBagConstraints);
+
+        detMedia.setText("Valutazione Media");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.01;
+        gridBagConstraints.weighty = 0.02;
+        dettaglioPanel.add(detMedia, gridBagConstraints);
+
+        detPrezzo.setText("Prezzo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.02;
+        dettaglioPanel.add(detPrezzo, gridBagConstraints);
 
         scrollPaneDet.setViewportView(dettaglioPanel);
 
@@ -975,8 +1007,11 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JLabel detBan;
     private javax.swing.JLabel detCuis;
     private javax.swing.JLabel detDes;
+    private javax.swing.JLabel detInd;
+    private javax.swing.JLabel detMedia;
     private javax.swing.JLabel detNome;
     private javax.swing.JButton detPref;
+    private javax.swing.JLabel detPrezzo;
     private javax.swing.JPanel dettaglioPanel;
     private javax.swing.JButton filtri;
     private javax.swing.JButton indietro;

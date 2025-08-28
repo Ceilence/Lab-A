@@ -165,10 +165,7 @@ public class RisList extends javax.swing.JFrame {
                     filtratore.add(p);
                 }
             }
-            JOptionPane.showMessageDialog(this,
-                "Nessun ristorante trovato a " + cittaUtente + "\n" +
-                "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente() + " ",
-                "Avviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nessun ristorante trovato a " + cittaUtente + "\n" + "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente(), "Avviso", JOptionPane.INFORMATION_MESSAGE);
         }
         aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
         impaginazione(pagina);

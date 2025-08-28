@@ -204,8 +204,8 @@ public class Login extends javax.swing.JFrame {
                 gestore.getArchivioUtenti().setUtenteAttuale(idUtente);
                 
             if(gestore.getArchivioUtenti().getUtenteAttuale().getRuoloUtente().equals("cliente")){
-                risList.filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 10);
                 risList.versioneGuest();
+                risList.filtraPosizione(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente(), 10);
                 risList.setVisible(true);
                 risList.pack();
                 risList.setLocationRelativeTo(null);

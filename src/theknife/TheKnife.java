@@ -1,5 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 
 package theknife;
@@ -8,11 +8,31 @@ import theknife.gestori.GestoreArchivi;
 import theknife.grafica.RisList;
 
 /**
- *
- * @author Alefr
+ * Classe principale del progetto TheKnife.
+ * <p>
+ *  Questa classe contiene il main. Si occupa di:
+ *  <ul>
+ *      <li>Inizializzare il GestoreArchivi, che gestisce i vari archivi (utenti, risorse, città, preferiti, commenti).</li>
+ *      <li>Caricare i dati salvati dai file tramite i metodi (leggiArchivio()}).</li>
+ *      <li>Avviare l'interfaccia grafica principale (RisList).</li>
+ *  </ul>
+ * </p>
  */
 public class TheKnife {
     
+    /**
+     * Metodo di avvio del programma.
+     * <p>
+     *  Esegue le seguenti operazioni:
+     *  <ol>
+     *      <li>Inizializza il GestoreArchivi.</li>
+     *      <li>Legge i dati degli archivi (utenti, risorse, città, preferiti, commenti).</li>
+     *      <li>Carica la finestra RisList, l'interfaccia grafica principale.</li>
+     *  </ol>
+     * </p>
+     *
+     * @param args argomenti passati da riga di comando (non utilizzati).
+     */
     public static void main(String[] args) {
         GestoreArchivi gestore = new GestoreArchivi();
         
@@ -23,6 +43,7 @@ public class TheKnife {
         gestore.getArchivioCommenti().leggiArchivio();
        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 GestoreArchivi.RisListFrame = new RisList(gestore);
                 GestoreArchivi.RisListFrame.setVisible(false);
@@ -32,11 +53,3 @@ public class TheKnife {
         });
     }
 }
-
-
-
-
-
-
-
-

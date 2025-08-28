@@ -968,7 +968,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         for (CommentiRistoranti c : lista) {
             contenitoreCommenti.add(new PannelloRecDaRispondere(gestore, c, PaginaRistoratore.this));
             if (c.haRisposta()) {
-                contenitoreCommenti.add(new PannelloRisposta(gestore, c));
+                contenitoreCommenti.add(new PannelloRispostaRistoratore(gestore, c, PaginaRistoratore.this));
             }
             contenitoreCommenti.add(Box.createVerticalStrut(10));
         }

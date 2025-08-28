@@ -29,7 +29,7 @@ public class RisList extends javax.swing.JFrame {
     private final ArrayList<PannelloRistorante> filtratore = new ArrayList<>();
     private final Caricamento caricamentoFrame;
     private int pagina = 0;
-    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagUSA, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro, immagineLogo;
+    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagStatiUniti, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro;
     private Filtro f;
     
     
@@ -170,10 +170,7 @@ public class RisList extends javax.swing.JFrame {
                 "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente() + " ",
                 "Avviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        if (!filtratore.isEmpty()) {
-            aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
-        }
-        
+        aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
         impaginazione(pagina);
     }
     
@@ -208,6 +205,7 @@ public class RisList extends javax.swing.JFrame {
         aggiornaDettagli();
         aggiornaTastoScrivi();
         aggiornaBottoneVedi();
+        aggiornaScriviGuest();
     }
     
     public void aggiornaPostModificheRecensioni() {
@@ -225,6 +223,8 @@ public class RisList extends javax.swing.JFrame {
         } else {
             detPref.setVisible(true);
             logoutBottone.setVisible(false);
+            profiloUtente.setVisible(true);
+            scriviRec.setVisible(true);
         }
     }
     
@@ -355,6 +355,12 @@ public class RisList extends javax.swing.JFrame {
         contenitore.repaint();
     }
     
+    private void aggiornaScriviGuest() {
+        if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
+            scriviRec.setVisible(false);
+        }
+    }
+    
     
     
     
@@ -460,7 +466,6 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
         cerca.setBackground(new java.awt.Color(254, 254, 254));
-        cerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LenteRicerca.png"))); // NOI18N
         cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -540,7 +545,7 @@ public class RisList extends javax.swing.JFrame {
 
         dettaglioPanel.setBackground(new java.awt.Color(254, 254, 254));
         dettaglioPanel.setMinimumSize(new java.awt.Dimension(200, 132));
-        dettaglioPanel.setPreferredSize(new java.awt.Dimension(268, 1250));
+        dettaglioPanel.setPreferredSize(new java.awt.Dimension(0, 1250));
         dettaglioPanel.setLayout(new java.awt.GridBagLayout());
 
         detBan.setText("Bandiera");
@@ -555,7 +560,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         dettaglioPanel.add(detBan, gridBagConstraints);
 
-        detNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        detNome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         detNome.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -566,6 +571,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         dettaglioPanel.add(detNome, gridBagConstraints);
 
+        detCuis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         detCuis.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -600,6 +606,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.02;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
@@ -616,14 +623,14 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.add(labelRecensioni, gridBagConstraints);
 
         contenitoreAnteprima.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreAnteprima.setPreferredSize(new java.awt.Dimension(0, 0));
+        contenitoreAnteprima.setPreferredSize(new java.awt.Dimension(3, 3));
         contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         dettaglioPanel.add(contenitoreAnteprima, gridBagConstraints);
 
@@ -660,8 +667,6 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.01;
         dettaglioPanel.add(detInd, gridBagConstraints);
@@ -710,11 +715,11 @@ public class RisList extends javax.swing.JFrame {
         contenitoreRec.setLayout(contenitoreRecLayout);
         contenitoreRecLayout.setHorizontalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 863, Short.MAX_VALUE)
+            .addGap(0, 1568, Short.MAX_VALUE)
         );
         contenitoreRecLayout.setVerticalGroup(
             contenitoreRecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGap(0, 1384, Short.MAX_VALUE)
         );
 
         scrollPaneRec.setViewportView(contenitoreRec);
@@ -934,7 +939,7 @@ public class RisList extends javax.swing.JFrame {
         ImageIcon flagUSA = new ImageIcon("resources\\images\\Flag_of_United_States.png");
         Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
-        this.flagUSA = scaledIconUSA; 
+        this.flagStatiUniti = scaledIconUSA; 
         
         ImageIcon flagFR = new ImageIcon("resources\\images\\Flag_of_France.png");
         Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -966,9 +971,15 @@ public class RisList extends javax.swing.JFrame {
         
         ImageIcon filtriIcon = new ImageIcon("resources\\images\\filtri.png");
         Image filtri1 = filtriIcon.getImage();
-        Image newImg = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon filtri3 = new ImageIcon(newImg);
-        this.immagineFiltro = filtri3;
+        Image filtri2 = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon filtri3 = new ImageIcon(filtri2);
+        filtri.setIcon(filtri3);
+        
+        ImageIcon cercaIcon = new ImageIcon("resources\\images\\Lente.png");
+        Image ci1 = cercaIcon.getImage();
+        Image ci2 = ci1.getScaledInstance(cerca.getWidth(), cerca.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon ci3 = new ImageIcon(ci2);
+        cerca.setIcon(ci3);
     }
      
      public ImageIcon selezionaImmagine(String nazione){
@@ -991,7 +1002,7 @@ public class RisList extends javax.swing.JFrame {
             return this.flagSpagna;
         
         if(nazione.equals("USA"))
-            return this.flagUSA;
+            return this.flagStatiUniti;
         
         return this.flagMondo;
     }

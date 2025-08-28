@@ -53,6 +53,7 @@ public class CommentiRistoranti {
         this.idScrittore = idScrittore;
         this.testo = testo;
         this.idCommento = idCommento; 
+        this.haRisposta = false;
     }
 
     public String getTipoCommento() {

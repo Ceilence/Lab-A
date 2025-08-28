@@ -213,8 +213,9 @@ public class Filtro extends JDialog{
         ArrayList<PannelloRistorante> filtrati = new ArrayList<>();
         Citta cittaFiltrata = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
         
-        cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
-  
+        if (citta.getSelectedItem() != null) {
+            cittaFiltrata = gestore.getArchivioCitta().getCitta((String) citta.getSelectedItem());
+        }
         
         String cittaScelta = (String) citta.getSelectedItem();
         String statoScelto = (String) stato.getSelectedItem();

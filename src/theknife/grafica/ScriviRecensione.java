@@ -312,7 +312,7 @@ public class ScriviRecensione extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), gestore.getArchivioCommenti().creaID(), titoloRec.getText().trim(), r.getIdRis(), valutazione, false, true));
-            risList.aggiornaPostModificheRecensioni();
+            //risList.aggiornaPostModificheRecensioni();
             r.setMediaStelleRis(gestore.getArchivioCommenti().calcolaMediaPerRistorante(r.getIdRis()));
             this.dispose();
         }

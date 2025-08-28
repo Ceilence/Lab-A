@@ -178,6 +178,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 102, 102));
         setMinimumSize(new java.awt.Dimension(1110, 700));
         setUndecorated(true);
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
 
         contenitore.setBackground(new java.awt.Color(0, 102, 102));

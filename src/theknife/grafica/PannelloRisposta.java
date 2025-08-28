@@ -4,16 +4,14 @@
  */
 package theknife.grafica;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
 import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
@@ -32,7 +30,7 @@ public class PannelloRisposta extends JPanel{
         // Pannello che contiene il bordo e il margine per spostare a destra
         JPanel pannelloRisposta = new JPanel();
         pannelloRisposta.setLayout(new BoxLayout(pannelloRisposta, BoxLayout.Y_AXIS));
-        pannelloRisposta.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0)); // margine sinistro 20 px
+        pannelloRisposta.setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0), BorderFactory.createLineBorder(new Color(0, 102, 102), 2)));
         pannelloRisposta.setOpaque(false);
 
         // Pannello interno con LineBorder

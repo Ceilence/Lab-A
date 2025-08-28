@@ -353,6 +353,8 @@ public class RisList extends javax.swing.JFrame {
         }
         contenitore.revalidate();
         contenitore.repaint();
+        dettaglioPanel.revalidate();
+        dettaglioPanel.repaint();
     }
     
     private void aggiornaScriviGuest() {
@@ -539,13 +541,11 @@ public class RisList extends javax.swing.JFrame {
         pannelloDestra.setLayout(new java.awt.CardLayout());
 
         scrollPaneDet.setMaximumSize(null);
-        scrollPaneDet.setMinimumSize(new java.awt.Dimension(600, 16));
-        scrollPaneDet.setPreferredSize(new java.awt.Dimension(600, 2));
+        scrollPaneDet.setMinimumSize(null);
         scrollPaneDet.setViewportView(null);
 
         dettaglioPanel.setBackground(new java.awt.Color(254, 254, 254));
-        dettaglioPanel.setMinimumSize(new java.awt.Dimension(200, 132));
-        dettaglioPanel.setPreferredSize(new java.awt.Dimension(0, 1250));
+        dettaglioPanel.setMaximumSize(null);
         dettaglioPanel.setLayout(new java.awt.GridBagLayout());
 
         detBan.setText("Bandiera");
@@ -555,35 +555,36 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.01;
         gridBagConstraints.weighty = 0.01;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         dettaglioPanel.add(detBan, gridBagConstraints);
 
-        detNome.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        detNome.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         detNome.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 15.0;
         gridBagConstraints.weighty = 0.01;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         dettaglioPanel.add(detNome, gridBagConstraints);
 
-        detCuis.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        detCuis.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         detCuis.setText("Nome");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.03;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         dettaglioPanel.add(detCuis, gridBagConstraints);
 
         detDes.setBackground(new java.awt.Color(204, 204, 204));
-        detDes.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        detDes.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         detDes.setText("Desc");
         detDes.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -593,6 +594,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 30, 0);
         dettaglioPanel.add(detDes, gridBagConstraints);
 
         detPref.setBorderPainted(false);
@@ -607,11 +609,12 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weightx = 0.01;
         gridBagConstraints.weighty = 0.02;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 20);
         dettaglioPanel.add(detPref, gridBagConstraints);
 
+        labelRecensioni.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         labelRecensioni.setText("Recensioni:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -620,10 +623,13 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.06;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         dettaglioPanel.add(labelRecensioni, gridBagConstraints);
 
         contenitoreAnteprima.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreAnteprima.setPreferredSize(new java.awt.Dimension(3, 3));
+        contenitoreAnteprima.setMaximumSize(null);
+        contenitoreAnteprima.setMinimumSize(null);
+        contenitoreAnteprima.setPreferredSize(null);
         contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -663,14 +669,18 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         dettaglioPanel.add(vediTutte, gridBagConstraints);
 
+        detInd.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         detInd.setText("Indirizzo");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 0.01;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         dettaglioPanel.add(detInd, gridBagConstraints);
 
+        detMedia.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         detMedia.setText("Valutazione Media");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -678,13 +688,15 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.01;
         gridBagConstraints.weighty = 0.02;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
         dettaglioPanel.add(detMedia, gridBagConstraints);
 
+        detPrezzo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         detPrezzo.setText("Prezzo");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weighty = 0.02;
         dettaglioPanel.add(detPrezzo, gridBagConstraints);
 

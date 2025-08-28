@@ -226,6 +226,8 @@ public class RisList extends javax.swing.JFrame {
         } else {
             detPref.setVisible(true);
             logoutBottone.setVisible(false);
+            profiloUtente.setVisible(true);
+            scriviRec.setVisible(true);
         }
     }
     

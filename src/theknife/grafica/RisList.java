@@ -886,6 +886,7 @@ public class RisList extends javax.swing.JFrame {
         pagRec.setLocationRelativeTo(scrollPaneDet);
         pagRec.pack();
         pagRec.setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_scriviRecActionPerformed
 
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed

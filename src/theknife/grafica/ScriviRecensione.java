@@ -314,6 +314,7 @@ public class ScriviRecensione extends javax.swing.JFrame {
             gestore.getArchivioCommenti().aggiungiCommento(new CommentiRistoranti(gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente(), areaTesto.getText().trim(), gestore.getArchivioCommenti().creaID(), titoloRec.getText().trim(), r.getIdRis(), valutazione, false, true));
             //risList.aggiornaPostModificheRecensioni();
             r.setMediaStelleRis(gestore.getArchivioCommenti().calcolaMediaPerRistorante(r.getIdRis()));
+            risList.setEnabled(true);
             this.dispose();
         }
     }//GEN-LAST:event_confermaButtonActionPerformed
@@ -392,6 +393,7 @@ public class ScriviRecensione extends javax.swing.JFrame {
     }//GEN-LAST:event_titoloRecKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        risList.setEnabled(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -19,6 +19,10 @@ import java.util.ArrayList;
  *      <li>Descrizione, ID ristorante e ID ristoratore</li>
  *  </ul>
  * </p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class Ristorante {
     

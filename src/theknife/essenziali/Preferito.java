@@ -8,6 +8,10 @@ package theknife.essenziali;
  * Ogni preferito è identificato dalla coppia (idRistorante, idUtente).
  *
  * Questa classe viene utilizzata per gestire i dati contenuti in {@link ArchivioPreferiti}.
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class Preferito {
     private int idRis;

@@ -20,6 +20,10 @@ package theknife.essenziali;
  * </p>
  *
  * @see Utente
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class Citta {
     

@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -11,15 +10,52 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author davim
+ * Finestra grafica che consente al ristoratore di modificare una risposta ad una recensione di un utente.
+ * <p>
+ * Mostra la recensione originale (titolo, testo, valutazione a stelle) e permette
+ * di modificare e salvare il testo della risposta associata
+ * </p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ModificaRisposta extends javax.swing.JFrame {
+    
+    /**
+     * Gestore degli archivi utilizzato per accedere ai dati di utenti e ristoranti.
+     * {@code gestore}
+     */
     private GestoreArchivi gestore;
+    
+    /**
+     * Icone rappresentanti stella vuota o stella piena
+     * {@code stellaVuota} 
+     * {@code stellaPiena} 
+     */
     private ImageIcon stellaVuota, stellaPiena;
+    
+    /**
+     * Valutazione iniziale settata a 0.
+     * {@code valutazione}
+     */
     private final int valutazione = 0;
+    
+    /**
+     * Numero massimo di caratteri consentiti nel testo della risposta.
+     * {@code MAX_CHAR}
+     */
     private final int MAX_CHAR =  400;
+    
+    /**
+     * Commento originale a cui il ristoratore risponde e risposta del ristoratore.
+     * {@code commento} {@code risposta}
+     */
     private final CommentiRistoranti commento, risposta;
+    
+    /**
+     * Riferimento alla pagina principale del ristoratore, usata per aggiornare la vista al termine della modifica. {@link PaginaRistoratore} {@code pagRisto}
+     */
     private final PaginaRistoratore pagRisto;
    
     

@@ -24,6 +24,10 @@ import javax.swing.JOptionPane;
  * </p>
  * 
  * @see Citta
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ArchivioCitta {
     

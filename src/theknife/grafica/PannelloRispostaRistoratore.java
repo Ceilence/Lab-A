@@ -66,6 +66,7 @@ public class PannelloRispostaRistoratore extends JPanel{
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
             if (conferma == JOptionPane.YES_OPTION) {
                 gestore.getArchivioCommenti().rimuoviRisposta(risposta);
+                commento.setHaRisposta(false);
                 pagRisto.cambiaCard();
             }
         });

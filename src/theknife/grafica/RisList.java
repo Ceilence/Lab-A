@@ -26,9 +26,9 @@ public class RisList extends javax.swing.JFrame {
 
     private final GestoreArchivi gestore;
     private final ArrayList<PannelloRistorante> tuttiIPannelli = new ArrayList<>();
-    private final ArrayList<PannelloRistorante> filtratore = new ArrayList<>();
+    private final ArrayList<PannelloRistorante> pannelliFiltrati = new ArrayList<>();
     private final Caricamento caricamentoFrame;
-    private int pagina = 0;
+    private int paginaAttuale = 0;
     private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagStatiUniti, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro;
     private Filtro f;
     
@@ -36,7 +36,7 @@ public class RisList extends javax.swing.JFrame {
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
-        f = new Filtro(gestore,this);
+        
         
         //Creazione frame di caricamento
         caricamentoFrame = new Caricamento();
@@ -56,23 +56,6 @@ public class RisList extends javax.swing.JFrame {
         creaImmagini();
         caricaPannelli();
         
-        //Bottone per applicare i filtri
-        f.getApplicaFiltri().addActionListener(e -> {
-            ArrayList<PannelloRistorante> risultatiFiltrati = f.filtra(tuttiIPannelli);
-            if (!risultatiFiltrati.isEmpty()) {
-                filtratore.clear();
-                filtratore.addAll(risultatiFiltrati);
-                pagina = 0;
-                impaginazione(pagina);
-                aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
-                
-                this.setEnabled(true);
-                f.setVisible(false);
-                this.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
-            }
-            });
         
         getRootPane().setDefaultButton(cerca);
     }
@@ -91,7 +74,7 @@ public class RisList extends javax.swing.JFrame {
                 for (Ristorante r : lista) {
                     PannelloRistorante p = new PannelloRistorante(RisList.this, gestore, r, contenitoreAnteprima);
                     tuttiIPannelli.add(p);
-                    filtratore.add(p);
+                    
 
                     count++;
                     publish(count); 
@@ -119,18 +102,18 @@ public class RisList extends javax.swing.JFrame {
      * @param filtro 
      */
     private void filtraPannelli(String filtro) {
-        pagina = 0;
+        paginaAttuale = 0;
         filtro = filtro.toLowerCase();
-        filtratore.clear();
+        pannelliFiltrati.clear();
         contenitorePanel.removeAll();
         
         for (PannelloRistorante p : tuttiIPannelli) {
             Ristorante r = p.getRistorante();
             if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
-                filtratore.add(p);
+                pannelliFiltrati.add(p);
             }
         }
-        aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
+        aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
     }
     
     /**
@@ -139,7 +122,7 @@ public class RisList extends javax.swing.JFrame {
      * @param distanzaMax 
      */
     public void filtraPosizione(String cittaUtente, double distanzaMax){ 
-        filtratore.clear();
+        pannelliFiltrati.clear();
         contenitorePanel.removeAll();
         filtri.setIcon(immagineFiltro);
         Citta citta = gestore.getArchivioCitta().getCitta(cittaUtente);
@@ -151,29 +134,30 @@ public class RisList extends javax.swing.JFrame {
                 if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
                     double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
                     if(distanza <= distanzaMax){
-                        filtratore.add(p);
+                        pannelliFiltrati.add(p);
                     }
                 }
             }
         }
       
         if(citta == null){
-            filtratore.clear();
+            pannelliFiltrati.clear();
             for(PannelloRistorante p : tuttiIPannelli){
                 Ristorante r = p.getRistorante();
                 if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
-                    filtratore.add(p);
+                    pannelliFiltrati.add(p);
                 }
             }
             JOptionPane.showMessageDialog(this, "Nessun ristorante trovato a " + cittaUtente + "\n" + "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente(), "Avviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
-        impaginazione(pagina);
+        aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
+        resetPagina();
+        impaginazione(paginaAttuale);
     }
     
     public void creaFiltro() {
         if (f == null) {
-            f = new Filtro(gestore, RisList.this);
+            f = new Filtro(gestore, RisList.this, tuttiIPannelli);
         }
     }
     
@@ -229,18 +213,18 @@ public class RisList extends javax.swing.JFrame {
      * 
      * @param pagina 
      */
-    public void impaginazione(int pagina){
+    private void impaginazione(int pagina){
         contenitorePanel.removeAll();
         int da = ELEMENTI_PER_PAGINA * pagina;
-        int a = Math.min(filtratore.size(), da + ELEMENTI_PER_PAGINA);
+        int a = Math.min(pannelliFiltrati.size(), da + ELEMENTI_PER_PAGINA);
         for(int i = da; i < a; i++){
-            contenitorePanel.add(filtratore.get(i));
+            contenitorePanel.add(pannelliFiltrati.get(i));
             contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
         contenitorePanel.revalidate();
         contenitorePanel.repaint();
         
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         contatore.setText((pagina + 1) + " / " + totalePagine);
     }
     
@@ -259,10 +243,26 @@ public class RisList extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }
     
-    
-    
+    public void applicaFiltri(){
+        pannelliFiltrati.clear();
+        f.filtra(tuttiIPannelli, pannelliFiltrati);
+        if (!pannelliFiltrati.isEmpty()) {
+            resetPagina();
+            impaginazione(paginaAttuale);
+            aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
+            this.setEnabled(true);
+            f.setVisible(false);
+            this.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     
     //----METODI PRIVATI DI SUPPORTO----
+    
+    private void resetPagina() {
+        paginaAttuale = 0;
+    }
     
     /**
      * 
@@ -463,6 +463,7 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
         cerca.setBackground(new java.awt.Color(254, 254, 254));
+        cerca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -499,6 +500,7 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.add(jScrollPane1, new java.awt.GridBagConstraints());
 
         filtri.setBackground(new java.awt.Color(254, 254, 254));
+        filtri.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         filtri.setMaximumSize(new java.awt.Dimension(60, 40));
         filtri.setMinimumSize(new java.awt.Dimension(60, 40));
         filtri.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -520,6 +522,7 @@ public class RisList extends javax.swing.JFrame {
         jPanel1.add(panRicerca, gridBagConstraints);
 
         profiloUtente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pagina Utente.png"))); // NOI18N
+        profiloUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profiloUtente.setMaximumSize(new java.awt.Dimension(50, 51));
         profiloUtente.setMinimumSize(new java.awt.Dimension(50, 51));
         profiloUtente.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -633,7 +636,8 @@ public class RisList extends javax.swing.JFrame {
 
         scriviRec.setBackground(new java.awt.Color(0, 102, 102));
         scriviRec.setForeground(new java.awt.Color(255, 255, 255));
-        scriviRec.setText("scrivi");
+        scriviRec.setText("Scrivi");
+        scriviRec.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         scriviRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scriviRecActionPerformed(evt);
@@ -748,6 +752,7 @@ public class RisList extends javax.swing.JFrame {
 
         indietro.setBackground(new java.awt.Color(254, 254, 254));
         indietro.setText("Indietro");
+        indietro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         indietro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indietroActionPerformed(evt);
@@ -762,6 +767,7 @@ public class RisList extends javax.swing.JFrame {
 
         avanti.setBackground(new java.awt.Color(254, 254, 254));
         avanti.setText("Avanti");
+        avanti.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         avanti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avantiActionPerformed(evt);
@@ -840,30 +846,30 @@ public class RisList extends javax.swing.JFrame {
 
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
         filtraPannelli(campoRicerca.getText());
-        impaginazione(pagina);
+        impaginazione(paginaAttuale);
     }//GEN-LAST:event_cercaActionPerformed
 
     private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
         scrollPane.getVerticalScrollBar().setValue(0);
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         
-        if(pagina < totalePagine - 1){
-            pagina++;
-            impaginazione(pagina);
+        if(paginaAttuale < totalePagine - 1){
+            paginaAttuale++;
+            impaginazione(paginaAttuale);
         }
 
-        contatore.setText((pagina + 1) + " / " + totalePagine);
+        contatore.setText((paginaAttuale + 1) + " / " + totalePagine);
     }//GEN-LAST:event_avantiActionPerformed
 
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
         scrollPane.getVerticalScrollBar().setValue(0);
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         
-        if(pagina > 0){
-            pagina--;
-            impaginazione(pagina);   
+        if(paginaAttuale > 0){
+            paginaAttuale--;
+            impaginazione(paginaAttuale);   
         }
-        contatore.setText((pagina + 1) + " / " + totalePagine);
+        contatore.setText((paginaAttuale + 1) + " / " + totalePagine);
     }//GEN-LAST:event_indietroActionPerformed
 
     private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed

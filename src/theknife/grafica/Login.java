@@ -144,6 +144,7 @@ public class Login extends javax.swing.JFrame {
         LoginButton.setForeground(new java.awt.Color(255, 255, 255));
         LoginButton.setText("Login");
         LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LoginButton.setFocusPainted(false);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
@@ -161,6 +162,7 @@ public class Login extends javax.swing.JFrame {
         registratiButton.setForeground(new java.awt.Color(255, 255, 255));
         registratiButton.setText("Registrati!");
         registratiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registratiButton.setFocusPainted(false);
         registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registratiButtonActionPerformed(evt);
@@ -173,6 +175,7 @@ public class Login extends javax.swing.JFrame {
         guestButton.setForeground(new java.awt.Color(255, 255, 255));
         guestButton.setText("Accedi come ospite");
         guestButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guestButton.setFocusPainted(false);
         guestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guestButtonActionPerformed(evt);
@@ -226,6 +229,7 @@ public class Login extends javax.swing.JFrame {
 
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
+        risList.creaFiltro();
                                   
         //JDialog
         JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);

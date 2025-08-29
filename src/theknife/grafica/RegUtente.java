@@ -108,6 +108,7 @@ public class RegUtente extends javax.swing.JFrame {
         regCliente.setBackground(new java.awt.Color(0, 102, 102));
         regCliente.setForeground(new java.awt.Color(255, 255, 255));
         regCliente.setText("Registrati");
+        regCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regClienteActionPerformed(evt);

@@ -17,14 +17,14 @@ import theknife.gestori.GestoreArchivi;
  *
  * @author davim Alefr AntoPar
  */
-public class RegRisto extends javax.swing.JFrame {
+public class RegRistoratore extends javax.swing.JFrame {
     //Dichiarazione variabili immagini e archivi.
     private ImageIcon showPass, hidePass;
     private GestoreArchivi gestore;
     private final RisList risList;
    
     
-    public RegRisto(GestoreArchivi gestore, RisList risList) {
+    public RegRistoratore(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
         //Inizializzazione vari componenti e Lable.
@@ -67,6 +67,7 @@ public class RegRisto extends javax.swing.JFrame {
         backArrow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -98,6 +99,7 @@ public class RegRisto extends javax.swing.JFrame {
         regCliente.setBackground(new java.awt.Color(0, 102, 102));
         regCliente.setForeground(new java.awt.Color(255, 255, 255));
         regCliente.setText("Registrati");
+        regCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regClienteActionPerformed(evt);

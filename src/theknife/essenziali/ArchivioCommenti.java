@@ -185,6 +185,7 @@ public class ArchivioCommenti {
      * @param idRistorante ID del ristorante.
      * @return true se esiste già una recensione, restituisce false altrimenti.
      */
+    
     public boolean haGiaRecensione(int idUtente, int idRistorante) {
         for (CommentiRistoranti c : listaCommenti) {
             if (c.getIdScrittore() == idUtente && c.getIdRistorante() == idRistorante) {

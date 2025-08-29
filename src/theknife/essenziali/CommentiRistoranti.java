@@ -157,21 +157,5 @@ public class CommentiRistoranti {
             return tipoCommento + "§" + idScrittore + "§" + testo + "§" + idCommento + "§";
         }
     }
-
-    /**
-     * Due commenti sono considerati uguali se hanno lo stesso idCommento.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        CommentiRistoranti other = (CommentiRistoranti) obj;
-        return this.idCommento == other.idCommento;
-    }
-
-    @Override
-    public int hashCode() {
-        return Integer.hashCode(idCommento);
-    } 
 }
 

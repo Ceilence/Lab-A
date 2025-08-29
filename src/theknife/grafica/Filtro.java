@@ -25,12 +25,9 @@ public class Filtro extends JDialog{
     private final JCheckBox[] fasciaPrezzo;
     private final JCheckBox deliverySi, deliveryNo;
     private final JCheckBox prenotazioneSi, prenotazioneNo;
-    private final JButton applicaFiltri;
     
-    public Filtro(GestoreArchivi gestore, RisList risList){
+    public Filtro(GestoreArchivi gestore, RisList risList, ArrayList<PannelloRistorante> tuttiIPannelli){
         this.gestore = gestore;
-        
-        
         
         JPanel pannelloFiltri = new JPanel();
         distanza = new JTextField();
@@ -183,7 +180,7 @@ public class Filtro extends JDialog{
         pannelloFiltri.add(prenotazioneNo);
         pannelloFiltri.add(Box.createVerticalStrut(15));
         
-        applicaFiltri = new JButton("Applica filtri");
+        JButton applicaFiltri = new JButton("Applica filtri");
         applicaFiltri.setBackground(new Color(0,102,102));
         applicaFiltri.setForeground(Color.WHITE);
         pannelloFiltri.add(applicaFiltri);
@@ -197,6 +194,7 @@ public class Filtro extends JDialog{
         
         applicaFiltri.addActionListener(e -> {
             filtri.getVerticalScrollBar().setValue(0);
+            risList.applicaFiltri();        
         });
         
         getRootPane().setDefaultButton(applicaFiltri);
@@ -209,8 +207,7 @@ public class Filtro extends JDialog{
         setLocationRelativeTo(null);
     }
     
-    public ArrayList<PannelloRistorante> filtra(ArrayList<PannelloRistorante> tuttiIPannelli){
-        ArrayList<PannelloRistorante> filtrati = new ArrayList<>();
+    public void filtra(ArrayList<PannelloRistorante> tuttiIPannelli, ArrayList<PannelloRistorante> pannelliFiltrati){
         Citta cittaFiltrata = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
         
         if (citta.getSelectedItem() != null) {
@@ -307,13 +304,8 @@ public class Filtro extends JDialog{
                 }
             }
             
-            filtrati.add(p);
+            pannelliFiltrati.add(p);
         }
-        return filtrati;
-    }
-    
-    public JButton getApplicaFiltri(){
-        return applicaFiltri;
     }
     
     public JComboBox getStato(){

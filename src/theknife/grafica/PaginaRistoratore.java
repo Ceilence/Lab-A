@@ -91,7 +91,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         eyePass = new javax.swing.JToggleButton();
-        logout2 = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         modificaDati = new javax.swing.JPanel();
@@ -159,6 +158,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         modPriceRist = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         modStato = new javax.swing.JComboBox<>();
+        logout2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,6 +174,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -320,9 +321,9 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         pannelloDestra.add(pannelloRisposte, "rispondiPanel");
 
         contenitoreCommenti.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreCommenti.setMaximumSize(new java.awt.Dimension(749, 0));
-        contenitoreCommenti.setMinimumSize(new java.awt.Dimension(16, 0));
-        contenitoreCommenti.setPreferredSize(new java.awt.Dimension(749, 0));
+        contenitoreCommenti.setMaximumSize(null);
+        contenitoreCommenti.setMinimumSize(null);
+        contenitoreCommenti.setPreferredSize(null);
         contenitoreCommenti.setLayout(new javax.swing.BoxLayout(contenitoreCommenti, javax.swing.BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
 
@@ -379,17 +380,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             }
         });
 
-        logout2.setBackground(new java.awt.Color(0, 102, 102));
-        logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        logout2.setForeground(new java.awt.Color(255, 255, 255));
-        logout2.setText("Logout");
-        logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logout2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logout2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout dettagliRistoLayout = new javax.swing.GroupLayout(dettagliRisto);
         dettagliRisto.setLayout(dettagliRistoLayout);
         dettagliRistoLayout.setHorizontalGroup(
@@ -413,7 +403,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(logout2)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
@@ -445,9 +434,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logout2)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(dettagliRisto, "dettagli");
@@ -741,6 +728,17 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
+        logout2.setBackground(new java.awt.Color(255, 255, 255));
+        logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        logout2.setForeground(new java.awt.Color(0, 0, 0));
+        logout2.setText("Logout");
+        logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -755,14 +753,17 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logout2)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(logout2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

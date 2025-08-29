@@ -40,6 +40,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         indietro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -102,6 +103,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ristoratore");
         jButton1.setAlignmentY(0.6F);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,6 +118,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         regClienteButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         regClienteButton.setForeground(new java.awt.Color(255, 255, 255));
         regClienteButton.setText("Cliente");
+        regClienteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regClienteButtonActionPerformed(evt);
@@ -142,7 +145,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RegRisto RegRistoratoreFrame = new RegRisto(gestore, risList);
+        RegRistoratore RegRistoratoreFrame = new RegRistoratore(gestore, risList);
         RegRistoratoreFrame.setVisible(true);
         RegRistoratoreFrame.pack();
         RegRistoratoreFrame.setLocationRelativeTo(null);

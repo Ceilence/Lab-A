@@ -6,6 +6,7 @@ package theknife.grafica;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -65,8 +66,8 @@ public class PannelloRispostaRistoratore extends JPanel{
         elimRecensione.addActionListener(e -> {
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
             if (conferma == JOptionPane.YES_OPTION) {
-                gestore.getArchivioCommenti().rimuoviRisposta(risposta);
                 commento.setHaRisposta(false);
+                gestore.getArchivioCommenti().rimuoviRisposta(risposta);
                 pagRisto.cambiaCard();
             }
         });

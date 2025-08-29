@@ -197,6 +197,7 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("X");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chiudi(evt);
@@ -293,6 +294,7 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         recLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         recLabel.setText("Le mie recensioni");
+        recLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         recLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 recLabelMouseClicked(evt);
@@ -813,7 +815,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         risList.setEnabled(true);
         risList.setVisible(false);
         risList.chiudiFiltro();
-        
+        risList.getBarraRicerca().setText("");
         risList.creaLogin();
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed

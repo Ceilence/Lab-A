@@ -258,6 +258,10 @@ public class RisList extends javax.swing.JFrame {
         }
     }
     
+    public JTextField getBarraRicerca(){
+        return campoRicerca;
+    }
+    
     //----METODI PRIVATI DI SUPPORTO----
     
     private void resetPagina() {

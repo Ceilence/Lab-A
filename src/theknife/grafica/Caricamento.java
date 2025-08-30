@@ -30,7 +30,11 @@ import java.awt.event.*;
 
 
 public class Caricamento extends javax.swing.JFrame {
+    
+    /**Timer per scandire l'animazione dei puntini nella scritta "Caricamento". {@code timer}*/
     private Timer timer;
+    
+    /**Ciclicamente crea puntini sulla scritta in base al conto. {@code contaPuntini}*/
     private int contaPuntini = 0;
     
     /**

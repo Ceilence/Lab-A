@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como@author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como
  */
 package theknife.grafica;
 import theknife.utili.ValidaReg;
@@ -14,19 +13,53 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
+ * La classe {@link PaginaRistoratore} rappresenta la finestra grafica principale destinata ai ristoratori.
+ * <p>
+ *  Permette di visualizzare e gestire i commenti dei clienti, applicare modifiche al profilo del ristorante e navigare tra le sezioni tramite interfaccia.
+ *  La classe si appoggia al {@link GestoreArchivi} per il recupero e l’aggiornamento dei dati e a {@link RisList} per la gestione delle liste dei ristoranti. 
+ * </p>
  *
- * @author davim Alefr AntoPar
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
+ *
+ * @see GestoreArchivi
+ * @see RisList
+ * @see CommentiRistoranti
  */
 public class PaginaRistoratore extends javax.swing.JFrame {
     //Dichiarazione variabili
+    
+    /** Riferimento al {@link GestoreArchivi}, utilizzato per accedere e modificare i dati persistenti del sistema. {@code gestore}*/
     private GestoreArchivi gestore;
+    
+    /**Riferimento alla lista dei ristoranti {@link RisList}. {@code risList}*/
     private RisList risList;
-    private ImageIcon showPass, hidePass;
+    
+    /**Icona utilizzata per mostrare la password. {@code showPass}*/
+    private ImageIcon showPass;
+    
+    /**Icona utilizzata per mostrare la password. {@code hidePass}*/
+    private ImageIcon hidePass;
+    
+    /**Collezione di commenti {@link CommentiRistoranti} che devono ancora essere letti dal ristoratore. {@code listaDaLeggere}*/
     private ArrayList<CommentiRistoranti> listaDaLeggere = new ArrayList<>();
+    
+    /** Stringa che contiene il valore originale di un campo prima che venga modificato. {@code originale}*/
     private String originale;
+    
+    /**Contatore usato come identificatore numerico. {@code numero}*/
     private static int numero = 0;
     
-    
+    /**
+     * Costruttore della classe {@code PaginaRistoratore}.
+     * <p>
+     * Inizializza i riferimenti a {@link GestoreArchivi} e {@link RisList}, imposta i componenti grafici e prepara la disposizione iniziale dei pannelli.
+     * </p>
+     *
+     * @param gestore istanza di {@link GestoreArchivi} per la gestione dei dati.
+     * @param risList istanza di {@link RisList} per la gestione dei ristoranti.
+     */
     public PaginaRistoratore(GestoreArchivi gestore, RisList risList) { 
         this.gestore = gestore;
         this.risList = risList;
@@ -91,7 +124,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         eyePass = new javax.swing.JToggleButton();
-        logout2 = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         modificaDati = new javax.swing.JPanel();
@@ -159,6 +191,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         modPriceRist = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         modStato = new javax.swing.JComboBox<>();
+        logout2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,6 +207,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -320,9 +354,9 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         pannelloDestra.add(pannelloRisposte, "rispondiPanel");
 
         contenitoreCommenti.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreCommenti.setMaximumSize(new java.awt.Dimension(749, 0));
-        contenitoreCommenti.setMinimumSize(new java.awt.Dimension(16, 0));
-        contenitoreCommenti.setPreferredSize(new java.awt.Dimension(749, 0));
+        contenitoreCommenti.setMaximumSize(null);
+        contenitoreCommenti.setMinimumSize(null);
+        contenitoreCommenti.setPreferredSize(null);
         contenitoreCommenti.setLayout(new javax.swing.BoxLayout(contenitoreCommenti, javax.swing.BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
 
@@ -379,17 +413,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             }
         });
 
-        logout2.setBackground(new java.awt.Color(0, 102, 102));
-        logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        logout2.setForeground(new java.awt.Color(255, 255, 255));
-        logout2.setText("Logout");
-        logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logout2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logout2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout dettagliRistoLayout = new javax.swing.GroupLayout(dettagliRisto);
         dettagliRisto.setLayout(dettagliRistoLayout);
         dettagliRistoLayout.setHorizontalGroup(
@@ -413,7 +436,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(eyePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cognome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(logout2)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
@@ -445,9 +467,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logout2)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         pannelloDestra.add(dettagliRisto, "dettagli");
@@ -741,6 +761,17 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
+        logout2.setBackground(new java.awt.Color(255, 255, 255));
+        logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        logout2.setForeground(new java.awt.Color(0, 0, 0));
+        logout2.setText("Logout");
+        logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -755,14 +786,17 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logout2)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(logout2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -786,6 +820,15 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+    * Mostra tutti i ristoranti dell'utente attuale nel pannello principale.
+    * <p>
+    *   Per ciascun ristorante crea un pannello con il nome e i pulsanti "Modifica" ed "Elimina". L'azione dei pulsanti aggiorna direttamente i campi grafici o rimuove il ristorante dall'archivio.
+    * </p>
+    *
+    * @see GestoreArchivi
+    * @see Ristorante
+    */
     private void mostraRistoranti() {
         // Pannello che conterrà tutti i ristoranti
         JPanel contenitore = new JPanel();
@@ -864,6 +907,15 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         scrollPane.repaint();
     }
     
+    /**
+    * Mostra tutti i commenti dei ristoranti dell'utente attuale nel pannello dedicato alle risposte.
+    * <p>
+    *   Viene aggiunto un pannello {@link RecensioniRistorantiGestiti} per ciascun ristorante.
+    * </p>
+    *
+    * @see CommentiRistoranti
+    * @see RecensioniRistorantiGestiti
+    */
     public void mostraCommenti() {
         contenitoreRisposte.removeAll();
 
@@ -878,8 +930,16 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         contenitoreRisposte.revalidate();
         contenitoreRisposte.repaint();
-}
+    }
     
+    /**
+    * Registra un nuovo ristorante con i dati inseriti nei campi grafici.
+    * <p>
+    *   Verifica che latitudine e longitudine siano numeriche e che non esista già un ristorante alla stessa posizione.
+    * </p>
+    *
+    * @param evt evento di azione generato dal pulsante.
+    */
     private void regRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRisActionPerformed
         if(!longitudine.getText().matches("[0-9.]*") && !longitudine.getText().matches("[0-9.]*"))
             JOptionPane.showMessageDialog(null, "Puoi inserire solo numeri e il punto come separatore decimale!");
@@ -907,7 +967,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_regRisActionPerformed
-
+    
+    /** Imposta i campi grafici dei dati dell'utente, distinguendo tra campi modificabili e non modificabili.*/
     private void impostaModifiche() {
         //Dati dell'utente non modificabili
         Utente u = gestore.getArchivioUtenti().getUtenteAttuale();
@@ -937,6 +998,11 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         
     }
     
+    /**
+    * Conta il numero di commenti per un ristorante e aggiunge quelli non letti alla lista {@link #listaDaLeggere}.
+    *
+    * @param r ristorante di riferimento
+    */
     public void contaAggiungiDaLeggere(Ristorante r) {
         numero = 0;
         for (CommentiRistoranti c : gestore.getArchivioCommenti().getListaCommenti()) {
@@ -949,14 +1015,16 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         }
     }
     
-   public void impostaGiaLette() {
+    /**Segna come già letti tutti i commenti presenti in {@link #listaDaLeggere} e aggiorna l'archivio dei commenti.*/
+    public void impostaGiaLette() {
        for (CommentiRistoranti c : listaDaLeggere) {
            c.setDaLeggere(false);
        }
        gestore.getArchivioCommenti().aggiornaCommenti();
        listaDaLeggere.clear();
-   }
+    }
     
+    /** Cambia la card del pannello principale per mostrare i commenti di un ristorante e genera dinamicamente i pannelli per le risposte.*/
     public void cambiaCard(){
         CardLayout cl = (CardLayout) pannelloDestra.getLayout();
         cl.show(pannelloDestra, "commenti");
@@ -976,7 +1044,12 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         contenitoreCommenti.revalidate();
         contenitoreCommenti.repaint();
     }
-   
+    
+    /**
+    * Mostra o nasconde la password nel campo {@code password} basandosi sullo stato del checkbox {@code eyePass}.
+    *
+    * @param evt evento di azione generato dal checkbox
+    */
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -986,13 +1059,23 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             password.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePassActionPerformed
-
+    
+    /**
+    * Effettua il logout dell'utente attuale e mostra la schermata di login.
+    *
+    * @param evt evento di azione generato dal pulsante
+    */
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
         risList.creaLogin();
         this.dispose();
     }//GEN-LAST:event_logout2ActionPerformed
-
+    
+    /**
+    * Mostra o nasconde la password basandosi sullo stato del checkbox.
+    *
+    * @param evt evento di azione generato dal checkbox
+    */
     private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
         if (eyePass1.isSelected()) {
             eyePass1.setIcon(hidePass);
@@ -1002,7 +1085,13 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             password1.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePass1ActionPerformed
-
+    
+    /**
+    * Aggiorna i dati dell'utente con quelli inseriti nei campi grafici e aggiorna l'archivio degli utenti.
+    *
+    * @param evt evento di azione generato dal pulsante
+    * @see ValidaReg
+    */
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
         if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), "guest", "guest"))) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
@@ -1032,64 +1121,129 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             cl.show(pannelloDestra, "dettagli");
         }
     }//GEN-LAST:event_aggiornaActionPerformed
-
+    
+    /**
+    * Mostra la card "dettagli" dell'utente.
+    *
+    * @param evt evento di click sul label
+    */
     private void dettagliUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
     }//GEN-LAST:event_dettagliUtenteMouseClicked
-
+    
+    /**
+    * Applica la formattazione "sottolineato" al testo del label dei dettagli quando il mouse entra sul label.
+    *
+    * @param evt evento generato dal passaggio del mouse sul label
+    */
     private void dettagliUtenteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseEntered
         originale = dettagliUtente.getText();
         dettagliUtente.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_dettagliUtenteMouseEntered
-
+    
+    /**
+    * Ripristina il testo originale del label dei dettagli quando il mouse esce dal label.
+    *
+    * @param evt evento generato dal passaggio del mouse sul label.
+    */
     private void dettagliUtenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dettagliUtenteMouseExited
         dettagliUtente.setText(originale);
     }//GEN-LAST:event_dettagliUtenteMouseExited
-
+    
+    /**
+    * Mostra la card "modifica" dell'utente.
+    *
+    * @param evt evento di click sul label
+    */
     private void modificaDatiUtenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modifica");
     }//GEN-LAST:event_modificaDatiUtenteMouseClicked
-
+    
+    /**
+     * Sottolinea il label "modifica dati utente" al passaggio del mouse.
+     *
+     * @param evt evento generato dal passaggio del mouse sul label.
+     */
     private void modificaDatiUtenteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseEntered
         originale = modificaDatiUtente.getText();
         modificaDatiUtente.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_modificaDatiUtenteMouseEntered
-
+    
+    /**
+    * Ripristina il testo originale del label "modifica dati utente" quando il mouse esce.
+    *
+    * @param evt evento generato dal passaggio del mouse sul label.
+    */
     private void modificaDatiUtenteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaDatiUtenteMouseExited
         modificaDatiUtente.setText(originale);
     }//GEN-LAST:event_modificaDatiUtenteMouseExited
-
+    
+    /**
+     * Mostra la card "registra ristorante" al click sul label.
+     *
+     * @param evt evento di click sul label
+     */
     private void registraRistoranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "registra");
     }//GEN-LAST:event_registraRistoranteMouseClicked
-
+    
+    /**
+     * Sottolinea il label "registra ristorante" al passaggio del mouse.
+     *
+     * @param evt evento generato dal passaggio del mouse sul label.
+     */
     private void registraRistoranteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseEntered
         originale = registraRistorante.getText();
         registraRistorante.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_registraRistoranteMouseEntered
 
+    /**
+    * Ripristina il testo originale del label "registra ristorante".
+    *
+    * @param evt evento generato dal passaggio del mouse sul label.
+    */
     private void registraRistoranteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registraRistoranteMouseExited
         registraRistorante.setText(originale);
     }//GEN-LAST:event_registraRistoranteMouseExited
-
+    
+    /**
+    * Mostra la card "ristorantiMenu" e genera la lista dei ristoranti.
+    *
+    * @param evt evento di click sul label
+    */
     private void areaRistorantiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseClicked
         mostraRistoranti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "ristorantiMenu");
     }//GEN-LAST:event_areaRistorantiMouseClicked
-
+    
+    /**
+    * Sottolinea il label "ristoranti" al passaggio del mouse.
+    *
+    * @param evt evento generato dal passaggio del mouse sul label.
+    */
     private void areaRistorantiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseEntered
         originale = areaRistoranti.getText();
         areaRistoranti.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_areaRistorantiMouseEntered
 
+    /**
+    * Ripristina il testo originale del label "ristoranti".
+    *
+    * @param evt evento generato dal passaggio del mouse sul label.
+    */
     private void areaRistorantiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaRistorantiMouseExited
         areaRistoranti.setText(originale);
     }//GEN-LAST:event_areaRistorantiMouseExited
 
+   /**
+    * Aggiorna i dati del ristorante attual con i valori modificati nei campi grafici
+    * 
+    * @param evt evento di azione generato dal pulsante
+    */
     private void modRisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modRisActionPerformed
         gestore.getArchivioRis().getRisAttuale().setNomeRis(modNomeField.getText().trim());
         gestore.getArchivioRis().getRisAttuale().setCuisRis(modCucina.getText().trim());
@@ -1109,22 +1263,37 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         cl.show(pannelloDestra, "ristorantiMenu");
         mostraRistoranti();
     }//GEN-LAST:event_modRisActionPerformed
-
+    /**
+     * Mostra la card "rispondiPanel" e genera i pannelli dei commenti da rispondere.
+     * 
+     * @param evt evento di click sul label
+     */
     private void areaCommentiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseClicked
         mostraCommenti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "rispondiPanel");
     }//GEN-LAST:event_areaCommentiMouseClicked
-
+    
+    /**
+     * Sottolinea il label "commenti" al passaggio del mouse.
+     * 
+     * @param evt evento generato dal passaggio del mouse sul label. 
+     */
     private void areaCommentiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseEntered
         originale = areaCommenti.getText();
         areaCommenti.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_areaCommentiMouseEntered
-
+    
+    /**
+     * Ripristina il testo originale del label "commenti".
+     * 
+     * @param evt evento generato dal passaggio del mouse sul label.
+     */
     private void areaCommentiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_areaCommentiMouseExited
         areaCommenti.setText(originale);
     }//GEN-LAST:event_areaCommentiMouseExited
-
+    
+    /** Genera le immagini ridimensionate per i pulsanti di mostra/nascondi password e le assegna ai checkbox.*/
     public void generaImmagini() {
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\show_pass.png"));

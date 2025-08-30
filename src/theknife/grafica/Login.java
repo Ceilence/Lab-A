@@ -10,15 +10,40 @@ import javax.swing.*;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author Alefr davim antoPar
+ * La classe Login rappresenta la finestra grafica per l'accesso 
+ * degli utenti registrati o per l'accesso come ospite all'applicazione.
+ * <p>
+ * Consente di effettuare il login come cliente oppure ristoratore,
+ * oppure di entrare come ospite inserendo la propria posizione e lo stato.
+ * </p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class Login extends javax.swing.JFrame {
+    
+    /**
+     * Icona utilizzata per mostrare o nascondere la password nel campo di input. {@code showPass} e {@code hidePass}
+     */
     private ImageIcon showPass, hidePass;
+    
+    /**
+     * Gestore degli archivi che permette di accedere e gestire utenti, ristoranti, preferiti e commenti. {@code gestore}
+     */
     private GestoreArchivi gestore;
+    
+    /**
+     * Riferimento alla finestra contenente la lista dei ristoranti. {@code risList}
+     */
     private final RisList risList;
     
-    
+    /**
+     * Costruttore della finestra di login.
+     *
+     * @param gestore il {@link GestoreArchivi} utilizzato per gestire utenti e dati
+     * @param risList la finestra {@link RisList} con l'elenco dei ristoranti
+     */
     public Login(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
@@ -144,6 +169,7 @@ public class Login extends javax.swing.JFrame {
         LoginButton.setForeground(new java.awt.Color(255, 255, 255));
         LoginButton.setText("Login");
         LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LoginButton.setFocusPainted(false);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
@@ -161,6 +187,7 @@ public class Login extends javax.swing.JFrame {
         registratiButton.setForeground(new java.awt.Color(255, 255, 255));
         registratiButton.setText("Registrati!");
         registratiButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registratiButton.setFocusPainted(false);
         registratiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registratiButtonActionPerformed(evt);
@@ -173,6 +200,7 @@ public class Login extends javax.swing.JFrame {
         guestButton.setForeground(new java.awt.Color(255, 255, 255));
         guestButton.setText("Accedi come ospite");
         guestButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guestButton.setFocusPainted(false);
         guestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guestButtonActionPerformed(evt);
@@ -197,7 +225,16 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Gestisce l'evento di click sul pulsante di login.
+     * <p>
+     * Verifica le credenziali inserite e, in base al ruolo dell'utente,
+     * apre la finestra dedicata al cliente o al ristoratore.
+     * </p>
+     *
+     * @param evt evento generato dal pulsante
+     */
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         if (gestore.getArchivioUtenti().esisteUtente(logMail.getText(), logPass.getText())) {
                 int idUtente = gestore.getArchivioUtenti().getId(logMail.getText(), logPass.getText());
@@ -224,8 +261,18 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LoginButtonActionPerformed
 
+    /**
+     * Gestisce l'evento di click sul pulsante "Accedi come guest".
+     * <p>
+     * Permette di inserire una posizione e uno stato tramite una finestra di dialogo,
+     * quindi mostra la lista dei ristoranti in modalità guest.
+     * </p>
+     *
+     * @param evt evento generato dal pulsante
+     */
     private void guestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestButtonActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
+        risList.creaFiltro();
                                   
         //JDialog
         JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);
@@ -297,6 +344,15 @@ public class Login extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_guestButtonActionPerformed
 
+    
+    /**
+     * Gestisce l'evento di click sul pulsante "Registrati".
+     * <p>
+     * Apre la finestra {@link SelezioneTipoUtente} per registrare un nuovo utente.
+     * </p>
+     *
+     * @param evt evento generato dal pulsante
+     */
     private void registratiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registratiButtonActionPerformed
         SelezioneTipoUtente Reg1Frame = new SelezioneTipoUtente(gestore, risList);
         Reg1Frame.setVisible(true);
@@ -305,7 +361,15 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_registratiButtonActionPerformed
 
-    //Toggle button per mostrare o nascondere la password.
+    /**
+     * Gestisce l'evento sul pulsante a forma di occhio accanto al campo password.
+     * <p>
+     * Alterna tra la visualizzazione e l'oscuramento della password
+     * modificando l'icona e il carattere.
+     * </p>
+     *
+     * @param evt evento generato dal pulsante
+     */
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -316,6 +380,10 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eyePassActionPerformed
 
+    /**
+     * Inizializza e ridimensiona le icone {@code showPass} e {@code hidePass}
+     * per il pulsante che mostra/nasconde la password.
+     */
     public void creaImmagini() {
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\show_pass.png"));

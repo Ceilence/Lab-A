@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 import theknife.essenziali.Utente;
@@ -12,16 +11,44 @@ import theknife.utili.ValidaReg;
 
 
 /**
- *
- * @author davim Alefr AntoPar
+ * Finestra per la registrazione di un utente generico nel sistema.
+ * 
+ * Include controlli come:
+ * <ul>
+ *   <li>Verifica dei campi obbligatori</li>
+ *   <li>Validazione dell’email e della password</li>
+ *   <li>Mostrare/nascondere la password</li>
+ *   <li>Tornare alla selezione del tipo di utente</li>
+ * </ul>
+ * 
+ * @see GestoreArchivi
+ * @see RisList
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class RegUtente extends javax.swing.JFrame {
-    //Dichiarazione variabili immagini e archivi.
-    private ImageIcon showPass, hidePass;
+    
+    /** Immagine per mostrare la password. {@code showPass} */
+    private ImageIcon showPass;
+    
+    /** Immagine per nascondere la password. {@code hidePass} */
+    private ImageIcon hidePass;
+    
+     /** Riferimento al gestore degli archivi. {@code gestore} */
     private GestoreArchivi gestore;
+    
+    /** Lista dei ristoranti collegata all’interfaccia. {@code risList} */
     private final RisList risList;
    
-    
+    /**
+     * Costruttore della finestra di registrazione utente.
+     * Inizializza componenti grafici, icone e stato iniziale dei messaggi.
+     * 
+     * @param gestore Riferimento al gestore degli archivi {@link GestoreArchivi}.
+     * @param risList Lista dei ristoranti collegata all’interfaccia {@link RisList}
+     */
     public RegUtente(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
@@ -108,6 +135,7 @@ public class RegUtente extends javax.swing.JFrame {
         regCliente.setBackground(new java.awt.Color(0, 102, 102));
         regCliente.setForeground(new java.awt.Color(255, 255, 255));
         regCliente.setText("Registrati");
+        regCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regClienteActionPerformed(evt);
@@ -249,7 +277,9 @@ public class RegUtente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Codice per il bottone "freccia" per tornare al Frame precedente.
+    /**
+     * Codice per il bottone "freccia" per tornare al Frame precedente.
+     */
     private void backArrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backArrowActionPerformed
         SelezioneTipoUtente Reg1Frame = new SelezioneTipoUtente(gestore, risList);
         Reg1Frame.setVisible(true);
@@ -258,7 +288,9 @@ public class RegUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backArrowActionPerformed
 
-    //Verifica che tutte le condizioni siano rispettate per registrare correttamente un Utente.
+    /**
+     * Gestisce la registrazione dell’utente controllando che tutti i campi siano compilati e validi.
+     */
     private void regClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteActionPerformed
         if (!(ValidaReg.campiPieni(nomeCliente.getText(), cognomeCliente.getText(), usernameCliente.getText(), emailCliente.getText(), passwordCliente.getText(), posizioneCliente.getText(), (String)statoUtente.getSelectedItem()))) {
              JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
@@ -286,31 +318,42 @@ public class RegUtente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_accediErroreMouseClicked
     
-    //Rimossa sottolineamento scritta "Accedi".
+     /**
+     * Rimuove sottolineamento dal testo "Accedi" al passaggio del mouse.
+     */
     private void accediErroreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accediErroreMouseExited
          String accedi = "<html> Accedi </html>";
         accediErrore.setText(accedi);
     }//GEN-LAST:event_accediErroreMouseExited
 
-    //Sottolineamento della scritta "Accedi".
+     /**
+     * Sottolinea il testo "Accedi" al passaggio del mouse.
+     */
     private void accediErroreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accediErroreMouseEntered
         String accedi = "<html><u> Accedi </u></html>";
         accediErrore.setText(accedi);
     }//GEN-LAST:event_accediErroreMouseEntered
     
-    //Informazioni password mostrate al click del mouse.
+    /**
+     * Mostra le informazioni sulla password al click del mouse.
+     */
     private void qmLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qmLabelMousePressed
          infoPass.setVisible(true);
          infoPassPane.setVisible(true);
     }//GEN-LAST:event_qmLabelMousePressed
 
-    //Informazioni password nascoste al rilascio del mouse.
+    
+    /**
+     * Nasconde le informazioni sulla password al rilascio del mouse.
+     */
     private void qmLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qmLabelMouseReleased
         infoPass.setVisible(false);
         infoPassPane.setVisible(false);
     }//GEN-LAST:event_qmLabelMouseReleased
     
-    //Toggle button per mostrare o nascondere la password.
+    /**
+     * Toggle per mostrare o nascondere la password.
+     */
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -320,7 +363,10 @@ public class RegUtente extends javax.swing.JFrame {
             passwordCliente.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyePassActionPerformed
-
+    
+    /**
+     * Carica e ridimensiona le icone della finestra.
+     */
     private void creaImmagini() {
         //Immagine punto di domanda per le informazioni password ridimensionata ed applicata.
         ImageIcon qmIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\qm.png"));

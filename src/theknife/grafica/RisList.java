@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -16,27 +15,62 @@ import theknife.gestori.GestoreArchivi;
 
 
 /**
+ * Finestra principale che mostra la lista dei ristoranti disponibili. 
+ * <p>
+ * Consente di:
+ *  <ul>
+ *      <li>Visualizzare i ristoranti sotto forma di {@link PannelloRistorante}.</li>
+ *      <li>Applicare filtri di ricerca tramite {@link Filtro}.</li>
+ *      <li>Gestire la paginazione dei risultati.</li>
+ *      <li>Mostrare i dettagli e le recensioni associate a un ristorante.</li>
+ *  </ul>
+ * <p>
+ * La classe interagisce con {@link GestoreArchivi} per accedere agli archivi e aggiornare le informazioni in base all’utente e ai dati caricati.
  *
- * @author davim
+ * @see GestoreArchivi
+ * @see PannelloRistorante
+ * @see Filtro
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
-
-//QUANDO SI FANNO FILTRI RICORDARSI DI AGGIORNARE LABEL, DETPREF E PREF ATTUALE.
 public class RisList extends javax.swing.JFrame {
+    
+    /** Numero massimo di elementi da visualizzare per ogni pagina. {@code ELEMENTI_PER_PAGINA} */
     private final int ELEMENTI_PER_PAGINA = 100;
 
+    /** Riferimento al gestore degli archivi. {@code gestore}*/
     private final GestoreArchivi gestore;
+
+    /** Lista di tutti i pannelli ristorante caricati. {@code tuttiIPannelli}*/
     private final ArrayList<PannelloRistorante> tuttiIPannelli = new ArrayList<>();
-    private final ArrayList<PannelloRistorante> filtratore = new ArrayList<>();
+
+    /** Lista di pannelli ristorante attualmente filtrati. {@code pannelliFiltrati}*/
+    private final ArrayList<PannelloRistorante> pannelliFiltrati = new ArrayList<>();
+
+    /** Finestra di caricamento mostrata durante l'inizializzazione. {@code caricamentoFrame}*/
     private final Caricamento caricamentoFrame;
-    private int pagina = 0;
-    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania,flagSpagna, flagStatiUniti, flagGiappone, flagMondo, stellaVuota, stellaPiena, immagineFiltro;
+
+    /** Numero della pagina attualmente visualizzata. {@code paginaAttuale}*/
+    private int paginaAttuale = 0;
+
+    /** Icone di bandiere e simboli utilizzate nella UI. */
+    private ImageIcon flagItalia, flagCina, flagFrancia, flagGermania, flagSpagna, flagStatiUniti, flagGiappone, flagMondo, stellaVuota, stellaPiena;
+
+    /** Finestra di filtro attiva, se presente. {@code f}*/
     private Filtro f;
     
-    
+    /**
+     * Costruisce la finestra di lista dei ristoranti e inizializza i componenti.
+     * <p>
+     * Vengono caricati i pannelli dei ristoranti, le icone delle bandiere e viene mostrato un frame di caricamento finché i dati non sono pronti.
+     *
+     * @param gestore il {@link GestoreArchivi} utilizzato per accedere ai dati
+     */
     public RisList(GestoreArchivi gestore) {
         this.gestore = gestore;
         initComponents();
-        f = new Filtro(gestore,this);
+        
         
         //Creazione frame di caricamento
         caricamentoFrame = new Caricamento();
@@ -56,29 +90,15 @@ public class RisList extends javax.swing.JFrame {
         creaImmagini();
         caricaPannelli();
         
-        //Bottone per applicare i filtri
-        f.getApplicaFiltri().addActionListener(e -> {
-            ArrayList<PannelloRistorante> risultatiFiltrati = f.filtra(tuttiIPannelli);
-            if (!risultatiFiltrati.isEmpty()) {
-                filtratore.clear();
-                filtratore.addAll(risultatiFiltrati);
-                pagina = 0;
-                impaginazione(pagina);
-                aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
-                
-                this.setEnabled(true);
-                f.setVisible(false);
-                this.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
-            }
-            });
         
         getRootPane().setDefaultButton(cerca);
     }
     
     /**
-     * 
+     * Carica i pannelli {@link PannelloRistorante} relativi a ciascun {@link Ristorante} presente nell'archivio e aggiorna 
+     * la barra di progresso del caricamento.
+     * <p>
+     * L’operazione è eseguita in background tramite {@link SwingWorker}.
      */
     private void caricaPannelli() {
         ArrayList<Ristorante> lista = gestore.getArchivioRis().getRis();
@@ -91,7 +111,7 @@ public class RisList extends javax.swing.JFrame {
                 for (Ristorante r : lista) {
                     PannelloRistorante p = new PannelloRistorante(RisList.this, gestore, r, contenitoreAnteprima);
                     tuttiIPannelli.add(p);
-                    filtratore.add(p);
+                    
 
                     count++;
                     publish(count); 
@@ -115,33 +135,39 @@ public class RisList extends javax.swing.JFrame {
     }
     
     /**
-     * 
-     * @param filtro 
+     * Applica un filtro testuale ai ristoranti.
+     * <p>
+     * Vengono mantenuti nell'array {@code pannelliFiltrati} solo i ristoranti il cui nome contiene la stringa specificata.
+     *
+     * @param filtro stringa di ricerca da applicare ai nomi dei ristoranti
      */
     private void filtraPannelli(String filtro) {
-        pagina = 0;
+        paginaAttuale = 0;
         filtro = filtro.toLowerCase();
-        filtratore.clear();
+        pannelliFiltrati.clear();
         contenitorePanel.removeAll();
         
         for (PannelloRistorante p : tuttiIPannelli) {
             Ristorante r = p.getRistorante();
             if (filtro.isEmpty() || r.getNomeRis().toLowerCase().contains(filtro)) {
-                filtratore.add(p);
+                pannelliFiltrati.add(p);
             }
         }
-        aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
+        aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
     }
     
     /**
-     * 
-     * @param cittaUtente
-     * @param distanzaMax 
+     * Filtra i ristoranti in base alla posizione dell’utente.
+     * <p>
+     * Vengono mostrati i ristoranti entro una distanza massima dalla città specificata. Se la città non esiste,
+     * vengono mostrati i ristoranti nello stato corrente dell’utente.
+     *
+     * @param cittaUtente nome della città inserita dall’utente
+     * @param distanzaMax distanza massima (in km) dalla città
      */
     public void filtraPosizione(String cittaUtente, double distanzaMax){ 
-        filtratore.clear();
+        pannelliFiltrati.clear();
         contenitorePanel.removeAll();
-        filtri.setIcon(immagineFiltro);
         Citta citta = gestore.getArchivioCitta().getCitta(cittaUtente);
         
         if (citta != null) {
@@ -151,35 +177,49 @@ public class RisList extends javax.swing.JFrame {
                 if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
                     double distanza = gestore.getArchivioCitta().calcolaDistanza(citta.getLatCitta(), citta.getLonCitta(), r.getLatRis(), r.getLongRis());
                     if(distanza <= distanzaMax){
-                        filtratore.add(p);
+                        pannelliFiltrati.add(p);
                     }
                 }
             }
         }
       
         if(citta == null){
-            filtratore.clear();
+            pannelliFiltrati.clear();
             for(PannelloRistorante p : tuttiIPannelli){
                 Ristorante r = p.getRistorante();
                 if(r.getStatoRis().equals(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente())){
-                    filtratore.add(p);
+                    pannelliFiltrati.add(p);
                 }
             }
-            JOptionPane.showMessageDialog(this,
-                "Nessun ristorante trovato a " + cittaUtente + "\n" +
-                "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente() + " ",
-                "Avviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nessun ristorante trovato a " + cittaUtente + "\n" + "Verranno mostrati i ristoranti nel tuo stato: " + gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente(), "Avviso", JOptionPane.INFORMATION_MESSAGE);
         }
-        aggiornaComponentiGenerali(filtratore.get(0).getRistorante());
-        impaginazione(pagina);
+        aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
+        resetPagina();
+        impaginazione(paginaAttuale);
     }
     
+    /**
+     * Crea il filtro dei ristoranti se non è già stato creato.
+     * <p>
+     * Viene utilizzato per applicare filtri sui ristoranti visualizzati.
+     * </p>
+     * 
+     * @see Filtro
+     */
     public void creaFiltro() {
         if (f == null) {
-            f = new Filtro(gestore, RisList.this);
+            f = new Filtro(gestore, RisList.this, tuttiIPannelli);
         }
     }
     
+    /**
+     * Chiude il filtro dei ristoranti se aperto.
+     * <p>
+     * Dopo l'esecuzione di questo metodo, il filtro non sarà più visibile e la finestra principale sarà nuovamente attiva.
+     * </p>
+     * 
+     * @see Filtro
+     */
     public void chiudiFiltro() {
         if (f != null) {
             f.dispose();
@@ -192,8 +232,12 @@ public class RisList extends javax.swing.JFrame {
     //----METODI PUBBLICI DI AGGIORNAMENTO UI----
     
     /**
+     * Aggiorna tutti i componenti dell'interfaccia utente in base al ristorante selezionato.
+     * <p>
+     * Questo metodo aggiorna dettagli, preferiti, anteprime recensioni, etichette e pulsanti.
+     * </p>
      * 
-     * @param r 
+     * @param r il {@link Ristorante} di riferimento
      */
     public void aggiornaComponentiGenerali(Ristorante r) { 
         impostaRisAttuale(r);
@@ -208,12 +252,24 @@ public class RisList extends javax.swing.JFrame {
         aggiornaScriviGuest();
     }
     
+    /**
+     * Aggiorna l'interfaccia utente dopo modifiche alle recensioni.
+     * <p>
+     * Viene utilizzato per ricaricare le anteprime e aggiornare i pulsanti correlati.
+     * </p>
+     */
     public void aggiornaPostModificheRecensioni() {
         mostraRecensioniAnteprima();
         aggiornaTastoScrivi();
         aggiornaBottoneVedi();
     }
     
+    /**
+     * Imposta la visualizzazione per utenti ospiti.
+     * <p>
+     * Se l'utente corrente è ospite (ID 0), alcuni componenti sono nascosti. L'utente potrà solamente vedere i ristoranti ed usare i filtri
+     * </p>
+     */
     public void versioneGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
             detPref.setVisible(false);
@@ -229,24 +285,34 @@ public class RisList extends javax.swing.JFrame {
     }
     
     /**
+     * Gestisce l'impaginazione dei pannelli dei ristoranti.
+     * <p>
+     * Visualizza solo gli elementi della pagina corrente e aggiorna il contatore.
+     * </p>
      * 
-     * @param pagina 
+     * @param pagina numero della pagina da visualizzare
      */
-    public void impaginazione(int pagina){
+    private void impaginazione(int pagina){
         contenitorePanel.removeAll();
         int da = ELEMENTI_PER_PAGINA * pagina;
-        int a = Math.min(filtratore.size(), da + ELEMENTI_PER_PAGINA);
+        int a = Math.min(pannelliFiltrati.size(), da + ELEMENTI_PER_PAGINA);
         for(int i = da; i < a; i++){
-            contenitorePanel.add(filtratore.get(i));
+            contenitorePanel.add(pannelliFiltrati.get(i));
             contenitorePanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
         contenitorePanel.revalidate();
         contenitorePanel.repaint();
         
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         contatore.setText((pagina + 1) + " / " + totalePagine);
     }
     
+    /**
+     * Aggiorna l'icona del preferito visualizzato.
+     * <p>
+     * Mostra la stella piena se il ristorante è tra i preferiti, altrimenti la stella vuota.
+     * </p>
+     */
      public void aggiornaDetPref() {
         if (gestore.getArchivioPreferiti().esistePref()) {
             detPref.setIcon(stellaPiena);
@@ -255,6 +321,14 @@ public class RisList extends javax.swing.JFrame {
         }
     }
      
+    /**
+     * Crea e visualizza il frame di login.
+     * <p>
+     * Permette all'utente di effettuare il login o entrare come ospite.
+     * </p>
+     * 
+     * @see Login
+     */ 
     public void creaLogin() {
         Login loginFrame = new Login(gestore, RisList.this);
         loginFrame.pack();
@@ -262,36 +336,83 @@ public class RisList extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }
     
+    /**
+     * Applica i filtri selezionati sui pannelli dei ristoranti.
+     * <p>
+     * Dopo l'applicazione dei filtri, aggiorna la pagina e i componenti generali. Mostra un messaggio se nessun ristorante soddisfa i criteri.
+     * </p>
+     */
+    public void applicaFiltri(){
+        pannelliFiltrati.clear();
+        f.filtra(tuttiIPannelli, pannelliFiltrati);
+        if (!pannelliFiltrati.isEmpty()) {
+            resetPagina();
+            impaginazione(paginaAttuale);
+            aggiornaComponentiGenerali(pannelliFiltrati.get(0).getRistorante());
+            this.setEnabled(true);
+            f.setVisible(false);
+            this.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(f, "Nessun ristorante trovato con i filtri applicati", "Risultati vuoti", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     
-    
+    /**
+     * Restituisce il campo di ricerca dei ristoranti.
+     * 
+     * @return JTextField utilizzato per inserire il filtro testuale
+     */
+    public JTextField getBarraRicerca(){
+        return campoRicerca;
+    }
     
     //----METODI PRIVATI DI SUPPORTO----
     
     /**
+     * Ripristina il numero della pagina attuale a zero.
+     */
+    private void resetPagina() {
+        paginaAttuale = 0;
+    }
+    
+    /**
+     * Imposta il preferito attuale visualizzato.
      * 
-     * @param r 
+     * @param r ristorante da segnare come preferito
+     * @see Preferito
      */
     private void setPreferitoVisualizzato(Ristorante r) {
         gestore.getArchivioPreferiti().setPrefAttuale(r.getIdRis(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente());
     }
     
     /**
+     * Imposta il ristorante attuale selezionato.
      * 
-     * @param r 
+     * @param r ristorante da impostare come corrente
+     * @see Ristorante
      */
     private void impostaRisAttuale(Ristorante r) {
         gestore.getArchivioRis().setRisAttuale(r);
     }
     
+    /**
+     * Resetta la barra di scorrimento verticale dei dettagli.
+     */
     private void resettaBarra(){
         scrollPaneDet.getVerticalScrollBar().setValue(0);
     }
     
+    /**
+     * Mostra la scheda dei dettagli del ristorante.
+     */
     private void aggiornaDettagli(){
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
     }
     
+    /**
+     * Aggiorna la visibilità del pulsante "Vedi tutte le recensioni".
+     */
     private void aggiornaBottoneVedi() {
         int numero = gestore.getArchivioCommenti().contaCommenti(gestore.getArchivioRis().getRisAttuale());
         
@@ -302,6 +423,9 @@ public class RisList extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Aggiorna la visibilità del pulsante "Scrivi recensione".
+     */
     private void aggiornaTastoScrivi() {
         int idUtente = gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente();
         int idRistorante = gestore.getArchivioRis().getRisAttuale().getIdRis();
@@ -313,8 +437,9 @@ public class RisList extends javax.swing.JFrame {
     }
     
     /**
+     * Aggiorna le etichette con i dettagli del ristorante.
      * 
-     * @param r 
+     * @param r ristorante di riferimento
      */
     private void aggiornaLabel (Ristorante r) {
         detNome.setText(r.getNomeRis());
@@ -326,18 +451,28 @@ public class RisList extends javax.swing.JFrame {
         detBan.setIcon(selezionaImmagine(r.getStatoRis())); 
     }
     
+    /**
+     * Mostra le prime 3 recensioni nella sezione anteprima.
+     */
     private void mostraRecensioniAnteprima() {
         mostraRecensioni(3, contenitoreAnteprima);
     }
 
+    /**
+     * Mostra tutte le recensioni del ristorante.
+     */
     private void mostraTutteLeRecensioni() {
         mostraRecensioni(Integer.MAX_VALUE, contenitoreRec);
     }
     
     /**
+     * Mostra un numero limitato di recensioni nel panel contenitore.
      * 
-     * @param max
-     * @param contenitore 
+     * @param max numero massimo di recensioni da mostrare
+     * @param contenitore pannello in cui aggiungere le recensioni
+     * @see CommentiRistoranti
+     * @see PannelloRecensioni
+     * @see PannelloRisposta
      */
     private void mostraRecensioni( int max, JPanel contenitore) {
         contenitore.removeAll();
@@ -357,16 +492,14 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.repaint();
     }
     
+    /**
+     * Rimuove il tasto Scrivi se l'id utente è uguale a 0 (guest).
+     */
     private void aggiornaScriviGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
             scriviRec.setVisible(false);
         }
     }
-    
-    
-    
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -468,6 +601,7 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.setLayout(new java.awt.GridBagLayout());
 
         cerca.setBackground(new java.awt.Color(254, 254, 254));
+        cerca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerca.setMaximumSize(new java.awt.Dimension(40, 40));
         cerca.setMinimumSize(new java.awt.Dimension(40, 40));
         cerca.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -504,6 +638,7 @@ public class RisList extends javax.swing.JFrame {
         panRicerca.add(jScrollPane1, new java.awt.GridBagConstraints());
 
         filtri.setBackground(new java.awt.Color(254, 254, 254));
+        filtri.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         filtri.setMaximumSize(new java.awt.Dimension(60, 40));
         filtri.setMinimumSize(new java.awt.Dimension(60, 40));
         filtri.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -525,6 +660,7 @@ public class RisList extends javax.swing.JFrame {
         jPanel1.add(panRicerca, gridBagConstraints);
 
         profiloUtente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pagina Utente.png"))); // NOI18N
+        profiloUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profiloUtente.setMaximumSize(new java.awt.Dimension(50, 51));
         profiloUtente.setMinimumSize(new java.awt.Dimension(50, 51));
         profiloUtente.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -642,7 +778,8 @@ public class RisList extends javax.swing.JFrame {
 
         scriviRec.setBackground(new java.awt.Color(0, 102, 102));
         scriviRec.setForeground(new java.awt.Color(255, 255, 255));
-        scriviRec.setText("scrivi");
+        scriviRec.setText("Scrivi");
+        scriviRec.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         scriviRec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scriviRecActionPerformed(evt);
@@ -763,6 +900,7 @@ public class RisList extends javax.swing.JFrame {
 
         indietro.setBackground(new java.awt.Color(254, 254, 254));
         indietro.setText("Indietro");
+        indietro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         indietro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indietroActionPerformed(evt);
@@ -777,6 +915,7 @@ public class RisList extends javax.swing.JFrame {
 
         avanti.setBackground(new java.awt.Color(254, 254, 254));
         avanti.setText("Avanti");
+        avanti.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         avanti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avantiActionPerformed(evt);
@@ -825,9 +964,15 @@ public class RisList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Verifica, tramite metodo esistePref(), che il ristorante visualizzato sia tra i preferiti dell'utente.
-     * Imposta poi l'icona del JButton detPref con l'immagine appropriata,
-     * nel caso in cui si voglia aggiungere o togliere il ristorante dalla lista preferiti.
+     * Gestisce il click sul pulsante dei preferiti.
+     * <p>
+     * Verifica tramite {@link ArchivioPreferiti#esistePref()} se il ristorante corrente è già tra i preferiti. Se sì, lo rimuove, 
+     * altrimenti lo aggiunge. Poi aggiorna l'icona del pulsante detPref{@link aggiornaDetPref()}.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see ArchivioPreferiti
+     * @see #aggiornaDetPref()
      */
     private void detPrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detPrefActionPerformed
         if (gestore.getArchivioPreferiti().esistePref()) {
@@ -842,9 +987,13 @@ public class RisList extends javax.swing.JFrame {
     }//GEN-LAST:event_detPrefActionPerformed
 
     /**
+     * Mostra la pagina dell'utente corrente.
+     * <p>
+     * Apre {@link PaginaUtente} e disabilita temporaneamente la finestra principale.
+     * </p>
      * 
-     * 
-     * @param evt 
+     * @param evt evento generato dal click del pulsante
+     * @see PaginaUtente
      */
     private void profiloUtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profiloUtenteActionPerformed
         PaginaUtente p = new PaginaUtente(gestore, this);
@@ -853,34 +1002,70 @@ public class RisList extends javax.swing.JFrame {
         p.setLocationRelativeTo(null);
     }//GEN-LAST:event_profiloUtenteActionPerformed
 
+    /**
+     * Applica il filtro di ricerca in base al testo inserito nella barra.
+     * <p>
+     * Viene aggiornato l'elenco dei pannelli visualizzati e l'impaginazione.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see #filtraPannelli(String)
+     */
     private void cercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cercaActionPerformed
         filtraPannelli(campoRicerca.getText());
-        impaginazione(pagina);
+        impaginazione(paginaAttuale);
     }//GEN-LAST:event_cercaActionPerformed
 
+    /**
+     * Passa alla pagina successiva dei ristoranti.
+     * <p>
+     * Aggiorna l'impaginazione e il contatore delle pagine.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see #impaginazione(int)
+     */
     private void avantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avantiActionPerformed
         scrollPane.getVerticalScrollBar().setValue(0);
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         
-        if(pagina < totalePagine - 1){
-            pagina++;
-            impaginazione(pagina);
+        if(paginaAttuale < totalePagine - 1){
+            paginaAttuale++;
+            impaginazione(paginaAttuale);
         }
 
-        contatore.setText((pagina + 1) + " / " + totalePagine);
+        contatore.setText((paginaAttuale + 1) + " / " + totalePagine);
     }//GEN-LAST:event_avantiActionPerformed
 
+    /**
+     * Torna alla pagina precedente dei ristoranti.
+     * <p>
+     * Aggiorna l'impaginazione e il contatore delle pagine.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see #impaginazione(int)
+     */
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
         scrollPane.getVerticalScrollBar().setValue(0);
-        int totalePagine = (int) Math.ceil((double) filtratore.size() / ELEMENTI_PER_PAGINA);
+        int totalePagine = (int) Math.ceil((double) pannelliFiltrati.size() / ELEMENTI_PER_PAGINA);
         
-        if(pagina > 0){
-            pagina--;
-            impaginazione(pagina);   
+        if(paginaAttuale > 0){
+            paginaAttuale--;
+            impaginazione(paginaAttuale);   
         }
-        contatore.setText((pagina + 1) + " / " + totalePagine);
+        contatore.setText((paginaAttuale + 1) + " / " + totalePagine);
     }//GEN-LAST:event_indietroActionPerformed
 
+    /**
+     * Apre il frame per scrivere una nuova recensione.
+     * <p>
+     * La recensione sarà associata al ristorante attualmente selezionato.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see ScriviRecensione
+     */
     private void scriviRecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scriviRecActionPerformed
         ScriviRecensione pagRec = new ScriviRecensione(gestore.getArchivioRis().getRisAttuale(), gestore, RisList.this);
         pagRec.setLocationRelativeTo(scrollPaneDet);
@@ -889,18 +1074,43 @@ public class RisList extends javax.swing.JFrame {
         this.setEnabled(false);
     }//GEN-LAST:event_scriviRecActionPerformed
 
+    /**
+     * Mostra tutte le recensioni del ristorante selezionato.
+     * <p>
+     * Cambia il pannello visualizzato in "recensioni" e carica tutte le recensioni.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     */
     private void vediTutteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vediTutteActionPerformed
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");
         mostraTutteLeRecensioni();
     }//GEN-LAST:event_vediTutteActionPerformed
 
+    /**
+     * Torna alla visualizzazione dettagli del ristorante.
+     * <p>
+     * Ripristina la barra di scorrimento verticale.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     */
     private void indietroBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroBottoneActionPerformed
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
         resettaBarra();
     }//GEN-LAST:event_indietroBottoneActionPerformed
 
+    /**
+     * Mostra il pannello dei filtri.
+     * <p>
+     * Imposta lo stato e la città dell'utente di default e disabilita la finestra principale.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see Filtro
+     */
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
         
         if(f.getStato().getSelectedItem() == null){
@@ -912,6 +1122,16 @@ public class RisList extends javax.swing.JFrame {
         f.setLocationRelativeTo(null);
     }//GEN-LAST:event_filtriActionPerformed
 
+    /**
+     * Effettua il logout dell'utente corrente.
+     * <p>
+     * Resetta l'utente attuale, chiude eventuali filtri aperti, mostra la finestra di login e chiude la finestra corrente.
+     * </p>
+     * 
+     * @param evt evento generato dal click del pulsante
+     * @see #creaLogin()
+     * @see #chiudiFiltro()
+     */
     private void logoutBottoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBottoneActionPerformed
         // TODO add your handling code here:                                    
         gestore.getArchivioUtenti().setUtenteAttuale(0);
@@ -923,6 +1143,12 @@ public class RisList extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutBottoneActionPerformed
 
+    /**
+     * Crea e ridimensiona tutte le immagini utilizzate nell'interfaccia.
+     * <p>
+     * Include bandiere, icone per preferiti, filtri, ricerca e logo.
+     * </p>
+     */
     private void creaImmagini(){
         ImageIcon flagIT = new ImageIcon("resources\\images\\Flag_of_Italy.png");
         Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -995,7 +1221,16 @@ public class RisList extends javax.swing.JFrame {
         cerca.setIcon(ci3);
     }
      
-     public ImageIcon selezionaImmagine(String nazione){
+    /**
+     * Restituisce l'immagine della bandiera corrispondente alla nazione.
+     * <p>
+     * Se la nazione non è tra quelle gestite, restituisce l'icona "mondo".
+     * </p>
+     * 
+     * @param nazione nome della nazione
+     * @return {@link ImageIcon} corrispondente alla nazione
+     */
+    public ImageIcon selezionaImmagine(String nazione){
         if(nazione.equals("Italy"))
             return this.flagItalia;
         

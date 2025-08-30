@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -16,11 +15,31 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author davim
+ * Rappresenta un pannello grafico che mostra la risposta di un ristoratore a una recensione.
+ * <p>
+ *  All'interno del pannello vengono mostrati:
+ *  <ul>
+ *      <li>La dicitura "Risposta del ristoratore:".</li>
+ *      <li>Il testo della risposta.</li>
+ *  </ul>
+ * </p>
+ * 
+ * @see CommentiRistoranti
+ * @see GestoreArchivi
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class PannelloRisposta extends JPanel{
     
+    /**
+     * Costruttore della classe PannelloRisposta.
+     * <p> Inizializza il pannello con la risposta del ristoratore relativa alla recensione fornita.</p>
+     *
+     * @param gestore il {@link GestoreArchivi} che gestisce gli archivi del sistema.
+     * @param commento il commento ({@link CommentiRistoranti}) contenente i dati della recensione a cui rispondere.
+     */
     public PannelloRisposta(GestoreArchivi gestore, CommentiRistoranti commento) {
         CommentiRistoranti risposta = gestore.getArchivioCommenti().getRisposta(commento);
 

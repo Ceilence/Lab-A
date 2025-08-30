@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como@author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como
  */
 package theknife.grafica;
 
@@ -8,13 +7,42 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /**
+ * Finestra grafica di caricamento dell'applicazione.
+ * <p>
+ *  Questa schermata mostra:
+ *  <ul>
+ *      <li>Un testo animato "Caricamento..." con puntini ciclici.</li>
+ *      <li>Una {@link JProgressBar} per rappresentare lo stato di avanzamento.</li>
+ *      <li>Un logo mostrato al centro della finestra.</li>
+ *  </ul>
+ * </p>
  *
- * @author anpar
+ * <p>Il testo viene aggiornato ogni 500 millisecondi tramite un {@link Timer} Swing.</p>
+ *
+ * @see Timer
+ * @see JProgressBar
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
+
+
+
 public class Caricamento extends javax.swing.JFrame {
+    
+    /**Timer per scandire l'animazione dei puntini nella scritta "Caricamento". {@code timer}*/
     private Timer timer;
+    
+    /**Ciclicamente crea puntini sulla scritta in base al conto. {@code contaPuntini}*/
     private int contaPuntini = 0;
     
+    /**
+     * Costruttore della finestra di caricamento.
+     * <p>
+     *  Inizializza i componenti grafici e avvia il timer che anima il testo "Caricamento..." con un numero variabile di puntini.
+     * </p>
+     */
     public Caricamento() {
         initComponents();
         
@@ -34,6 +62,12 @@ public class Caricamento extends javax.swing.JFrame {
         timer.start();
     }
     
+    /**
+     * Aggiorna lo stato della barra di progresso.
+     *
+     * @param valore  valore corrente del progresso.
+     * @param massimo valore massimo della barra.
+     */
     public void aggiornaProgresso(int valore, int massimo) {
     progressBar.setMaximum(massimo);
     progressBar.setValue(valore);
@@ -108,7 +142,6 @@ public class Caricamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -116,3 +149,4 @@ public class Caricamento extends javax.swing.JFrame {
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 }
+

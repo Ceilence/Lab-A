@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 
 package theknife.grafica;
@@ -11,16 +10,55 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import theknife.gestori.GestoreArchivi;
+
 /**
- *
- * @author SSSSUGOI
+ * Rappresenta un pannello grafico che mostra le informazioni principali di un ristorante.
+ * <p>
+ *  Il pannello visualizza:
+ *  <ul>
+ *      <li>Il nome del ristorante.</li>
+ *      <li>Il tipo di cucina.</li>
+ *      <li>Un'icona associata alla nazione a cui appartiene il ristorante.</li>
+ *  </ul>
+ * <p>
+ * La classe fornisce anche un listener per il click sul pannello, che permette di aggiornare i componenti generali della {@link RisList} relativa al ristorante selezionato.
+ * 
+ * @see Ristorante
+ * @see RisList
+ * @see GestoreArchivi
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public final class PannelloRistorante extends JPanel{
+    
+    /**
+     * Il ristorante associato a questo pannello. {@code ristorante}
+     */
     private Ristorante ristorante;
+    
+    /**
+     * Altezza fissa del pannello in pixel. {@code ALTEZZA_PANNELLO}
+     */
     private final int ALTEZZA_PANNELLO = 100;
+    
+     /**
+     * Immagine rappresentativa dello stato del ristorante. {@code immagine}
+     */
     private ImageIcon immagine;
     
-    
+    /**
+     * Costruttore della classe PannelloRistorante.
+     * 
+     * Inizializza il pannello con nome, tipo di cucina e immagine del ristorante.
+     * Imposta un listener per il click che aggiorna i componenti della {@link RisList}.
+     *
+     * @param risList la lista di ristoranti {@link RisList} che gestisce i componenti.
+     * @param gestore il {@link GestoreArchivi} utilizzato per gestire gli archivi.
+     * @param r il {@link Ristorante} da visualizzare nel pannello.
+     * @param contenitoreCommenti il {@link JPanel} che conterrà eventuali commenti (non usato direttamente).
+     */
     public PannelloRistorante(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel contenitoreCommenti) {
         this.ristorante = r;
         immagine = risList.selezionaImmagine(r.getStatoRis());
@@ -66,9 +104,13 @@ public final class PannelloRistorante extends JPanel{
         });
 
     }
-        public Ristorante getRistorante() {
-            return ristorante;
-        }
-        
-        
+    
+     /**
+     * Restituisce il {@link Ristorante} associato a questo pannello.
+     *
+     * @return il ristorante visualizzato nel pannello
+     */
+    public Ristorante getRistorante() {
+        return ristorante;
+    }     
 }

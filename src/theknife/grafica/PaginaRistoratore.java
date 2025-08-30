@@ -1293,9 +1293,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         areaCommenti.setText(originale);
     }//GEN-LAST:event_areaCommentiMouseExited
     
-    /**
-    * Genera le immagini ridimensionate per i pulsanti di mostra/nascondi password e le assegna ai checkbox.
-    */
+    /** Genera le immagini ridimensionate per i pulsanti di mostra/nascondi password e le assegna ai checkbox.*/
     public void generaImmagini() {
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\show_pass.png"));

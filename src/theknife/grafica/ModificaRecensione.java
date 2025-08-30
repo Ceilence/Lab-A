@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como@author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como
  */
 package theknife.grafica;
 
@@ -13,20 +12,59 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
+ * Finestra per la modifica di una recensione già esistente.
+ * <p>
+ *  Permette all'utente di:
+ *  <ul>
+ *      <li>Modificare il titolo e il testo della recensione.</li>
+ *      <li>Selezionare una valutazione tramite stelle cliccabili.</li>
+ *      <li>Confermare o annullare la modifica.</li>
+ *  </ul>
+ * </p>
  *
- * @author davim
+ * <p> Gli attributi principali includono riferimenti ai gestori dati, all'interfaccia grafica e ai limiti di input testo.</p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ModificaRecensione extends javax.swing.JFrame {
+    
+    /** Riferimento al gestore degli archivi. {@code gestore} */
     private GestoreArchivi gestore;
-    private ImageIcon stellaVuota, stellaPiena;
+    
+    /** Icona della stella vuota. {@code stellaVuota} */
+    private ImageIcon stellaVuota;
+    
+    /** Icona della stella piena. {@code stellaPiena} */
+    private ImageIcon stellaPiena;
+    
+    /** Valutazione numerica della recensione (0–5). {@code valutazione} */
     private int valutazione = 0;
+    
+    /** Numero massimo di caratteri ammessi nel testo. {@code MAX_CHAR} */
     private final int MAX_CHAR =  400;
+        
+    /** Numero massimo di caratteri ammessi nel titolo. {@code MAX_CHAR_TITOLO} */
     private final int MAX_CHAR_TITOLO = 35;
+    
+    /** Lista dei ristoranti. {@code risList} */
     private RisList risList;
+    
+    /** Oggetto recensione da modificare. {@code commento} */
     private CommentiRistoranti commento;
+    
+    /** Pagina dell’utente che ha scritto la recensione. {@code pagUtente} */
     private PaginaUtente pagUtente;
     
-    
+    /**
+     * Costruttore. Crea la finestra per modificare una recensione esistente.
+     *
+     * @param gestore gestore degli archivi.
+     * @param risList lista dei ristoranti da aggiornare.
+     * @param commento recensione da modificare.
+     * @param pagUtente pagina utente collegata alla recensione.
+     */
     public ModificaRecensione(GestoreArchivi gestore, RisList risList, CommentiRistoranti commento, PaginaUtente pagUtente) {
         this.gestore = gestore;
         this.risList = risList;
@@ -42,7 +80,12 @@ public class ModificaRecensione extends javax.swing.JFrame {
         titoloRec.setTransferHandler(null);
         areaTesto.setTransferHandler(null);
     }
-
+    
+    /**
+     * Aggiorna la visualizzazione delle stelle, riempiendole fino alla posizione indicata dal cursore.
+     *
+     * @param finoA numero di stelle da riempire
+     */
     private void aggiornaStelle(int finoA) {
         JLabel[] stelle = {stella1, stella2, stella3, stella4, stella5};
         for (int i = 0; i < stelle.length; i++) {
@@ -54,6 +97,11 @@ public class ModificaRecensione extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Gestisce il click su una stella per impostare o azzerare la valutazione.
+     *
+     * @param numero numero della stella cliccata (1–5).
+     */
     public void clickStella(int numero) {
         if (valutazione == numero) {
             valutazione = 0;
@@ -305,7 +353,18 @@ public class ModificaRecensione extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Azione del bottone di conferma:
+     * <ul>
+     *      <li>controlla i campi obbligatori.</li>
+     *      <li>Aggiorna la recensione e la media dei voti.</li>
+     *      <li>Aggiorna la pagina utente e la lista ristoranti.</li>
+     *      <li>Chiude la finestra corrente.</li>
+     * </ul>
+     *
+     * @param evt evento di pressione del bottone
+     */
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (areaTesto.getText().isBlank() || titoloRec.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
@@ -321,89 +380,111 @@ public class ModificaRecensione extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confermaButtonActionPerformed
 
+    /** Gestisce il click sulla prima stella. */
     private void stella1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseClicked
         clickStella(1);
     }//GEN-LAST:event_stella1MouseClicked
-
+    
+    /** Mostra riempimento temporaneo passando con il mouse sulla prima stella. */
     private void stella1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseEntered
         aggiornaStelle(1);
     }//GEN-LAST:event_stella1MouseEntered
 
+    /** Ripristina le stelle alla valutazione corrente dopo uscita del mouse. */
     private void stella1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella1MouseExited
-
+    
+    /** Gestisce il click sulla seconda stella. */
     private void stella2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseClicked
         clickStella(2);
     }//GEN-LAST:event_stella2MouseClicked
-
+    
+    /** Mostra riempimento temporaneo passando con il mouse sulla seconda stella. */
     private void stella2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseEntered
         aggiornaStelle(2);
     }//GEN-LAST:event_stella2MouseEntered
-
+    
+    /** Ripristina le stelle alla valutazione corrente dopo uscita del mouse. */
     private void stella2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella2MouseExited
-
+    
+    /** Gestisce il click sulla terza stella. */
     private void stella3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseClicked
         clickStella(3);
     }//GEN-LAST:event_stella3MouseClicked
 
+    /** Mostra riempimento temporaneo passando con il mouse sulla terza stella. */
     private void stella3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseEntered
         aggiornaStelle(3);
     }//GEN-LAST:event_stella3MouseEntered
-
+    
+    /** Ripristina le stelle alla valutazione corrente dopo uscita del mouse. */
     private void stella3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella3MouseExited
 
+    /** Gestisce il click sulla quarta stella. */
     private void stella4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseClicked
         clickStella(4);
     }//GEN-LAST:event_stella4MouseClicked
-
+    
+    /** Mostra riempimento temporaneo passando con il mouse sulla quarta stella. */
     private void stella4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseEntered
         aggiornaStelle(4);
     }//GEN-LAST:event_stella4MouseEntered
-
+    
+    /** Ripristina le stelle alla valutazione corrente dopo uscita del mouse. */
     private void stella4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella4MouseExited
-
+    
+    /** Gestisce il click sulla quinta stella. */
     private void stella5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseClicked
         clickStella(5);
     }//GEN-LAST:event_stella5MouseClicked
-
+    
+    /** Mostra riempimento temporaneo passando con il mouse sulla quinta stella. */
     private void stella5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseEntered
         aggiornaStelle(5);
     }//GEN-LAST:event_stella5MouseEntered
-
+    
+    /** Ripristina le stelle alla valutazione corrente dopo uscita del mouse. */
     private void stella5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella5MouseExited
-
+    
+    /** Limita la lunghezza del testo della recensione e aggiorna il contatore. */
     private void areaTestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyTyped
         if (areaTesto.getText().length() >= MAX_CHAR) {
             evt.consume(); 
         }
         conteggio.setText((areaTesto.getText().length()) + "/400");
     }//GEN-LAST:event_areaTestoKeyTyped
-
+    
+     /** Limita la lunghezza del titolo della recensione. */
     private void titoloRecKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_titoloRecKeyTyped
         if (titoloRec.getText().length() >= MAX_CHAR_TITOLO) {
             evt.consume(); 
         }
     }//GEN-LAST:event_titoloRecKeyTyped
-
+    
+    /** Azione del bottone "X": chiude la finestra. */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    /** Impedisce l’inserimento di "a capo" nel testo della recensione. */
     private void areaTestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             evt.consume();
         }
     }//GEN-LAST:event_areaTestoKeyPressed
-
+    
+    /**
+     * Crea le immagini per le icone delle stelle (vuota e piena), ridimensionandole alla dimensione delle JLabel corrispondenti.
+     */
     private void creaImmagini() {
         ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\pref_Aggiungi.png"));
         Image sv1 = svIcon.getImage();

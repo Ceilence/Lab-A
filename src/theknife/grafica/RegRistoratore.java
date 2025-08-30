@@ -13,10 +13,10 @@ import theknife.gestori.GestoreArchivi;
 /**
  * Fornisce l'interfaccia grafica per il ristoratore. Include funzionalità come:
  * <ul>
- *  <li>Verifica dei campi obbligatori.</li>
- *  <li>Validazione dell'email e della password.</li>
- *  <li>Mostrare/nascondere la password.</li>
- *  <li>Tornare alla selezione del tipo di utente.</li>
+ *      <li>Verifica dei campi obbligatori.</li>
+ *      <li>Validazione dell'email e della password.</li>
+ *      <li>Mostrare/nascondere la password.</li>
+ *      <li>Tornare alla selezione del tipo di utente.</li>
  * </ul>
  * 
  * @see GestoreArchivi

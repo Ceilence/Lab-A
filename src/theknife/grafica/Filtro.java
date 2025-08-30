@@ -11,20 +11,70 @@ import javax.swing.*;
 
 
 /**
+ * Finestra di dialogo per la selezione dei filtri dei ristoranti.
+ * <p>
+ * Permette di filtrare i ristoranti in base a vari criteri come stato, città, distanza massima dalla città selezionata, tipo di cucina, 
+ * media stelle, fascia di prezzo, servizio delivery e servizio di prenotazione.
+ * </p>
+ * <p>
+ * I filtri vengono applicati sulla lista di {@link PannelloRistorante} passata al costruttore.
+ * </p>
  * 
- * 
+ * @see RisList
+ * @see PannelloRistorante
+ * @see GestoreArchivi
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class Filtro extends JDialog{
+    
+    /** Gestore degli archivi dei dati (ristoranti, utenti, preferiti). {@code gestore}*/
     private final GestoreArchivi gestore;
+    
+    /** ComboBox per la selezione dello stato del ristorante. {@code stato}
+     */
     private JComboBox<String> stato;
+    
+    /** ComboBox per la selezione della città del ristorante. {@code citta}
+     */
     private JComboBox<String> citta;
+    
+    /** ComboBox per la selezione del tipo di cucina del ristorante. {@code tipoCucina}
+    */
     private final JComboBox<String> tipoCucina;
+    
+    /** Campo di testo per inserire la distanza massima dalla città. {@code distanza}
+    */
     private JTextField distanza;
+    
+    /** Array di JCheckBox per selezionare la media stelle del ristorante (da 1 a 5). {@code mediaStelle}
+     */
     private final JCheckBox[] mediaStelle;
+    
+    /** Array di JCheckBox per selezionare la fascia di prezzo del ristorante (€ - €€€€). {@code fasciaPrezzo}
+     */
     private final JCheckBox[] fasciaPrezzo;
+    
+    /** JCheckBox per il filtro del servizio delivery: sì/no. {@code deliverySi} {@code deliveryNo}
+     */
     private final JCheckBox deliverySi, deliveryNo;
+    
+    /** JCheckBox per il filtro della prenotazione: sì/no. {@code prenotazioneSi} {@code prenotazioneNo}
+     */
     private final JCheckBox prenotazioneSi, prenotazioneNo;
     
+    /**
+     * Costruisce il pannello filtri per i ristoranti.
+     * <p>
+     * Imposta tutti i componenti grafici, le JComboBox, i JTextField e le JCheckBox, e gestisce gli eventi per l'aggiornamento della città 
+     * in base allo stato selezionato e l'abilitazione del campo distanza.
+     * </p>
+     * 
+     * @param gestore istanza di {@link GestoreArchivi} contenente i dati di ristoranti e utenti
+     * @param risList riferimento alla finestra principale {@link RisList} per aggiornare la lista filtrata
+     * @param tuttiIPannelli lista di {@link PannelloRistorante} da filtrare
+     */
     public Filtro(GestoreArchivi gestore, RisList risList, ArrayList<PannelloRistorante> tuttiIPannelli){
         this.gestore = gestore;
         
@@ -206,6 +256,22 @@ public class Filtro extends JDialog{
         setLocationRelativeTo(null);
     }
     
+    /**
+     * Applica i filtri selezionati dall'utente sulla lista di {@link PannelloRistorante}.
+     * <p>
+     * Filtra in base a: stato, città, distanza massima dalla città, tipo di cucina, media stelle, fascia di prezzo, servizio delivery e 
+     * servizio di prenotazione.
+     * </p>
+     * <p>
+     * I pannelli che soddisfano tutti i criteri vengono aggiunti alla lista pannelliFiltrati.
+     * </p>
+     * 
+     * @param tuttiIPannelli la lista completa di {@link PannelloRistorante} su cui applicare i filtri
+     * @param pannelliFiltrati la lista che verrà popolata con i pannelli filtrati
+     * 
+     * @see PannelloRistorante
+     * @see Ristorante
+     */
     public void filtra(ArrayList<PannelloRistorante> tuttiIPannelli, ArrayList<PannelloRistorante> pannelliFiltrati){
         Citta cittaFiltrata = gestore.getArchivioCitta().getCitta(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
         
@@ -307,10 +373,20 @@ public class Filtro extends JDialog{
         }
     }
     
+    /**
+     * Restituisce la JComboBox che contiene gli stati disponibili per il filtro.
+     * 
+     * @return la JComboBox stato
+     */
     public JComboBox getStato(){
         return stato;
     }
     
+    /**
+     * Restituisce la JComboBox che contiene le città disponibili per il filtro.
+     * 
+     * @return la JComboBox citta
+     */
     public JComboBox getCitta(){
         return citta;
     }

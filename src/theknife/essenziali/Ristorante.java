@@ -26,20 +26,49 @@ import java.util.ArrayList;
  */
 public class Ristorante {
     
+    /** Nome del ristorante {@code nomeRis}. */
     private String nomeRis;
+
+    /** Indirizzo del ristorante {@code indRis}. */
     private String indRis;
+
+    /** Località (città) del ristorante {@code locRis}. */
     private String locRis;
+
+    /** Stato (nazione) in cui si trova il ristorante {@code statoRis}. */
     private String statoRis;
+
+    /** Fascia di prezzo del ristorante {@code priceRis}. */
     private String priceRis;
+
+    /** Tipo di cucina offerta dal ristorante {@code cuisRis}. */
     private String cuisRis;
+
+    /** Longitudine geografica del ristorante {@code longRis}. */
     private double longRis;
+
+    /** Latitudine geografica del ristorante {@code latRis}. */
     private double latRis;
+
+    /** Numero di telefono del ristorante {@code pnRis}. */
     private String pnRis;
+
+    /** Media delle valutazioni in stelle del ristorante {@code mediaStelleRis}. */
     private double mediaStelleRis;
+
+    /** Indica se il ristorante offre servizio delivery {@code delivery}. */
     private boolean delivery;
+
+    /** Indica se il ristorante consente la prenotazione online {@code prenotaOnline}. */
     private boolean prenotaOnline;
+
+    /** Descrizione testuale del ristorante {@code desRis}. */
     private String desRis;
+
+    /** Identificativo univoco del ristorante {@code idRis}. */
     private int idRis;
+
+    /** Identificativo dell'utente ristoratore associato al ristorante {@code idRistoratore}. */
     private int idRistoratore;
 
     /**

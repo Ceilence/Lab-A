@@ -27,8 +27,13 @@ package theknife.essenziali;
  */
 public class Citta {
     
+    /** Nome della città. {@code nomeCitta}*/
     private String nomeCitta;
+    
+    /** Latitudine della città. {@code latCitta}*/
     private double latCitta;
+    
+    /** Longitudine della città. {@code lonCitta}*/
     private double lonCitta;
 
     /**

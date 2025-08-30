@@ -20,14 +20,32 @@ package theknife.essenziali;
  * @author Antonio Pardo
  */
 public class CommentiRistoranti {
+    
+    /** Rappresenta il tipo di commento, recensione o risposta. {@code tipoCommento}*/
     private String tipoCommento;
+    
+    /** Id dell'utente che scrive la recensione. {@code idScrittore}*/
     private int idScrittore;
+    
+    /** Contenuto testuale della recensione. {@code testo}*/
     private String testo;
+    
+    /** Identificativo numerico del commento. {@code idCommento}*/
     private int idCommento;
+    
+    /** Titolo della recensione. {@code titolo}*/
     private String titolo;
+    
+    /** Identificativo numerico del ristorante recensito. {@code idRistorante}*/
     private int idRistorante;
+    
+    /** Valutazione numerica assegnata al ristorante. {@code valutazione}*/
     private int valutazione;
+    
+    /** Boolean che restituisce true se la recensione ha risposta. {@code haRisposta}*/
     private boolean haRisposta;
+    
+    /** Boolean che restituisce true se la recensione deve essere letta. {@code daLeggere}*/
     private boolean daLeggere;
     
     /**

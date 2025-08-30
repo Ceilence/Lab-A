@@ -14,7 +14,11 @@ package theknife.essenziali;
  * @author Antonio Pardo
  */
 public class Preferito {
+    
+    /** Identificativo numerico del ristorante segnato come preferito. {@code idRis}*/
     private int idRis;
+    
+    /** Identificativo numerico dell'utente che ha aggiunto il ristorante come preferito. {@code idUtente}*/    
     private int idUtente;
 
     /**

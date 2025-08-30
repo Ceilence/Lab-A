@@ -28,14 +28,31 @@ package theknife.essenziali;
  */
 public class Utente {
     
+   /** Nome dell'utente {@code nomeUtente}. */
     private String nomeUtente;
+
+    /** Cognome dell'utente {@code cognomeUtente}. */
     private String cognomeUtente;
+
+    /** Username scelto dall'utente {@code usernameUtente}. */
     private String usernameUtente;
+
+    /** Indirizzo email dell'utente {@code emailUtente}. */
     private String emailUtente;
+
+    /** Password dell'utente {@code passUtente}. */
     private String passUtente;
+
+    /** Posizione geografica (città) dell'utente {@code posizioneUtente}. */
     private String posizioneUtente;
+
+    /** Stato (nazione) dell'utente {@code statoUtente}. */
     private String statoUtente;
+
+    /** Identificativo univoco dell'utente {@code idUtente}. */
     private int idUtente;
+
+    /** Ruolo assegnato all'utente nel sistema {@code ruoloUtente}. */
     private final String ruoloUtente;
     
     /**

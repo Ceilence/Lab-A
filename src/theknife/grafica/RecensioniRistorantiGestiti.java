@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -21,12 +20,46 @@ import theknife.essenziali.Ristorante;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author davim
+ * rappresenta un pannello grafico per visualizzare brevemente un ristorante.
+ * <p>
+ *  Il pannello mostra:
+ *  <ul>
+ *      <li>Il nome del ristorante.</li>
+ *      <li>Il numero totale di recensioni e quante sono nuove da leggere.</li>
+ *      <li>Un pulsante per mostrare tutti i commenti del ristorante.</li>
+ *  </ul>
+ * <p>
+ * Quando si clicca il pulsante "Mostra Commenti":
+ * <ul>
+ *   <li>Le recensioni nuove vengono contrassegnate come lette.</li>
+ *   <li>Viene aggiornata la vista del {@link JPanel} che contiene i commenti.</li>
+ *   <li>Si mostrano tutti i commenti con eventuali risposte del ristoratore.</li>
+ * </ul>
+ * 
+ * @see GestoreArchivi
+ * @see Ristorante
+ * @see CommentiRistoranti
+ * @see PannelloRecDaRispondere
+ * @see PannelloRispostaRistoratore
+ * @see PaginaRistoratore
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 
 public class RecensioniRistorantiGestiti extends JPanel {
-
+    
+    /**
+     * Costruttore della classe RecensioniRistorantiGestiti.
+     * Inizializza il pannello con il nome del ristorante, il numero di recensioni, e un pulsante per mostrare tutti i commenti.
+     * 
+     * @param gestore il {@link GestoreArchivi} utilizzato per gestire gli archivi.
+     * @param r il {@link Ristorante} di cui mostrare le recensioni.
+     * @param contenitoreCommenti il {@link JPanel} in cui saranno visualizzati i commenti.
+     * @param pannelloDestra il {@link JPanel} contenente il layout a schede (CardLayout).
+     * @param pagRisto la {@link PaginaRistoratore} associata, necessaria per i pannelli dei commenti.
+     */
     public RecensioniRistorantiGestiti(GestoreArchivi gestore,Ristorante r,JPanel contenitoreCommenti,JPanel pannelloDestra,PaginaRistoratore pagRisto) {
         setLayout(new BorderLayout());
         setBackground(new Color(245, 245, 245));

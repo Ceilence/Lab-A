@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 
 package theknife.grafica;
@@ -12,11 +11,34 @@ import theknife.gestori.GestoreArchivi;
 
 
 /**
- *
- * @author SSSSUGOI
+ * Rappresenta un pannello grafico che mostra una singola recensione scritta da un utente.
+ * <p>
+ *  All'interno del pannello vengono visualizzati:
+ *  <ul>
+ *      <li>Il nome e l'ID dell'utente che ha scritto la recensione.</li>
+ *      <li>Il voto assegnato dall'utente (su 5).</li>
+ *      <li>Il titolo della recensione.</li>
+ *      <li>Il testo della recensione.</li>
+ *  </ul>
+ * <p>
+ * 
+ * @see CommentiRistoranti
+ * @see Utente
+ * @see GestoreArchivi
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public final class PannelloRecensioni extends JPanel{
-    
+    /**
+     * Costruttore della classe PannelloRecensioni.
+     * <p>
+     * Inizializza il pannello mostrando le informazioni della recensione.
+     *
+     * @param gestore il {@link GestoreArchivi} che gestisce gli archivi del sistema.
+     * @param commento il commento ({@link CommentiRistoranti}) contenente i dati della recensione.
+     */
     public PannelloRecensioni(GestoreArchivi gestore, CommentiRistoranti commento) {
     
          Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());

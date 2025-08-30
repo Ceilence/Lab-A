@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 import theknife.grafica.ScriviRisposta;
@@ -11,12 +10,38 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
+
 /**
+ * Rappresenta un componente grafico che mostra una recensione scritta da un utente per un ristorante.
+ * <p>
+ *  All'interno del pannello vengono visualizzate le informazioni principali della recensione:
+ *  <ul>
+ *      <li>il nome del ristorante recensito,</li>
+ *      <li>la valutazione numerica assegnata,</li>
+ *      <li>il titolo della recensione,</li>
+ *      <li>il testo della recensione.</li>
+ *  </ul>
+ * </p>
  *
- * @author davim
+ * Inoltre, il pannello fornisce due pulsanti che permettono all'utente di:
+ * <ul>
+ *   <li>Modifica: aprire una finestra per modificare la recensione,</li>
+ *   <li>Elimina: rimuovere definitivamente la recensione dopo la richiesta di una conferma.</li>
+ * </ul>
+ *
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public final class PannelloRecensionePersonale extends JPanel{
-    
+    /**
+     * Costruisce un nuovo pannello che mostra la recensione personale di un utente.
+     *
+     * @param gestore    il {@link GestoreArchivi} usato per gestire i dati e le operazioni sugli archivi.
+     * @param commento   il commento ({@link CommentiRistoranti}) che rappresenta la recensione da visualizzare.
+     * @param pagUtente  la {@link PaginaUtente} a cui appartiene il pannello.
+     * @param risList    l'oggetto {@link RisList} che gestisce la lista dei ristoranti.
+     */
     public PannelloRecensionePersonale(GestoreArchivi gestore, CommentiRistoranti commento, PaginaUtente pagUtente, RisList risList){    
         Utente utente = gestore.getArchivioUtenti().getUtente(commento.getIdScrittore());
         
@@ -58,6 +83,11 @@ public final class PannelloRecensionePersonale extends JPanel{
         panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
         panelBottoni.setOpaque(false);
 
+        /**
+         * Pulsante di modifica.
+         * 
+         * Permette all'utente di modificare la recensione esistente. Quando cliccato, apre una finestra {@link ModificaRecensione} e aggiorna i componenti generali di {@link RisList}.
+         */
         JButton modRecensione = new JButton("Modifica");
         modRecensione.addActionListener(e -> {
             ModificaRecensione mr = new ModificaRecensione(gestore, GestoreArchivi.RisListFrame, commento, pagUtente);
@@ -66,6 +96,11 @@ public final class PannelloRecensionePersonale extends JPanel{
             mr.setLocationRelativeTo(null);
         });
 
+        /**
+         * Pulsante elimina.
+         * 
+         * Permette all'utente di eliminare la recensione. Mostra un {@link JOptionPane} per la conferma. Se confermato, rimuove la recensione dall'archivio e aggiorna sia la pagina utente sia {@link RisList}.
+         */
         JButton elimRecensione = new JButton("Elimina");
         elimRecensione.addActionListener(e -> {
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");

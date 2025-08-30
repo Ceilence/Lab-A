@@ -15,9 +15,8 @@ import java.awt.event.*;
  *      <li>Una {@link JProgressBar} per rappresentare lo stato di avanzamento.</li>
  *      <li>Un logo mostrato al centro della finestra.</li>
  *  </ul>
- * </p>
  *
- * <p>Il testo viene aggiornato ogni 500 millisecondi tramite un {@link Timer} Swing.</p>
+ * <p>Il testo viene aggiornato ogni 500 millisecondi tramite un {@link Timer} Swing.
  *
  * @see Timer
  * @see JProgressBar
@@ -41,7 +40,6 @@ public class Caricamento extends javax.swing.JFrame {
      * Costruttore della finestra di caricamento.
      * <p>
      *  Inizializza i componenti grafici e avvia il timer che anima il testo "Caricamento..." con un numero variabile di puntini.
-     * </p>
      */
     public Caricamento() {
         initComponents();

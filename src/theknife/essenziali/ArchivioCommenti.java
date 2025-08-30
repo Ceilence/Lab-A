@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
  *      <li>Aggiungere, rimuovere e aggiornare recensioni e risposte.</li>
  *      <li>Recuperare informazioni come media voti, numero commenti e liste filtrate.</li>
  *  </ul>
- * </p>
  *
  * <p>
  *  Il file di riferimento è data\Commenti.csv, e contiene i seguenti token:
@@ -26,7 +25,6 @@ import javax.swing.JOptionPane;
  *      <b>recensione</b>: recensione § idScrittore § testo § idCommento § titolo § idRistorante § valutazione § haRisposta § daLeggere.
  *      <b>risposta</b>: risposta § idScrittore § testo § idCommento.
  *  </pre>
- * </p>
  *
  * @see CommentiRistoranti
  * @see Ristorante
@@ -45,7 +43,7 @@ public class ArchivioCommenti {
     
     /**
      * Costruttore vuoto.
-     * <p>Inizializza l'archivio senza caricare automaticamente i dati.</p>
+     * <p>Inizializza l'archivio senza caricare automaticamente i dati.
      */
     public ArchivioCommenti() {}
     
@@ -57,7 +55,6 @@ public class ArchivioCommenti {
      *      <li>recensione: contiene titolo, ID ristorante, valutazione, un boolean che verifica se ha risposta e un boolean che verifica se é stato letto.</li>
      *      <li>risposta: contiene ID scrittore, e un ID commento per collegarla a una recensione.</li>
      *  </ul>
-     * </p>
      */
     public void leggiArchivio() {
         listaCommenti.clear();

@@ -14,6 +14,10 @@ package theknife.essenziali;
  * I commenti vengono identificati tramite idCommento.
  *
  * @author davim
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class CommentiRistoranti {
     private String tipoCommento;

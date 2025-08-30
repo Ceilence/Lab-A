@@ -30,6 +30,10 @@ import javax.swing.JOptionPane;
  *
  * @see CommentiRistoranti
  * @see Ristorante
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ArchivioCommenti {
     

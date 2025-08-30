@@ -27,6 +27,10 @@ import javax.swing.JOptionPane;
  * </p>
  *
  * @see Utente
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 
 public class ArchivioUtenti {

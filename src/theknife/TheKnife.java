@@ -17,6 +17,10 @@ import theknife.grafica.RisList;
  *      <li>Avviare l'interfaccia grafica principale {@link RisList}.</li>
  *  </ul>
  * </p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class TheKnife {
     

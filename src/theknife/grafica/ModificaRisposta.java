@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -11,20 +10,64 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author davim
+ * Finestra grafica che consente al ristoratore di modificare una risposta ad una recensione di un utente.
+ * <p>
+ * Mostra la recensione originale (titolo, testo, valutazione a stelle) e permette
+ * di modificare e salvare il testo della risposta associata
+ * </p>
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ModificaRisposta extends javax.swing.JFrame {
+    
+    /**
+     * Gestore degli archivi utilizzato per accedere ai dati di utenti e ristoranti.
+     * {@code gestore}
+     */
     private GestoreArchivi gestore;
+    
+    /**
+     * Icone rappresentanti stella vuota o stella piena
+     * {@code stellaVuota} 
+     * {@code stellaPiena} 
+     */
     private ImageIcon stellaVuota, stellaPiena;
+    
+    /**
+     * Valutazione iniziale settata a 0.
+     * {@code valutazione}
+     */
     private final int valutazione = 0;
+    
+    /**
+     * Numero massimo di caratteri consentiti nel testo della risposta.
+     * {@code MAX_CHAR}
+     */
     private final int MAX_CHAR =  400;
+    
+    /**
+     * Commento originale a cui il ristoratore risponde e risposta del ristoratore.
+     * {@code commento} {@code risposta}
+     */
     private final CommentiRistoranti commento, risposta;
+    
+    /**
+     * Riferimento alla pagina principale del ristoratore, usata per aggiornare la vista al termine della modifica. {@link PaginaRistoratore} {@code pagRisto}
+     */
     private final PaginaRistoratore pagRisto;
    
     
     
-    
+    /**
+     * Costruisce la finestra per modificare la risposta del ristoratore ad una recensione utente.
+     *
+     * @param gestore  il {@link GestoreArchivi} utilizzato per accedere ai dati
+     * @param commento il {@link CommentiRistoranti} originale scritto dall'utente
+     * @param risposta il {@link CommentiRistoranti} contenente la risposta del ristoratore
+     * @param pagRisto la pagina {@link PaginaRistoratore} da aggiornare al termine
+     */
     public ModificaRisposta(GestoreArchivi gestore, CommentiRistoranti commento, CommentiRistoranti risposta, PaginaRistoratore pagRisto) {
         this.gestore = gestore;
         this.commento = commento;
@@ -41,6 +84,11 @@ public class ModificaRisposta extends javax.swing.JFrame {
         areaTesto.setTransferHandler(null);
     }
 
+    /**
+     * Aggiorna le icone delle stelle in base al punteggio della recensione.
+     *
+     * @param finoA numero di stelle da riempire (valutazione)
+     */
     private void aggiornaStelle(int finoA) {
         JLabel[] stelle = {stella1, stella2, stella3, stella4, stella5};
         for (int i = 0; i < stelle.length; i++) {
@@ -238,6 +286,12 @@ public class ModificaRisposta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento associato al pulsante "Conferma". Salva la risposta modificata,
+     * aggiorna la pagina del ristoratore e chiude la finestra.
+     *
+     * @param evt evento generato dal click sul pulsante
+     */
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (areaTesto.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Inserisci un testo valido");
@@ -248,6 +302,15 @@ public class ModificaRisposta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confermaButtonActionPerformed
 
+    /**
+     * Evento associato alla digitazione di un carattere nel campo testo.
+     *  <ul>
+     *      <li>Impedisce di superare {@code MAX_CHAR} caratteri.</li>
+     *      <li>Aggiorna il contatore di caratteri mostrato.</li>
+     *  </ul>
+     *
+     * @param evt evento generato dalla digitazione di un carattere
+     */
     private void areaTestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyTyped
        if (areaTesto.getText().length() >= MAX_CHAR) {
             evt.consume(); 
@@ -255,17 +318,33 @@ public class ModificaRisposta extends javax.swing.JFrame {
         conteggio.setText((areaTesto.getText().length()) + "/400");
     }//GEN-LAST:event_areaTestoKeyTyped
 
+     /**
+     * Evento associato al pulsante "Annulla".
+     * Chiude la finestra e ritorna alla pagina del ristoratore.
+     *
+     * @param evt evento generato dal click sul pulsante
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         pagRisto.cambiaCard();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Evento associato alla pressione di un tasto nell'area testo.
+     * <br>Viene disabilitato l'inserimento del tasto INVIO per evitare a capo.
+     *
+     * @param evt evento generato dalla pressione di un tasto
+     */
     private void areaTestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             evt.consume();
         }
     }//GEN-LAST:event_areaTestoKeyPressed
 
+    /**
+     * Crea e ridimensiona le icone delle stelle (vuota e piena) 
+     * a partire dai file presenti nella cartella resources/images.
+     */
     private void creaImmagini() {
         ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\pref_Aggiungi.png"));
         Image sv1 = svIcon.getImage();

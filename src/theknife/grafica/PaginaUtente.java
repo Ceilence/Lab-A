@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -17,18 +16,58 @@ import theknife.gestori.GestoreArchivi;
 
 
 /**
+ * La classe {@link PaginaUtente} rappresenta la finestra grafica
+ * che permette all’utente loggato di visualizzare e modificare
+ * i propri dati personali, gestire i preferiti e consultare le recensioni.
+ * <p>
+ * Contiene pannelli multipli gestiti tramite {@link CardLayout} per mostrare:
+ *  <ul>
+ *      <li>Dettagli utente</li>
+ *      <li>Modifica dati personali</li>
+ *      <li>Lista dei preferiti</li>
+ *      <li>Recensioni effettuate</li>
+ *  </ul>
+ * </p>
  *
- * @author Alefr
+ *
+ * @see GestoreArchivi
+ * @see RisList
+ * @see Utente
+ * @see Preferito
+ * @see CommentiRistoranti
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class PaginaUtente extends javax.swing.JFrame {
 
+    /**
+     * Gestore principale degli archivi. {@code gestore}
+     */
     private GestoreArchivi gestore; 
+    
+    /**
+     * Finestra contenente la lista dei ristoranti. {@code risList}
+     */
     private RisList risList;
+    
+    /**
+     * Icone per mostrare/nascondere la password. {@code showPass}, {@code hidePass}
+     */
     private ImageIcon showPass, hidePass;
+    
+    /**
+     * Testo originale delle label quando si applica la sottolineatura. {@code originale}
+     */
     private String originale;
     
-    
-    
+    /**
+     * Costruttore della finestra utente.
+     *
+     * @param gestore il {@link GestoreArchivi} usato per gestire dati e archivi
+     * @param risList la finestra {@link RisList} con l’elenco dei ristoranti
+     */
     public PaginaUtente(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
@@ -38,7 +77,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         contenitorePreferiti.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         
-        impostaModifiche();
+        impostaDatiUtente();
         //Setta il pulsante che si attiva con invio su aggiorna
         getRootPane().setDefaultButton(aggiorna);
         
@@ -47,6 +86,12 @@ public class PaginaUtente extends javax.swing.JFrame {
         cl.show(pannelloDestra, "dettagli");
     }
     
+    /**
+     * Mostra i ristoranti preferiti dell’utente attuale nel contenitore dedicato.
+     *
+     * @see Preferito
+     * @see RisList
+     */
     private void mostraPreferiti(){
         contenitorePreferiti.removeAll();
         Utente u = gestore.getArchivioUtenti().getUtenteAttuale();
@@ -58,6 +103,11 @@ public class PaginaUtente extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Genera i commenti e le eventuali risposte dell’utente all’interno del pannello delle recensioni.
+     *
+     * @see CommentiRistoranti
+     */
     public void generaCommentiUtente() {
         contenitoreRec.removeAll();
         int idUtente = gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente();
@@ -77,7 +127,12 @@ public class PaginaUtente extends javax.swing.JFrame {
         contenitoreRec.repaint();
     }
     
-    private void impostaModifiche() {
+    /**
+     * Imposta i dati dell’utente nei campi di Dettagli Utente e Modifica dati.
+     *
+     * @see Utente
+     */
+    private void impostaDatiUtente() {
         //Dati dell'utente non modificabili
         Utente u=gestore.getArchivioUtenti().getUtenteAttuale();
         nome.setText(u.getNomeUtente());
@@ -718,13 +773,22 @@ public class PaginaUtente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Bottone per tornare alla pagina principale
+    /**
+     * Chiude la pagina utente e riporta alla lista dei ristoranti.
+     *
+     * @param evt l'evento di pressione sul bottone
+     */
     private void chiudi(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chiudi
         risList.setEnabled(true);
         this.dispose();
         risList.setVisible(true);
     }//GEN-LAST:event_chiudi
 
+    /**
+     * Mostra o nasconde la password dell'utente nel campo "password".
+     *
+     * @param evt l'evento di pressione sul bottone
+     */
     private void eyePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePassActionPerformed
         if (eyePass.isSelected()) {
             eyePass.setIcon(hidePass);
@@ -735,28 +799,46 @@ public class PaginaUtente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eyePassActionPerformed
 
-    //Apre pagina dettagli utente se cliccato
+    /**
+     * Mostra la sezione "dettagli utente" nel pannello di destra.
+     *
+     * @param evt l'evento di click sul label
+     */
     private void detUtenteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
     }//GEN-LAST:event_detUtenteLabelMouseClicked
 
-    //Apre pagina modifica dati utente se cliccato
+    /**
+     * Mostra la sezione "modifica dati" nel pannello di destra.
+     *
+     * @param evt l'evento di click sul label
+     */
     private void modDatiLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modifica");
     }//GEN-LAST:event_modDatiLabelMouseClicked
     
-    //Eventi per sottolineare label nel menù
+    /**
+     * Evidenzia (sottolinea) il label dei dettagli utente quando il cursore passa sopra.
+     *
+     * @param evt l'evento di entrata del mouse
+     */
     private void detUtenteLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseEntered
         originale = detUtenteLabel.getText();
         detUtenteLabel.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_detUtenteLabelMouseEntered
 
+    /**
+     * Ripristina il testo originale del label dei dettagli utente quando il cursore esce.
+     *
+     * @param evt l'evento di uscita del mouse
+     */
     private void detUtenteLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detUtenteLabelMouseExited
         detUtenteLabel.setText(originale);
     }//GEN-LAST:event_detUtenteLabelMouseExited
 
+    
     private void modDatiLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseEntered
         originale = modDatiLabel.getText();
         modDatiLabel.setText("<html><u>" + originale + "</u></html>");
@@ -776,6 +858,17 @@ public class PaginaUtente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eyePass1ActionPerformed
 
+     /**
+     * Aggiorna i dati dell'utente corrente validando i campi.
+     * <p>
+     * Vengono verificati la completezza dei campi obbligatori, la validità dell'email e della password. Se validi, i dati vengono
+     * aggiornati nell'archivio utenti.
+     * </p>
+     *
+     * @param evt l'evento di pressione sul bottone
+     * @see Utente
+     * @see GestoreArchivi
+     */
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
         if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText(), gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente()))) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
@@ -810,6 +903,11 @@ public class PaginaUtente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_aggiornaActionPerformed
 
+    /**
+     * Esegue il logout dell'utente corrente e torna alla finestra di login.
+     *
+     * @param evt l'evento di pressione sul bottone
+     */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         gestore.getArchivioUtenti().setUtenteAttuale(0);
         risList.setEnabled(true);
@@ -820,6 +918,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
+    
     private void prefLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseEntered
         originale = prefLabel.getText();
         prefLabel.setText("<html><u>" + originale + "</u></html>");
@@ -855,6 +954,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         generaCommentiUtente();
     }//GEN-LAST:event_recLabelMouseClicked
 
+    /**
+     * Crea e ridimensiona le icone per mostrare/nascondere la password.
+     */
     private void creaImmagine() {
         //Immagine per mostrare la password ridimensionata ed applicata.
         ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\show_pass.png"));

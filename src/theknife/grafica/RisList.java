@@ -202,7 +202,6 @@ public class RisList extends javax.swing.JFrame {
      * Crea il filtro dei ristoranti se non è già stato creato.
      * <p>
      * Viene utilizzato per applicare filtri sui ristoranti visualizzati.
-     * </p>
      * 
      * @see Filtro
      */
@@ -216,7 +215,6 @@ public class RisList extends javax.swing.JFrame {
      * Chiude il filtro dei ristoranti se aperto.
      * <p>
      * Dopo l'esecuzione di questo metodo, il filtro non sarà più visibile e la finestra principale sarà nuovamente attiva.
-     * </p>
      * 
      * @see Filtro
      */
@@ -235,7 +233,6 @@ public class RisList extends javax.swing.JFrame {
      * Aggiorna tutti i componenti dell'interfaccia utente in base al ristorante selezionato.
      * <p>
      * Questo metodo aggiorna dettagli, preferiti, anteprime recensioni, etichette e pulsanti.
-     * </p>
      * 
      * @param r il {@link Ristorante} di riferimento
      */
@@ -256,7 +253,6 @@ public class RisList extends javax.swing.JFrame {
      * Aggiorna l'interfaccia utente dopo modifiche alle recensioni.
      * <p>
      * Viene utilizzato per ricaricare le anteprime e aggiornare i pulsanti correlati.
-     * </p>
      */
     public void aggiornaPostModificheRecensioni() {
         mostraRecensioniAnteprima();
@@ -268,7 +264,6 @@ public class RisList extends javax.swing.JFrame {
      * Imposta la visualizzazione per utenti ospiti.
      * <p>
      * Se l'utente corrente è ospite (ID 0), alcuni componenti sono nascosti. L'utente potrà solamente vedere i ristoranti ed usare i filtri
-     * </p>
      */
     public void versioneGuest() {
         if (gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente() == 0) {
@@ -288,7 +283,6 @@ public class RisList extends javax.swing.JFrame {
      * Gestisce l'impaginazione dei pannelli dei ristoranti.
      * <p>
      * Visualizza solo gli elementi della pagina corrente e aggiorna il contatore.
-     * </p>
      * 
      * @param pagina numero della pagina da visualizzare
      */
@@ -311,7 +305,6 @@ public class RisList extends javax.swing.JFrame {
      * Aggiorna l'icona del preferito visualizzato.
      * <p>
      * Mostra la stella piena se il ristorante è tra i preferiti, altrimenti la stella vuota.
-     * </p>
      */
      public void aggiornaDetPref() {
         if (gestore.getArchivioPreferiti().esistePref()) {
@@ -325,7 +318,6 @@ public class RisList extends javax.swing.JFrame {
      * Crea e visualizza il frame di login.
      * <p>
      * Permette all'utente di effettuare il login o entrare come ospite.
-     * </p>
      * 
      * @see Login
      */ 
@@ -340,7 +332,6 @@ public class RisList extends javax.swing.JFrame {
      * Applica i filtri selezionati sui pannelli dei ristoranti.
      * <p>
      * Dopo l'applicazione dei filtri, aggiorna la pagina e i componenti generali. Mostra un messaggio se nessun ristorante soddisfa i criteri.
-     * </p>
      */
     public void applicaFiltri(){
         pannelliFiltrati.clear();
@@ -956,7 +947,6 @@ public class RisList extends javax.swing.JFrame {
      * <p>
      * Verifica tramite {@link ArchivioPreferiti#esistePref()} se il ristorante corrente è già tra i preferiti. Se sì, lo rimuove, 
      * altrimenti lo aggiunge. Poi aggiorna l'icona del pulsante detPref{@link aggiornaDetPref()}.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see ArchivioPreferiti
@@ -978,7 +968,6 @@ public class RisList extends javax.swing.JFrame {
      * Mostra la pagina dell'utente corrente.
      * <p>
      * Apre {@link PaginaUtente} e disabilita temporaneamente la finestra principale.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see PaginaUtente
@@ -994,7 +983,6 @@ public class RisList extends javax.swing.JFrame {
      * Applica il filtro di ricerca in base al testo inserito nella barra.
      * <p>
      * Viene aggiornato l'elenco dei pannelli visualizzati e l'impaginazione.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see #filtraPannelli(String)
@@ -1008,7 +996,6 @@ public class RisList extends javax.swing.JFrame {
      * Passa alla pagina successiva dei ristoranti.
      * <p>
      * Aggiorna l'impaginazione e il contatore delle pagine.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see #impaginazione(int)
@@ -1029,7 +1016,6 @@ public class RisList extends javax.swing.JFrame {
      * Torna alla pagina precedente dei ristoranti.
      * <p>
      * Aggiorna l'impaginazione e il contatore delle pagine.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see #impaginazione(int)
@@ -1049,7 +1035,6 @@ public class RisList extends javax.swing.JFrame {
      * Apre il frame per scrivere una nuova recensione.
      * <p>
      * La recensione sarà associata al ristorante attualmente selezionato.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see ScriviRecensione
@@ -1065,7 +1050,6 @@ public class RisList extends javax.swing.JFrame {
      * Mostra tutte le recensioni del ristorante selezionato.
      * <p>
      * Cambia il pannello visualizzato in "recensioni" e carica tutte le recensioni.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      */
@@ -1079,7 +1063,6 @@ public class RisList extends javax.swing.JFrame {
      * Torna alla visualizzazione dettagli del ristorante.
      * <p>
      * Ripristina la barra di scorrimento verticale.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      */
@@ -1093,7 +1076,6 @@ public class RisList extends javax.swing.JFrame {
      * Mostra il pannello dei filtri.
      * <p>
      * Imposta lo stato e la città dell'utente di default e disabilita la finestra principale.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see Filtro
@@ -1113,7 +1095,6 @@ public class RisList extends javax.swing.JFrame {
      * Effettua il logout dell'utente corrente.
      * <p>
      * Resetta l'utente attuale, chiude eventuali filtri aperti, mostra la finestra di login e chiude la finestra corrente.
-     * </p>
      * 
      * @param evt evento generato dal click del pulsante
      * @see #creaLogin()
@@ -1134,7 +1115,6 @@ public class RisList extends javax.swing.JFrame {
      * Crea e ridimensiona tutte le immagini utilizzate nell'interfaccia.
      * <p>
      * Include bandiere, icone per preferiti, filtri, ricerca e logo.
-     * </p>
      */
     private void creaImmagini(){
         ImageIcon flagIT = new ImageIcon("resources\\images\\Flag_of_Italy.png");
@@ -1212,7 +1192,6 @@ public class RisList extends javax.swing.JFrame {
      * Restituisce l'immagine della bandiera corrispondente alla nazione.
      * <p>
      * Se la nazione non è tra quelle gestite, restituisce l'icona "mondo".
-     * </p>
      * 
      * @param nazione nome della nazione
      * @return {@link ImageIcon} corrispondente alla nazione

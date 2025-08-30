@@ -24,7 +24,6 @@ import theknife.gestori.GestoreArchivi;
  *      <li>La dicitura "Risposta del ristoratore:".</li>
  *      <li>Il testo della risposta.</li>
  *  </ul>
- * </p>
  * 
  * @see CommentiRistoranti
  * @see GestoreArchivi
@@ -37,7 +36,7 @@ public class PannelloRisposta extends JPanel{
     
     /**
      * Costruttore della classe PannelloRisposta.
-     * <p> Inizializza il pannello con la risposta del ristoratore relativa alla recensione fornita.</p>
+     * <p> Inizializza il pannello con la risposta del ristoratore relativa alla recensione fornita.
      *
      * @param gestore il {@link GestoreArchivi} che gestisce gli archivi del sistema.
      * @param commento il commento ({@link CommentiRistoranti}) contenente i dati della recensione a cui rispondere.

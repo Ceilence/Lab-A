@@ -24,11 +24,9 @@ import theknife.gestori.GestoreArchivi;
  *      <li>Il titolo e il testo del commento.</li>
  *      <li>Un pulsante "Rispondi" (solo se il commento non ha già ricevuto risposta).</li>
  *  </ul>
- * </p>
  *
  * <p>
  *  Quando viene premuto il pulsante "Rispondi", si apre una finestra {@link ScriviRisposta} che permette al ristoratore di scrivere e salvare la risposta.
- * </p>
  *
  * @see CommentiRistoranti
  * @see GestoreArchivi

@@ -17,7 +17,6 @@ import theknife.gestori.GestoreArchivi;
  * <p>
  *  Permette di visualizzare e gestire i commenti dei clienti, applicare modifiche al profilo del ristorante e navigare tra le sezioni tramite interfaccia.
  *  La classe si appoggia al {@link GestoreArchivi} per il recupero e l’aggiornamento dei dati e a {@link RisList} per la gestione delle liste dei ristoranti. 
- * </p>
  *
  * @author Alessandro Frigerio
  * @author Davide Moretti
@@ -55,7 +54,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
      * Costruttore della classe {@code PaginaRistoratore}.
      * <p>
      * Inizializza i riferimenti a {@link GestoreArchivi} e {@link RisList}, imposta i componenti grafici e prepara la disposizione iniziale dei pannelli.
-     * </p>
      *
      * @param gestore istanza di {@link GestoreArchivi} per la gestione dei dati.
      * @param risList istanza di {@link RisList} per la gestione dei ristoranti.
@@ -824,7 +822,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     * Mostra tutti i ristoranti dell'utente attuale nel pannello principale.
     * <p>
     *   Per ciascun ristorante crea un pannello con il nome e i pulsanti "Modifica" ed "Elimina". L'azione dei pulsanti aggiorna direttamente i campi grafici o rimuove il ristorante dall'archivio.
-    * </p>
     *
     * @see GestoreArchivi
     * @see Ristorante
@@ -911,7 +908,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     * Mostra tutti i commenti dei ristoranti dell'utente attuale nel pannello dedicato alle risposte.
     * <p>
     *   Viene aggiunto un pannello {@link RecensioniRistorantiGestiti} per ciascun ristorante.
-    * </p>
     *
     * @see CommentiRistoranti
     * @see RecensioniRistorantiGestiti
@@ -936,7 +932,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     * Registra un nuovo ristorante con i dati inseriti nei campi grafici.
     * <p>
     *   Verifica che latitudine e longitudine siano numeriche e che non esista già un ristorante alla stessa posizione.
-    * </p>
     *
     * @param evt evento di azione generato dal pulsante.
     */

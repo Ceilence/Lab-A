@@ -21,7 +21,6 @@ import theknife.gestori.GestoreArchivi;
  *      <li>il titolo della recensione,</li>
  *      <li>il testo della recensione.</li>
  *  </ul>
- * </p>
  *
  * Inoltre, il pannello fornisce due pulsanti che permettono all'utente di:
  * <ul>

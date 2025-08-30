@@ -27,7 +27,6 @@ import theknife.gestori.GestoreArchivi;
  *      <li>Lista dei preferiti</li>
  *      <li>Recensioni effettuate</li>
  *  </ul>
- * </p>
  *
  *
  * @see GestoreArchivi
@@ -877,7 +876,6 @@ public class PaginaUtente extends javax.swing.JFrame {
      * <p>
      * Vengono verificati la completezza dei campi obbligatori, la validità dell'email e della password. Se validi, i dati vengono
      * aggiornati nell'archivio utenti.
-     * </p>
      *
      * @param evt l'evento di pressione sul bottone
      * @see Utente

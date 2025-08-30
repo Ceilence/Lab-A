@@ -14,7 +14,6 @@ import theknife.gestori.GestoreArchivi;
  *  Mostra le informazioni di un ristorante presente nella lista dei preferiti di un utente.
  * <p>
  *  Ogni pannello visualizza il nome del ristorante, il tipo di cucina e un pulsante "Rimuovi" che consente all'utente di eliminare quel ristorante dai preferiti. Dopo la rimozione, la lista dei preferiti e l'interfaccia grafica vengono aggiornate.
- * </p>
  *
  * @see Ristorante
  * @see Utente

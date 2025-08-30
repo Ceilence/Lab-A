@@ -15,7 +15,6 @@ import theknife.grafica.RisList;
  * <p>
  * Contiene gli archivi di utenti, ristoranti, città, preferiti e commenti,
  * e fornisce metodi di accesso a ciascuno di essi.
- * </p>
  */
 public class GestoreArchivi {
     
@@ -41,7 +40,6 @@ public class GestoreArchivi {
      * Costruttore della classe GestoreArchivi.
      * <p>
      * Inizializza tutti gli archivi: utenti, ristoranti, città, preferiti e commenti.
-     * </p>
      */
     public GestoreArchivi() {
         archivioUtenti = new ArchivioUtenti();

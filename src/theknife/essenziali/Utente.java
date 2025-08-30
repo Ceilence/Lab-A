@@ -14,11 +14,9 @@ package theknife.essenziali;
  *      <li>ID univoco assegnato dal sistema.</li>
  *      <li>Ruolo: cliente oppure ristoratore.</li>
  *  </ul>
- * </p>
  *
  * <p>
  * La classe è collegata ad {@link ArchivioUtenti}, che gestisce l'aggiunta, la rimozione e l'autenticazione di un utente.
- * </p>
  *
  * @see ArchivioUtenti
  * 
@@ -57,7 +55,7 @@ public class Utente {
     
     /**
      * Costruttore della classe Utente.
-     * <p>Crea un nuovo oggetto utente con i dati forniti.</p>
+     * <p>Crea un nuovo oggetto utente con i dati forniti.
      * 
      * @param nomeUtente      il nome dell'utente
      * @param cognomeUtente   il cognome dell'utente

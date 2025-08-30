@@ -17,11 +17,9 @@ import javax.swing.JOptionPane;
  *      <li>Fornire l'accesso alle città registrate in memoria.</li>
  *      <li>Calcolare la distanza geografica tra due coordinate (formula di Haversine).</li>
  *  </ul>
- * </p>
  * 
  * <p>Il file letto dall'archivio è: data\Citta.csv, e contiene i seguenti token: <br>
  * NomeCittà § Latitudine § Longitudine 
- * </p>
  * 
  * @see Citta
  * 
@@ -45,7 +43,6 @@ public class ArchivioCitta {
      * <p>
      *  Inizializza un archivio delle città senza caricare automaticamente i dati. 
      *  Per compilare l'archivio occorre chiamare il metodo {@link #leggiArchivio()}.
-     * </p>
      */
     public ArchivioCitta() {}
     
@@ -53,7 +50,6 @@ public class ArchivioCitta {
      * Legge l'archivio delle città dal file CSV e aggiorna la lista interna.
      * <p>
      *  Se il file non esiste o si verifica un errore di I/O, viene mostrato un messaggio di errore.
-     * </p>
      */
     public void leggiArchivio() {
         listaCitta.clear();

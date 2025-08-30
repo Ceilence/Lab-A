@@ -17,12 +17,10 @@ import javax.swing.JOptionPane;
  *      <li>Generare ID unici per nuovi ristoranti.</li>
  *      <li>Gestire il ristorante attualmente selezionato.</li>
  *  </ul>
- * </p>
  *
  * <p>
  * Il file di riferimento è: data\Ristoranti.csv, e contiene i seguenti token:
  * con righe salvate nel formato generato da {@link Ristorante#toString()}.
- * </p>
  *
  * @see Ristorante
  * 
@@ -43,7 +41,7 @@ public class ArchivioRis {
    
     /**
      * Costruttore vuoto.
-     * <p>Inizializza un archivio senza caricare automaticamente i dati.</p>
+     * <p>Inizializza un archivio senza caricare automaticamente i dati.
      */
     public ArchivioRis() {}
     

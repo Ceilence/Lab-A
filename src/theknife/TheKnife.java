@@ -16,7 +16,6 @@ import theknife.grafica.RisList;
  *      <li>Caricare i dati salvati dai file tramite i metodi (leggiArchivio()}).</li>
  *      <li>Avviare l'interfaccia grafica principale {@link RisList}.</li>
  *  </ul>
- * </p>
  * 
  * @author Alessandro Frigerio
  * @author Davide Moretti
@@ -33,7 +32,6 @@ public class TheKnife {
      *      <li>Legge i dati degli archivi (utenti, risorse, città, preferiti, commenti).</li>
      *      <li>Carica la finestra {@link RisList}, l'interfaccia grafica principale.</li>
      *  </ol>
-     * </p>
      *
      * @param args argomenti passati da riga di comando (non utilizzati).
      */

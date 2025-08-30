@@ -18,13 +18,23 @@ import theknife.grafica.RisList;
  * </p>
  */
 public class GestoreArchivi {
+    
+    /** Archivio degli utenti registrati. {@code archivioUtenti} */
     private final ArchivioUtenti archivioUtenti;
+    
+    /** Archivio dei ristoranti. {@code archivioRis} */
     private final ArchivioRis archivioRis;
+    
+    /** Archivio delle città. {@code archivioCitta} */
     private final ArchivioCitta archivioCitta;
+    
+    /** Archivio dei preferiti degli utenti. {@code archivioPref} */
     private final ArchivioPreferiti archivioPref;
+    
+    /** Archivio dei commenti sui ristoranti. {@code archivioCom} */
     private final ArchivioCommenti archivioCom;
     
-    /** Finestra principale per la lista dei ristoranti */
+    /** Finestra principale per la lista dei ristoranti. {@code RisListFrame} */
     public static RisList RisListFrame;
     
     /**

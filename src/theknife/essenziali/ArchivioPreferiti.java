@@ -34,13 +34,13 @@ import javax.swing.JOptionPane;
  */
 public class ArchivioPreferiti {
     
-    /** Percorso del file CSV dei preferiti. */
+    /** Percorso del file CSV dei preferiti. {@code FILE_PATH}*/
     private final String FILE_PATH = "data\\RisPreferiti.csv";
     
-     /** Lista dei preferiti caricati. */
+     /** Lista dei preferiti caricati. {@code listaPreferiti}*/
     private final ArrayList<Preferito> listaPreferiti = new ArrayList<>();
     
-    /** Preferito attualmente in uso/gestione. */
+    /** Preferito attualmente in uso/gestione. {@code prefAttuale}*/
     private Preferito prefAttuale;
     
     /**

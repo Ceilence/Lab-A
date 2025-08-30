@@ -35,13 +35,13 @@ import javax.swing.JOptionPane;
 
 public class ArchivioUtenti {
     
-    /** Percorso del file CSV degli utenti. */
+    /** Percorso del file CSV degli utenti. {@code FILE_PATH}*/
     private final String FILE_PATH = "data\\Utenti.csv";
     
-    /** Utente attualmente autenticato. */
+    /** Utente attualmente autenticato. {@code utenteAttuale}*/
     private Utente utenteAttuale;
     
-    /** Lista di tutti gli utenti caricati dall'archivio. */
+    /** Lista di tutti gli utenti caricati dall'archivio. {@code listaUtenti}*/
     private final ArrayList<Utente> listaUtenti = new ArrayList<>();
     
     /**

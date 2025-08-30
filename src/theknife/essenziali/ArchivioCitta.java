@@ -31,13 +31,13 @@ import javax.swing.JOptionPane;
  */
 public class ArchivioCitta {
     
-    /** Percorso del file CSV contenente i dati delle città. */
+    /** Percorso del file CSV contenente i dati delle città. {@code FILE_PATH}*/
     private final String FILE_PATH = "data\\Citta.csv";
     
-    /** Raggio medio della Terra in chilometri (usato per il calcolo delle distanze). */
+    /** Raggio medio della Terra in chilometri (usato per il calcolo delle distanze). {@code RAGGIO_TERRA_KM}*/
     private static final double RAGGIO_TERRA_KM = 6371;
        
-    /** Lista delle città caricate dall'archivio. */
+    /** Lista delle città caricate dall'archivio. {@code listaCitta}*/
     private final ArrayList<Citta> listaCitta = new ArrayList<>();
     
     /**

@@ -32,13 +32,13 @@ import javax.swing.JOptionPane;
  */
 public class ArchivioRis {
     
-    /** Percorso del file CSV dei ristoranti. */
+    /** Percorso del file CSV dei ristoranti. {@code FILE_PATH}*/
     private static final String FILE_PATH = "data\\Ristoranti.csv";
     
-    /** Ristorante attualmente selezionato. */
+    /** Ristorante attualmente selezionato. {@code risAttuale}*/
     private Ristorante risAttuale;
     
-    /** Lista di tutti i ristoranti caricati. */
+    /** Lista di tutti i ristoranti caricati. {@code listaRis}*/
     private final ArrayList<Ristorante> listaRis = new ArrayList<>();
    
     /**

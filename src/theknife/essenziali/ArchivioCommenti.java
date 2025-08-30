@@ -37,10 +37,10 @@ import javax.swing.JOptionPane;
  */
 public class ArchivioCommenti {
     
-    /** Percorso del file CSV contenente i commenti. */
+    /** Percorso del file CSV contenente i commenti. {@code FILE_PATH}*/
     private static final String FILE_PATH = "data\\Commenti.csv";
     
-    /** Lista di tutti i commenti e recensioni caricati in memoria. */
+    /** Lista di tutti i commenti e recensioni caricati in memoria. {@code listaCommenti}*/
     private final ArrayList<CommentiRistoranti> listaCommenti = new ArrayList<>();
     
     /**

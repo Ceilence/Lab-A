@@ -838,16 +838,30 @@ public class PaginaUtente extends javax.swing.JFrame {
         detUtenteLabel.setText(originale);
     }//GEN-LAST:event_detUtenteLabelMouseExited
 
-    
+    /**
+     * Evidenzia (sottolinea) il label modifica dati utente quando il cursore passa sopra.
+     *
+     * @param evt l'evento di entrata del mouse
+     */
     private void modDatiLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseEntered
         originale = modDatiLabel.getText();
         modDatiLabel.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_modDatiLabelMouseEntered
 
+    /**
+     * Ripristina il testo originale del label modifica dati utente quando il cursore esce.
+     *
+     * @param evt l'evento di uscita del mouse
+     */
     private void modDatiLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modDatiLabelMouseExited
         modDatiLabel.setText(originale);
     }//GEN-LAST:event_modDatiLabelMouseExited
 
+    /**
+     * Mostra o nasconde la password dell'utente nel campo "password1".
+     *
+     * @param evt l'evento di pressione sul bottone
+     */
     private void eyePass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyePass1ActionPerformed
          if (eyePass1.isSelected()) {
             eyePass1.setIcon(hidePass);
@@ -918,36 +932,70 @@ public class PaginaUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
 
-    
+    /**
+     * Evidenzia (sottolinea) il label preferiti quando il cursore passa sopra.
+     *
+     * @param evt l'evento di entrata del mouse
+     */
     private void prefLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseEntered
         originale = prefLabel.getText();
         prefLabel.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_prefLabelMouseEntered
 
+    /**
+     * Ripristina il testo originale del label preferiti quando il cursore esce.
+     *
+     * @param evt l'evento di uscita del mouse
+     */
     private void prefLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseExited
         prefLabel.setText(originale);
     }//GEN-LAST:event_prefLabelMouseExited
 
+    /**
+     * Mostra la sezione "preferiti" nel pannello di destra.
+     *
+     * @param evt l'evento di click sul label
+     */
     private void prefLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prefLabelMouseClicked
         mostraPreferiti();
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "preferiti");
     }//GEN-LAST:event_prefLabelMouseClicked
 
+    /**
+     * Evidenzia (sottolinea) il label modifica preferiti quando il cursore passa sopra.
+     *
+     * @param evt l'evento di entrata del mouse
+     */
     private void modificaPreferitiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificaPreferitiMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "modificaPreferiti");
     }//GEN-LAST:event_modificaPreferitiMouseClicked
 
+    /**
+     * Evidenzia (sottolinea) il label recensioni quando il cursore passa sopra.
+     *
+     * @param evt l'evento di entrata del mouse
+     */
     private void recLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseEntered
         originale = recLabel.getText();
         recLabel.setText("<html><u>" + originale + "</u></html>");
     }//GEN-LAST:event_recLabelMouseEntered
 
+    /**
+     * Ripristina il testo originale del label recensioni quando il cursore esce.
+     *
+     * @param evt l'evento di uscita del mouse
+     */
     private void recLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseExited
         recLabel.setText(originale);
     }//GEN-LAST:event_recLabelMouseExited
 
+    /**
+     * Mostra la sezione "recensioni" nel pannello di destra.
+     *
+     * @param evt l'evento di click sul label
+     */
     private void recLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recLabelMouseClicked
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "recensioni");

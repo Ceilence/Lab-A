@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -9,13 +8,30 @@ import theknife.grafica.Login;
 import theknife.grafica.RegUtente;
 
 /**
- *
- * @author Alefr
+ * Finestra di selezione del tipo di utente per la registrazione.
+ * Permette di scegliere se registrarsi come cliente o come ristoratore.
+ * 
+ * @see GestoreArchivi
+ * @see RisList
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class SelezioneTipoUtente extends javax.swing.JFrame {
+    
+     /** Gestore degli archivi dell’applicazione. {@code gestore} */
     private GestoreArchivi gestore;
+    
+    /** Riferimento alla lista dei ristoranti e all'interfaccia principale. {@code risList} */   
     private final RisList risList;
     
+    /**
+     * Costruttore della classe SelezioneTipoUtente. Inizializza la finestra con le opzioni di registrazione.
+     * 
+     * @param gestore Gestore degli archivi dell’applicazione {@link GestoreArchivi}
+     * @param risList Riferimento alla lista dei ristoranti {@link RisList}
+     */
     public SelezioneTipoUtente(GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
@@ -144,6 +160,9 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Apre il frame per la registrazione come ristoratore.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RegRistoratore RegRistoratoreFrame = new RegRistoratore(gestore, risList);
         RegRistoratoreFrame.setVisible(true);
@@ -152,6 +171,9 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Apre il frame per la registrazione come cliente.
+     */
     private void regClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regClienteButtonActionPerformed
         RegUtente RegClienteFrame = new RegUtente(gestore, risList);
         RegClienteFrame.setVisible(true);
@@ -160,6 +182,9 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_regClienteButtonActionPerformed
 
+    /**
+     * Torna alla schermata di login.
+     */
     private void indietroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indietroActionPerformed
         Login LoginFrame = new Login(gestore, risList);
         LoginFrame.setVisible(true);

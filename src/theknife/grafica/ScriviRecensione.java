@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * @author Alessandro Frigerio (num. matricola: 759926), Antonio Pardo (num. matricola: 760613), Davide Moretti (num. matricola: 762176), Sede: Como
  */
 package theknife.grafica;
 
@@ -12,20 +11,58 @@ import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
 
 /**
- *
- * @author davim
+ * Finestra per scrivere una recensione su un ristorante.
+ * 
+ * Include controlli per:
+ * <ul>
+ *   <li>Numero massimo di caratteri per titolo e testo.</li>
+ *   <li>Aggiornamento dinamico delle icone delle stelle.</li>
+ *   <li>Salvataggio della recensione e aggiornamento della media delle stelle del ristorante.</li>
+ * </ul>
+ * 
+ * @see GestoreArchivi
+ * @see RisList
+ * @see Ristorante
+ * 
+ * @author Alessandro Frigerio
+ * @author Davide Moretti
+ * @author Antonio Pardo
  */
 public class ScriviRecensione extends javax.swing.JFrame {
+    
+    /** Riferimento al gestore degli archivi. {@code gestore} */
     private GestoreArchivi gestore;
-    private ImageIcon stellaVuota, stellaPiena;
+    
+    /** Icona della stella vuota. {@code stellaVuota} */
+    private ImageIcon stellaVuota;
+    
+    /** Icona della stella piena. {@code stellaPiena} */
+    private ImageIcon stellaPiena;
+    
+    /** Valutazione numerica della recensione (0–5). {@code valutazione} */
     private int valutazione = 0;
+    
+    /** Numero massimo di caratteri ammessi nel testo. {@code MAX_CHAR} */
     private final int MAX_CHAR =  400;
+    
+    /** Numero massimo di caratteri ammessi nel titolo. {@code MAX_CHAR_TITOLO} */
     private final int MAX_CHAR_TITOLO = 35;
+    
+    /** Lista dei ristoranti associata all’interfaccia. {@code risList} */
     private RisList risList;
+    
+    /** Ristorante oggetto della recensione. {@code r} */
     private Ristorante r;
     
     
-    
+    /**
+     * Costruttore della finestra di scrittura recensione.
+     * Inizializza componenti grafici, icone e stato iniziale delle stelle.
+     * 
+     * @param r Ristorante da recensire.
+     * @param gestore Gestore degli archivi.
+     * @param risList Lista dei ristoranti collegata all’interfaccia.
+     */
     public ScriviRecensione(Ristorante r, GestoreArchivi gestore, RisList risList) {
         this.gestore = gestore;
         this.risList = risList;
@@ -43,7 +80,13 @@ public class ScriviRecensione extends javax.swing.JFrame {
         titoloRec.setTransferHandler(null);
         areaTesto.setTransferHandler(null);
     }
-
+    
+    /**
+    * Aggiorna graficamente le stelle mostrate in base al numero selezionato.
+    * Tutte le stelle fino a "finoA" diventano piene, le altre vuote.
+    *
+    * @param finoA numero di stelle da colorare come piene
+    */
     private void aggiornaStelle(int finoA) {
         JLabel[] stelle = {stella1, stella2, stella3, stella4, stella5};
         for (int i = 0; i < stelle.length; i++) {
@@ -55,6 +98,11 @@ public class ScriviRecensione extends javax.swing.JFrame {
         }
     }
     
+    /**
+    * Gestisce il click su una stella. Se la stella cliccata corrisponde alla valutazione attuale, la resetta a zero; altrimenti aggiorna la valutazione e le icone delle stelle.
+    *
+    * @param numero numero della stella cliccata (1–5).
+    */
     private void clickStella(int numero) {
         if (valutazione == numero) {
             valutazione = 0;
@@ -307,6 +355,9 @@ public class ScriviRecensione extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Conferma la recensione inserita dall’utente, controlla che titolo e testo non siano vuoti, aggiunge la recensione all’archivio, aggiorna la lista delle recensioni nella GUI e aggiorna la media stelle del ristorante.
+    */
     private void confermaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confermaButtonActionPerformed
         if (areaTesto.getText().isBlank() || titoloRec.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
@@ -318,89 +369,152 @@ public class ScriviRecensione extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confermaButtonActionPerformed
 
+    /**
+    * Gestisce il click sulla stella 1.
+    */
     private void stella1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseClicked
         clickStella(1);
     }//GEN-LAST:event_stella1MouseClicked
-
+    
+    /**
+    * Aggiorna la visualizzazione quando il mouse entra sulla stella 1.
+    */
     private void stella1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseEntered
         aggiornaStelle(1);
     }//GEN-LAST:event_stella1MouseEntered
-
+    
+    /**
+     * Ripristina la visualizzazione delle stelle quando il mouse esce dalla stella 1.
+     */
     private void stella1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella1MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella1MouseExited
-
+    
+    /**
+    * Gestisce il click sulla stella 1.
+    */
     private void stella2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseClicked
         clickStella(2);
     }//GEN-LAST:event_stella2MouseClicked
-
+    
+    /**
+    * Aggiorna la visualizzazione quando il mouse entra sulla stella 1.
+    */
     private void stella2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseEntered
         aggiornaStelle(2);
     }//GEN-LAST:event_stella2MouseEntered
-
+    
+    /**
+     * Ripristina la visualizzazione delle stelle quando il mouse esce dalla stella 2.
+     */
     private void stella2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella2MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella2MouseExited
-
+    
+    /**
+    * Gestisce il click sulla stella 3.
+    */
     private void stella3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseClicked
         clickStella(3);
     }//GEN-LAST:event_stella3MouseClicked
 
+    /**
+    * Aggiorna la visualizzazione quando il mouse entra sulla stella 3.
+    */
     private void stella3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseEntered
         aggiornaStelle(3);
     }//GEN-LAST:event_stella3MouseEntered
 
+    /**
+     * Ripristina la visualizzazione delle stelle quando il mouse esce dalla stella 3.
+     */
     private void stella3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella3MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella3MouseExited
 
+    /**
+    * Gestisce il click sulla stella 4;
+    */
     private void stella4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseClicked
         clickStella(4);
     }//GEN-LAST:event_stella4MouseClicked
 
+    /**
+    * Aggiorna la visualizzazione quando il mouse entra sulla stella 4.
+    */
     private void stella4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseEntered
         aggiornaStelle(4);
     }//GEN-LAST:event_stella4MouseEntered
 
+    /**
+     * Ripristina la visualizzazione delle stelle quando il mouse esce dalla stella 4.
+     */
     private void stella4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella4MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella4MouseExited
 
+    /**
+    * Gestisce il click sulla stella 5;
+    */
     private void stella5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseClicked
         clickStella(5);
     }//GEN-LAST:event_stella5MouseClicked
 
+    /**
+    * Aggiorna la visualizzazione quando il mouse entra sulla stella 5.
+    */
     private void stella5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseEntered
         aggiornaStelle(5);
     }//GEN-LAST:event_stella5MouseEntered
-
+    
+    /**
+     * Ripristina la visualizzazione delle stelle quando il mouse esce dalla stella 4.
+     */
     private void stella5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stella5MouseExited
         aggiornaStelle(valutazione);
     }//GEN-LAST:event_stella5MouseExited
-
+    
+    /**
+     * Aggiorna il conteggio dei caratteri mentre l’utente digita nel testo della recensione.
+     * Blocca ulteriori inserimenti se raggiunge {@code MAX_CHAR}.
+     */
     private void areaTestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyTyped
         if (areaTesto.getText().length() >= MAX_CHAR) {
             evt.consume(); 
         }
         conteggio.setText((areaTesto.getText().length()) + "/400");
     }//GEN-LAST:event_areaTestoKeyTyped
-
+       
+    /**
+     * Limita il numero di caratteri nel campo del titolo.
+     * Blocca ulteriori inserimenti se raggiunge {@code MAX_CHAR_TITOLO}.
+     */
     private void titoloRecKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_titoloRecKeyTyped
         if (titoloRec.getText().length() >= MAX_CHAR_TITOLO) {
             evt.consume(); 
         }
     }//GEN-LAST:event_titoloRecKeyTyped
-
+    
+    /**
+    * Chiude la finestra senza salvare la recensione.
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+  
+    /**
+     * Evita la pressione del tasto invio nel campo testo.
+     */
     private void areaTestoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_areaTestoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             evt.consume();
         }
     }//GEN-LAST:event_areaTestoKeyPressed
 
+    /**
+    * Carica e ridimensiona le icone per le stelle vuote e piene.
+    * Applica le immagini alle rispettive etichette.
+    */
     private void creaImmagini() {
         ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\pref_Aggiungi.png"));
         Image sv1 = svIcon.getImage();

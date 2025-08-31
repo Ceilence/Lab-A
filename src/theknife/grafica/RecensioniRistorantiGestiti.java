@@ -116,8 +116,11 @@ public class RecensioniRistorantiGestiti extends JPanel {
         JPanel panelBottoni = new JPanel();
         panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
         panelBottoni.setOpaque(false);
-
-        panelBottoni.add(btnMostra);
+        
+        if (gestore.getArchivioCommenti().contaCommenti(r) != 0) {
+            panelBottoni.add(btnMostra);
+        }
+        
         add(Box.createVerticalGlue());
         add(panelBottoni);
     }

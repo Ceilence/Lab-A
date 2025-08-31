@@ -76,6 +76,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         
         contenitoreCommenti.setLayout(new BoxLayout(contenitoreCommenti, BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
+        
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
         
@@ -947,7 +948,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             if(trovato == true)
                 JOptionPane.showMessageDialog(null, "Esiste già un ristorante alla posizione inserita!");
             else{
-                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String) stato.getSelectedItem(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
+                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String) stato.getSelectedItem(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()));
                 JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
                 nomeField.setText("");
                 indirizzo.setText("");

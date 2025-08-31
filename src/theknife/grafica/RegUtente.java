@@ -121,6 +121,7 @@ public class RegUtente extends javax.swing.JFrame {
         jPanel3.add(infoPassPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 210, 90));
 
         eyePass.setBorder(null);
+        eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eyePassActionPerformed(evt);
@@ -206,6 +207,7 @@ public class RegUtente extends javax.swing.JFrame {
         jPanel3.add(qmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 20, -1));
 
         statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        statoUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(statoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 135, 20));
 
         jLabel11.setText("Stato:");

@@ -353,9 +353,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         pannelloDestra.add(pannelloRisposte, "rispondiPanel");
 
         contenitoreCommenti.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreCommenti.setMaximumSize(null);
-        contenitoreCommenti.setMinimumSize(null);
-        contenitoreCommenti.setPreferredSize(null);
         contenitoreCommenti.setLayout(new javax.swing.BoxLayout(contenitoreCommenti, javax.swing.BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
 
@@ -675,6 +672,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         registraRisto.add(cucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
 
         prezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
+        prezzoBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registraRisto.add(prezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
 
         priceRist.setText("Fascia prezzo:");
@@ -687,6 +685,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         stato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         stato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        stato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registraRisto.add(stato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
 
         pannelloDestra.add(registraRisto, "registra");
@@ -746,6 +745,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         modificaRisto.add(modCucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
 
         modPrezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
+        modPrezzoBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modificaRisto.add(modPrezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
 
         modPriceRist.setText("Fascia prezzo:");
@@ -756,13 +756,12 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         modStato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         modStato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        modStato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modificaRisto.add(modStato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
-        logout2.setBackground(new java.awt.Color(255, 255, 255));
         logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        logout2.setForeground(new java.awt.Color(0, 0, 0));
         logout2.setText("Logout");
         logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout2.addActionListener(new java.awt.event.ActionListener() {

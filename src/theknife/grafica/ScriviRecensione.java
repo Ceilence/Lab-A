@@ -6,6 +6,7 @@ package theknife.grafica;
 import theknife.essenziali.Ristorante;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import javax.swing.*;
 import theknife.essenziali.CommentiRistoranti;
 import theknife.gestori.GestoreArchivi;
@@ -520,13 +521,13 @@ public class ScriviRecensione extends javax.swing.JFrame {
     * Applica le immagini alle rispettive etichette.
     */
     private void creaImmagini() {
-        ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\pref_Aggiungi.png"));
+        ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "pref_Aggiungi.png"));
         Image sv1 = svIcon.getImage();
         Image sv2 = sv1.getScaledInstance(stella1.getWidth(), stella1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sv3 = new ImageIcon(sv2);
         this.stellaVuota = sv3;
         
-        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\pref_Togli.png"));
+        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "pref_Togli.png"));
         Image sp1 = spIcon.getImage();
         Image sp2 = sp1.getScaledInstance(stella1.getWidth(), stella1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);

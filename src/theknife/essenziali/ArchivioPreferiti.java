@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
 public class ArchivioPreferiti {
     
     /** Percorso del file CSV dei preferiti. {@code FILE_PATH}*/
-    private static final String FILE_PATH = "data/RisPreferiti.csv";
+    private static final String FILE_PATH = "data" + File.separator + "RisPreferiti.csv";
     
      /** Lista dei preferiti caricati. {@code listaPreferiti}*/
     private final ArrayList<Preferito> listaPreferiti = new ArrayList<>();
@@ -48,15 +48,6 @@ public class ArchivioPreferiti {
      */
     public ArchivioPreferiti() {}
     
-    /**
-     * Cerca il file .csv da cui leggere i dati.
-     * 
-     * @return il file trovato.
-     */
-    public static File getDataFile() {
-        String jarDir = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getAbsolutePath();
-        return new File(jarDir, FILE_PATH);
-    }
     
      /**
      * Legge l'archivio dei preferiti dal file CSV e compila la lista interna.

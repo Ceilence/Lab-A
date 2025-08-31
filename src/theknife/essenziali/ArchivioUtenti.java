@@ -2,7 +2,6 @@
  * @author Alessandro Frigerio (matr. 759926), Antonio Pardo (matr. 760613), Davide Moretti (matr. 762176) Sede: Como
  */
 package theknife.essenziali;
-import com.sun.tools.javac.Main;
 import theknife.essenziali.Utente;
 import java.io.*;
 import java.util.*;
@@ -35,7 +34,7 @@ import javax.swing.JOptionPane;
 public class ArchivioUtenti {
     
     /** Percorso del file CSV degli utenti. {@code FILE_PATH}*/
-    private static final String FILE_PATH = "data/Utenti.csv";
+    private static final String FILE_PATH = "data" + File.separator + "Utenti.csv";
     
     /** Utente attualmente autenticato. {@code utenteAttuale}*/
     private Utente utenteAttuale;
@@ -48,16 +47,6 @@ public class ArchivioUtenti {
      * <p>Inizializza un archivio senza caricare automaticamente i dati.
      */
     public ArchivioUtenti() {}
-    
-    /**
-     * Cerca il file .csv da cui leggere i dati.
-     * 
-     * @return il file trovato.
-     */
-    public static File getDataFile() {
-        String jarDir = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getAbsolutePath();
-        return new File(jarDir, FILE_PATH);
-    }
     
     /**
      * Legge l'archivio degli utenti dal file CSV e compila la lista interna.

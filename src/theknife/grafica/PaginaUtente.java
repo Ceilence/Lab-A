@@ -6,9 +6,9 @@ package theknife.grafica;
 import theknife.utili.ValidaReg;
 import theknife.grafica.RisList;
 import theknife.essenziali.Preferito;
-import theknife.essenziali.Ristorante;
 import theknife.essenziali.Utente;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 import theknife.essenziali.CommentiRistoranti;
@@ -1008,7 +1008,7 @@ public class PaginaUtente extends javax.swing.JFrame {
      */
     private void creaImmagine() {
         //Immagine per mostrare la password ridimensionata ed applicata.
-        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\show_pass.png"));
+        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "show_pass.png"));
         Image sp1 = spIcon.getImage();
         Image sp2 = sp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);
@@ -1017,7 +1017,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         this.showPass = sp3;  
         
          //Immagine per nascondere la password ridimensionata.
-        ImageIcon hpIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources\\images\\hide_pass.png"));
+        ImageIcon hpIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "hide_pass.png"));
         Image hp1 = hpIcon.getImage();
         Image hp2 = hp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon hp3 = new ImageIcon(hp2); 

@@ -35,7 +35,7 @@ import javax.swing.JOptionPane;
 public class ArchivioCommenti {
     
     /** Percorso del file CSV contenente i commenti. {@code FILE_PATH}*/
-    private static final String FILE_PATH = "data/Commenti.csv";
+    private static final String FILE_PATH = "data" + File.separator + "Commenti.csv";
     
     /** Lista di tutti i commenti e recensioni caricati in memoria. {@code listaCommenti}*/
     private final ArrayList<CommentiRistoranti> listaCommenti = new ArrayList<>();
@@ -45,16 +45,6 @@ public class ArchivioCommenti {
      * <p>Inizializza l'archivio senza caricare automaticamente i dati.
      */
     public ArchivioCommenti() {}
-    
-    /**
-     * Cerca il file .csv da cui leggere i dati.
-     * 
-     * @return il file trovato.
-     */
-    public static File getDataFile() {
-        String jarDir = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getAbsolutePath();
-        return new File(jarDir, FILE_PATH);
-    }
     
     /**
      * Legge i commenti dal file CSV e compila la lista interna.
@@ -67,7 +57,7 @@ public class ArchivioCommenti {
      */
     public void leggiArchivio() {
         listaCommenti.clear();
-        try (BufferedReader rd = new BufferedReader(new FileReader(getDataFile()))){
+        try (BufferedReader rd = new BufferedReader(new FileReader(FILE_PATH))){
             String line;
             while ((line = rd.readLine()) != null && !line.isBlank()) {
                 StringTokenizer token = new StringTokenizer(line, "§");

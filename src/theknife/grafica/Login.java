@@ -319,6 +319,9 @@ public class Login extends javax.swing.JFrame {
         dialog.add(panel);
         dialog.setSize(300, 300);
         dialog.setLocationRelativeTo(this);
+        
+        conferma.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        dialog.getRootPane().setDefaultButton(conferma);
 
         //Bottone conferma
         conferma.addActionListener(e -> {

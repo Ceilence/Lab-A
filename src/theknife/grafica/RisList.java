@@ -156,7 +156,7 @@ public class RisList extends javax.swing.JFrame {
         pannelliFiltrati.clear();
         boolean trovato = false;
         
-        if (filtro.isBlank()) {
+        if (filtro.equals("lasciare vuoto per visualizzare tutti i ristoranti")) {
             pannelliFiltrati.addAll(tuttiIPannelli);
             graficaImpaginata();
         } else {
@@ -377,7 +377,11 @@ public class RisList extends javax.swing.JFrame {
      * Svuota la barra di ricerca.
      */
     public void resetBarraRicerca(){
-        campoRicerca.setText("");
+        if(campoRicerca.equals("")){
+            campoRicerca.setText(messaggioBarra);
+            campoRicerca.setForeground(Color.LIGHT_GRAY);
+            campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
+        }
     }
     
     
@@ -414,8 +418,15 @@ public class RisList extends javax.swing.JFrame {
     /**
      * Resetta la barra di scorrimento verticale dei dettagli.
      */
-    private void resettaBarra(){
+    public void resettaBarra(){
         scrollPaneDet.getVerticalScrollBar().setValue(0);
+    }
+    
+    /**
+     * Resetta la barra di scorrimento verticale dei ristoranti.
+     */
+    public void resettaBarraRis(){
+        scrollPane.getVerticalScrollBar().setValue(0);
     }
     
     /**
@@ -762,6 +773,7 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.add(detDes, gridBagConstraints);
 
         detPref.setBorderPainted(false);
+        detPref.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         detPref.setPreferredSize(new java.awt.Dimension(40, 40));
         detPref.setRequestFocusEnabled(false);
         detPref.addActionListener(new java.awt.event.ActionListener() {

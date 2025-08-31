@@ -4,6 +4,7 @@
 package theknife.grafica;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -93,6 +94,7 @@ public class PannelloRecDaRispondere extends JPanel{
         // --- SEZIONE PULSANTI ---
         if (!commento.haRisposta()) {
             JButton btnRispondi = new JButton("Rispondi");
+            btnRispondi.setCursor(new Cursor(Cursor.HAND_CURSOR));
             btnRispondi.addActionListener(e -> {
                 ScriviRisposta wrRisposta = new ScriviRisposta(gestore, commento, btnRispondi, pagRisto);
                 wrRisposta.setLocationRelativeTo(null);

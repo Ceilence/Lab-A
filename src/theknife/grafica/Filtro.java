@@ -240,11 +240,16 @@ public class Filtro extends JDialog{
         
         applicaFiltri.addActionListener(e -> {
             filtri.getVerticalScrollBar().setValue(0);
+            risList.resettaBarraRis();
             risList.applicaFiltri(); 
             risList.resetBarraRicerca();
         });
         
+        //Se si preme invio si attiva il bottone applicaFiltri
         getRootPane().setDefaultButton(applicaFiltri);
+        applicaFiltri.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        indietro.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         setUndecorated(true);
         setPreferredSize(new Dimension(500, 500));

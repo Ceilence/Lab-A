@@ -58,6 +58,8 @@ public class RegRistoratore extends javax.swing.JFrame {
         erroreEmail.setVisible(false);
         infoPassPane.setVisible(false);
         infoPass.setVisible(false);
+        
+        getRootPane().setDefaultButton(regCliente);
     }
     
     //Generated Code.

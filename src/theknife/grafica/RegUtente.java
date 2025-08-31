@@ -63,6 +63,8 @@ public class RegUtente extends javax.swing.JFrame {
         
         statoUtente.setSelectedIndex(-1);
         
+        getRootPane().setDefaultButton(regCliente);
+        
     }
     
     //Generated Code.

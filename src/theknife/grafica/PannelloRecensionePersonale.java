@@ -88,6 +88,7 @@ public final class PannelloRecensionePersonale extends JPanel{
          * Permette all'utente di modificare la recensione esistente. Quando cliccato, apre una finestra {@link ModificaRecensione} e aggiorna i componenti generali di {@link RisList}.
          */
         JButton modRecensione = new JButton("Modifica");
+        modRecensione.setCursor(new Cursor(Cursor.HAND_CURSOR));
         modRecensione.addActionListener(e -> {
             ModificaRecensione mr = new ModificaRecensione(gestore, GestoreArchivi.RisListFrame, commento, pagUtente);
             GestoreArchivi.RisListFrame.aggiornaComponentiGenerali(gestore.getArchivioRis().getRisAttuale());
@@ -101,6 +102,7 @@ public final class PannelloRecensionePersonale extends JPanel{
          * Permette all'utente di eliminare la recensione. Mostra un {@link JOptionPane} per la conferma. Se confermato, rimuove la recensione dall'archivio e aggiorna sia la pagina utente sia {@link RisList}.
          */
         JButton elimRecensione = new JButton("Elimina");
+        elimRecensione.setCursor(new Cursor(Cursor.HAND_CURSOR));
         elimRecensione.addActionListener(e -> {
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
             if (conferma == JOptionPane.YES_OPTION) {

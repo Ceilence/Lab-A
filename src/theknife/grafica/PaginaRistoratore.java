@@ -352,9 +352,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         pannelloDestra.add(pannelloRisposte, "rispondiPanel");
 
         contenitoreCommenti.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreCommenti.setMaximumSize(null);
-        contenitoreCommenti.setMinimumSize(null);
-        contenitoreCommenti.setPreferredSize(null);
         contenitoreCommenti.setLayout(new javax.swing.BoxLayout(contenitoreCommenti, javax.swing.BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
 
@@ -759,9 +756,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
-        logout2.setBackground(new java.awt.Color(255, 255, 255));
         logout2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        logout2.setForeground(new java.awt.Color(0, 0, 0));
         logout2.setText("Logout");
         logout2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout2.addActionListener(new java.awt.event.ActionListener() {

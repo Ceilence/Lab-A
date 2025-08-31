@@ -273,7 +273,7 @@ public class Login extends javax.swing.JFrame {
         risList.creaFiltro();
                                   
         //JDialog
-        JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);
+        JDialog dialog = new JDialog(this, "Inserisci città e stato", true);
         
         //Text field, Combo box e Bottone conferma
         JTextField posizione = new JTextField(15);
@@ -301,7 +301,7 @@ public class Login extends javax.swing.JFrame {
         conferma.setForeground(new Color(255, 255, 255));
         
 
-        JLabel labelPosizione = new JLabel("Posizione:");
+        JLabel labelPosizione = new JLabel("Città:");
         labelPosizione.setFont(new Font("Arial", Font.BOLD, 18));
         labelPosizione.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(labelPosizione);

@@ -374,14 +374,12 @@ public class RisList extends javax.swing.JFrame {
     }
     
     /**
-     * Svuota la barra di ricerca.
+     * Setta la barra di ricerca a frase predefinita
      */
     public void resetBarraRicerca(){
-        if(campoRicerca.equals("")){
             campoRicerca.setText(messaggioBarra);
             campoRicerca.setForeground(Color.LIGHT_GRAY);
             campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
-        }
     }
     
     

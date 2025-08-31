@@ -3,20 +3,10 @@
  */
 package theknife.grafica;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import theknife.essenziali.CommentiRistoranti;
-import theknife.essenziali.Ristorante;
+import javax.swing.*;
+import theknife.essenziali.*;
 import theknife.gestori.GestoreArchivi;
 
 /**
@@ -92,6 +82,7 @@ public class RecensioniRistorantiGestiti extends JPanel {
 
         // Sezione destra: Pulsante per mostrare recensioni
         JButton btnMostra = new JButton("Mostra Commenti");
+        btnMostra.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnMostra.addActionListener(e -> {
             // Imposta come già lette

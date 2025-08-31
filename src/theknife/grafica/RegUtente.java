@@ -160,7 +160,7 @@ public class RegUtente extends javax.swing.JFrame {
         jLabel6.setText("cliente ");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 110, 26));
 
-        jLabel8.setText("Posizione:");
+        jLabel8.setText("Città:");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 75, -1));
         jPanel3.add(posizioneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 135, -1));
         jPanel3.add(passwordCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 288, -1));

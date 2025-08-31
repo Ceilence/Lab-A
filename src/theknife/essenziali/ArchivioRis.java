@@ -3,6 +3,7 @@
  */
 package theknife.essenziali;
 
+import com.sun.tools.javac.Main;
 import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -31,7 +32,7 @@ import javax.swing.JOptionPane;
 public class ArchivioRis {
     
     /** Percorso del file CSV dei ristoranti. {@code FILE_PATH}*/
-    private static final String FILE_PATH = "data\\Ristoranti.csv";
+    private static final String FILE_PATH = "data/Ristoranti.csv";
     
     /** Ristorante attualmente selezionato. {@code risAttuale}*/
     private Ristorante risAttuale;
@@ -44,6 +45,16 @@ public class ArchivioRis {
      * <p>Inizializza un archivio senza caricare automaticamente i dati.
      */
     public ArchivioRis() {}
+    
+    /**
+     * Cerca il file .csv da cui leggere i dati.
+     * 
+     * @return il file trovato.
+     */
+    public static File getDataFile() {
+        String jarDir = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getAbsolutePath();
+        return new File(jarDir, FILE_PATH);
+    }
     
     /**
      * Legge l'archivio dei ristoranti dal file CSV e compila la lista interna.

@@ -142,8 +142,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         email.setEditable(false);
         username.setText(u.getUsernameUtente());
         username.setEditable(false);
-        posizione.setText(u.getPosizioneUtente());
-        posizione.setEditable(false);
+        citta.setText(u.getPosizioneUtente());
+        citta.setEditable(false);
         password.setText(u.getPassUtente());
         password.setEditable(false);
         statoUtente.setSelectedItem(u.getStatoUtente());
@@ -158,8 +158,8 @@ public class PaginaUtente extends javax.swing.JFrame {
         email1.setEditable(true);
         username1.setText(u.getUsernameUtente());
         username1.setEditable(true);
-        posizione1.setText(u.getPosizioneUtente());
-        posizione1.setEditable(true);
+        citta1.setText(u.getPosizioneUtente());
+        citta1.setEditable(true);
         password1.setText(u.getPassUtente());
         password1.setEditable(true);
         statoUtente1.setSelectedItem(u.getStatoUtente());
@@ -191,7 +191,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         cognome = new javax.swing.JTextField();
         email = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
-        posizione = new javax.swing.JTextField();
+        citta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -215,7 +215,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         password1 = new javax.swing.JPasswordField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        posizione1 = new javax.swing.JTextField();
+        citta1 = new javax.swing.JTextField();
         username1 = new javax.swing.JTextField();
         eyePass1 = new javax.swing.JToggleButton();
         aggiorna = new javax.swing.JButton();
@@ -439,9 +439,9 @@ public class PaginaUtente extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username.setMaximumSize(new java.awt.Dimension(64, 22));
 
-        posizione.setBackground(new java.awt.Color(204, 204, 204));
-        posizione.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione.setMaximumSize(new java.awt.Dimension(64, 22));
+        citta.setBackground(new java.awt.Color(204, 204, 204));
+        citta.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        citta.setMaximumSize(new java.awt.Dimension(64, 22));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Nome");
@@ -456,7 +456,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         jLabel6.setText("Password");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Posizione");
+        jLabel7.setText("Città");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Username");
@@ -513,7 +513,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                                     .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(posizione, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(citta, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,7 +564,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dettagliUtenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(citta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
@@ -609,13 +609,13 @@ public class PaginaUtente extends javax.swing.JFrame {
         password1.setMaximumSize(new java.awt.Dimension(64, 22));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel17.setText("Posizione");
+        jLabel17.setText("Città");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel18.setText("Username");
 
-        posizione1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        posizione1.setMaximumSize(new java.awt.Dimension(64, 22));
+        citta1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        citta1.setMaximumSize(new java.awt.Dimension(64, 22));
 
         username1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         username1.setMaximumSize(new java.awt.Dimension(64, 22));
@@ -667,7 +667,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(citta1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32)
                                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -712,7 +712,7 @@ public class PaginaUtente extends javax.swing.JFrame {
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modificaDatiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(posizione1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(citta1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel23)
@@ -885,7 +885,7 @@ public class PaginaUtente extends javax.swing.JFrame {
      * @see GestoreArchivi
      */
     private void aggiornaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggiornaActionPerformed
-        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), posizione1.getText(), gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente()))) {
+        if (!(ValidaReg.campiPieni(nome1.getText(), cognome1.getText(), username1.getText(), email1.getText(), password1.getText(), citta1.getText(), gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente()))) {
             JOptionPane.showMessageDialog(null, "Inserisci i campi obbligatori");
         } else if (!ValidaReg.mailValida(email1.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Formato mail non valido");
@@ -899,7 +899,7 @@ public class PaginaUtente extends javax.swing.JFrame {
             u.setEmailUtente(email1.getText());
             u.setPassUtente(password1.getText());
             u.setUsernameUtente(username1.getText());
-            u.setPosizioneUtente(posizione1.getText());
+            u.setPosizioneUtente(citta1.getText());
             u.setStatoUtente((String) statoUtente1.getSelectedItem());
             gestore.getArchivioUtenti().aggiornaUtenti();
             
@@ -908,7 +908,7 @@ public class PaginaUtente extends javax.swing.JFrame {
             email.setText(email1.getText());
             password.setText(password1.getText());
             username.setText(username1.getText());
-            posizione.setText(posizione1.getText());
+            citta.setText(citta1.getText());
             statoUtente.setSelectedItem(statoUtente1.getSelectedItem());
             
             JOptionPane.showMessageDialog(this, "Dati aggiornati con successo!");
@@ -1026,6 +1026,8 @@ public class PaginaUtente extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aggiorna;
+    private javax.swing.JTextField citta;
+    private javax.swing.JTextField citta1;
     private javax.swing.JTextField cognome;
     private javax.swing.JTextField cognome1;
     private javax.swing.JPanel contenitore;
@@ -1070,8 +1072,6 @@ public class PaginaUtente extends javax.swing.JFrame {
     private javax.swing.JPanel pannelloDestra;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField password1;
-    private javax.swing.JTextField posizione;
-    private javax.swing.JTextField posizione1;
     private javax.swing.JLabel prefLabel;
     private javax.swing.JScrollPane preferiti;
     private javax.swing.JLabel recLabel;

@@ -3,6 +3,7 @@
  */
 package theknife.essenziali;
 
+import com.sun.tools.javac.Main;
 import theknife.essenziali.Citta;
 import java.io.*;
 import java.util.*;
@@ -30,7 +31,7 @@ import javax.swing.JOptionPane;
 public class ArchivioCitta {
     
     /** Percorso del file CSV contenente i dati delle città. {@code FILE_PATH}*/
-    private final String FILE_PATH = "data\\Citta.csv";
+    private static final String FILE_PATH = "data/Citta.csv";
     
     /** Raggio medio della Terra in chilometri (usato per il calcolo delle distanze). {@code RAGGIO_TERRA_KM}*/
     private static final double RAGGIO_TERRA_KM = 6371;
@@ -45,6 +46,16 @@ public class ArchivioCitta {
      *  Per compilare l'archivio occorre chiamare il metodo {@link #leggiArchivio()}.
      */
     public ArchivioCitta() {}
+    
+    /**
+     * Cerca il file .csv da cui leggere i dati.
+     * 
+     * @return il file trovato.
+     */
+    public static File getDataFile() {
+        String jarDir = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile().getAbsolutePath();
+        return new File(jarDir, FILE_PATH);
+    }
     
     /**
      * Legge l'archivio delle città dal file CSV e aggiorna la lista interna.

@@ -3,7 +3,6 @@
  */
 
 package theknife.grafica;
-import theknife.grafica.RisList;
 import theknife.essenziali.Ristorante;
 import javax.swing.*;
 import java.awt.*;
@@ -62,6 +61,7 @@ public final class PannelloRistorante extends JPanel{
     public PannelloRistorante(RisList risList, GestoreArchivi gestore, Ristorante r, JPanel contenitoreCommenti) {
         this.ristorante = r;
         immagine = risList.selezionaImmagine(r.getStatoRis());
+        setFocusable(true);
         
         // Layout verticale con margini
         setLayout(new BorderLayout());
@@ -100,6 +100,7 @@ public final class PannelloRistorante extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 risList.aggiornaComponentiGenerali(ristorante);
+                requestFocusInWindow();
             }
         });
 

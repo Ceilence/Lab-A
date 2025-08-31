@@ -38,6 +38,9 @@ public class RisList extends javax.swing.JFrame {
     
     /** Numero massimo di elementi da visualizzare per ogni pagina. {@code ELEMENTI_PER_PAGINA} */
     private final int ELEMENTI_PER_PAGINA = 100;
+    
+    /** Messaggio preimpostato in #campoRicerca. */
+    private final String messaggioBarra = "Lasciare vuoto per visualizzare tutti i ristoranti";
 
     /** Riferimento al gestore degli archivi. {@code gestore}*/
     private final GestoreArchivi gestore;
@@ -71,13 +74,17 @@ public class RisList extends javax.swing.JFrame {
         this.gestore = gestore;
         initComponents();
         
+        //Imposta il messagio predefinito.
+        campoRicerca.setText(messaggioBarra);
+        campoRicerca.setForeground(Color.LIGHT_GRAY);
+        campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
         
-        //Creazione frame di caricamento
+        //Creazione frame di caricamento.
         caricamentoFrame = new Caricamento();
         caricamentoFrame.setLocationRelativeTo(null);
         caricamentoFrame.setVisible(true);
 
-        //Impostazione dei Layout e del contenuto degli scrollPane
+        //Impostazione dei Layout e del contenuto degli scrollPane.
         contenitorePanel.setLayout(new BoxLayout(contenitorePanel, BoxLayout.Y_AXIS));
         scrollPane.setViewportView(contenitorePanel);
         contenitoreRec.setLayout(new BoxLayout(contenitoreRec, BoxLayout.Y_AXIS));
@@ -515,7 +522,7 @@ public class RisList extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        pannelloSfondo = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         contenitorePanel = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
@@ -554,11 +561,16 @@ public class RisList extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(770, 660));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel1.setForeground(new java.awt.Color(0, 102, 102));
-        jPanel1.setMinimumSize(new java.awt.Dimension(670, 560));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1370, 760));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        pannelloSfondo.setBackground(new java.awt.Color(0, 102, 102));
+        pannelloSfondo.setForeground(new java.awt.Color(0, 102, 102));
+        pannelloSfondo.setMinimumSize(new java.awt.Dimension(670, 560));
+        pannelloSfondo.setPreferredSize(new java.awt.Dimension(1370, 760));
+        pannelloSfondo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pannelloSfondoMouseClicked(evt);
+            }
+        });
+        pannelloSfondo.setLayout(new java.awt.GridBagLayout());
 
         scrollPane.setMaximumSize(null);
         scrollPane.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -590,7 +602,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 4.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
-        jPanel1.add(scrollPane, gridBagConstraints);
+        pannelloSfondo.add(scrollPane, gridBagConstraints);
 
         logo.setText("logo");
         logo.setMinimumSize(new java.awt.Dimension(50, 50));
@@ -602,7 +614,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
-        jPanel1.add(logo, gridBagConstraints);
+        pannelloSfondo.add(logo, gridBagConstraints);
 
         panRicerca.setBackground(new java.awt.Color(240, 240, 240));
         panRicerca.setMaximumSize(new java.awt.Dimension(415, 40));
@@ -630,6 +642,14 @@ public class RisList extends javax.swing.JFrame {
         campoRicerca.setMaximumSize(null);
         campoRicerca.setMinimumSize(new java.awt.Dimension(315, 40));
         campoRicerca.setPreferredSize(new java.awt.Dimension(375, 40));
+        campoRicerca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoRicercaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoRicercaFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -666,7 +686,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 0.4;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        jPanel1.add(panRicerca, gridBagConstraints);
+        pannelloSfondo.add(panRicerca, gridBagConstraints);
 
         profiloUtente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pagina Utente.png"))); // NOI18N
         profiloUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -681,7 +701,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jPanel1.add(profiloUtente, gridBagConstraints);
+        pannelloSfondo.add(profiloUtente, gridBagConstraints);
 
         pannelloDestra.setLayout(new java.awt.CardLayout());
 
@@ -690,7 +710,6 @@ public class RisList extends javax.swing.JFrame {
         scrollPaneDet.setViewportView(null);
 
         dettaglioPanel.setBackground(new java.awt.Color(254, 254, 254));
-        dettaglioPanel.setMaximumSize(null);
         dettaglioPanel.setLayout(new java.awt.GridBagLayout());
 
         detBan.setText("Bandiera");
@@ -772,9 +791,6 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.add(labelRecensioni, gridBagConstraints);
 
         contenitoreAnteprima.setBackground(new java.awt.Color(255, 255, 255));
-        contenitoreAnteprima.setMaximumSize(null);
-        contenitoreAnteprima.setMinimumSize(null);
-        contenitoreAnteprima.setPreferredSize(null);
         contenitoreAnteprima.setLayout(new javax.swing.BoxLayout(contenitoreAnteprima, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -905,7 +921,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.weightx = 2.4;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        jPanel1.add(pannelloDestra, gridBagConstraints);
+        pannelloSfondo.add(pannelloDestra, gridBagConstraints);
 
         indietro.setBackground(new java.awt.Color(254, 254, 254));
         indietro.setText("Indietro");
@@ -920,7 +936,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        jPanel1.add(indietro, gridBagConstraints);
+        pannelloSfondo.add(indietro, gridBagConstraints);
 
         avanti.setBackground(new java.awt.Color(254, 254, 254));
         avanti.setText("Avanti");
@@ -935,14 +951,14 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        jPanel1.add(avanti, gridBagConstraints);
+        pannelloSfondo.add(avanti, gridBagConstraints);
 
         contatore.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         contatore.setForeground(new java.awt.Color(255, 255, 255));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        jPanel1.add(contatore, gridBagConstraints);
+        pannelloSfondo.add(contatore, gridBagConstraints);
 
         logoutBottone.setBackground(new java.awt.Color(254, 254, 254));
         logoutBottone.setText("Logout");
@@ -957,7 +973,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
-        jPanel1.add(logoutBottone, gridBagConstraints);
+        pannelloSfondo.add(logoutBottone, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -967,7 +983,7 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel1, gridBagConstraints);
+        getContentPane().add(pannelloSfondo, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1111,7 +1127,6 @@ public class RisList extends javax.swing.JFrame {
      * @see Filtro
      */
     private void filtriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtriActionPerformed
-        
         if(f.getStato().getSelectedItem() == null){
             f.getStato().setSelectedItem(gestore.getArchivioUtenti().getUtenteAttuale().getStatoUtente());
             f.getCitta().setSelectedItem(gestore.getArchivioUtenti().getUtenteAttuale().getPosizioneUtente());
@@ -1141,6 +1156,41 @@ public class RisList extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutBottoneActionPerformed
 
+    /**
+     * Rimuove messaggio predefinito per ricerca ristorante.
+     * 
+     * @param evt evento generato quando #campoRicerca ha il focus scrittura.
+     */
+    private void campoRicercaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRicercaFocusGained
+        if (campoRicerca.getText().equals(messaggioBarra)) {
+            campoRicerca.setText("");
+            campoRicerca.setForeground(Color.BLACK);
+            campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.PLAIN));
+        }
+    }//GEN-LAST:event_campoRicercaFocusGained
+
+    /**
+     * Imposta il messaggio predefinito per ricerca ristorante se #campoRicerca è vuoto.
+     * 
+     * @param evt evento generato quando #campoRicerca non ha il focus scrittura.
+     */
+    private void campoRicercaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRicercaFocusLost
+        if (campoRicerca.getText().isEmpty()) {
+            campoRicerca.setText(messaggioBarra);
+            campoRicerca.setForeground(Color.LIGHT_GRAY);
+            campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
+        }
+    }//GEN-LAST:event_campoRicercaFocusLost
+
+    /** 
+     * Prende il focus togliendolo al resto.
+     * 
+     * @param evt evento generato al click del mouse.
+     */
+    private void pannelloSfondoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pannelloSfondoMouseClicked
+        requestFocusInWindow();
+    }//GEN-LAST:event_pannelloSfondoMouseClicked
+   
     /**
      * Crea e ridimensiona tutte le immagini utilizzate nell'interfaccia.
      * <p>
@@ -1272,13 +1322,13 @@ public class RisList extends javax.swing.JFrame {
     private javax.swing.JButton indietro;
     private javax.swing.JButton indietroBottone;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelRecensioni;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logoutBottone;
     private javax.swing.JPanel panRicerca;
     private javax.swing.JPanel pannelloDestra;
+    private javax.swing.JPanel pannelloSfondo;
     private javax.swing.JButton profiloUtente;
     private javax.swing.JPanel recensioniPannello;
     private javax.swing.JButton scriviRec;

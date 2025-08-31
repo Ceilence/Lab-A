@@ -208,6 +208,7 @@ public class Login extends javax.swing.JFrame {
         Dati.add(guestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         eyePass.setBorder(null);
+        eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eyePassActionPerformed(evt);

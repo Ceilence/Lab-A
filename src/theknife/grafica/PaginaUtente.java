@@ -489,6 +489,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         statoUtente.setBackground(new java.awt.Color(204, 204, 204));
         statoUtente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         statoUtente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        statoUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel20.setText("Stato");
@@ -642,6 +643,7 @@ public class PaginaUtente extends javax.swing.JFrame {
 
         statoUtente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         statoUtente1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
+        statoUtente1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel23.setText("Stato");

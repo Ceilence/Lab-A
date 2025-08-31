@@ -831,6 +831,7 @@ public class RisList extends javax.swing.JFrame {
         vediTutte.setBackground(new java.awt.Color(0, 102, 102));
         vediTutte.setForeground(new java.awt.Color(255, 255, 255));
         vediTutte.setText("Vedi tutte");
+        vediTutte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vediTutte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vediTutteActionPerformed(evt);
@@ -974,6 +975,7 @@ public class RisList extends javax.swing.JFrame {
 
         logoutBottone.setBackground(new java.awt.Color(254, 254, 254));
         logoutBottone.setText("Logout");
+        logoutBottone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logoutBottone.setFocusPainted(false);
         logoutBottone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

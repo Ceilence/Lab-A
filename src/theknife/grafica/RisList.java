@@ -382,6 +382,15 @@ public class RisList extends javax.swing.JFrame {
             campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
     }
     
+    /**
+     * Crea un nuovo pannello ristorante.
+     * 
+     * @param r il ristorante da cui deve prendere i dati.
+     */
+    public void aggiungiPannello(Ristorante r) {
+        tuttiIPannelli.add(new PannelloRistorante(RisList.this, gestore, r, contenitoreAnteprima));
+    }
+    
     
     
     //----METODI PRIVATI DI SUPPORTO----

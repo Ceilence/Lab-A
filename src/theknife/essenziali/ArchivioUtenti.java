@@ -19,12 +19,10 @@ import javax.swing.JOptionPane;
  *      <li>Generare ID unici per nuovi utenti.</li>
  *      <li>Gestire l'utente attualmente loggato.</li>
  *  </ul>
- * </p>
  *
  * <p>
  * Il file di riferimento è: data\Utenti.csv,  
  * con righe salvate nel formato generato da {@link Utente#toString()}.
- * </p>
  *
  * @see Utente
  * 
@@ -46,7 +44,7 @@ public class ArchivioUtenti {
     
     /**
      * Costruttore vuoto.
-     * <p>Inizializza un archivio senza caricare automaticamente i dati.</p>
+     * <p>Inizializza un archivio senza caricare automaticamente i dati.
      */
     public ArchivioUtenti() {}
     

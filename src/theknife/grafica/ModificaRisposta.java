@@ -14,7 +14,6 @@ import theknife.gestori.GestoreArchivi;
  * <p>
  * Mostra la recensione originale (titolo, testo, valutazione a stelle) e permette
  * di modificare e salvare il testo della risposta associata
- * </p>
  * 
  * @author Alessandro Frigerio
  * @author Davide Moretti

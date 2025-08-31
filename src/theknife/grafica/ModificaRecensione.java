@@ -20,9 +20,8 @@ import theknife.gestori.GestoreArchivi;
  *      <li>Selezionare una valutazione tramite stelle cliccabili.</li>
  *      <li>Confermare o annullare la modifica.</li>
  *  </ul>
- * </p>
  *
- * <p> Gli attributi principali includono riferimenti ai gestori dati, all'interfaccia grafica e ai limiti di input testo.</p>
+ * <p> Gli attributi principali includono riferimenti ai gestori dati, all'interfaccia grafica e ai limiti di input testo.
  * 
  * @author Alessandro Frigerio
  * @author Davide Moretti

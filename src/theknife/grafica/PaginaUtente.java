@@ -27,7 +27,6 @@ import theknife.gestori.GestoreArchivi;
  *      <li>Lista dei preferiti</li>
  *      <li>Recensioni effettuate</li>
  *  </ul>
- * </p>
  *
  *
  * @see GestoreArchivi
@@ -878,7 +877,6 @@ public class PaginaUtente extends javax.swing.JFrame {
      * <p>
      * Vengono verificati la completezza dei campi obbligatori, la validità dell'email e della password. Se validi, i dati vengono
      * aggiornati nell'archivio utenti.
-     * </p>
      *
      * @param evt l'evento di pressione sul bottone
      * @see Utente
@@ -920,7 +918,7 @@ public class PaginaUtente extends javax.swing.JFrame {
 
     /**
      * Esegue il logout dell'utente corrente e torna alla finestra di login.
-     *
+     * Svuota la barra di ricerca.
      * @param evt l'evento di pressione sul bottone
      */
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -928,7 +926,7 @@ public class PaginaUtente extends javax.swing.JFrame {
         risList.setEnabled(true);
         risList.setVisible(false);
         risList.chiudiFiltro();
-        risList.getBarraRicerca().setText("");
+        risList.resetBarraRicerca();
         risList.creaLogin();
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed

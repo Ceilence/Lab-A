@@ -15,7 +15,6 @@ import theknife.gestori.GestoreArchivi;
  * <p>
  * Consente di effettuare il login come cliente oppure ristoratore,
  * oppure di entrare come ospite inserendo la propria posizione e lo stato.
- * </p>
  * 
  * @author Alessandro Frigerio
  * @author Davide Moretti
@@ -231,7 +230,6 @@ public class Login extends javax.swing.JFrame {
      * <p>
      * Verifica le credenziali inserite e, in base al ruolo dell'utente,
      * apre la finestra dedicata al cliente o al ristoratore.
-     * </p>
      *
      * @param evt evento generato dal pulsante
      */
@@ -266,7 +264,6 @@ public class Login extends javax.swing.JFrame {
      * <p>
      * Permette di inserire una posizione e uno stato tramite una finestra di dialogo,
      * quindi mostra la lista dei ristoranti in modalità guest.
-     * </p>
      *
      * @param evt evento generato dal pulsante
      */
@@ -349,7 +346,6 @@ public class Login extends javax.swing.JFrame {
      * Gestisce l'evento di click sul pulsante "Registrati".
      * <p>
      * Apre la finestra {@link SelezioneTipoUtente} per registrare un nuovo utente.
-     * </p>
      *
      * @param evt evento generato dal pulsante
      */
@@ -364,9 +360,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Gestisce l'evento sul pulsante a forma di occhio accanto al campo password.
      * <p>
-     * Alterna tra la visualizzazione e l'oscuramento della password
-     * modificando l'icona e il carattere.
-     * </p>
+     * Alterna tra la visualizzazione e l'oscuramento della password modificando l'icona e il carattere.
      *
      * @param evt evento generato dal pulsante
      */

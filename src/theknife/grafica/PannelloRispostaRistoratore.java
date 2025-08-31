@@ -27,7 +27,6 @@ import theknife.gestori.GestoreArchivi;
  *      <li>Il testo della risposta fornita dal ristoratore.</li>
  *      <li>Pulsanti per modificare o eliminare la risposta.</li>
  *  </ul>
- * </p>
  * La classe permette l'interazione con il {@link GestoreArchivi} per modificare o rimuovere la risposta e aggiorna la {@link PaginaRistoratore} di conseguenza.
  * 
  * @see CommentiRistoranti

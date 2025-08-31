@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  * <p>
  * Fornisce metodi statici per verificare che i campi obbligatori siano pieni,
  * che un'email abbia un formato valido e che una password rispetti determinati criteri.
- * </p>
  * 
  * @see Pattern
  * @author Alessandro Frigerio
@@ -21,7 +20,6 @@ public class ValidaReg {
      * Pattern regex precompilato per validare l'email.
      * <p>
      * Verifica la struttura generale di un indirizzo email valido. {@code PATTERN_MAIL}
-     * </p>
      */
     private static final Pattern PATTERN_MAIL = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+[A-Za-z0-9+_.-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
     
@@ -29,7 +27,6 @@ public class ValidaReg {
      * Pattern regex precompilato per validare la password.
      * <p>
      * Richiede almeno una lettera minuscola, una maiuscola, un numero e lunghezza tra 4 e 20 caratteri. {@code PATTERN_PASS}
-     * </p>
      */
     private static final Pattern PATTERN_PASS = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{4,20}$");
     
@@ -71,7 +68,6 @@ public class ValidaReg {
      * <p>
      * La password deve contenere almeno una lettera minuscola, una maiuscola, un numero, avere lunghezza compresa tra 4 e 20 caratteri 
      * e non contenere il carattere '@'.
-     * </p>
      * 
      * @param pass password da validare
      * @return true se la password è valida, false altrimenti

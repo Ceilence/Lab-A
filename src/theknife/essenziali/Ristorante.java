@@ -18,7 +18,6 @@ import java.util.ArrayList;
  *      <li>Media delle stelle, servizi disponibili (delivery, prenotazione online)</li>
  *      <li>Descrizione, ID ristorante e ID ristoratore</li>
  *  </ul>
- * </p>
  * 
  * @author Alessandro Frigerio
  * @author Davide Moretti

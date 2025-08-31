@@ -12,12 +12,10 @@ package theknife.essenziali;
  *      <li>La latitudine geografica.</li>
  *      <li>La longitudine geografica.</li>
  *  </ul>
- * </p>
  *
  * <p>
  * Questa classe può essere utilizzata per associare una posizione
  * a un {@link Utente} o a un ristorante, o per calcoli geografici.
- * </p>
  *
  * @see Utente
  * 

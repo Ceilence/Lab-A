@@ -17,14 +17,12 @@ import javax.swing.JOptionPane;
  *      <li>Aggiungere e rimuovere preferiti dall'archivio.</li>
  *      <li>Gestire il preferito attualmente selezionato.</li>
  *  </ul>
- * </p>
  *
  *  <p>
  *  Il file di riferimento è: data\RisPreferiti.csv, e contiene i seguenti token:
     <pre>
  *      idRistorante § idUtente
  *  </pre>
- *  </p>
  *
  * @see Preferito
  * 
@@ -45,7 +43,7 @@ public class ArchivioPreferiti {
     
     /**
      * Costruttore vuoto di default.
-     * <p>Inizializza un archivio senza caricare automaticamente i dati.</p>
+     * <p>Inizializza un archivio senza caricare automaticamente i dati.
      */
     public ArchivioPreferiti() {}
     

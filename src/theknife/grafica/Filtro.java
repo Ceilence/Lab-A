@@ -15,10 +15,8 @@ import javax.swing.*;
  * <p>
  * Permette di filtrare i ristoranti in base a vari criteri come stato, città, distanza massima dalla città selezionata, tipo di cucina, 
  * media stelle, fascia di prezzo, servizio delivery e servizio di prenotazione.
- * </p>
  * <p>
  * I filtri vengono applicati sulla lista di {@link PannelloRistorante} passata al costruttore.
- * </p>
  * 
  * @see RisList
  * @see PannelloRistorante
@@ -69,7 +67,6 @@ public class Filtro extends JDialog{
      * <p>
      * Imposta tutti i componenti grafici, le JComboBox, i JTextField e le JCheckBox, e gestisce gli eventi per l'aggiornamento della città 
      * in base allo stato selezionato e l'abilitazione del campo distanza.
-     * </p>
      * 
      * @param gestore istanza di {@link GestoreArchivi} contenente i dati di ristoranti e utenti
      * @param risList riferimento alla finestra principale {@link RisList} per aggiornare la lista filtrata
@@ -243,7 +240,8 @@ public class Filtro extends JDialog{
         
         applicaFiltri.addActionListener(e -> {
             filtri.getVerticalScrollBar().setValue(0);
-            risList.applicaFiltri();        
+            risList.applicaFiltri(); 
+            risList.resetBarraRicerca();
         });
         
         getRootPane().setDefaultButton(applicaFiltri);
@@ -261,10 +259,8 @@ public class Filtro extends JDialog{
      * <p>
      * Filtra in base a: stato, città, distanza massima dalla città, tipo di cucina, media stelle, fascia di prezzo, servizio delivery e 
      * servizio di prenotazione.
-     * </p>
      * <p>
      * I pannelli che soddisfano tutti i criteri vengono aggiunti alla lista pannelliFiltrati.
-     * </p>
      * 
      * @param tuttiIPannelli la lista completa di {@link PannelloRistorante} su cui applicare i filtri
      * @param pannelliFiltrati la lista che verrà popolata con i pannelli filtrati

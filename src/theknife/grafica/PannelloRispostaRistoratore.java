@@ -5,6 +5,7 @@ package theknife.grafica;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -73,11 +74,12 @@ public class PannelloRispostaRistoratore extends JPanel{
         JLabel testoRisposta = new JLabel("<html><p style='width: 570px'>" + risposta.getTesto() + "</p></html>");
         testoRisposta.setFont(new Font("Arial", Font.PLAIN, 15));
 
-         JPanel panelBottoni = new JPanel();
+        JPanel panelBottoni = new JPanel();
         panelBottoni.setLayout(new BoxLayout(panelBottoni, BoxLayout.X_AXIS));
         panelBottoni.setOpaque(false);
 
         JButton modRecensione = new JButton("Modifica");
+        modRecensione.setCursor(new Cursor(Cursor.HAND_CURSOR));
         modRecensione.addActionListener(e -> {
             ModificaRisposta mr = new ModificaRisposta(gestore, commento, risposta, pagRisto);
             pagRisto.cambiaCard();
@@ -86,6 +88,7 @@ public class PannelloRispostaRistoratore extends JPanel{
         });
 
         JButton elimRecensione = new JButton("Elimina");
+        elimRecensione.setCursor(new Cursor(Cursor.HAND_CURSOR));
         elimRecensione.addActionListener(e -> {
             int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare il commento?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
             if (conferma == JOptionPane.YES_OPTION) {

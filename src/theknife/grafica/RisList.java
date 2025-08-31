@@ -156,7 +156,7 @@ public class RisList extends javax.swing.JFrame {
         pannelliFiltrati.clear();
         boolean trovato = false;
         
-        if (filtro.isBlank()) {
+        if (filtro.equals("lasciare vuoto per visualizzare tutti i ristoranti")) {
             pannelliFiltrati.addAll(tuttiIPannelli);
             graficaImpaginata();
         } else {
@@ -374,10 +374,12 @@ public class RisList extends javax.swing.JFrame {
     }
     
     /**
-     * Svuota la barra di ricerca.
+     * Setta la barra di ricerca a frase predefinita
      */
     public void resetBarraRicerca(){
-        campoRicerca.setText("");
+            campoRicerca.setText(messaggioBarra);
+            campoRicerca.setForeground(Color.LIGHT_GRAY);
+            campoRicerca.setFont(campoRicerca.getFont().deriveFont(Font.ITALIC));
     }
     
     
@@ -414,8 +416,15 @@ public class RisList extends javax.swing.JFrame {
     /**
      * Resetta la barra di scorrimento verticale dei dettagli.
      */
-    private void resettaBarra(){
+    public void resettaBarra(){
         scrollPaneDet.getVerticalScrollBar().setValue(0);
+    }
+    
+    /**
+     * Resetta la barra di scorrimento verticale dei ristoranti.
+     */
+    public void resettaBarraRis(){
+        scrollPane.getVerticalScrollBar().setValue(0);
     }
     
     /**
@@ -762,6 +771,7 @@ public class RisList extends javax.swing.JFrame {
         dettaglioPanel.add(detDes, gridBagConstraints);
 
         detPref.setBorderPainted(false);
+        detPref.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         detPref.setPreferredSize(new java.awt.Dimension(40, 40));
         detPref.setRequestFocusEnabled(false);
         detPref.addActionListener(new java.awt.event.ActionListener() {
@@ -819,6 +829,7 @@ public class RisList extends javax.swing.JFrame {
         vediTutte.setBackground(new java.awt.Color(0, 102, 102));
         vediTutte.setForeground(new java.awt.Color(255, 255, 255));
         vediTutte.setText("Vedi tutte");
+        vediTutte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vediTutte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vediTutteActionPerformed(evt);
@@ -962,6 +973,7 @@ public class RisList extends javax.swing.JFrame {
 
         logoutBottone.setBackground(new java.awt.Color(254, 254, 254));
         logoutBottone.setText("Logout");
+        logoutBottone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logoutBottone.setFocusPainted(false);
         logoutBottone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

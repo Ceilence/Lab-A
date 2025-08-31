@@ -159,6 +159,8 @@ public class Filtro extends JDialog{
             }
         });
         
+        stato.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        citta.setCursor(new Cursor(Cursor.HAND_CURSOR));
         JLabel labelDistanza = new JLabel("Distanza massima dalla città(km):");
         labelDistanza.setAlignmentX(Component.LEFT_ALIGNMENT);
         labelDistanza.setFont(new Font("Arial", Font.BOLD, 18));
@@ -174,6 +176,7 @@ public class Filtro extends JDialog{
         tipoCucina.setAlignmentX(Component.LEFT_ALIGNMENT);
         pannelloFiltri.add(tipoCucina);
         pannelloFiltri.add(Box.createVerticalStrut(15));
+        tipoCucina.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         JLabel labelStelle = new JLabel("Media stelle:");
         labelStelle.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -240,11 +243,16 @@ public class Filtro extends JDialog{
         
         applicaFiltri.addActionListener(e -> {
             filtri.getVerticalScrollBar().setValue(0);
+            risList.resettaBarraRis();
             risList.applicaFiltri(); 
             risList.resetBarraRicerca();
         });
         
+        //Se si preme invio si attiva il bottone applicaFiltri
         getRootPane().setDefaultButton(applicaFiltri);
+        applicaFiltri.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        indietro.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         setUndecorated(true);
         setPreferredSize(new Dimension(500, 500));

@@ -208,6 +208,7 @@ public class Login extends javax.swing.JFrame {
         Dati.add(guestButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         eyePass.setBorder(null);
+        eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eyePassActionPerformed(evt);
@@ -272,7 +273,7 @@ public class Login extends javax.swing.JFrame {
         risList.creaFiltro();
                                   
         //JDialog
-        JDialog dialog = new JDialog(this, "Inserisci posizione e stato", true);
+        JDialog dialog = new JDialog(this, "Inserisci città e stato", true);
         
         //Text field, Combo box e Bottone conferma
         JTextField posizione = new JTextField(15);
@@ -300,7 +301,7 @@ public class Login extends javax.swing.JFrame {
         conferma.setForeground(new Color(255, 255, 255));
         
 
-        JLabel labelPosizione = new JLabel("Posizione:");
+        JLabel labelPosizione = new JLabel("Città:");
         labelPosizione.setFont(new Font("Arial", Font.BOLD, 18));
         labelPosizione.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(labelPosizione);
@@ -319,6 +320,9 @@ public class Login extends javax.swing.JFrame {
         dialog.add(panel);
         dialog.setSize(300, 300);
         dialog.setLocationRelativeTo(this);
+        
+        conferma.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        dialog.getRootPane().setDefaultButton(conferma);
 
         //Bottone conferma
         conferma.addActionListener(e -> {

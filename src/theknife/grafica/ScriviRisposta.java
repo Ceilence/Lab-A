@@ -115,6 +115,7 @@ public class ScriviRisposta extends javax.swing.JFrame {
         confermaButton.setBackground(new java.awt.Color(0, 102, 102));
         confermaButton.setForeground(new java.awt.Color(255, 255, 255));
         confermaButton.setText("Conferma");
+        confermaButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         confermaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confermaButtonActionPerformed(evt);
@@ -138,6 +139,7 @@ public class ScriviRisposta extends javax.swing.JFrame {
         });
 
         jButton1.setText("X");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

@@ -76,6 +76,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         
         contenitoreCommenti.setLayout(new BoxLayout(contenitoreCommenti, BoxLayout.Y_AXIS));
         commentiRistorante.setViewportView(contenitoreCommenti);
+        
         CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
         cl.show(pannelloDestra, "dettagli");
         
@@ -145,7 +146,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         locRist = new javax.swing.JLabel();
         indRist = new javax.swing.JLabel();
         indirizzo = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         nomeRist = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
         lonRist = new javax.swing.JLabel();
@@ -614,11 +614,12 @@ public class PaginaRistoratore extends javax.swing.JFrame {
 
         jLabel11.setBackground(new java.awt.Color(204, 204, 204));
         jLabel11.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel11.setText("REGISTRAZIONE");
-        registraRisto.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 300, 40));
-        registraRisto.add(città, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 135, -1));
+        jLabel11.setText("REGISTRAZIONE RISTORANTE");
+        registraRisto.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 550, 40));
+        registraRisto.add(città, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 135, 30));
 
         regRis.setBackground(new java.awt.Color(0, 102, 102));
+        regRis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         regRis.setForeground(new java.awt.Color(255, 255, 255));
         regRis.setText("Registra");
         regRis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -627,63 +628,72 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 regRisActionPerformed(evt);
             }
         });
-        registraRisto.add(regRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 90, 30));
+        registraRisto.add(regRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 100, 30));
 
+        locRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         locRist.setText("Città:");
-        registraRisto.add(locRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 79, -1));
+        registraRisto.add(locRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 79, -1));
 
-        indRist.setText("indirizzo:");
+        indRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        indRist.setText("Indirizzo:");
         registraRisto.add(indRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 82, -1));
-        registraRisto.add(indirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, -1));
+        registraRisto.add(indirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, 30));
 
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        jLabel14.setText("ristorante ");
-        registraRisto.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 160, 26));
-
+        nomeRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         nomeRist.setText("Nome:");
-        registraRisto.add(nomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 49, -1));
-        registraRisto.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 290, -1));
+        registraRisto.add(nomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 60, -1));
+        registraRisto.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 290, 30));
 
+        lonRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lonRist.setText("Longitudine:");
-        registraRisto.add(lonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
+        registraRisto.add(lonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 90, -1));
 
+        latRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         latRist.setText("Latitudine:");
-        registraRisto.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 340, 68, -1));
-        registraRisto.add(descrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
+        registraRisto.add(latRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 350, 80, -1));
+        registraRisto.add(descrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 290, 30));
 
+        desRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         desRist.setText("Descrizione:");
-        registraRisto.add(desRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
+        registraRisto.add(desRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, -1));
 
         delcheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        registraRisto.add(delcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        registraRisto.add(delcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
 
         prencheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        registraRisto.add(prencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
+        registraRisto.add(prencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, -1, -1));
 
+        deliveryRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         deliveryRist.setText("Delivery:");
-        registraRisto.add(deliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
+        registraRisto.add(deliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, -1, -1));
 
+        prenOnl.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         prenOnl.setText("Prenotazione:");
-        registraRisto.add(prenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
+        registraRisto.add(prenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, -1, -1));
 
+        cuisRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cuisRist.setText("Tipo Cucina:");
-        registraRisto.add(cuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 70, -1));
-        registraRisto.add(cucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
+        registraRisto.add(cuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 110, -1));
+        registraRisto.add(cucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 290, 30));
 
         prezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
-        registraRisto.add(prezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
+        prezzoBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registraRisto.add(prezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 70, 20));
 
+        priceRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         priceRist.setText("Fascia prezzo:");
-        registraRisto.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
-        registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
-        registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
+        registraRisto.add(priceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, -1, -1));
+        registraRisto.add(longitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 135, 30));
+        registraRisto.add(latitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 370, 135, 30));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Stato:");
-        registraRisto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 240, -1, -1));
+        registraRisto.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 230, -1, -1));
 
         stato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         stato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
-        registraRisto.add(stato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
+        stato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registraRisto.add(stato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 250, 135, 28));
 
         pannelloDestra.add(registraRisto, "registra");
 
@@ -693,66 +703,81 @@ public class PaginaRistoratore extends javax.swing.JFrame {
         jLabel16.setBackground(new java.awt.Color(204, 204, 204));
         jLabel16.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel16.setText("MODIFICA RISTORANTE");
-        modificaRisto.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 450, 40));
-        modificaRisto.add(modCittà, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 135, -1));
+        modificaRisto.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 450, 40));
+        modificaRisto.add(modCittà, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 135, 30));
 
         modRis.setBackground(new java.awt.Color(0, 102, 102));
+        modRis.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modRis.setForeground(new java.awt.Color(255, 255, 255));
         modRis.setText("Modifica");
+        modRis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modRis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modRisActionPerformed(evt);
             }
         });
-        modificaRisto.add(modRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 90, 30));
+        modificaRisto.add(modRis, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 100, 30));
 
+        modLocRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modLocRist.setText("Città:");
-        modificaRisto.add(modLocRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 79, -1));
+        modificaRisto.add(modLocRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 79, -1));
 
-        modIndRist.setText("indirizzo:");
+        modIndRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        modIndRist.setText("Indirizzo:");
         modificaRisto.add(modIndRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 82, -1));
-        modificaRisto.add(modIndirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, -1));
+        modificaRisto.add(modIndirizzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 290, 30));
 
+        modNomeRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modNomeRist.setText("Nome:");
-        modificaRisto.add(modNomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 49, -1));
-        modificaRisto.add(modNomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 290, -1));
+        modificaRisto.add(modNomeRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 49, -1));
+        modificaRisto.add(modNomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 290, 30));
 
+        modLonRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modLonRist.setText("Longitudine:");
-        modificaRisto.add(modLonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 68, -1));
-        modificaRisto.add(modLongitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 135, -1));
-        modificaRisto.add(modLatitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 360, 135, -1));
+        modificaRisto.add(modLonRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 90, -1));
+        modificaRisto.add(modLongitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 135, 30));
+        modificaRisto.add(modLatitudine, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 370, 135, 30));
 
+        modLatRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modLatRist.setText("Latitudine:");
-        modificaRisto.add(modLatRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 340, 68, -1));
-        modificaRisto.add(modDescrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 290, -1));
+        modificaRisto.add(modLatRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 350, 80, -1));
+        modificaRisto.add(modDescrizione, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 290, 30));
 
+        modDesRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modDesRist.setText("Descrizione:");
-        modificaRisto.add(modDesRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
-        modificaRisto.add(modDelcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
-        modificaRisto.add(modPrencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
+        modificaRisto.add(modDesRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, -1));
+        modificaRisto.add(modDelcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
+        modificaRisto.add(modPrencheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, -1, -1));
 
+        modDeliveryRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modDeliveryRist.setText("Delivery:");
-        modificaRisto.add(modDeliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
+        modificaRisto.add(modDeliveryRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, -1, -1));
 
+        modPrenOnl.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modPrenOnl.setText("Prenotazione:");
-        modificaRisto.add(modPrenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
+        modificaRisto.add(modPrenOnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, -1, -1));
 
+        modCuisRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modCuisRist.setText("Tipo Cucina:");
-        modificaRisto.add(modCuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 70, -1));
-        modificaRisto.add(modCucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 290, -1));
+        modificaRisto.add(modCuisRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 90, -1));
+        modificaRisto.add(modCucina, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 290, 30));
 
         modPrezzoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "$", "$$", "$$$", "$$$$" }));
-        modificaRisto.add(modPrezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 460, 70, 20));
+        modPrezzoBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificaRisto.add(modPrezzoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 70, 20));
 
+        modPriceRist.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         modPriceRist.setText("Fascia prezzo:");
-        modificaRisto.add(modPriceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
+        modificaRisto.add(modPriceRist, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Stato:");
-        modificaRisto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 240, -1, -1));
+        modificaRisto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 230, -1, -1));
 
         modStato.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         modStato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abu Dhabi", "Andorra", "Argentina", "Austria", "Belgium", "Brazil", "Canada", "China Mainland", "Croatia", "Czech Republic", "Czechia", "Denmark", "Dubai", "Estonia", "Finland", "France", "Germany", "Greece", "Hong Kong", "Hong Kong SAR China", "Hungary", "Iceland", "Ireland", "Italy", "Japan", "Latvia", "Lithuania", "Luxembourg", "Macau", "Malaysia", "Malta", "Mexico", "Netherlands", "Norway", "Poland", "Portugal", "Qatar", "Serbia", "Singapore", "Slovenia", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Türkiye", "USA", "United Kingdom", "Vietnam" }));
-        modificaRisto.add(modStato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 260, 135, 23));
+        modStato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificaRisto.add(modStato, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 250, 135, 28));
 
         pannelloDestra.add(modificaRisto, "modificaRisto");
 
@@ -852,6 +877,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 pulsantiPanel.setOpaque(false);
 
                 JButton btnModifica = new JButton("Modifica");
+                btnModifica.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 btnModifica.addActionListener(e -> {
                     CardLayout cl = (CardLayout)(pannelloDestra.getLayout());
                     cl.show(pannelloDestra, "modificaRisto");
@@ -878,6 +904,7 @@ public class PaginaRistoratore extends javax.swing.JFrame {
                 });
 
                 JButton btnElimina = new JButton("Elimina");
+                btnElimina.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 btnElimina.addActionListener(e -> {
                     int conferma = JOptionPane.showOptionDialog(this, "Vuoi davvero eliminare " + r.getNomeRis() + "?", "Conferma eliminazione", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sì", "No"}, "No");
                     if (conferma == JOptionPane.YES_OPTION) {
@@ -942,8 +969,8 @@ public class PaginaRistoratore extends javax.swing.JFrame {
             if(trovato == true)
                 JOptionPane.showMessageDialog(null, "Esiste già un ristorante alla posizione inserita!");
             else{
-                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String) stato.getSelectedItem(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getId(gestore.getArchivioUtenti().getUtenteAttuale().getUsernameUtente(), gestore.getArchivioUtenti().getUtenteAttuale().getPassUtente())));
-                JOptionPane.showMessageDialog(this, "ristorante creato con successo!");
+                gestore.getArchivioRis().aggiungiRis(new Ristorante(nomeField.getText(), indirizzo.getText(), città.getText(), (String) stato.getSelectedItem(), (String)prezzoBox.getSelectedItem(), cucina.getText(), Double.parseDouble(longitudine.getText().trim()), Double.parseDouble(latitudine.getText().trim()), " ", 0, delcheck.isSelected(), prencheck.isSelected(), descrizione.getText(), gestore.getArchivioRis().creaID(), gestore.getArchivioUtenti().getUtenteAttuale().getIdUtente()));
+                JOptionPane.showMessageDialog(this, "Ristorante creato con successo!");
                 nomeField.setText("");
                 indirizzo.setText("");
                 città.setText("");
@@ -1327,7 +1354,6 @@ public class PaginaRistoratore extends javax.swing.JFrame {
     private javax.swing.JTextField indirizzo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;

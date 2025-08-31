@@ -58,6 +58,8 @@ public class RegRistoratore extends javax.swing.JFrame {
         erroreEmail.setVisible(false);
         infoPassPane.setVisible(false);
         infoPass.setVisible(false);
+        
+        getRootPane().setDefaultButton(regCliente);
     }
     
     //Generated Code.
@@ -107,6 +109,7 @@ public class RegRistoratore extends javax.swing.JFrame {
         jPanel3.add(infoPassPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 210, 90));
 
         eyePass.setBorder(null);
+        eyePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eyePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eyePassActionPerformed(evt);

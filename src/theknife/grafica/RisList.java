@@ -5,11 +5,13 @@ package theknife.grafica;
 
 import theknife.essenziali.Ristorante;
 import java.awt.*;
-import java.io.File;
+import java.net.URL;
 import java.util.*;
 import javax.swing.*;
+import theknife.essenziali.ArchivioPreferiti;
 import theknife.essenziali.Citta;
 import theknife.essenziali.CommentiRistoranti;
+import theknife.essenziali.Preferito;
 import theknife.gestori.GestoreArchivi;
 
 
@@ -707,7 +709,6 @@ public class RisList extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         pannelloSfondo.add(panRicerca, gridBagConstraints);
 
-        profiloUtente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pagina Utente.png"))); // NOI18N
         profiloUtente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profiloUtente.setMaximumSize(new java.awt.Dimension(50, 51));
         profiloUtente.setMinimumSize(new java.awt.Dimension(50, 51));
@@ -1219,71 +1220,71 @@ public class RisList extends javax.swing.JFrame {
      * Include bandiere, icone per preferiti, filtri, ricerca e logo.
      */
     private void creaImmagini(){
-        ImageIcon flagIT = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_Italy.png");
+        ImageIcon flagIT = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_Italy.png"));
         Image scaledImageItalia = flagIT.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconItalia = new ImageIcon(scaledImageItalia);
         this.flagItalia = scaledIconItalia; 
         
-        ImageIcon flagCN = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_China.png");
+        ImageIcon flagCN = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_China.png"));
         Image scaledImageCina = flagCN.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconCina = new ImageIcon(scaledImageCina);
         this.flagCina = scaledIconCina; 
         
-        ImageIcon flagJP = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_Japan.png");
+        ImageIcon flagJP = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_Japan.png"));
         Image scaledImageGiappone = flagJP.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconGiappone = new ImageIcon(scaledImageGiappone);
         this.flagGiappone = scaledIconGiappone; 
         
-        ImageIcon flagES = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_Spain.png");
+        ImageIcon flagES = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_Spain.png"));
         Image scaledImageSpagna = flagES.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconSpagna = new ImageIcon(scaledImageSpagna);
         this.flagSpagna = scaledIconSpagna; 
         
-        ImageIcon flagDE = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_Germany.png");
+        ImageIcon flagDE = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_Germany.png"));
         Image scaledImageGermania = flagDE.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconGermania = new ImageIcon(scaledImageGermania);
         this.flagGermania = scaledIconGermania; 
         
-        ImageIcon flagUSA = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_United_States.png");
+        ImageIcon flagUSA = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_United_States.png"));
         Image scaledImageUSA = flagUSA.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconUSA = new ImageIcon(scaledImageUSA);
         this.flagStatiUniti = scaledIconUSA; 
         
-        ImageIcon flagFR = new ImageIcon("resources" + File.separator + "images" + File.separator + "Flag_of_France.png");
+        ImageIcon flagFR = new ImageIcon(getClass().getResource("/theknife/resources/images/Flag_of_France.png"));
         Image scaledImageFrancia = flagFR.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconFrancia = new ImageIcon(scaledImageFrancia);
         this.flagFrancia = scaledIconFrancia; 
         
-        ImageIcon flagWD = new ImageIcon("resources" + File.separator + "images" + File.separator + "Globe.png");
+        ImageIcon flagWD = new ImageIcon(getClass().getResource("/theknife/resources/images/Globe.png"));
         Image scaledImageMondo = flagWD.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         ImageIcon scaledIconMondo = new ImageIcon(scaledImageMondo);
         this.flagMondo = scaledIconMondo; 
         
-        ImageIcon tkIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "TheKnife.png"));
+        ImageIcon tkIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/TheKnife.png"));
         Image tk1 = tkIcon.getImage();
         Image tk2 = tk1.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon tk3 = new ImageIcon(tk2);
         logo.setIcon(tk3);
         
-        ImageIcon paIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "pref_Aggiungi.png"));
+        ImageIcon paIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/pref_Aggiungi.png"));
         Image pa1 = paIcon.getImage();
         Image pa2 = pa1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon pa3 = new ImageIcon(pa2);
         this.stellaVuota = pa3;
         
-        ImageIcon ptIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "pref_Togli.png"));
+        ImageIcon ptIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/pref_Togli.png"));
         Image pt1 = ptIcon.getImage();
         Image pt2 = pt1.getScaledInstance(detPref.getWidth(), detPref.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon pt3 = new ImageIcon(pt2);
         this.stellaPiena = pt3; 
         
-        ImageIcon filtriIcon = new ImageIcon("resources" + File.separator + "images" + File.separator + "filtri.png");
+        ImageIcon filtriIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/filtri.png"));
         Image filtri1 = filtriIcon.getImage();
         Image filtri2 = filtri1.getScaledInstance(filtri.getWidth(), filtri.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon filtri3 = new ImageIcon(filtri2);
         filtri.setIcon(filtri3);
         
-        ImageIcon cercaIcon = new ImageIcon("resources" + File.separator + "images" + File.separator + "Lente.png");
+        ImageIcon cercaIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/Lente.png"));
         Image ci1 = cercaIcon.getImage();
         Image ci2 = ci1.getScaledInstance(cerca.getWidth(), cerca.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ci3 = new ImageIcon(ci2);

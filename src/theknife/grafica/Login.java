@@ -59,8 +59,7 @@ public class Login extends javax.swing.JFrame {
 
         Login = new javax.swing.JPanel();
         Logo = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        iconaLogo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Dati = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -87,11 +86,7 @@ public class Login extends javax.swing.JFrame {
         Logo.setBackground(new java.awt.Color(0, 102, 102));
         Logo.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        jLabel6.setText("jLabel6");
-        jLabel6.setPreferredSize(new java.awt.Dimension(761, 721));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TheKnife.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
+        iconaLogo.setText("jLabel7");
 
         jLabel5.setBackground(new java.awt.Color(51, 255, 51));
         jLabel5.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
@@ -106,28 +101,20 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LogoLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addGap(29, 29, 29)))
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                        .addComponent(iconaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LogoLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel5)))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         LogoLayout.setVerticalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoLayout.createSequentialGroup()
-                .addGroup(LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LogoLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LogoLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addComponent(iconaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         Login.add(Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -383,19 +370,27 @@ public class Login extends javax.swing.JFrame {
      */
     public void creaImmagini() {
         //Immagine per mostrare la password ridimensionata ed applicata.
-        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "show_pass.png"));
+        ImageIcon spIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/show_pass.png"));
         Image sp1 = spIcon.getImage();
         Image sp2 = sp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);
         eyePass.setIcon(sp3);
         this.showPass = sp3;  
         
-         //Immagine per nascondere la password ridimensionata.
-        ImageIcon hpIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "hide_pass.png"));
+        //Immagine per nascondere la password ridimensionata.
+        ImageIcon hpIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/hide_pass.png"));
         Image hp1 = hpIcon.getImage();
         Image hp2 = hp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon hp3 = new ImageIcon(hp2); 
         this.hidePass = hp3;
+        
+        //Ridimensionamento icona logo.
+        ImageIcon tkIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/logo.png"));
+        Image tk1 = tkIcon.getImage();
+        Image tk2 = tk1.getScaledInstance(iconaLogo.getWidth(), iconaLogo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon tk3 = new ImageIcon(tk2);
+        iconaLogo.setIcon(tk3);
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dati;
@@ -404,13 +399,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel Logo;
     private javax.swing.JToggleButton eyePass;
     private javax.swing.JButton guestButton;
+    private javax.swing.JLabel iconaLogo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField logMail;
     private javax.swing.JPasswordField logPass;

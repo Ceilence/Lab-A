@@ -3,6 +3,7 @@
  */
 package theknife.grafica;
 
+import java.awt.Image;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -29,7 +30,6 @@ import java.awt.event.*;
 
 
 public class Caricamento extends javax.swing.JFrame {
-    
     /**Timer per scandire l'animazione dei puntini nella scritta "Caricamento". {@code timer}*/
     private Timer timer;
     
@@ -43,6 +43,12 @@ public class Caricamento extends javax.swing.JFrame {
      */
     public Caricamento() {
         initComponents();
+        //Ridimensionamento icona logo.
+        ImageIcon tkIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/logo.png"));
+        Image tk1 = tkIcon.getImage();
+        Image tk2 = tk1.getScaledInstance(iconaLogo.getWidth(), iconaLogo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon tk3 = new ImageIcon(tk2);
+        iconaLogo.setIcon(tk3);
         
         // Inizializza il timer per aggiornare i puntini ogni 500 ms
         timer = new Timer(500, new ActionListener() {
@@ -77,8 +83,8 @@ public class Caricamento extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        iconaLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -91,35 +97,35 @@ public class Caricamento extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("jLabel1");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TheKnife.png"))); // NOI18N
-
         progressBar.setBackground(new java.awt.Color(0, 102, 102));
         progressBar.setForeground(new java.awt.Color(255, 255, 255));
+
+        iconaLogo.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 37, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(332, 332, 332)
-                        .addComponent(jLabel2)))
+                        .addGap(334, 334, 334)
+                        .addComponent(iconaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 37, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(37, 37, 37)
+                .addGap(48, 48, 48)
+                .addComponent(iconaLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,8 +147,8 @@ public class Caricamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconaLogo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables

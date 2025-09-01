@@ -340,14 +340,14 @@ public class RegRistoratore extends javax.swing.JFrame {
      */
     private void creaImmagini() {
     //Immagine punto di domanda per le informazioni password ridimensionata ed applicata.
-        ImageIcon qmIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "qm.png"));
+        ImageIcon qmIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/qm.png"));
         Image qm1 = qmIcon.getImage();
         Image qm2 = qm1.getScaledInstance(qmLabel.getWidth(), qmLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon qm3 = new ImageIcon(qm2);
         qmLabel.setIcon(qm3); 
         
         //Immagine per mostrare la password ridimensionata ed applicata.
-        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "show_pass.png"));
+        ImageIcon spIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/show_pass.png"));
         Image sp1 = spIcon.getImage();
         Image sp2 = sp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);
@@ -355,14 +355,14 @@ public class RegRistoratore extends javax.swing.JFrame {
         this.showPass = sp3;  
         
         //Immagine per nascondere la password ridimensionata.
-        ImageIcon hpIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "hide_pass.png"));
+        ImageIcon hpIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/hide_pass.png"));
         Image hp1 = hpIcon.getImage();
         Image hp2 = hp1.getScaledInstance(eyePass.getWidth(), eyePass.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon hp3 = new ImageIcon(hp2); 
         this.hidePass = hp3;  
         
         //Immagine per pulsante indietro ridimensionata ed applicata.
-        ImageIcon backArr = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "backArrow.png"));
+        ImageIcon backArr = new ImageIcon(getClass().getResource("/theknife/resources/images/backArrow.png"));
         Image ba1 = backArr.getImage();
         Image ba2 = ba1.getScaledInstance(backArrow.getWidth(), backArrow.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ba3 = new ImageIcon(ba2); 

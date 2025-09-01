@@ -486,13 +486,13 @@ public class ModificaRecensione extends javax.swing.JFrame {
      * Crea le immagini per le icone delle stelle (vuota e piena), ridimensionandole alla dimensione delle JLabel corrispondenti.
      */
     private void creaImmagini() {
-        ImageIcon svIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources" + File.separator + "images" + File.separator + "pref_Aggiungi.png"));
+        ImageIcon svIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/pref_Aggiungi.png"));
         Image sv1 = svIcon.getImage();
         Image sv2 = sv1.getScaledInstance(stella1.getWidth(), stella1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sv3 = new ImageIcon(sv2);
         this.stellaVuota = sv3;
         
-        ImageIcon spIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage("resources"  + File.separator + "images" + File.separator + "pref_Togli.png"));
+        ImageIcon spIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/pref_Togli.png"));
         Image sp1 = spIcon.getImage();
         Image sp2 = sp1.getScaledInstance(stella1.getWidth(), stella1.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon sp3 = new ImageIcon(sp2);

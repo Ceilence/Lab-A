@@ -3,6 +3,8 @@
  */
 package theknife.grafica;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import theknife.gestori.GestoreArchivi;
 import theknife.grafica.Login;
 import theknife.grafica.RegUtente;
@@ -33,9 +35,30 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
      * @param risList Riferimento alla lista dei ristoranti {@link RisList}
      */
     public SelezioneTipoUtente(GestoreArchivi gestore, RisList risList) {
+        
         this.gestore = gestore;
         this.risList = risList;
         initComponents();
+        //Ridimensionamento icona logo.
+        ImageIcon tkIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/logo.png"));
+        Image tk1 = tkIcon.getImage();
+        Image tk2 = tk1.getScaledInstance(iconaLogo.getWidth(), iconaLogo.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon tk3 = new ImageIcon(tk2);
+        iconaLogo.setIcon(tk3);
+        
+        //Ridimensionamento icona utente
+        ImageIcon utenteIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/Omino_stilizzato.png"));
+        Image u1 = utenteIcon.getImage();
+        Image u2 = u1.getScaledInstance(utente.getWidth(), utente.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon u3 = new ImageIcon(u2);
+        utente.setIcon(u3);
+        
+        //Ridimensionamento icona ristoratore
+        ImageIcon ristoratoreIcon = new ImageIcon(getClass().getResource("/theknife/resources/images/depositphotos_665030182-stock-illustration-cook-line-color-filled-icons.png"));
+        Image r1 = utenteIcon.getImage();
+        Image r2 = r1.getScaledInstance(utente.getWidth(), utente.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon r3 = new ImageIcon(r2);
+        utente.setIcon(r3);
     }
     
     @SuppressWarnings("unchecked")
@@ -44,14 +67,14 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        iconaLogo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
+        ristoratore = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        utente = new javax.swing.JLabel();
         regClienteButton = new javax.swing.JButton();
         indietro = new javax.swing.JButton();
 
@@ -66,8 +89,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/TheKnife.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
+        iconaLogo.setText("jLabel7");
 
         jLabel5.setBackground(new java.awt.Color(51, 255, 51));
         jLabel5.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
@@ -82,7 +104,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(iconaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(jLabel5)))
@@ -91,8 +113,8 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addContainerGap(92, Short.MAX_VALUE)
+                .addComponent(iconaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(139, 139, 139))
@@ -110,9 +132,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
         jLabel1.setText("REGISTRAZIONE");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 35, -1, -1));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 287, 394, 16));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/depositphotos_665030182-stock-illustration-cook-line-color-filled-icons.jpg"))); // NOI18N
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 309, 153, 141));
+        jPanel3.add(ristoratore, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 309, 153, 141));
 
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -126,9 +146,7 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 456, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Omino_stilizzato.png"))); // NOI18N
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 83, 109, 157));
+        jPanel3.add(utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 83, 109, 157));
 
         regClienteButton.setBackground(new java.awt.Color(0, 102, 102));
         regClienteButton.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -194,17 +212,17 @@ public class SelezioneTipoUtente extends javax.swing.JFrame {
     }//GEN-LAST:event_indietroActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconaLogo;
     private javax.swing.JButton indietro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton regClienteButton;
+    private javax.swing.JLabel ristoratore;
+    private javax.swing.JLabel utente;
     // End of variables declaration//GEN-END:variables
 }
